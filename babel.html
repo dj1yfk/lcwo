@@ -1,0 +1,25 @@
+<?
+# ie absolute
+# ff fixed
+$theua = $_SERVER['HTTP_USER_AGENT'];
+
+if (preg_match("/MSIE/", $theua)) {
+	$csspos = "absolute";
+}
+else {
+	$csspos = "fixed";
+}
+
+
+?>
+
+<div style="position:<?=$csspos;?>;bottom:4px;left:4px;width:1024px;height:59px;visibility:hidden;background-color:#ffaaaa;border:1px
+		solid #000000;font-size:10px" id="babeledit"> 
+		<form onsubmit="babeltx(document.getElementById('babelname').innerHTML, this.babelinput.value);return false;">
+				Translation for '<span id="babelname"></span>': 
+				<textarea cols="80" tabindex="1" rows="2" id="babelinput"></textarea> 
+				<input type="submit" tabindex="2" accesskey="y" value="Submit">
+				<span id="babelresponse"></span>
+		</form>
+		
+</div>

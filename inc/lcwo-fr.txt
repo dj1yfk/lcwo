@@ -1,0 +1,24 @@
+Un nouveau site internet pour apprendre et perfectionner la CW a été lancé:
+http://lcwo.net/ - Learn CW Online
+
+Certes, des centaines de logiciels d&rsquo;entrainement, cours et pratique en MP3 et
+CD sont déjà disponibles, mais LCWO suit un concept radicalement différent :
+
+Tout en s&rsquo;appuyant sur des méthodes d&rsquo;apprentissage et de pratique qui ont
+largement fait leurs preuves, vous n&rsquo;avez besoin pour utiliser LCWO que
+d&rsquo;un navigateur internet !
+
+Ainsi le site, disponible en <?=count($langs)?> langues, propose un cours de CW suivant la
+méthode Koch avec de la pratique sur des groupes de signes, indicatifs, et
+textes en clair. Il permet également de convertir en CW un texte quelconque en
+fichier MP3.
+
+Une liste des scores obtenus est disponible de façon à comparer ses résultats
+avec les autres utilisateurs, mais aussi à des fins de statistiques pour suivre
+sa progression.
+
+LCWO.net est un projet non commercial. Vous créez librement en quelques
+secondes votre compte utilisateur, puis vous pouvez commencer dans la foulée à
+pratiquer la CW !
+
+Fabian Kurz, DJ1YFK, http://lcwo.net/

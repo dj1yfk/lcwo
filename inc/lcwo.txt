@@ -1,0 +1,22 @@
+A new website to learn and practice Morse telegraphy has been launched:
+http://lcwo.net/ - Learn CW Online
+
+There are already hundreds of training programs, MP3/CD courses and practice
+aids available, but LCWO follows a radically different concept: While sticking
+to  well-proven methods for learning and practice, all you need for using LCWO
+is a web browser!
+
+This gives the user the liberty to practice CW wherever an internet connection
+is available, always retaining the personal settings, scores and statistics.
+
+Currently the site, which is available in <? echo count($langs); ?> languages offers a complete
+Koch method Morse course, code group practice, callsign- and plain text training
+modes and also allows to convert random text to Morse MP3s.
+
+A high score list is available to compare results with other users, personal
+statistics help to track training progress.
+
+LCWO.net is a non-commercial project. Creating a free account only takes a few
+seconds, and you can start practicing CW right away!
+
+Fabian Kurz, DJ1YFK 

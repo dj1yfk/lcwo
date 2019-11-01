@@ -1,0 +1,10 @@
+*~
+cgi-bin/
+img/
+lcwo-mm.png
+misc/
+player/
+ssh_keys.pub
+tmp_sess/
+*.custom.php
+mysql_data

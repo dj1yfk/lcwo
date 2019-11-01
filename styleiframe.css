@@ -1,0 +1,55 @@
+body {
+	margin-left: 5px;
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+a {
+	color: #000000;
+}
+
+.footer {
+	font-size: 10px;
+	text-align: center
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+#playercontroller {
+	background-color: #eeeeee;
+	color: #000;
+	height: 20px;
+	width: 160px;
+	border: solid 1px #ccc;
+	margin: 0 0 0 0;
+}
+	#playercontroller .timeline {
+		position: relative;
+	}
+		#playercontroller .timeline a {
+			position: absolute;
+			left: 0px;
+			display: block;
+			height: 20px;
+			width: 40px;
+			text-indent: -100em; 
+			overflow: hidden;
+			background-image: url(/pics/control_slider.png);
+		}
+		#playercontroller .timeline a:visited {
+			background-image: url(/pics/control_slider.png);
+		}
+		#playercontroller .position {
+			position: relative;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 12pt;
+			left: 170px;
+			display: block; 
+			height: 20px;
+			width: 40px;
+			overflow: hidden;
+		}

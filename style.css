@@ -1,0 +1,244 @@
+textarea {font-family:monospace;} 
+
+.smallplayer {
+		width:400px;
+		border-width:thin;
+		border-style:dashed;
+		padding:6px;
+}
+.playbutton {
+		white-space:nowrap; 
+		font-size:16px;
+		border-style:outset;
+		height:18px;
+		width:150px;
+		border-width:4px;
+		padding:2px;
+		background-color:#dddddd;
+		font-weight:bold;
+		text-align:center;
+}
+
+.menuText {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	background-image:url(/pics/menu2.png);
+}
+
+.pmsgbox {
+	width:600px;
+	border-width:thin;
+	border-style:solid;
+	font-family: monospace;
+	font-size: 11px;
+}
+
+.tsbutton {
+	font-size:12px;
+	border-style: outset;
+	border-width: 3px;
+	padding: 2px;
+	background-color:#dddddd; 
+	text-decoration: none;
+}
+
+ul {
+	margin-top: 6px; 
+	margin-bottom: 8px; 
+}
+
+
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+a {
+	color: #000000;
+}
+
+.footer {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+.vcsid{
+	visibility: hidden;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: right;
+	color: #aaaaaa;
+	font-size: 10px;
+}
+
+.quoted{
+	margin: 5px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+	background-color: #eeeeff;
+	border: 1px dashed #4444ff;
+}
+
+h1 {
+	font-size: 18px;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	border-bottom-color: #000000;
+}
+
+h2 {
+	font-size: 16px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #000000;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.mLink {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold; 
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.sLink {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-size: 10px;
+/*	text-decoration: none; */
+}
+
+.greytext {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #aaaaaa;
+	font-size: 10px;
+}
+
+th {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background-color: #aaaaff;
+	font-size: 11px;
+}
+
+td {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+.smalltd {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+}
+
+.tborder {
+	border: 1px solid #4444ff;
+}
+.tborderred {
+	border: 1px solid #ff0000;
+}
+
+input {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+pre {
+	font-size: 11px;
+	text-decoration: none;
+}
+
+
+.highscore {
+	width: 100%;
+}
+
+.highscore-item {
+	font-size: 12px;
+	border-width: 1px;
+	border-color: #000000;
+}
+
+
+.table {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: solid;
+	border-left-style: none;
+	border-top-color: #336633;
+	border-right-color: #336633;
+	border-bottom-color: #336633;
+	border-left-color: #336633
+}
+
+/* livevalidation stuff */
+
+.LV_valid_field,
+input.LV_valid_field:hover, 
+input.LV_valid_field:active,
+textarea.LV_valid_field:hover, 
+textarea.LV_valid_field:active {
+		    border: 2px solid #00CC00; 
+}
+
+.LV_invalid_field, 
+input.LV_invalid_field:hover, 
+input.LV_invalid_field:active,
+textarea.LV_invalid_field:hover, 
+textarea.LV_invalid_field:active {
+		    border: 2px solid #CC0000; 
+}
+
+.LV_field, 
+input.LV_field:hover, 
+input.LV_field:active,
+textarea.LV_field:hover, 
+textarea.LV_field:active {
+		    border: 1px solid #CCCC00; 
+}
+
+/* new flash player */
+
+#playercontroller {
+	background-color: #eeeeee;
+	color: #000;
+	height: 20px;
+	width: 160px;
+	border: solid 1px #ccc;
+	margin: 0 0 0 0;
+}
+	#playercontroller .timeline {
+		position: relative;
+	}
+		#playercontroller .timeline a {
+			position: absolute;
+			left: 0px;
+			display: block;
+			height: 20px;
+			width: 40px;
+			text-indent: -100em; 
+			overflow: hidden;
+			background-image: url(/pics/control_slider.png);
+		}
+		#playercontroller .timeline a:visited {
+			background-image: url(/pics/control_slider.png);
+		}
+		#playercontroller .position {
+			position: relative;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 12pt;
+			left: 170px;
+			display: block; 
+			height: 20px;
+			width: 40px;
+			overflow: hidden;
+		}

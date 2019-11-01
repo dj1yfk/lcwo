@@ -1,0 +1,60 @@
+php_flag register_globals off
+php_value session.use_only_cookies "1"
+php_value session.use_trans_sid "0"
+php_value session.save_path "/www/htdocs/v135911/lcwo/tmp_sess/"
+
+<Files register>
+order allow,deny
+Allow from all
+#deny from bad_ip_address
+</Files>
+
+order allow,deny
+Allow from all
+#deny from bad_ip_address
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^(.*)?\.lcwo\.net$ [NC]
+RewriteRule ^(.*)$ http://lcwo.net/$1 [L,R=301]
+RewriteRule ^([a-z0-9]{3,20})(/)?$ ?p=$1 [L]
+RewriteRule ^([a-z0-9]{2,2})/([a-z0-9]+)(/)?$ ?p=$2&hl=$1 [L]
+RewriteRule ^forum/([0-9]+)(/)?(.+)?$ ?p=forum&t=$1 [L]
+RewriteRule ^forum/edit/([0-9]+)$ ?p=forum&e=$1 [L]
+RewriteRule ^forum/showall ?p=forum&showall=1 [L]
+RewriteRule ^users/([0-9]+)(/)?$ ?p=users&l=$1 [L]
+RewriteRule ^users/([0-9]+)/([a-z]+)/([a-z]+)(/)?$ ?p=users&l=$1&o=$2&d=$3 [L]
+RewriteRule ^users/member/([0-9]+)(/)?$ ?p=users&member=$1 [L]
+RewriteRule ^users/member/([0-9]+)/([0-9]+)(/)?$ ?p=users&member=$1&l=$2 [L]
+RewriteRule ^users/member/([0-9]+)/([0-9]+)/([a-z]+)/([a-z]+)(/)?$ ?p=users&member=$1&l=$2&o=$3&d=$4 [L]
+RewriteRule ^highscores/([a-z]+)/([0-9]+)(/)?$ ?p=highscores&$1=$2 [L]
+RewriteRule ^highscores/group/([0-9]+)(/)?$ ?p=highscores&group=$1 [L]
+RewriteRule ^highscores/group/([0-9]+)/([a-z]+)/([0-9]+)(/)?$ ?p=highscores&group=$1&$2=$3 [L]
+RewriteRule ^usergroups/([0-9]+)/uploadpic$ ?p=usergroups&group=$1&uploadpic=1 [L]
+RewriteRule ^usergroups/([0-9]+)/uploadpic/ok$ ?p=usergroups&group=$1&uploadpic=2 [L]
+RewriteRule ^usergroups/new$ ?p=usergroups&new=1 [L]
+RewriteRule ^usergroups/join/([0-9]+)$ ?p=usergroups&join=$1 [L]
+RewriteRule ^usergroups/map/([0-9]+)$ ?p=usergroups&map=true&gid=$1 [L]
+RewriteRule ^usergroups/map$ ?p=usergroups&map=true [L]
+RewriteRule ^usergroups/subscribe$ ?p=usergroups&subscribe=show [L]
+RewriteRule ^usergroups/subscribe/((-)?[0-9]+)?$ ?p=usergroups&subscribe=$1 [L]
+RewriteRule ^usergroups/leave/([0-9]+)$ ?p=usergroups&leave=$1 [L]
+RewriteRule ^usergroups/([0-9]+)/approve/([0-9]+)/([01])$ ?p=usergroups&group=$1&approve=$2&ok=$3 [L]
+RewriteRule ^usergroups/([0-9]+)/edit/ok$ ?p=usergroups&group=$1&edit=2 [L]
+RewriteRule ^usergroups/([0-9]+)/edit(/)?$ ?p=usergroups&group=$1&edit=1 [L]
+RewriteRule ^usergroups/([0-9]+)/showall ?p=usergroups&group=$1&showall=1 [L]
+RewriteRule ^usergroups/([0-9]+)(/)?$ ?p=usergroups&group=$1 [L]
+RewriteRule ^profile/newaboutme$ ?p=profile&newaboutme=1 [L]
+RewriteRule ^profile/newimage$ ?p=profile&newimage=1 [L]
+RewriteRule ^profile/([A-Za-z0-9]+)$ ?p=profile&u=$1 [L]
+RewriteRule ^delete/([a-z]+)/([0-9]+) ?p=delete&type=$1&nr=$2 [L]
+RewriteRule ^pmsg/([a-z]+)/([a-zA-Z0-9]+) ?p=pmsg&action=$1&id=$2 [L]
+RewriteRule ^main/([a-z]) ?p=main&$1=1 [L]
+RewriteRule ^news/all ?p=news&all=1 [L]
+RewriteRule ^news/delete/([0-9]+) ?p=news&delete=$1 [L]
+RewriteRule ^lostpassword/([a-z0-9]+)/([a-zA-Z0-9]+) ?p=lostpassword&h=$1&u=$2 [L]
+RewriteRule ^atom.xml api/atom.php [L]
+RewriteRule ^forumatom.xml api/forumatom.php [L]
+ErrorDocument 404 /?p=404
+ErrorDocument 403 /403.php
+RedirectMatch permanent ^/u/([a-zA-Z0-9]+)$ /profile/$1
+RedirectMatch permanent ^/main"(/)?$ /?p=logout
