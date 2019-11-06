@@ -85,7 +85,7 @@ function ajaxedit () {
 				echo "die".mysqli_error();
 				exit(1);
 			}
-			$k = mysqli_fetch_row($db, $x);
+			$k = mysqli_fetch_row($x);
 			if ($k[0]) {
 				$x = mysqli_query($db, "UPDATE `lcwo_texts` set text='$text' where `name`='$name' and lang='".$lang."'");
 				/* if english (master language) mark all others as
@@ -200,7 +200,7 @@ foreach ($langs as $hl) {
 
 	if ($_POST['new']) {
 		$name = $_POST['name'];
-		if (!eregi("^[a-zA-Z0-9]{1,32}$", $name)) {
+		if (!preg_match("/^[a-zA-Z0-9]{1,32}$/", $name)) {
 			echo "Invalid name $name!<br>";
 			exit(1);
 		}
@@ -437,6 +437,7 @@ en: <input type="text" name="en"><br>
 
 
 function escc ($str) {
+global $db;
 return mysqli_real_escape_string($db, stripslashes($str));
 }
 
