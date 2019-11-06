@@ -578,7 +578,7 @@ echo "<tr>
 <div id="entryform">
 
 <form id="rform" action="" method="" onkeypress="return disableEnterKey(event)">
-<input value="" id="wordentry" name="word" size="12">
+<input spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off" value="" id="wordentry" name="word" size="12">
 <input type="button" id="okbutton" value="OK" onclick="check(this.form.word.value);document.getElementById('wordentry').focus();"> <span id="clicktostart">
 &lt;- <? echo l('clicktostart') ?></span> 
 </form>

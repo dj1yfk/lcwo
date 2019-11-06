@@ -294,7 +294,7 @@ echo "<tr>
 <div id="entryform">
 
 <form id="rform" action="" method="" onkeypress="return disableEnterKey(event)">
-<input value="" id="callentry" name="call" size="12">
+<input value="" spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off" id="callentry" name="call" size="12">
 <input id="okbutton" type="button" value="OK" onclick="javascript:if(stop_on_error && stop_active) { playcall(nr, true); stop_active = false; } else { check(this.form.call.value); }; if (nr != -1) { document.getElementById('callentry').focus(); console.log('focus'); } "> <span id="clicktostart">
 &lt;- <? echo l('clicktostart') ?></span> 
 </form>
