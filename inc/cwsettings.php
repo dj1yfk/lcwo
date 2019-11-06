@@ -14,6 +14,7 @@ return 0;
 		&& isint($_POST['tone']) && 
 		($_POST['speed'] > 1) && 
 		($_POST['eff'] >= 1) && 
+		is_numeric($_POST['ews']) && 
 		($_POST['tone'] > 100) &&
 		(in_array($_POST['tonetype'], array("1", "0")))
 		) {
@@ -45,7 +46,14 @@ return 0;
 			else {
 				$eff = $_POST['eff'];
 			}
-		
+	
+			if ($_POST['ews'] > 5 or $_POST['ews'] < 0) {
+				$ews = 0;
+			}	
+			else {
+				$ews = $_POST['ews'];
+			}
+	
 			/* rand:
 						0 -> read group length from 'randlength',
 							fixed value. Save this value in
@@ -106,6 +114,7 @@ return 0;
 			
 			$upd = mysqli_query($db,"update lcwo_users set
 			`cw_speed`=$_POST[speed], `cw_eff`=$eff, 
+			`cw_ews`=$ews,
 			`cw_tone`=$_POST[tone], `player`=$player,
 			`vvv`='$vvv', `lockspeeds`='$lock',
 			`cw_tone_random`='$_POST[tonetype]',
@@ -120,11 +129,13 @@ return 0;
 				echo "<p><strong>".l('valuesaccepted')."</strong></p>\n";
 				unset($_SESSION['cw_speed']);
 				unset($_SESSION['cw_eff']);
+				unset($_SESSION['cw_ews']);
 				unset($_SESSION['cw_tone']);
 				unset($_SESSION['player']);
 				unset($_SESSION['vvv']);
 				$_SESSION['cw_speed'] = $_POST['speed'];
 				$_SESSION['cw_eff'] = $eff;
+				$_SESSION['cw_ews'] = $ews;
 				$_SESSION['cw_tone'] = $_POST['tone'];
 				$_SESSION['cw_tone_random'] = $_POST['tonetype'];
 				$_SESSION['player'] = $player;
@@ -134,12 +145,9 @@ return 0;
 				$_SESSION['customcharacters'] = $customchars;
 				$_SESSION['delay_start'] = $ds;
 			}
-			
-				
 		}
 		else {
-			echo "<p><strong>Warning:</strong> Values invalid. Not
-			numeric or out of range.</p>";
+			echo "<p><strong>Warning:</strong> Values invalid. Not numeric or out of range.</p>";
 		}
 	}
 
@@ -201,6 +209,13 @@ var locked = <? echo ($_SESSION['lockspeeds']==1 ? "true" : "false") ?>;
 	<tr style="background-color:#dddddd">
 	<td><?echo l('effspeedlong')?>  (<? echo l('wpm') ?>):</td>
 	<td><input id="eff" disable="disabled" onFocus="if(locked){this.blur();}" onClick="if(locked) { locktoggle(); }" style="background:#ffffff;" name="eff" type="text" value="<? echo $_SESSION['cw_eff']; ?>" size=3></td>
+	</tr>
+	<tr>
+	<td>
+		<? echo l('ewslong')?> (0.0 - 5.0):
+	</td>
+	<td width="10%"> <input id="ews" name="ews" type="text" value="<? echo $_SESSION['cw_ews']; ?>" size="2">
+	</td>
 	</tr>
 	<tr>
 	<td valign="top"><? echo l('tone') ?> (Hz):</td>

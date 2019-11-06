@@ -336,6 +336,7 @@ CREATE TABLE `lcwo_users` (
   `signupdate` date NOT NULL DEFAULT '1970-01-01',
   `cw_speed` int(11) NOT NULL DEFAULT '20',
   `cw_eff` int(11) NOT NULL DEFAULT '10',
+  `cw_ews` float NOT NULL DEFAULT 0,
   `cw_tone` int(11) NOT NULL DEFAULT '800',
   `koch_lesson` int(11) NOT NULL DEFAULT '1',
   `player` int(11) NOT NULL DEFAULT '2',

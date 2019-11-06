@@ -6,7 +6,7 @@ CMD ["/sbin/my_init"]
 RUN apt-get update && apt-get install -y apache2 mysql-server php \
     libapache2-mod-php php-mysql php-gd exim4 \
     # stuff needed to compile ebook2cw \
-    build-essential libmp3lame-dev wget libvorbis-dev
+    build-essential libmp3lame-dev git libvorbis-dev
 
 RUN a2enmod rewrite cgi
 
@@ -34,9 +34,8 @@ RUN chmod a+rwx /www/img/
 # install ebook2cw in CGI mode
 RUN mkdir -p /tmp/ebook2cw_build && \
     cd /tmp/ebook2cw_build && \
-    wget http://fkurz.net/ham/ebook2cw/ebook2cw-0.8.2.tar.gz && \
-    tar zxfv ebook2cw-0.8.2.tar.gz && \
-    cd ebook2cw-0.8.2 && \
+    git clone https://git.fkurz.net/dj1yfk/ebook2cw && \
+    cd ebook2cw && \
     make cgi && \
     mkdir -p /www/cgi-bin/ && \
     cp cw.cgi /www/cgi-bin/cw.mp3 && \
@@ -59,7 +58,7 @@ RUN service mysql start && \
     mysql -ulcwo -plcwo LCWO < /www/db/lcwo_plaintext.sql && \
     mysql -ulcwo -plcwo LCWO < /www/db/lcwo_words.sql && \
     mysql -ulcwo -plcwo LCWO < /www/db/lcwo_config.sql && \
-    service mysql stop
+    service mysql stop 
 
 # note that the pre-populated database now resides in /var/lib/mysql
 # later we can run the container and mount a volume to

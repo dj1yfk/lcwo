@@ -288,7 +288,7 @@ else {
 	&nbsp;
 
 <? 
-$playertext = $text;
+$playertext = "|W".$_SESSION['cw_ews']." ".$text;
 if ($_SESSION['delay_start'] > 0) {
 	$playertext = '|S'.($_SESSION['delay_start']*1000).' '.$playertext;
 }
@@ -322,7 +322,6 @@ player("$playertext", $_SESSION['player'], $_SESSION['cw_speed'],
 }
 
 ?>
-<div class="vcsid">$Id: courselesson.php 8 2014-12-06 19:20:35Z fabian $</div>
 <? echo "<!-- ".time()." -->"; ?>
 
 <?

@@ -17,7 +17,7 @@ if (!preg_match("/^[a-zA-Z0-9]{1,24}$/", $username)) {
 }
 else {
 	$getuser = mysqli_query($db,"SELECT id, username, location, name, email,
-			password, cw_speed, cw_eff, cw_tone, koch_lesson,
+			password, cw_speed, cw_eff, cw_ews, cw_tone, koch_lesson,
 			player, lang, vvv, lockspeeds, groups_duration,
 			groups_abbrev, continent,
 			koch_duration, koch_randomlength,
@@ -53,6 +53,7 @@ if ($valid) {
 	$_SESSION['location'] = $user->location;
 	$_SESSION['cw_speed'] = $user->cw_speed;
 	$_SESSION['cw_eff'] = $user->cw_eff;
+	$_SESSION['cw_ews'] = $user->cw_ews;
 	$_SESSION['cw_tone'] = $user->cw_tone;
 	$_SESSION['cw_tone_random'] = $user->cw_tone_random;
 	$_SESSION['koch_lesson'] = $user->koch_lesson;

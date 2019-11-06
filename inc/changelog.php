@@ -8,6 +8,10 @@ the author.
 
 Started on 2009-02-08.
 
+2019-11-06:
+    * Add extra word spacing option (currently only active in Koch lessons)
+    * Remove autocomplete for word and callsign training
+
 2019-11-01:
     * Reduce buzzer volume in Morse Machine
 
