@@ -23,6 +23,7 @@ sudo usermod -a -G docker $USER   # you must log out and to make this work
 Then simply clone the repository and run the container:
 ```
 git clone https://git.fkurz.net/dj1yfk/lcwo.git
+cd lcwo
 ./docker_start.sh
 ```
 
