@@ -12,6 +12,7 @@ if (!($_SESSION['wordtraining']['set'] == TRUE)) {
 	$_SESSION['wordtraining']['maxlength'] = 15;
 	$_SESSION['wordtraining']['lesson'] = 40;
 	$_SESSION['wordtraining']['fixspeed'] = 0;
+	$_SESSION['wordtraining']['autoskip'] = 0;
 	$_SESSION['wordtraining']['lang'] = array($_SESSION['lang']."0");
 	$_SESSION['wordtraining']['tone'] = $_SESSION['cw_tone'];
 	$_SESSION['wordtraining']['tone_random'] = $_SESSION['cw_tone_random'];
@@ -217,6 +218,19 @@ $_SESSION['wordtraining']['maxlength']; ?>" size="2">
 </tr>
 <tr>
 <td>
+<? echo l('autoskip'); ?>:
+</td>
+<td>
+<input type="checkbox" name="autoskip"
+<? if ($_SESSION['wordtraining']['autoskip']) {
+	echo ' checked ';
+}
+?>
+>
+</td>
+</tr>
+<tr>
+<td>
 <input type="hidden" name="sent" value="1">
 <input type="submit" id="startbutton" value=" <? echo l('start',1) ?> ">
 </td>
@@ -320,6 +334,13 @@ function wordtraining () {
 		$simplify = 0;
 	}
 
+	if ($_POST['autoskip']) {
+		$autoskip = 1;
+	}
+	else {
+		$autoskip = 0;
+	}
+
 	$_SESSION['wordtraining']['speed'] = $speed;
 	$_SESSION['wordtraining']['mincharspeed'] = $mincharspeed;
 	$_SESSION['wordtraining']['tone'] = $tone;
@@ -328,19 +349,21 @@ function wordtraining () {
 	$_SESSION['wordtraining']['lesson'] = $lesson;
 	$_SESSION['wordtraining']['maxlength'] = $maxlen;
 	$_SESSION['wordtraining']['fixspeed'] = $fixspeed;
+	$_SESSION['wordtraining']['autoskip'] = $autoskip;
 	$_SESSION['wordtraining']['simplify'] = $simplify;
 	$_SESSION['wordtraining']['set'] = TRUE;
 		
 ?>
 
 <script type="text/javascript">
-words = new Array();
-cwspeed =<? echo $speed; ?> ;
-mincharspeed = <? echo $mincharspeed; ?>;
-maxspeed = 0;
-score = 0;
-tone  = <? echo $tone; ?>;
-thistone = tone;
+var skiptimer;
+var words = new Array();
+var cwspeed =<? echo $speed; ?> ;
+var mincharspeed = <? echo $mincharspeed; ?>;
+var maxspeed = 0;
+var score = 0;
+var tone  = <? echo $tone; ?>;
+var thistone = tone;
 
 var h5c = "cw.ogg";     /* CGI for HTMl5. Ogg for Firefox and all others */
 if (true || navigator.userAgent.indexOf("Safari") > -1) {   /* except Safari */
@@ -348,7 +371,7 @@ if (true || navigator.userAgent.indexOf("Safari") > -1) {   /* except Safari */
 }
 
 
-nr = -1;		/* 0..24 */
+var nr = -1;		/* 0..24 */
 
 /* 
  "For people who are honorable, the temptation to cheat is easily overcome." 
@@ -466,6 +489,7 @@ function playcall () {
 		cwspeedtmp = mincharspeed;  
 	}
     var delay = <?=$_SESSION['delay_start']?>;
+    var autoskip = <?=$_SESSION['wordtraining']['autoskip']?>;
 
     if (delay) {
         var text = '|S' + (delay*1000)+ ' ' + words[nr];
@@ -500,9 +524,20 @@ function playcall () {
    <?
 	}
 	?>
+
+    if (autoskip) {
+        p.onended = function () {
+            console.log("onended => skip timer started");
+            skiptimer = window.setInterval(skip, 5000);
+        }
+    }
 }
 
-
+function skip () {
+    console.log("skip");
+    window.clearInterval(skiptimer);
+    check("");
+}
 
 
 // http://www.arraystudio.com/as-workshop/disable-form-submit-on-enter-keypress.html

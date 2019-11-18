@@ -8,6 +8,11 @@ the author.
 
 Started on 2009-02-08.
 
+2019-11-18:
+    * Word training: Add auto skip function to move to the next word without
+      pressing return (5 seconds delay)
+    * Extra word space: Allow larger spaces (previous limit 5, now 40)
+
 2019-11-06:
     * Add extra word spacing option (currently only active in Koch lessons)
     * Remove autocomplete for word and callsign training

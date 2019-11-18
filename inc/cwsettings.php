@@ -47,7 +47,7 @@ return 0;
 				$eff = $_POST['eff'];
 			}
 	
-			if ($_POST['ews'] > 5 or $_POST['ews'] < 0) {
+			if ($_POST['ews'] > 40 or $_POST['ews'] < 0) {
 				$ews = 0;
 			}	
 			else {
@@ -212,7 +212,7 @@ var locked = <? echo ($_SESSION['lockspeeds']==1 ? "true" : "false") ?>;
 	</tr>
 	<tr>
 	<td>
-		<? echo l('ewslong')?> (0.0 - 5.0):
+		<? echo l('ewslong')?>:
 	</td>
 	<td width="10%"> <input id="ews" name="ews" type="text" value="<? echo $_SESSION['cw_ews']; ?>" size="2">
 	</td>
