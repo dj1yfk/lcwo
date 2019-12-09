@@ -184,7 +184,8 @@ if (!$deleted && file_exists("img/userimage".$m->uid.".jpg")) {
 	<? echo l('allowedtags') ?><br> 
 	<b>[b]<? echo l('boldtext') ?>[/b]</b><br>
 	<i>[i]<? echo l('italictext') ?>[/i]</i><br>
-	[s]<s><? echo l('striketext') ?></s>[/s]
+    [s]<s><? echo l('striketext') ?></s>[/s]<br>
+    [cw speed=50 eff=20 ews=2 freq=600]Text[/cw]<br>
 	</td>
 	<td  class="tborder">
 	<form action="/forumpost" method="POST">

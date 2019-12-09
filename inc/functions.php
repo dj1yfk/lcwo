@@ -1191,6 +1191,47 @@ function bb2html ($text) {
     $text = preg_replace('#\[i\]([^\[]+)\[/i\]#',"<i>$1</i>",$text);
     $text = preg_replace('#\[s\]([^\[]+)\[/s\]#',"<s>$1</s>",$text);
     $text = preg_replace('#\[quote=([a-zA-Z0-9]+)\]([^\[]+)\[/quote\]#',"<div class=\"quoted\"><strong>$1</strong>:<br> $2</div>",$text);
+
+    $text = preg_replace_callback('#\[cw((\s+[a-z]+=[0-9]+)*)\]([^\[]+)\[/cw\]#',
+        function ($m) {
+            $params = Array();
+            $params['speed'] = 20;
+            $params['eff'] = 20;
+            $params['ews'] = 0;
+            $params['freq'] = 600;
+
+            if ($m[1]) {	# extra parameters
+                $arr = explode(' ', $m[1]);
+                foreach ($arr as $p) {
+                    if (preg_match('/([a-z]+)=([0-9]+)/', $p, $matches)) {
+                        $params[$matches[1]] = $matches[2];
+                        # if we only specify speed, also make it effective speed
+                        # if eff speed is specified later, we will overwrite this
+                        if ($matches[1] == "speed") {
+                            $params['eff'] = $matches[2];
+                        }
+
+                    }
+                }
+            }
+
+            $text = rawurlencode($m[count($m) - 1]);
+
+            if ($params['ews']) {
+                $text = " ".rawurlencode("|W").$params['ews']." ".$text;
+            }
+
+            $query = "s=".$params['speed']."&e=".$params['eff']."&f=".$params['freq']."&t=".$text;
+
+            return "
+<audio controls>
+<source src=\"".CGIURL()."/cw.ogg?$query\" type='audio/ogg; codecs=\"vorbis\"'>
+<source src=\"".CGIURL()."/cw.mp3?$query\" type='audio/mpeg; codecs=\"mp3\"'>
+</audio>
+";
+        }
+    , $text);
+
     return $text;	
 }
 
