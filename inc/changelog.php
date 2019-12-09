@@ -8,6 +8,11 @@ the author.
 
 Started on 2009-02-08.
 
+2019-12-09:
+    * Allow embedding morse code snippets into forum posts with [cw]text[/cw]
+      syntax. Additionally speed, eff(ective speed), ews (extra word space)
+      and freq can be specified e.g. [cw speed=60 ews=5 freq=500]Hello[/cw].
+
 2019-11-18:
     * Word training: Add auto skip function to move to the next word without
       pressing return (5 seconds delay)
