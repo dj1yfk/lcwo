@@ -254,14 +254,14 @@ $gt = mysqli_query($db,"SELECT `id`, `tid` from `lcwo_posts` where
 forumid = '$forumid' and approved=1 order by
 `id` desc");
 
-# Get the last maximum 10 threads
+# Get the last maximum 20 threads (or all)
 $threads = 0;
 while ($t = mysqli_fetch_object($gt)) {
 	if (!$th[$t->tid]) {
 		$th[$t->tid] = 1;
 		$threads++;
 	}
-	if (!$showall && $threads == 10) {
+	if (!$showall && $threads == 20) {
 		break;
 	}
 }
