@@ -293,8 +293,10 @@ if ($_SESSION['delay_start'] > 0) {
 	$playertext = '|S'.($_SESSION['delay_start']*1000).' '.$playertext;
 }
 
-// Add some delay at the end to make Safari users happy
-$playertext .= " |S20000 ";
+if (preg_match('/Safari/', $_SERVER['HTTP_USER_AGENT']) and !preg_match('/Chrome/', $_SERVER['HTTP_USER_AGENT'])) {
+    // Add some delay at the end to make Safari users happy
+    $playertext .= " |S20000 ";
+}
 
 player("$playertext", $_SESSION['player'], $_SESSION['cw_speed'],
 		$_SESSION['cw_eff'], 0, 0, 0, 1); 
