@@ -81,7 +81,7 @@ return 0;
 
 			if (isint($_POST['delay_start'])) {
 					$ds = $_POST['delay_start'];
-					if (!($ds >= 0 && $ds <= 30)) {
+					if (!($ds >= 0 && $ds <= 20)) {
 							$ds = 0;
 					}
 			}
