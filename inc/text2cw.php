@@ -141,13 +141,38 @@ function entryform () {
 </tr>
 <tr>
 <td width="100%" colspan="3">
-<textarea name="text" cols="80" rows="10"></textarea>
+<textarea name="text" id="txt" cols="80" rows="10"></textarea>
 </td>
 </tr>
 </table>
 <input type="hidden" name="sent" value="1">
 <input type="submit" value=" <? echo l('convert',1) ?> ">
+&nbsp;
+Open text: <input type="file" id="t2c_file" onChange="javascript:load_text(this);return false">
 </form>
+<script>
+    function load_text(f) {
+        if (!f.files[0]) {
+            return;
+        }
+
+        var reader = new FileReader();
+        reader.onload = function(f) {
+            var t = f.target.result;
+
+            if (t.length > 8000) {
+                t = t.substring(0, 8000);
+                alert('File truncated to 8000 characters (maximum)');
+            }
+
+            document.getElementById('txt').value = t;
+        };
+        reader.readAsText(f.files[0]);
+    }
+</script>
+
+
+
 
 <?
 }	/* function entryform () */

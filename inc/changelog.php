@@ -8,6 +8,9 @@ the author.
 
 Started on 2009-02-08.
 
+2020-01-15:
+    * Allow opening a local text file in the text2cw converter (tnx WA2NFN)
+
 2019-12-17:
     * Embeddable CW in forum messages: Allow changing CW parameters.
 
