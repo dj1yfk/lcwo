@@ -29,6 +29,31 @@ case 'get_wordtraining_collections':
 case 'get_wordtraining_collection':
     get_wordtraining_collection();
     break;
+case 'update_wordtraining':
+    update_wordtraining();
+    break;
+}
+
+function update_wordtraining () {
+    global $db;
+    need_login();
+    
+    $postdata = file_get_contents("php://input");
+    $data = json_decode($postdata, true);
+
+    if ($data['lesson'] >= 1 and $data['lesson'] <= 40 and isint($data['ID'])) {
+	$word = mysqli_real_escape_string($db, $data['word']);
+        $query = "update lcwo_words set word='$word', lesson=".$data['lesson']." where ID=".$data['ID'];
+        $q = mysqli_query($db, $query);
+        if (!$q) {
+            error_log("SQL error: ".$query." => ".mysqli_error($db));
+            echo '{"msg": "Error"}';
+        }
+        else {
+            echo '{"msg": "OK"}';
+        }
+    }
+
 }
 
 function get_wordtraining_collections() {

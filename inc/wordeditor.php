@@ -7,6 +7,9 @@ if (!$_SESSION['uid']) {
 
 
 <script>
+
+var koch_chars = ['K','M','U','R','E','S','N','A','P','T','L','W', 'I','.','J','Z','=','F','O','Y',',','V','G','5','/','Q','9','2', 'H','3','8','B','?','4','7','C','1','D','6','0','X'];
+
 function load_langs () {
     var request =  new XMLHttpRequest();
     request.open("GET", '/api/index.php?action=get_wordtraining_collections', true);
@@ -42,7 +45,7 @@ function load(l) {
                         var p = JSON.parse(request.responseText);
                         var o = '<table> <thead> <tr><th>ID</th><th>Word</th><th>Lesson</th><th>Actions</th></thead><tbody>';
                         for (var i = 0; i < p.length; i++) {
-                            o += '<tr><td>' + p[i]['ID'] + '</td><td><input id="w' + p[i]['ID'] + '" onkeyup="upd_lesson(this.id);" type="text" width="20" value="' + p[i]['word'] + '"></td><td><span id="l' + p[i]['ID'] + '">' + p[i]['lesson'] + '</span></td><td><a href="javascript:save(' + p[i]['ID'] + ');">Save</a></td></tr>';
+                            o += '<tr><td>' + p[i]['ID'] + '</td><td><input id="w' + p[i]['ID'] + '" onkeyup="upd_lesson(this.id);" type="text" width="20" value="' + p[i]['word'] + '"></td><td><span id="l' + p[i]['ID'] + '">' + p[i]['lesson'] + '</span></td><td><a href="javascript:save(' + p[i]['ID'] + ');">Save</a> <span id="r'+ p[i]['ID'] + '"></span></td></tr>';
                         }
                         o += '</tbody> </table>';
                         d.innerHTML = o;
@@ -60,8 +63,48 @@ function upd_lesson(i) {
 }
 
 function lesson (word) {
-	return 40;
+    var s = word.toUpperCase().split("");
+
+    var minlesson = 1;
+    for (var i = 0; i < s.length; i++) {
+       var x = koch_chars.indexOf(s[i]);
+
+       // character is not in the Koch char set (e.g. umlauts)
+       if (x == -1) {
+           minlesson = 40;
+       }
+       else if (x > minlesson) {
+           minlesson = koch_chars.indexOf(s[i]);
+       }
+    }
+
+    return minlesson;
 }
+
+function save (id) {
+    var text = document.getElementById('w' + id).value;
+    var lesson = document.getElementById('l' + id).innerHTML;
+    // https://stackoverflow.com/questions/18749591/encode-html-entities-in-javascript#18750001
+    var enc = text.replace(/[\u00A0-\u9999<>\&]/gim, function(i) { return '&#'+i.charCodeAt(0)+';'; });
+    
+    document.getElementById('r' + id).innerHTML = "";
+
+    var request =  new XMLHttpRequest();
+    request.open("POST", '/api/index.php?action=update_wordtraining', true);
+    request.onreadystatechange = function() {
+            var done = 4, ok = 200;
+            if (request.readyState == done && request.status == ok) {
+                    if (request.responseText) {
+                        var u = JSON.parse(request.responseText);
+                        if (u['msg']) {
+                            document.getElementById('r' + id).innerHTML = u['msg'];
+                        }
+                    }
+            };
+    }
+    request.send(JSON.stringify({"ID": id, "word": enc, "lesson": lesson}));
+}
+
 
 </script>
 
