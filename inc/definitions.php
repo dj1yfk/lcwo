@@ -40,6 +40,9 @@ define("PMSG_RO",    false); # Disable sending new private messages
 # User IDs of the forum moderators.
 $g_moderators = array("1", "2");
 
+# User IDs of word training editors
+$g_wordeditors = array("1", "2");
+
 define("SALT", "salt_for_passwords");
 define("SALT_IMG_URL", "salt_for_image_urls");
 

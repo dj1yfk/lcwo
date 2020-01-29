@@ -1031,7 +1031,7 @@ function getavailablewordcollections() {
 	$query = mysqli_query($db,"SELECT distinct lang, collid, collection from $table order by lang");
 
 	if (!$query) {
-		echo "Error: ".mysqli_error();
+		echo "Error: ".mysqli_error($db);
 		return;
 	}
 

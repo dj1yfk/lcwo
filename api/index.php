@@ -23,7 +23,53 @@ case 'get_usergroups':
 case 'set_usergroup_location':
     set_usergroup_location();
     break;
+case 'get_wordtraining_collections':
+    get_wordtraining_collections();
+    break;
+case 'get_wordtraining_collection':
+    get_wordtraining_collection();
+    break;
 }
+
+function get_wordtraining_collections() {
+    global $db, $enlangnames;
+    $q = mysqli_query($db, "select distinct lang, collid, collection from lcwo_words");
+    $out = array();
+    while ($d = mysqli_fetch_array($q, MYSQLI_ASSOC)) {
+        if ($d['collection'] == "") {
+            $d['collection'] = $enlangnames[$d['lang']];
+        }
+        array_push($out, $d);
+    }
+    echo json_encode($out);
+}
+
+
+function get_wordtraining_collection() {
+    global $db;
+
+    $coll = $_GET['id'];
+
+    if (!preg_match('/^[a-z]{2}\d+$/', $coll)) {
+        return "[]";
+    }
+
+    $lang = substr($coll, 0,2);
+    $collid = substr($coll, 2);
+    $query = "select ID, word, lesson from lcwo_words where lang='$lang' and collid=$collid";
+    error_log($query);
+    $q = mysqli_query($db, $query);
+    $out = array();
+    while ($d = mysqli_fetch_array($q, MYSQLI_ASSOC)) {
+        $d['word'] = iconv("ISO-8859-1", "UTF-8//IGNORE", $d['word']);
+        array_push($out, $d);
+    }
+    error_log(count($out));
+    $ret = json_encode($out);
+    error_log("ret:" . $ret);
+    echo $ret;
+}
+
 
 
 

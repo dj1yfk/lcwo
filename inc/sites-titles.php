@@ -9,7 +9,7 @@ $sites = array('welcome', 'signup', 'register', 'users',
 'plainstat', 'download', 'text', 'usergroups', 'profile',
 'wordtraining', 'wordstat', 'qtcstat', 'changelog', 'news',
 'snr', 'snrstat', 'zartlesson', 'zartintro', 'transmit', 'morsemachine',
-'downloadhint', 'admin', 'pmsg', '404', 'moderation', 'privacy');
+'downloadhint', 'admin', 'pmsg', '404', 'moderation', 'privacy', 'wordeditor');
 
 $titles = array(
 'welcome' => 'welcometolcwo',
