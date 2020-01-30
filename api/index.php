@@ -14,6 +14,7 @@ function need_login() {
 
 include("../inc/functions.php");
 include("../inc/connectdb.php");
+include("../inc/definitions.php");
 
 
 switch ($_GET['action']) {
@@ -35,22 +36,72 @@ case 'update_wordtraining':
 }
 
 function update_wordtraining () {
-    global $db;
+    global $db, $langs;
     need_login();
     
     $postdata = file_get_contents("php://input");
     $data = json_decode($postdata, true);
 
     if ($data['lesson'] >= 1 and $data['lesson'] <= 40 and isint($data['ID'])) {
-	$word = mysqli_real_escape_string($db, $data['word']);
-        $query = "update lcwo_words set word='$word', lesson=".$data['lesson']." where ID=".$data['ID'];
-        $q = mysqli_query($db, $query);
-        if (!$q) {
-            error_log("SQL error: ".$query." => ".mysqli_error($db));
-            echo '{"msg": "Error"}';
+	$word   = mysqli_real_escape_string($db, $data['word']);
+	$collection = mysqli_real_escape_string($db, $data['collection']);
+
+        if ($data['ID'] > 0) { # update existing entry
+            if ($word) {
+                $query = "update lcwo_words set word='$word', lesson=".$data['lesson']." where ID=".$data['ID'];
+            }
+            else {
+                $query = "delete from lcwo_words where ID=".$data['ID'];
+            }
+
+            $q = mysqli_query($db, $query);
+            if (!$q) {
+                error_log("SQL error: ".$query." => ".mysqli_error($db));
+                echo '{"msg": "Error"}';
+            }
+            else {
+                echo '{"msg": "OK"}';
+            }
         }
-        else {
-            echo '{"msg": "OK"}';
+        else { // new entry
+            // valid lang?
+            if (!in_array($data['lang'], $langs)) {
+                echo '{"msg": "Invalid language >'.$data['lang'].'<"}';
+                return;
+            }
+            // check for duplicate
+            $query = "select count(*) from lcwo_words where lang='".$data['lang']."' and collection='".$collection."' and word='".$word."'";
+            $q = mysqli_query($db, $query);
+            $r = mysqli_fetch_row($q);
+            if ($r[0] == 0) {
+
+                # find correct collection id
+                $query = "select collid from lcwo_words where collection='$collection'";
+                $q = mysqli_query($db, $query);
+                if ($r = mysqli_fetch_row($q)) {
+                    $collid= $r[0];
+                    error_log("Existing collection with id = $collid");
+                }
+                else { # collection does not exist yet, select next one
+                    $query = "select max(collid) from lcwo_words where lang='".$data['lang']."'";
+                    $q = mysqli_query($db, $query);
+                    $r = mysqli_fetch_row($q);
+                    $collid = $r[0] + 1;
+                    error_log("NEW collection $query with id = $collid");
+                }
+
+                $query = "insert into lcwo_words (`lang` , `word`, `collid`, `collection`, `lesson`) VALUES ('".$data['lang']."', '".$word."', '".$collid."', '".$collection."', '".$data['lesson']."')";
+                if (mysqli_query($db, $query)) {
+                    echo '{"msg": "Added new word '.$word.'"}';
+                }
+                else {
+                    echo '{"msg": "DB error"}';
+                    error_log(mysqli_error($db));
+                }
+            }
+            else {
+                echo '{"msg": "duplicate, not added"}';
+            }
         }
     }
 
@@ -58,7 +109,7 @@ function update_wordtraining () {
 
 function get_wordtraining_collections() {
     global $db, $enlangnames;
-    $q = mysqli_query($db, "select distinct lang, collid, collection from lcwo_words");
+    $q = mysqli_query($db, "select distinct lang, collid, collection from lcwo_words order by lang asc, collid asc");
     $out = array();
     while ($d = mysqli_fetch_array($q, MYSQLI_ASSOC)) {
         if ($d['collection'] == "") {

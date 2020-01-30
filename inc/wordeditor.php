@@ -43,9 +43,9 @@ function load(l) {
             if (request.readyState == done && request.status == ok) {
                     if (request.responseText) {
                         var p = JSON.parse(request.responseText);
-                        var o = '<table> <thead> <tr><th>ID</th><th>Word</th><th>Lesson</th><th>Actions</th></thead><tbody>';
+                        var o = '<h2>Editable list of words</h2><table> <thead> <tr><th>ID</th><th>Word</th><th>Lesson</th><th>Actions</th></thead><tbody>';
                         for (var i = 0; i < p.length; i++) {
-                            o += '<tr><td>' + p[i]['ID'] + '</td><td><input id="w' + p[i]['ID'] + '" onkeyup="upd_lesson(this.id);" type="text" width="20" value="' + p[i]['word'] + '"></td><td><span id="l' + p[i]['ID'] + '">' + p[i]['lesson'] + '</span></td><td><a href="javascript:save(' + p[i]['ID'] + ');">Save</a> <span id="r'+ p[i]['ID'] + '"></span></td></tr>';
+                            o += '<tr><td>' + p[i]['ID'] + '</td><td><input id="w' + p[i]['ID'] + '" onkeyup="upd_lesson(this.id);" type="text" width="20" value="' + p[i]['word'] + '"></td><td><span id="l' + p[i]['ID'] + '">' + p[i]['lesson'] + '</span></td><td><a href="javascript:save(' + p[i]['ID'] + ');">Save</a> <a href="javascript:del(' + p[i]['ID'] + ');">Delete</a> <span id="r'+ p[i]['ID'] + '"></span></td></tr>';
                         }
                         o += '</tbody> </table>';
                         d.innerHTML = o;
@@ -81,6 +81,14 @@ function lesson (word) {
     return minlesson;
 }
 
+function del (id) {
+    if (confirm("really delete")) {
+        document.getElementById('w' + id).value = "";
+        save(id);	// saving with empty string => delete
+    }
+}
+
+
 function save (id) {
     var text = document.getElementById('w' + id).value;
     var lesson = document.getElementById('l' + id).innerHTML;
@@ -102,7 +110,17 @@ function save (id) {
                     }
             };
     }
-    request.send(JSON.stringify({"ID": id, "word": enc, "lesson": lesson}));
+
+    if (id == 0) {  // new word
+        var lang   = document.getElementById('lang0').value;
+        var collection = document.getElementById('c0').value;
+        collection = collection.replace(/[\u00A0-\u9999<>\&]/gim, function(i) { return '&#'+i.charCodeAt(0)+';'; });
+    }
+    else {
+        var lang = "";
+        var collection = "";
+    }
+    request.send(JSON.stringify({"ID": id, "lang": lang, "collection": collection, "word": enc, "lesson": lesson}));
 }
 
 
@@ -113,6 +131,33 @@ function save (id) {
 <h2>Select a lanuage from the list</h2>
 <div id="select_lang">Loading...</div>
 </div>
+
+<br><br>
+
+<h2>Add new words</h2>
+<table>
+<tr><th>Language</th><th>Collection name</th><th>Word</th><th>Lesson</th><th>Action</th></tr>
+<tr><td>
+<select id="lang0" size="1">
+<?
+foreach ($langs as $lang) {
+        if ($lang == $_SESSION['lang']) {
+                echo "<option value=\"$lang\" selected>$lang - ".$langnames[$lang]." (".$enlangnames[$lang].")</option>";
+        }
+        else {
+                echo "<option value=\"$lang\">$lang - ".$langnames[$lang]." (".$enlangnames[$lang].")</option>";
+        }
+}
+?>
+</select>
+</td>
+<td><input id="c0" type="text" length="20" value=""></td>
+<td><input id="w0" type="text" length="20" value="" onkeyup="upd_lesson('w0');"></td>
+<td><span id="l0"></span></td>
+<td><a href="javascript:save(0);">Save</a> &nbsp <span id="r0"></span>
+</table>
+
+<br><br>
 
 <div id="editor">
 </div>
