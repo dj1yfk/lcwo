@@ -8,6 +8,10 @@ if (!$_SESSION['uid']) {
 
 <script>
 
+var g_lang = "";
+var g_collid = "";
+var g_collection = "";
+
 var koch_chars = ['K','M','U','R','E','S','N','A','P','T','L','W', 'I','.','J','Z','=','F','O','Y',',','V','G','5','/','Q','9','2', 'H','3','8','B','?','4','7','C','1','D','6','0','X'];
 
 function load_langs () {
@@ -22,7 +26,7 @@ function load_langs () {
                         var o = '<table> <thead> <tr><th>Language</th><th>Collection ID</th><th>Description</th><th>Action</th></thead><tbody>';
                         for (var i = 0; i < p.length; i++) {
                             var cid = p[i]['lang'] + p[i]['collid'];
-                            o += '<tr><td>' + p[i]['lang'] + '</td><td>' + p[i]['collid'] + '</td><td>' + p[i]['collection'] + "</td><td><a href=\"javascript:load('" + cid + "');\">Load</a></td></tr>";
+                            o += '<tr><td>' + p[i]['lang'] + '</td><td>' + p[i]['collid'] + '</td><td>' + p[i]['collection'] + "</td><td><a href=\"javascript:load('" + p[i]['lang'] + "', '" + p[i]['collid'] + "', '" + p[i]['collection'] + "');\">Load</a></td></tr>";
                         }
                         o += '</tbody> </table>';
                         t.innerHTML = o;
@@ -33,7 +37,15 @@ function load_langs () {
 }
 load_langs();
 
-function load(l) {
+function load(lang, collid, collection) {
+
+    // remember which collection we currently work on, for file upload
+    g_lang = lang;
+    g_collid = collid;
+    g_collection = collection;
+
+    var l = lang + collid;
+
     var d = document.getElementById('editor');
 
     var request =  new XMLHttpRequest();
@@ -108,6 +120,7 @@ function save (id) {
                             document.getElementById('r' + id).innerHTML = u['msg'];
                         }
                     }
+                    load_langs();
             };
     }
 
@@ -123,12 +136,76 @@ function save (id) {
     request.send(JSON.stringify({"ID": id, "lang": lang, "collection": collection, "word": enc, "lesson": lesson}));
 }
 
+function load_file(f) {
+    if (f.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(f) {
+            var filecontents = f.target.result;
+
+            var words = filecontents.split("\n");
+
+            var res = document.getElementById("uploadresult");
+
+            var t = "Read a file with " + words.length + " words...<br>";
+
+            var valid = [];
+            var dupes = {};
+
+            for (var i = 0; i < words.length; i++) {
+                words[i] = words[i].replace(/[\u00A0-\u9999<>\&]/gim, function(i) { return '&#'+i.charCodeAt(0)+';'; });
+                if (words[i].includes(" ") || words[i].length == 0) {
+                    t += "Error: Spaces or empty lines not allowed (line " + i + ": '" + words[i] + "')<br>";
+                }
+                else if (dupes[words[i]]) {
+                    t += "Error: Duplicate word (line " + i + ": '" + words[i] + "')<br>";
+                }
+                else {
+                    var l = lesson(words[i]);
+                    valid.push({"w": words[i], "l": l });
+                    dupes[words[i]] = 1;
+                }
+            }
+
+            t += " ... " + valid.length + " valid words<br>";
+            
+            if (g_lang != "" && g_collid != "") {
+                t += "Submitting words to collection " + g_collection + " (id: " + g_collid + ", language: " + g_lang + ") to server... reply: ";
+                var w = JSON.stringify(valid);
+
+                var request =  new XMLHttpRequest();
+                request.open("POST", '/api/index.php?action=upload_wordtraining', true);
+                request.onreadystatechange = function() {
+                    var done = 4, ok = 200;
+                    if (request.readyState == done && request.status == ok) {
+                        if (request.responseText) {
+                            var u = JSON.parse(request.responseText);
+                            if (u['msg']) {
+                                document.getElementById('uploadresult').innerHTML += u['msg'];
+                            }
+                        }
+                    };
+                }
+                request.send(w);
+		
+            }
+            else {
+                t += "No collection selected/loaded. Please select one and then load file again.";
+            }
+
+            res.innerHTML = t;
+            
+
+
+        };
+        reader.readAsText(f.files[0]);
+    }
+}
 
 </script>
 
 <div id="menu">
 <h1 id="header1">Edit word training lists</h1>
-<h2>Select a lanuage from the list</h2>
+<h2>Select a language from the list</h2>
 <div id="select_lang">Loading...</div>
 </div>
 
@@ -157,6 +234,13 @@ foreach ($langs as $lang) {
 <td><a href="javascript:save(0);">Save</a> &nbsp <span id="r0"></span>
 </table>
 
+<br><br>
+
+<h2>Upload text file into current collection</h2>
+<input type="file" onchange="load_file(this);">
+
+<div id="uploadresult">
+</div>
 <br><br>
 
 <div id="editor">

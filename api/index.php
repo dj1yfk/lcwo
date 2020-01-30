@@ -33,6 +33,14 @@ case 'get_wordtraining_collection':
 case 'update_wordtraining':
     update_wordtraining();
     break;
+case 'upload_wordtraining':
+    upload_wordtraining();
+    break;
+}
+
+
+function upload_wordtraining () {
+                echo '{"msg": "OK"}';
 }
 
 function update_wordtraining () {
@@ -112,9 +120,9 @@ function get_wordtraining_collections() {
     $q = mysqli_query($db, "select distinct lang, collid, collection from lcwo_words order by lang asc, collid asc");
     $out = array();
     while ($d = mysqli_fetch_array($q, MYSQLI_ASSOC)) {
-        if ($d['collection'] == "") {
-            $d['collection'] = $enlangnames[$d['lang']];
-        }
+#        if ($d['collection'] == "") {
+#            $d['collection'] = $enlangnames[$d['lang']];
+#        }
         array_push($out, $d);
     }
     echo json_encode($out);
