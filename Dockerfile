@@ -6,7 +6,9 @@ CMD ["/sbin/my_init"]
 RUN apt-get update && apt-get install -y apache2 mysql-server php \
     libapache2-mod-php php-mysql php-gd exim4 \
     # stuff needed to compile ebook2cw \
-    build-essential libmp3lame-dev git libvorbis-dev
+    build-essential libmp3lame-dev git libvorbis-dev \
+    # stuff to work a little more comfortably within the container
+    vim
 
 RUN a2enmod rewrite cgi
 
@@ -43,6 +45,8 @@ RUN mkdir -p /tmp/ebook2cw_build && \
     make cgi USE_LAME=NO && \
     cp cw.cgi /www/cgi-bin/cw.ogg && \
     cp cw.cgi /www/cgi-bin/cw2.ogg 
+
+COPY config/.vimrc /root
 
 # Apache will log into this directory, conveniently available via web (protect
 # this in production!)
