@@ -16,7 +16,6 @@ include("../inc/functions.php");
 include("../inc/connectdb.php");
 include("../inc/definitions.php");
 
-
 switch ($_GET['action']) {
 case 'get_usergroups':
     get_usergroups();
@@ -40,7 +39,49 @@ case 'upload_wordtraining':
 
 
 function upload_wordtraining () {
-                echo '{"msg": "OK"}';
+    global $db, $langs;
+    need_login();
+
+    $postdata = file_get_contents("php://input");
+    $data = json_decode($postdata, true);
+
+    if ($data) {
+        array_push($langs, "cw");
+        $lang = $data['lang'];
+        $collid = $data['collid'] + 0;
+        $collection = mysqli_real_escape_string($db, $data['collection']);
+
+        if (!in_array($lang, $langs)) {
+            echo '{"msg": "Invalid language."}';
+            return;
+        }
+
+        if (!isint($collid)) {
+            echo '{"msg": "Invalid collection ID."}';
+            error_log(print_r($data, 1));
+            return;
+        }
+
+        $query = "insert into lcwo_words (`lang`, `word`, `lesson`, `collid`, `collection`) VALUES ";
+        $query_arr = array();
+        foreach ($data['words'] as $w) {
+            $word = mysqli_real_escape_string($db, $w['w']);
+            $lesson = isint($w['l']) ? $w['l'] : 40;
+            array_push($query_arr, "('$lang', '$word', $lesson, $collid, '$collection')");
+        }
+        $query .= join(',', $query_arr);
+
+        if (mysqli_query($db, $query)) {
+            echo '{"msg": "OK"}';
+        }
+        else {
+            echo '{"msg": "Database error. Contact administrator."}';
+            error_log($query);
+        }
+    }
+    else {
+        echo '{"msg": "Could not decode data."}';
+    }
 }
 
 function update_wordtraining () {
@@ -120,9 +161,6 @@ function get_wordtraining_collections() {
     $q = mysqli_query($db, "select distinct lang, collid, collection from lcwo_words order by lang asc, collid asc");
     $out = array();
     while ($d = mysqli_fetch_array($q, MYSQLI_ASSOC)) {
-#        if ($d['collection'] == "") {
-#            $d['collection'] = $enlangnames[$d['lang']];
-#        }
         array_push($out, $d);
     }
     echo json_encode($out);

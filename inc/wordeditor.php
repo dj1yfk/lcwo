@@ -44,6 +44,8 @@ function load(lang, collid, collection) {
     g_collid = collid;
     g_collection = collection;
 
+    document.getElementById('cc').innerHTML = lang + "-" + collid;
+
     var l = lang + collid;
 
     var d = document.getElementById('editor');
@@ -170,8 +172,8 @@ function load_file(f) {
             
             if (g_lang != "" && g_collid != "") {
                 t += "Submitting words to collection " + g_collection + " (id: " + g_collid + ", language: " + g_lang + ") to server... reply: ";
-                var w = JSON.stringify(valid);
 
+                var w = {"collid": g_collid, "collection": g_collection, "lang": g_lang, "words": valid };
                 var request =  new XMLHttpRequest();
                 request.open("POST", '/api/index.php?action=upload_wordtraining', true);
                 request.onreadystatechange = function() {
@@ -185,7 +187,7 @@ function load_file(f) {
                         }
                     };
                 }
-                request.send(w);
+                request.send(JSON.stringify(w));
 		
             }
             else {
@@ -212,6 +214,7 @@ function load_file(f) {
 <br><br>
 
 <h2>Add new words</h2>
+<p>Add new words to an existing collection (by selecting the language and entering the collection name), or create a new collection by entering a new name for a collection.</p>
 <table>
 <tr><th>Language</th><th>Collection name</th><th>Word</th><th>Lesson</th><th>Action</th></tr>
 <tr><td>
@@ -231,12 +234,12 @@ foreach ($langs as $lang) {
 <td><input id="c0" type="text" length="20" value=""></td>
 <td><input id="w0" type="text" length="20" value="" onkeyup="upd_lesson('w0');"></td>
 <td><span id="l0"></span></td>
-<td><a href="javascript:save(0);">Save</a> &nbsp <span id="r0"></span>
+<td><a href="javascript:save(0);">Save</a> &nbsp; <span id="r0"></span>
 </table>
 
 <br><br>
 
-<h2>Upload text file into current collection</h2>
+<h2>Upload text file into current collection (<span id="cc">none selected</span>)</h2>
 <input type="file" onchange="load_file(this);">
 
 <div id="uploadresult">
