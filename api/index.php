@@ -39,8 +39,12 @@ case 'upload_wordtraining':
 
 
 function upload_wordtraining () {
-    global $db, $langs;
+    global $db, $langs, $g_wordeditors;
     need_login();
+
+    if (!in_array($_SESSION['uid'], $g_wordeditors)) {   # FIXME - build a proper permission system
+        return;
+    }
 
     $postdata = file_get_contents("php://input");
     $data = json_decode($postdata, true);
@@ -85,9 +89,13 @@ function upload_wordtraining () {
 }
 
 function update_wordtraining () {
-    global $db, $langs;
+    global $db, $langs, $g_wordeditors;
     need_login();
-    
+
+    if (!in_array($_SESSION['uid'], $g_wordeditors)) {   # FIXME - build a proper permission system
+        return;
+    }
+
     $postdata = file_get_contents("php://input");
     $data = json_decode($postdata, true);
 
