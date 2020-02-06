@@ -186,7 +186,7 @@ function get_wordtraining_collection() {
 
     $lang = substr($coll, 0,2);
     $collid = substr($coll, 2);
-    $query = "select ID, word, lesson from lcwo_words where lang='$lang' and collid=$collid";
+    $query = "select ID, word, lesson from lcwo_words where lang='$lang' and collid=$collid order by word asc";
     error_log($query);
     $q = mysqli_query($db, $query);
     $out = array();
