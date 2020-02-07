@@ -179,6 +179,7 @@ function get_wordtraining_collection() {
     global $db;
 
     $coll = $_GET['id'];
+    $filter = mysqli_real_escape_string($db, $_GET['filter']);
 
     if (!preg_match('/^[a-z]{2}\d+$/', $coll)) {
         return "[]";
@@ -186,7 +187,7 @@ function get_wordtraining_collection() {
 
     $lang = substr($coll, 0,2);
     $collid = substr($coll, 2);
-    $query = "select ID, word, lesson from lcwo_words where lang='$lang' and collid=$collid order by word asc";
+    $query = "select ID, word, lesson from lcwo_words where lang='$lang' and collid=$collid and word like '%$filter%' order by word asc";
     error_log($query);
     $q = mysqli_query($db, $query);
     $out = array();
