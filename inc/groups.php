@@ -232,7 +232,8 @@ switch ($_SESSION['groups_mode']) {
 			$char = $mixedchar;
 			break;
 		case 'custom':
-			$char = getcustomcharacters();
+            $char = getcustomcharacters();
+            break;
 }
 
 $nr = count($char)-1;
@@ -251,30 +252,36 @@ if ($nr == -1) {
 # consider abbreviated numbers?
 $playertext = $text;
 if ($_SESSION['groups_mode'] == 'figures') {
-switch ($_SESSION['groups_abbrev']) {
-	case "0":			# No abbreviations
-		break;
-	case "1":			# 0, 1 and 9
-		$playertext = preg_replace('/1/', 'A', $playertext);
-		$playertext = preg_replace('/9/', 'N', $playertext);
-		$playertext = preg_replace('/0/', 'T', $playertext);
-		break;
-	case "2":
-		$playertext = preg_replace('/1/', 'A', $playertext);
-		$playertext = preg_replace('/2/', 'U', $playertext);
-		$playertext = preg_replace('/3/', 'V', $playertext);
-		$playertext = preg_replace('/5/', 'E', $playertext);
-		$playertext = preg_replace('/7/', 'B', $playertext);
-		$playertext = preg_replace('/8/', 'D', $playertext);
-		$playertext = preg_replace('/9/', 'N', $playertext);
-		$playertext = preg_replace('/0/', 'T', $playertext);
-		break;
+    switch ($_SESSION['groups_abbrev']) {
+    case "0":			# No abbreviations
+        break;
+    case "1":			# 0, 1 and 9
+        $playertext = preg_replace('/1/', 'A', $playertext);
+        $playertext = preg_replace('/9/', 'N', $playertext);
+        $playertext = preg_replace('/0/', 'T', $playertext);
+        break;
+    case "2":
+        $playertext = preg_replace('/1/', 'A', $playertext);
+        $playertext = preg_replace('/2/', 'U', $playertext);
+        $playertext = preg_replace('/3/', 'V', $playertext);
+        $playertext = preg_replace('/5/', 'E', $playertext);
+        $playertext = preg_replace('/7/', 'B', $playertext);
+        $playertext = preg_replace('/8/', 'D', $playertext);
+        $playertext = preg_replace('/9/', 'N', $playertext);
+        $playertext = preg_replace('/0/', 'T', $playertext);
+        break;
+    }
 }
+
+if ($_SESSION['groups_mode'] == 'custom') {
+    $playertext = "|W".$_SESSION['cw_ews']." ".$playertext;
 }
 
 if ($_SESSION['delay_start'] > 0) {
 		$playertext = '|S'.($_SESSION['delay_start']*1000).' '.$playertext;
 }
+
+
 
 ?>
 

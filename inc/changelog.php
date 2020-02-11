@@ -8,6 +8,11 @@ the author.
 
 Started on 2009-02-08.
 
+2020-02-10:
+    * Enable Extra Word Space also for custom code groups (but not for
+      normal code groups because we want comparable results for the
+      highscore lists)
+
 2020-01-15:
     * Allow opening a local text file in the text2cw converter (tnx WA2NFN)
 
