@@ -5,12 +5,60 @@
 		return;
 	}
 
+    if (!$_SESSION['mm']['charset']) {
+        $_SESSION['mm']['charset'] = 0;
+    }
+
+    $charset = Array();
+    $charsetname = Array("Koch", "CWops", "ABC");
+    $charset[0] = $kochchar;
+
+    # CWops CW Academy
+    $charset[1] = Array("T", "E", "A", "N", "O", "I", "S", "1", "4", "R", "H", "D", "L", "2", "5", "U",
+        "C", "M", "W", "3", "6", "?", "F", "Y", "P", "G", "7", "9", "/", "B", "V", "K",
+        "J", "8", "0", /* "&lt;BT&gt;", */ "X", "Q", "Z", /* "&lt;BK&gt;", */ "=", /* "&lt;SK&gt;" */);
+    
+    $charset[2] = Array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
+
+    if (isint($_POST['charset']+0) and $_POST['charset'] <= count($charset)) {
+        $_SESSION['mm']['charset'] = $_POST['charset']+0;
+    }
+
 ?>
 
 
 <h1>Morse Machine (<?=l('lesson')." <span id=\"lessondisplay\">".$_SESSION['koch_lesson']."</span>)";?> &mdash; Beta Version</h1>
 <p><?=l('idea');?>: Ward, K9OX (<a href="http://c2.com/morse/">A Fully Automatic Morse
 Code Teaching Machine</a>).</p>
+
+<form action="/morsemachine" method="POST">
+<table>
+<tr>
+<td>
+Character set: &nbsp;
+</td>
+<td>
+<select onChange="this.form.submit();" name="charset" size="1">
+<?
+    $i = 0;
+    foreach ($charset as $c) {
+        $selected = ($_SESSION['mm']['charset'] == $i) ? " selected " : "";
+        echo "<option value='$i' $selected>".join(', ', $c)." (".$charsetname[$i].")</option>\n";
+        $i++;
+    }
+
+    # save typing work
+    $cs = $charset[$_SESSION['mm']['charset']];
+
+?>
+</select>
+</td></tr>
+</table>
+</form>
+
+
+
+
 
 <form onsubmit="return false;">
 <?=l('lesson');?>: <input type="submit" onclick="lessonchange(-1);" value="-">
@@ -32,7 +80,7 @@ Code Teaching Machine</a>).</p>
 <tr>
 <?
 	$count = -2;
-	foreach ($kochchar as $k) {
+	foreach ($cs as $k) {
 		$count++;
 		if ($count < $_SESSION['koch_lesson']) {
 				$height1 = 0;
@@ -54,7 +102,7 @@ Code Teaching Machine</a>).</p>
 <tr>
 <?
 	$count = 0;
-	foreach ($kochchar as $k) {
+	foreach ($cs as $k) {
 			echo "<td><span id=\"label-$k\">".$k."</span></td>";
 			$count++;
 	}
@@ -109,11 +157,7 @@ onkeyup="keypressed(this.value);this.form.entrybox.value='';">
 	var currentfailed = 0;	/* failed current character => repeat */
 	var charcount = <?=$values[2];?>;
 	var sessioncharcount = 0;
-	var kochchar = new Array(<? foreach ($kochchar as $k) {echo "\"$k\",";} echo
-"\"x\""; ?>);
-	kochchar.pop();		/* hack :) */
-
-	var cwtest2 = '40 99 41 32 70 97 98 105 97 110 32 75 117 114 122 32 68 74 49 89 70 75';
+	var mmchar = new Array("<? echo join('","', $cs); ?>");
 
 	var h5c = "cw.mp3";
 	
@@ -123,7 +167,7 @@ onkeyup="keypressed(this.value);this.form.entrybox.value='';">
 		array_shift($values);	/* uid */
 		array_shift($values);	/* count */
 		for ($i=0; $i < 41; $i++) {
-			echo 'badness["'.$kochchar[$i].'"] = '.$values[$i].';';
+			echo 'badness["'.$cs[$i].'"] = '.$values[$i].';';
 		}
 ?>
 	update();
@@ -208,14 +252,14 @@ onkeyup="keypressed(this.value);this.form.entrybox.value='';">
 
 
 		/* update badness bars */
-		for (i=0; i < kochchar.length; i++) {
-			x = document.getElementById(kochchar[i]+'-0');
-			y = document.getElementById(kochchar[i]+'-1');
-			z = document.getElementById('label-'+kochchar[i]);
+		for (i=0; i < mmchar.length; i++) {
+			x = document.getElementById(mmchar[i]+'-0');
+			y = document.getElementById(mmchar[i]+'-1');
+			z = document.getElementById('label-'+mmchar[i]);
 	
 			if (i <= lesson) {
-				x.height = 101-badness[kochchar[i]];			
-				y.height = badness[kochchar[i]];			
+				x.height = 101-badness[mmchar[i]];			
+				y.height = badness[mmchar[i]];			
 				z.style.fontWeight = 'bold';
 			}
 			else {
@@ -231,8 +275,8 @@ onkeyup="keypressed(this.value);this.form.entrybox.value='';">
 
 	function highlight (ch, color) {
 			var tmp;
-			for (i=0; i < kochchar.length; i++) {
-				if ((tmp = document.getElementById('label-'+kochchar[i])) !=
+			for (i=0; i < mmchar.length; i++) {
+				if ((tmp = document.getElementById('label-'+mmchar[i])) !=
 				null) {
 						tmp.style.backgroundColor = '#ffffff';
 				}
@@ -248,8 +292,8 @@ onkeyup="keypressed(this.value);this.form.entrybox.value='';">
 		question_utf8 = question_html.replace(/&#([0-9]+);/g, html2utf);
 
 		if (confirm(question_utf8) == true) {
-			for (i=0; i < kochchar.length; i++) {
-					badness[kochchar[i]] = 101;
+			for (i=0; i < mmchar.length; i++) {
+					badness[mmchar[i]] = 101;
 			}
 		}
 		update();
@@ -262,7 +306,7 @@ onkeyup="keypressed(this.value);this.form.entrybox.value='';">
 	function lessonchange (v) {
 		lesson += v;
 		if (lesson < 1) lesson = 1;
-		if (lesson > 40) lesson = 40;
+		if (lesson >= mmchar.length) lesson = mmchar.length - 1;
 		update();
 	}
 
@@ -352,29 +396,41 @@ onkeyup="keypressed(this.value);this.form.entrybox.value='';">
 	}
 
 
-function nextchar () {
-		
-		/* select next, weighted distribution; characters with less accuracy
-	   are most likely. find random number between 0 and accumulated badness
-	   of all letters up to current lesson. then check in which letter's
-	   badness-area it lies... */
+    function nextchar () {
 
-	   total = 0;
-		for (i = 0; i < (lesson+1); i++) {
-			total += Math.pow(badness[kochchar[i]],2);
-		}
+        /* select next, weighted distribution; characters with less accuracy
+           are most likely. find random number between 0 and accumulated badness
+           of all letters up to current lesson. then check in which letter's
+           badness-area it lies...
+         */
 
-		rand = parseInt(Math.random()*total);
+        total = 0;
 
-		i = 0;
-		while (rand > Math.pow(badness[kochchar[i]],2)) {
-			rand -= Math.pow(badness[kochchar[i]],2);
-			i++;
-		}
+        var lessonmax = lesson + 1;
 
-		currentfailed = 0;
-		return kochchar[i];
-}
+        // limit to the number of characters in current character set
+        if (lessonmax > mmchar.length) {
+            lessonmax = mmchar.length;
+        }
+
+        for (i = 0; i < lessonmax; i++) {
+            total += Math.pow(badness[mmchar[i]],2);
+        }
+        console.log("total = " + total);
+
+        rand = parseInt(Math.random()*total);
+
+        console.log("rand = " + rand);
+        i = 0;
+        while (rand > Math.pow(badness[mmchar[i]],2)) {
+            rand -= Math.pow(badness[mmchar[i]],2);
+            i++;
+        }
+
+        currentfailed = 0;
+        console.log('nextchar(lesson=' + lesson + ') => ' + i + ' => ' + mmchar[i]);
+        return mmchar[i];
+    }
 
 
 function savestats () {
@@ -414,8 +470,8 @@ if( typeof XMLHttpRequest == "undefined" ) XMLHttpRequest = function() {
   };
  
  var statstring = ""; 
-  for (j=0;j<kochchar.length;j++) {
-		statstring = statstring + '&k'+j+'='+badness[kochchar[j]];
+  for (j=0;j<mmchar.length;j++) {
+		statstring = statstring + '&k'+j+'='+badness[mmchar[j]];
   }
   request.send('count=' + charcount + statstring);
 }

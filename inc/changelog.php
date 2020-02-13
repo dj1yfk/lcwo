@@ -8,6 +8,9 @@ the author.
 
 Started on 2009-02-08.
 
+2020-02-12:
+    * MorseMachine now supports different character sets / orders (tnx NN7M)
+
 2020-02-10:
     * Enable Extra Word Space also for custom code groups (but not for
       normal code groups because we want comparable results for the
