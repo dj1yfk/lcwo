@@ -12,8 +12,8 @@
 </form>
 
 <audio id="player">
-<source src="http://lcwo.net/misc/tut.ogg" type='audio/ogg; codecs="vorbis"'>
-<source src="http://lcwo.net/misc/tut.mp3" type='audio/mpeg; codecs="mp3"'>
+<source src="/misc/tut.ogg" type='audio/ogg; codecs="vorbis"'>
+<source src="/misc/tut.mp3" type='audio/mpeg; codecs="mp3"'>
 </audio>
 
 
