@@ -113,15 +113,29 @@ Character set: &nbsp;
 </table>
 
 <form onsubmit="skipletter();return false;">
-<input value="" name="entrybox" id="entrybox" size="1"
-onkeyup="keypressed(this.value);this.form.entrybox.value='';">
-&nbsp;&mdash;&nbsp; <?=l('mminstructions');?>
+<input value="" name="entrybox" id="entrybox" size="1"> &nbsp;&mdash;&nbsp; <?=l('mminstructions');?>
+<script>
+    document.getElementById('entrybox').addEventListener('keyup', keypressed2); 
+    function keypressed2(e) {
+        if (e.key == "Enter") {
+//            skipletter();
+        }
+        else if (e.key == "Control" || e.key.substr(0,5) == "Arrow") {
+            showsolution();
+        }
+        else if (e.key.length == 1) {
+            document.getElementById('entrybox').value = "";
+            keypressed(e.key);
+        }
+    }
+</script>
+
 
 <br><br>
 
 <input type="submit" id="startbutton" onclick="" value="<?=l("start",1)?>">
 &nbsp;
-<input type="submit" id="startbutton" onclick="showsolution();return false;" value="Show Letter">
+<span id="char"></span>
 
 </form>
 
@@ -179,6 +193,8 @@ onkeyup="keypressed(this.value);this.form.entrybox.value='';">
 	/* evaluate correctness of entry, and send next */	
 	function keypressed (s) {
 
+        console.log("pressed >" +  s + "<");
+
 		if (sessioncharcount && (s == ' ')) {	/* Space -> Send again */
 			// replay w/o buzzer
 			playletter(currchar, 0);
@@ -234,15 +250,18 @@ onkeyup="keypressed(this.value);this.form.entrybox.value='';">
 			update();
 			currchar = nextchar();
 			playletter(currchar, 0);
+            document.getElementById('char').innerHTML = "";
 	}
 
     function showsolution () {
 	        highlight(currchar, '#dababe');
+            document.getElementById('char').innerHTML = "Character is: <b>" + currchar + "</b>"; 
             f();
     }
 
 	
 	function update () {
+        document.getElementById('char').innerHTML = "";
 		document.getElementById('charcount').innerHTML = charcount;
 		document.getElementById('lessondisplay').innerHTML = lesson;
 		document.getElementById('speed').innerHTML = speed;
@@ -262,7 +281,6 @@ onkeyup="keypressed(this.value);this.form.entrybox.value='';">
 
 		/* update badness bars */
 		for (i=0; i < mmchar.length; i++) {
-            console.log(i);
 			x = document.getElementById(mmchar[i]+'-0');
 			y = document.getElementById(mmchar[i]+'-1');
 			z = document.getElementById('label-'+mmchar[i]);
