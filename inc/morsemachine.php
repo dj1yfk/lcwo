@@ -118,6 +118,8 @@ onkeyup="keypressed(this.value);this.form.entrybox.value='';">
 <br><br>
 
 <input type="submit" id="startbutton" onclick="" value="<?=l("start",1)?>">
+&nbsp;
+<input type="submit" id="startbutton" onclick="showsolution();return false;" value="Show Letter">
 
 </form>
 
@@ -231,6 +233,11 @@ onkeyup="keypressed(this.value);this.form.entrybox.value='';">
 			currchar = nextchar();
 			playletter(currchar, 0);
 	}
+
+    function showsolution () {
+	        highlight(currchar, '#dababe');
+            f();
+    }
 
 	
 	function update () {
