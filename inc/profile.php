@@ -169,7 +169,7 @@ if ($user->show_ministat or ($user->id == $_SESSION['uid'])) {
 			
 	# Maximum speed, score and nr of attempts
 	$query = mysqli_query($db,"SELECT max(max), max(score), count(*)
-	from lcwo_".$what."results where uid='$user->id';");
+	from lcwo_".$what."results where valid=1 and uid='$user->id';");
 	if (!$query) { echo "Error1!".mysqli_error($db); return; }
 	$tmp = mysqli_fetch_row($query);
 	$foo[$what][1] = $tmp[0];
