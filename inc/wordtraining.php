@@ -383,7 +383,7 @@ var nr = -1;		/* 0..24 */
 	$words = gettextsbylanguage("words", $langarray, $maxlen, 25, $simplify, $lesson);
 
 	for($i = 0; $i < 25; $i++) {
-		 echo qrm()." words[$i] = \"".$words[$i]."\"; ";
+		 echo " words[$i] = \"".$words[$i]."\"; ";
 	}
 
 ?>

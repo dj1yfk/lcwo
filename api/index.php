@@ -197,7 +197,7 @@ function get_wordtraining_collection() {
     }
     error_log(count($out));
     $ret = json_encode($out);
-    error_log("ret:" . $ret);
+#    error_log("ret:" . $ret);
     echo $ret;
 }
 

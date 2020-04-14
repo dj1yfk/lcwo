@@ -14,6 +14,7 @@ Started on 2009-02-08.
       before skipping it (tnx 4Z5SL)
     * Transmit training: Add more character (Umlauts, etc.) (tnx SA6CBZ)
     * MorseMachine: Add alternative character order (tnx SA6CBZ)
+    * Fix problems with Umlauts in wordtraining.
 
 2020-02-12:
     * MorseMachine now supports different character sets / orders (tnx NN7M)

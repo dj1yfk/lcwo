@@ -1117,6 +1117,12 @@ function gettextsbylanguage ($type, $lang, $maxlen, $count, $simplify, $lesson){
 	$words = array();
 	while ($tmp = mysqli_fetch_row($query)) {
 		$word = strtolower($tmp[0]);
+
+        # replace HTML entities with their respective
+        # representations in Latin1: &#252; => ü
+        # *LEGACY* #UTF8
+        $word= preg_replace_callback( '/&#(\d+);/', function ($m) { return chr($m[1]); }, $word); 
+
 		if ($simplify) {
 			$word = simplify($tmp[1], $word);
 		}
@@ -1129,6 +1135,7 @@ function gettextsbylanguage ($type, $lang, $maxlen, $count, $simplify, $lesson){
 	}
 	
 	shuffle($words);
+
 
 	return $words;
 }
