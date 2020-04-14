@@ -59,6 +59,12 @@ Morse chat function here on LCWO.net.</p>
 	code['-.-.-'] = "<u>CT</u>"; code['.--.-.'] = "@";
 	code['-..-.'] = "/";
 	code['--..--'] = ",";
+    code['---.'] = '&Ouml;';
+    code['.-.-'] = '&Auml;';
+    code['..--'] = '&Uuml;';
+    code['.--.-'] = '&Aring;';
+    code['........'] = '<u>ERR</u>';
+    code['.-...'] = '<u>AS</u>';
 
 	window.setInterval("checkspace();", 5*dotlength);
 
@@ -174,5 +180,3 @@ function submittext (text, wpm) {
 
 </script>
 </div>
-
-<div class="vcsid">$Id: transmit.php 226 2014-05-16 18:13:56Z dj1yfk $</div>

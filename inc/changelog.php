@@ -12,6 +12,7 @@ Started on 2009-02-08.
     * MorseMachine allows to show the current character when pressing button.
       This allows the user to *know* which letter was sent and to re-hear it
       before skipping it (tnx 4Z5SL)
+    * Transmit training: Add more character (Umlauts, etc.) (tnx SA6CBZ)
 
 2020-02-12:
     * MorseMachine now supports different character sets / orders (tnx NN7M)
