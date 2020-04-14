@@ -146,6 +146,16 @@ CREATE TABLE `lcwo_mmresults` (
   `k38` int(11) NOT NULL DEFAULT '101',
   `k39` int(11) NOT NULL DEFAULT '101',
   `k40` int(11) NOT NULL DEFAULT '101',
+  `k41` tinyint(3) unsigned NOT NULL DEFAULT '101',
+  `k42` tinyint(3) unsigned NOT NULL DEFAULT '101',
+  `k43` tinyint(3) unsigned NOT NULL DEFAULT '101',
+  `k44` tinyint(3) unsigned NOT NULL DEFAULT '101',
+  `k45` tinyint(3) unsigned NOT NULL DEFAULT '101',
+  `k46` tinyint(3) unsigned NOT NULL DEFAULT '101',
+  `k47` tinyint(3) unsigned NOT NULL DEFAULT '101',
+  `k48` tinyint(3) unsigned NOT NULL DEFAULT '101',
+  `k49` tinyint(3) unsigned NOT NULL DEFAULT '101',
+  `k50` tinyint(3) unsigned NOT NULL DEFAULT '101',
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

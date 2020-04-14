@@ -10,7 +10,7 @@
     }
 
     $charset = Array();
-    $charsetname = Array("Koch", "CWops", "ABC");
+    $charsetname = Array("Koch", "CWops", "ABC", "Swedish");
     $charset[0] = $kochchar;
 
     # CWops CW Academy
@@ -19,6 +19,8 @@
         "J", "8", "0", "=", "X", "Q", "Z", /* "&lt;BK&gt;", */ "-", /* "&lt;SK&gt;" */);
     
     $charset[2] = Array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
+
+    $charset[3] = Array("=", "+", "N", "L", "O", "E", "I", "X", "V", "T", "/", "?", "A", "Z", "H", "Ö", ",", "R", "D", "F", "Y", "-", "Ä", "B", "P", "S", "U", "Q", "W", "K", "Å", "M", "7", "4", "9", "5", "C", "G", "J", "8", "1", "3", "6","2", "0", "@"); 
 
     if (isint($_POST['charset']+0) and $_POST['charset'] <= count($charset)) {
         $_SESSION['mm']['charset'] = $_POST['charset']+0;
@@ -143,7 +145,7 @@ onkeyup="keypressed(this.value);this.form.entrybox.value='';">
 	/*
 		$values = ('nr', 'uid', 'count', 'k0', ..., 'k40');
 	*/
-	
+
 ?>
 
 <script>
@@ -168,7 +170,7 @@ onkeyup="keypressed(this.value);this.form.entrybox.value='';">
 		array_shift($values);	/* nr */
 		array_shift($values);	/* uid */
 		array_shift($values);	/* count */
-		for ($i=0; $i < 41; $i++) {
+		for ($i=0; $i < count($cs); $i++) {
 			echo 'badness["'.$cs[$i].'"] = '.$values[$i].';';
 		}
 ?>
@@ -260,6 +262,7 @@ onkeyup="keypressed(this.value);this.form.entrybox.value='';">
 
 		/* update badness bars */
 		for (i=0; i < mmchar.length; i++) {
+            console.log(i);
 			x = document.getElementById(mmchar[i]+'-0');
 			y = document.getElementById(mmchar[i]+'-1');
 			z = document.getElementById('label-'+mmchar[i]);
