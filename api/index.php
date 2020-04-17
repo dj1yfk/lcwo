@@ -35,8 +35,46 @@ case 'update_wordtraining':
 case 'upload_wordtraining':
     upload_wordtraining();
     break;
+case 'stats':
+    stats();
+    break;
 }
 
+function stats() {
+    global $db;
+    global $_GET;
+
+    $item = $_GET['item'];
+
+    if (!in_array($item, array("signups", "koch", "groups", "plaintext", "callsigns", "words", "qtc"))) {
+        return;
+    }
+
+    switch ($item) {
+    case 'signups':
+        $query = "select count(*) as count, substr(signupdate, 1, 7) as date from lcwo_users where signupdate > '2000-01-01' group by date;";
+        break;
+    case 'koch':
+        $query = "select count(*) as count, substr(time, 1, 7) as date from lcwo_lessonresults group by date;";
+        break;
+    case 'groups':
+    case 'plaintext':
+    case 'callsigns':
+    case 'words':
+    case 'qtc':
+        $query = "select count(*) as count, substr(time, 1, 7) as date from lcwo_".$item."results group by date;";
+        break;
+    default:
+        break;
+    }
+
+    $q = mysqli_query($db, $query);
+    $out = array();
+    while ($d = mysqli_fetch_array($q, MYSQLI_ASSOC)) {
+        array_push($out, $d);
+    }
+    echo json_encode($out);
+}
 
 function upload_wordtraining () {
     global $db, $langs, $g_wordeditors;
