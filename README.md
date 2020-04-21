@@ -24,6 +24,7 @@ Then simply clone the repository and run the container:
 ```
 git clone https://git.fkurz.net/dj1yfk/lcwo.git
 cd lcwo
+./docker_build.sh
 ./docker_start.sh
 ```
 
