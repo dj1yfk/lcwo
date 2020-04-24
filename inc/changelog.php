@@ -8,6 +8,12 @@ the author.
 
 Started on 2009-02-08.
 
+2020-04-24:
+    * Allow play/pause control by double-tapping Ctrl on Koch course
+
+2020-04-17:
+    * Add usage statistics page (https://lcwo.net/stats)
+
 2020-04-14:
     * MorseMachine allows to show the current character when pressing button.
       This allows the user to *know* which letter was sent and to re-hear it

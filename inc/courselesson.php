@@ -283,7 +283,7 @@ else {
 <form action="/courselesson" method="POST" id="eform">
 <table>
 	<tr>
-	<td><textarea  spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off"  name="input" cols="40" rows="10"></textarea></td>
+	<td><textarea id="textinput" spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off"  name="input" cols="40" rows="10"></textarea></td>
 	<td>
 	&nbsp;
 
@@ -320,8 +320,38 @@ player("$playertext", $_SESSION['player'], $_SESSION['cw_speed'],
 		<input type="submit" value=" <? echo l('checkresult',1); ?> " onClick="return checkspaces();"> (<? echo l('notcasesensitive'); ?>)
 	</td>
 </table>
-
 </form>
+
+<script>
+/* tap control twice => play/pause */
+var g_last_tap = 0;
+document.getElementById('textinput').addEventListener('keyup', keypressed); 
+function keypressed(e) {
+	if (e.key == "Control") {
+		var now = new Date().getTime();	
+		if (now - g_last_tap < 500) {
+			g_last_tap = 0;
+			console.log("TAP");		
+            // find last player on page, this is the one we want
+            try {
+                var players = document.querySelectorAll("audio");
+                var p = players[players.length - 1];
+                p = p.id.replace(/player/g, "");
+                console.log(p);
+                playpause(p);
+            }
+            catch (e) {
+                console.log("exception");
+            }
+		}
+		else {
+			g_last_tap = now;
+		}
+    }
+}
+</script>
+
+
 <?
 
 }
