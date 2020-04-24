@@ -73,7 +73,7 @@ else {
 <div id="lcwomap"></div>
 
 <script>
-    var mymap = L.map('lcwomap').setView([48, 13], 3);
+    var mymap = L.map('lcwomap').setView([30, 0], 2);
     var osmUrl='<? echo TILES_URL ?>';
     var osmAttrib='<? echo TILES_ATTRIB ?>';
     var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 12, attribution: osmAttrib});
