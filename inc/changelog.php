@@ -8,6 +8,9 @@ the author.
 
 Started on 2009-02-08.
 
+2020-04-29:
+    * Every user can download their results as JSON or CSV files now.
+
 2020-04-24:
     * Allow play/pause control by double-tapping Ctrl on Koch course
 

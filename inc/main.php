@@ -93,6 +93,9 @@ if ($at->c > 0) {
 <img src="/pics/graph.jpg"><br>
 <? echo l('showstatistics') ?>
 </a>
+<br>
+<a href="/api/index.php?action=export_results&type=koch&fmt=json">JSON</a> / 
+<a href="/api/index.php?action=export_results&type=koch&fmt=csv">CSV</a> 
 <? } 
 else { ?>
 <img src="/pics/graph.jpg"><br>
@@ -165,6 +168,9 @@ if ($at->c > 0) {
 <img src="/pics/graph.jpg"><br>
 <? echo l('showstatistics') ?>
 </a>
+<br>
+<a href="/api/index.php?action=export_results&type=groups&fmt=json">JSON</a> / 
+<a href="/api/index.php?action=export_results&type=groups&fmt=csv">CSV</a> 
 <? } 
 else { ?>
 <img src="/pics/graph.jpg"><br>
@@ -238,6 +244,9 @@ if ($at->c > 0) {
 <img src="/pics/graph.jpg"><br>
 <? echo l('showstatistics') ?>
 </a>
+<br>
+<a href="/api/index.php?action=export_results&type=plaintext&fmt=json">JSON</a> / 
+<a href="/api/index.php?action=export_results&type=plaintext&fmt=csv">CSV</a> 
 <? } 
 else { ?>
 <img src="/pics/graph.jpg"><br>
@@ -312,6 +321,9 @@ if ($at->c > 0) {
 <img src="/pics/graph.jpg"><br>
 <? echo l('showstatistics') ?>
 </a>
+<br>
+<a href="/api/index.php?action=export_results&type=callsigns&fmt=json">JSON</a> / 
+<a href="/api/index.php?action=export_results&type=callsigns&fmt=csv">CSV</a> 
 <? } 
 else { ?>
 <img src="/pics/graph.jpg"><br>
@@ -386,6 +398,9 @@ if ($at->c > 0) {
 <img src="/pics/graph.jpg"><br>
 <? echo l('showstatistics') ?>
 </a>
+<br>
+<a href="/api/index.php?action=export_results&type=words&fmt=json">JSON</a> / 
+<a href="/api/index.php?action=export_results&type=words&fmt=csv">CSV</a> 
 <? } 
 else { ?>
 <img src="/pics/graph.jpg"><br>
@@ -460,6 +475,9 @@ if ($at->c > 0) {
 <img src="/pics/graph.jpg"><br>
 <? echo l('showstatistics') ?>
 </a>
+<br>
+<a href="/api/index.php?action=export_results&type=qtc&fmt=json">JSON</a> / 
+<a href="/api/index.php?action=export_results&type=qtc&fmt=csv">CSV</a> 
 <? } 
 else { ?>
 <img src="/pics/graph.jpg"><br>

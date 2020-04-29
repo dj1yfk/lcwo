@@ -38,6 +38,55 @@ case 'upload_wordtraining':
 case 'stats':
     stats();
     break;
+case 'export_results':
+    export_results();
+    break;
+default:
+    return;
+}
+
+function export_results () {
+    global $db;
+    need_login();
+
+    $type= $_GET['type'];
+    $fmt = $_GET['fmt'];
+
+    if (!in_array($type, array("signups", "koch", "groups", "plaintext", "callsigns", "words", "qtc"))) {
+        echo '{"msg": "invalid data type"}';
+        return;
+    }
+
+    if (!in_array($fmt, array("csv", "json"))) {
+        echo '{"msg": "invalid format"}';
+        return;
+    }
+
+    if ($type== "koch") {
+        $type= "lesson";
+    }
+
+    $query = "select * from lcwo_".$type."results where uid='".$_SESSION['uid']."';";
+
+    $q = mysqli_query($db, $query);
+    $out = array();
+    while ($d = mysqli_fetch_array($q, MYSQLI_ASSOC)) {
+        array_push($out, $d);
+    }
+
+    if ($fmt == "json") {
+        header("Content-type: application/json");
+        header("Content-Disposition: attachment; filename=\"lcwo-export-$type-".$_SESSION['username'].".json\"");
+        echo json_encode($out);
+    }
+    else {
+        header("Content-type: text/csv");
+        header("Content-Disposition: attachment; filename=\"lcwo-export-$type-".$_SESSION['username'].".csv\"");
+        echo implode(";", array_keys($out[0]))."\r\n";
+        foreach ($out as $line) {
+            echo implode(";", $line)."\r\n";
+        }
+    }
 }
 
 function stats() {
