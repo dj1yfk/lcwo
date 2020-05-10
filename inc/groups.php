@@ -115,6 +115,7 @@ if (isset($_POST['duration']) && is_numeric($_POST['duration']) && $_SESSION['ui
 <h2><? echo l('codegroups')." (".$_SESSION['groups_duration'] ?>  <?=l("minute")?>)</h2>
 
 <?
+// evaluate text
 if (isset($_POST['text']))  {
 	$sent = explode(' ', stripslashes($_POST['text']));	
 	$rxtext = my_strtoupper(stripslashes($_POST['input']));
@@ -154,8 +155,23 @@ if (isset($_POST['text']))  {
 	echo "</table>\n";
 
 	echo "</td><td>&nbsp;&nbsp;</td><td valign=\"top\">\n";
-	
-    $real = realspeed($_POST['text'], $_SESSION['cw_speed'], $_SESSION['cw_eff']);
+
+    $paris = $_SESSION['cw_eff'];
+
+    // jscwlib: we get the length and PARIS speed from the player
+    if (is_numeric($_POST['length']) and $_POST['length'] > 0 and is_numeric($_POST['paris'])) {
+        $text = stripcommands($_POST['text']);
+        $text = preg_replace("/\s/", "", $text);
+        $sec = $_POST['length']+0;
+        $realspeed_cpm = strlen($text) / ($sec/60);
+        $realspeed_wpm = $realspeed_cpm / 5;
+        $characters = strlen($text);
+        $real = array(round($realspeed_cpm,1), round($realspeed_wpm,1), round($sec,1), $characters);
+        $paris = round($_POST['paris']+0,1);
+    }
+    else {
+        $real = realspeed($_POST['text'], $_SESSION['cw_speed'], $_SESSION['cw_eff']);
+    }
 	$errpct = (intval(1000*$totalerrors/($real[3]))/10);
 	
 	if ($errpct > 100) {
@@ -166,6 +182,8 @@ if (isset($_POST['text']))  {
 
 	echo '<p>'.l('realspeed').': '.$real[3].' '.l('characters').' / '.$real[2].
 	' '.l('seconds').' = '.$real[1].' '.l('wpm').' / '.$real[0].' '.l('cpm').'</p>';
+
+    echo "<p>PARIS: ".$paris." ".l('wpm')."</p>";
 
 	if (strlen($_POST['text']) < 255) { 
 
@@ -207,8 +225,17 @@ if (isset($_POST['text']))  {
 	else {
 		$valid = 0;
 	}
-	
-	$in = mysqli_query($db,"insert into lcwo_groupsresults set `uid`='".$_SESSION['uid']."', `mode`='".$_SESSION['groups_mode']."', `speed`='".$_SESSION['cw_speed']."', `eff`='".$_SESSION['cw_eff']."', `accuracy`='$accuracy', `time`=NULL, valid='$valid';");
+
+    $eff = $_SESSION['cw_eff'];
+    $speed = $_SESSION['cw_speed'];
+
+    // attempt with REAL speed
+    if ($paris != $_SESSION['cw_eff']) {
+        $eff = $paris;
+        $speed = $paris;
+    }
+
+	$in = mysqli_query($db,"insert into lcwo_groupsresults set `uid`='".$_SESSION['uid']."', `mode`='".$_SESSION['groups_mode']."', `speed`='$speed', `eff`='$eff', `accuracy`='$accuracy', `time`=NULL, valid='$valid';");
 
 	if (!$in) {
 		echo "<p>Error: Storing result in database
@@ -299,8 +326,16 @@ if ($_SESSION['player'] != PL_JSCWLIB) {
 	<td>
 	&nbsp;
 
-	<? player($playertext, $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 0, 0, 1); ?>
-	
+	<? player($playertext, $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 1, 0, 1); ?>
+
+    <br>
+<? if ($_SESSION['player'] == PL_JSCWLIB) {
+?>
+    <input onClick="pa[1].setReal(this.checked);" type="checkbox" value="1"> Use REAL speed (not PARIS)
+<?
+    }
+?>
+
 	</td>
 	</tr>
 	<tr>
@@ -313,8 +348,10 @@ if ($_SESSION['player'] != PL_JSCWLIB) {
             }
 		$text2 = stripcommands($text2);
 	?>
-		<input type="hidden" name="text" value="<? echo addquot($text2); ?>">
- <input type="submit" value=" <? echo l('checkresult',1); ?> " onClick="return checkspaces();"> (<? echo l('notcasesensitive'); ?>)
+        <input type="hidden" name="text" value="<? echo addquot($text2); ?>">
+        <input type="hidden" name="length" id="length" value="0">
+        <input type="hidden" name="paris" id="paris" value="0">
+        <input type="submit" value=" <? echo l('checkresult',1); ?> " onClick="try { document.getElementById('length').value = pa[1].textEnd - pa[1].textStart; document.getElementById('paris').value = pa[1].paris; } catch {} return checkspaces();"> (<? echo l('notcasesensitive'); ?>)
 	</td>
 </table>
 
@@ -335,7 +372,6 @@ function is_selected ($var, $val) {
 
 
 ?>
-<div class="vcsid">$Id: groups.php 246 2014-06-14 17:22:14Z dj1yfk $</div>
 
 
 <?

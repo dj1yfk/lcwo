@@ -184,34 +184,42 @@ function getgroups ($speed, $eff, $lesson, $kochchar, $minutes, $randlength) {
 #        $grp = explode(' ', $ret);
 #    }
 
-	# Calculate actual length ($rs[2]) and then cut accordingly
 
-	$rs = realspeed($ret, $speed, $eff);
+    // jscwlib gets farnsworth right, ebook2cw not
+    if ($_SESSION['player'] != PL_JSCWLIB) {
+        # Calculate actual length ($rs[2]) and then cut accordingly
 
-	# New number of groups: 
-	# floor or ceil of ($grpcnt * $minutes*60 / $rs[2])
-	# whichever is closer to 60 seconds
-	
-	$grpcnt1 = floor($grpcnt * $minutes*60 / $rs[2]); 
-	$grpcnt2 = ceil($grpcnt * $minutes*60 / $rs[2]); 
+        $rs = realspeed($ret, $speed, $eff);
 
-	$ret1 = implode(' ', array_slice($grp, 0, $grpcnt1));
-	$ret2 = implode(' ', array_slice($grp, 0, $grpcnt2));
+        # New number of groups: 
+        # floor or ceil of ($grpcnt * $minutes*60 / $rs[2])
+        # whichever is closer to 60 seconds
+        
+        $grpcnt1 = floor($grpcnt * $minutes*60 / $rs[2]); 
+        $grpcnt2 = ceil($grpcnt * $minutes*60 / $rs[2]); 
 
-	$rs1 = realspeed($ret1, $speed, $eff);
-	$rs2 = realspeed($ret2, $speed, $eff);
+        $ret1 = implode(' ', array_slice($grp, 0, $grpcnt1));
+        $ret2 = implode(' ', array_slice($grp, 0, $grpcnt2));
 
-	if (abs(60-$rs1[2]) < abs(60-$rs2[2])) {
-			$ret = $ret1;
-	}
-	else {
-			$ret = $ret2;
-	}
+        $rs1 = realspeed($ret1, $speed, $eff);
+        $rs2 = realspeed($ret2, $speed, $eff);
 
-	if ($_SESSION['vvv'] == 1 && $_SESSION['player'] != 1) {
-		$ret = "VVV = ".$ret." <AR>";
-	}
-	
+        if (abs(60-$rs1[2]) < abs(60-$rs2[2])) {
+                $ret = $ret1;
+        }
+        else {
+                $ret = $ret2;
+        }
+
+        if ($_SESSION['vvv'] == 1) {
+            $ret = "VVV = ".$ret." <AR>";
+        }
+    }
+    else {
+        // just take the number of groups requested
+        $ret = implode(' ', array_slice($grp, 0, $eff));
+    }
+        
 	return $ret;
 }
 

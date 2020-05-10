@@ -10,6 +10,7 @@ Started on 2009-02-08.
 
 2020-05-10:
     * Include experimental sound generation with jscwlib.
+    * Allow selecting REAL characters for code groups (instead of PARIS)
 
 2020-04-29:
     * Every user can download their results as JSON or CSV files now.
