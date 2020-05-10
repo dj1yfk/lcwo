@@ -37,6 +37,10 @@ define("FORUM_RO",   false); # Make forum read-only?
 define("USERG_RO",   false); # Disable creating new user groups?
 define("PMSG_RO",    false); # Disable sending new private messages
 
+define("PL_JSCWLIB", 1);
+define("PL_FLASH", 2);
+define("PL_HTML5", 3);
+
 # User IDs of the forum moderators.
 $g_moderators = array("1", "2");
 

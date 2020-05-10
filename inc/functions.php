@@ -208,8 +208,7 @@ function getgroups ($speed, $eff, $lesson, $kochchar, $minutes, $randlength) {
 			$ret = $ret2;
 	}
 
-
-	if ($_SESSION['vvv'] == 1) {
+	if ($_SESSION['vvv'] == 1 && $_SESSION['player'] != 1) {
 		$ret = "VVV = ".$ret." <AR>";
 	}
 	

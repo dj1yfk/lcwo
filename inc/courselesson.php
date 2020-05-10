@@ -18,21 +18,23 @@ if (($_SESSION['uid'] == 161) ) {
 
 function newc (nc) {
 
-var cwtest2 = '40 99 41 32 70 97 98 105 97 110 32 75 117 114 122 32 68 74 49 89 70 75';
-		
 var newurl = '?s=<? echo
 $_SESSION['cw_speed'];?>&e=<? echo $_SESSION['cw_eff']?>&f=<?echo
 $_SESSION['cw_tone'];?>&t='+nc+nc+nc+nc+nc+nc+nc+nc+nc+nc+nc+nc+nc;
 
 		
-<? if ($_SESSION['player'] != 3) { ?>
+<? if ($_SESSION['player'] == PL_FLASH) { ?>
 loadFile('js1', {file:'<?=CGIURL();?>cw.mp3'+newurl, type:'mp3'})
 sendEvent('js1', 'playpause');
-<? } else {		/* HTML5 */ ?>
+<? } else if ($_SESSION['player'] == PL_HTML5) {		/* HTML5 */ ?>
 var p = document.getElementById('player1');
 p.src = '<?=CGIURL();?>cw.mp3'+newurl;
 p.load();
 p.play();
+<? }
+else if ($_SESSION['player'] == PL_JSCWLIB) {        /* HTML5 */ ?>
+pa[1].setText(nc+nc+nc+nc+nc+nc+nc+nc+nc+nc+nc+nc+nc);
+pa[1].play();
 <? } ?>
 var newchar = document.getElementById('newc');
 newchar.innerHTML = '';
@@ -123,12 +125,7 @@ if (isint($_POST['duration'])  && $_SESSION['uid']) {
 <p><? echo l('lettersinthislesson'); ?>: <strong>
 <?
 for ($k = 0; $k <= $_SESSION['koch_lesson']; $k++) {
-	if ($_SESSION['player'] != 1) {		# Flash/HTML player -> Links to chars
 		echo "<a href=\"javascript:newc('".$kochchar[$k]."')\">".$kochchar[$k]."</a> ";
-	}
-	else {
-		echo $kochchar[$k]." ";
-	}
 }
 $nc = $kochchar[$k-1];
 ?>
@@ -149,17 +146,14 @@ if ($_SESSION['player'] == 0) {
 
 if ($_SESSION['koch_lesson'] == 1) {
 echo "<table><tr><td>";
-player("KKKKKKKKKKKKKKKKKK", $_SESSION['player'],
-$_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 0, 1,0); 
+player("KKKKKKKKKKKKKKKKKK", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 1, 1,0); 
 echo "</td><td>&nbsp;&nbsp;</td><td>";
-player("MMMMMMMMMMMMMMMMMM", $_SESSION['player'],
-$_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 0, 1,0); 
+player("MMMMMMMMMMMMMMMMMM", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 2, 1,0); 
 echo "</td></tr></table>\n";
 }
 else {
 player("$nc$nc$nc$nc$nc$nc$nc$nc$nc$nc$nc$nc$nc",
-$_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'], 0, 1,
-1,0); 
+$_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'], 0, 1, 1,0); 
 }
 
 
@@ -212,12 +206,6 @@ if (isset($_POST['text']))  {
 
     $real = realspeed($_POST['text'], $_SESSION['cw_speed'], $_SESSION['cw_eff']);
 
-
-#	return array(round($realspeed_cpm,1), round($realspeed_wpm,1),
-#			    round($length,1), $characters);
-
-	// $grouplen = $_SESSION['koch_randomlength'] ? $_SESSION['koch_randomlength'] : 5;
-	
 	$errpct = (intval(1000*$totalerrors/($real[3]))/10);
 
 	if ($errpct > 100) {
@@ -288,18 +276,22 @@ else {
 	&nbsp;
 
 <? 
-$playertext = "|W".$_SESSION['cw_ews']." ".$text;
-if ($_SESSION['delay_start'] > 0) {
-	$playertext = '|S'.($_SESSION['delay_start']*1000).' '.$playertext;
+if ($_SESSION['player'] != PL_JSCWLIB) {
+    $playertext = "|W".$_SESSION['cw_ews']." ".$text;
+    if ($_SESSION['delay_start'] > 0) {
+	    $playertext = '|S'.($_SESSION['delay_start']*1000).' '.$playertext;
+    }
+
+    if (preg_match('/Safari/', $_SERVER['HTTP_USER_AGENT']) and !preg_match('/Chrome/', $_SERVER['HTTP_USER_AGENT'])) {
+        // Add some delay at the end to make Safari users happy
+        $playertext .= " |S20000 ";
+    }
+}
+else {
+    $playertext = $text;
 }
 
-if (preg_match('/Safari/', $_SERVER['HTTP_USER_AGENT']) and !preg_match('/Chrome/', $_SERVER['HTTP_USER_AGENT'])) {
-    // Add some delay at the end to make Safari users happy
-    $playertext .= " |S20000 ";
-}
-
-player("$playertext", $_SESSION['player'], $_SESSION['cw_speed'],
-		$_SESSION['cw_eff'], 0, 0, 0, 1); 
+player("$playertext", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'], 0, 3, 0, 1); 
 ?>
 	
 	</td>
@@ -310,7 +302,7 @@ player("$playertext", $_SESSION['player'], $_SESSION['cw_speed'],
 	
 	    $text2 = $text;
 	    
-	    if ($_SESSION['vvv'] == 1) {
+	    if ($_SESSION['vvv'] == 1 && $_SESSION['player'] != PL_JSCWLIB) {
 		$text2 = substr($text2, 6);
 		$text2 = substr($text2, 0, strlen($text2)-5);
 	    }
@@ -332,13 +324,8 @@ function keypressed(e) {
 		if (now - g_last_tap < 500) {
 			g_last_tap = 0;
 			console.log("TAP");		
-            // find last player on page, this is the one we want
             try {
-                var players = document.querySelectorAll("audio");
-                var p = players[players.length - 1];
-                p = p.id.replace(/player/g, "");
-                console.log(p);
-                playpause(p);
+                playpause(3);
             }
             catch (e) {
                 console.log("exception");
@@ -348,6 +335,16 @@ function keypressed(e) {
 			g_last_tap = now;
 		}
     }
+}
+
+// disable vvv and start delay in preview players
+if (pa[1]) {
+    pa[1].enablePS(false);
+    pa[1].setStartDelay(0.1);
+}
+if (pa[2]) {
+    pa[2].enablePS(false);
+    pa[2].setStartDelay(0.1);
 }
 </script>
 

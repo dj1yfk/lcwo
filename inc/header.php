@@ -45,6 +45,7 @@ if ($forward[$_GET['p']]) {
 
 <?  if ($_SESSION['player'] != 3 or $p == "cwsettings") { ?>
 <script type="text/javascript" src="/swfobject.js"></script>
+<script type="text/javascript" src="/js/jscwlib.js"></script>
 <?  }?>
 </head>
 

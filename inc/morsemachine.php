@@ -384,12 +384,12 @@ Character set: &nbsp;
 
 	/* Players need unified JavaScript API!! */
 	function playletter (l, buzz) {
-		console.log('Playletter ' + l + ' Buzz: ' + buzz);
+		console.log('Playletter ' + l + ' Buzz: ' + buzz + " player = " + player);
 		if (buzz && buzzer_active) {
-			l = '|T2 |f200 |s5 |v25 T |v100 |T0 |f' + freq + ' |s' + speed + ' ' + l;
+			l = '|T2 |f200 |s5 |v55 T |v100 |T0 |f' + freq + ' |s' + speed + ' ' + l;
 		}
 		var flashurl =  '<?=CGIURL();?>cw2.mp3?s='+speed+'&e='+speed+'&f='+freq+'&t='+l;
-		if (player == 3) {	
+        if (player == <?=PL_HTML5;?>) {	
 			/* espeed hack to make quite sure a different URL is called;
 			otherwise sometimes the HTML5 player of Firefox get stuck on single
 			letters */
@@ -399,24 +399,28 @@ Character set: &nbsp;
 			p.load();
 			p.play(); 
 		}
-	    else if (player == 4) {
-			getFlashObject1().SetVariable("method:setUrl", flashurl);
-			getFlashObject1().SetVariable("method:play", "");
-			getFlashObject1().SetVariable("enabled", "true");
-		}	
+        else if (player == <?=PL_JSCWLIB;?>) {
+            l = l.replace(/\|v/gi, "|x");
+            pa[1].setText(l);
+            pa[1].setWpm(speed);
+            pa[1].setEff(speed);
+            pa[1].setFreq(freq);
+            pa[1].enablePS(false);
+            pa[1].setStartDelay(0.1);
+            pa[1].play();
+        }
 		else {
 			loadFile('js1', {file:flashurl, type:'mp3', autostart:'true'})
 		}
 	}
 
 	function replayletter () {
-		if (player == 3) {	
+        if (player == <?=PL_HTML5;?>) {	
 			document.getElementById('player1').play();
 		}
-		else if (player == 4) {
-			getFlashObject1().SetVariable("method:stop", "");
-			getFlashObject1().SetVariable("method:play", "");
-		}
+        else if (player == <?=PL_JSCWLIB;?>) {
+            pa[1].play();
+        }
 		else {
 			sendEvent('js1','stop');
 			sendEvent('js1','playpause');
@@ -520,17 +524,5 @@ document.getElementById('startbutton').focus();
 <br>
 <?
 	$mode = $_SESSION['player'];
-	/* Only HTML5 (3) and higher (New Flash 4) gets through directly, otherwise normal Flash */
-	if ($mode < 3) {
-		$mode = 0;
-	}
-								
 	player("", $mode, 99, 99, 1, 1,0,0);
 ?>
-
-<br><br><br>
-<div class="vcsid">$Id: morsemachine.php 248 2014-06-15 20:47:20Z dj1yfk $</div>
-
-
-
-

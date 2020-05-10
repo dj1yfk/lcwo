@@ -42,9 +42,16 @@ function text2cw () {
 	$_SESSION['cw_tone'] = intval($_POST['freq']);
 
 	// default: HTML5
-	player($t, isset($_SESSION['player']) ?  $_SESSION['player'] : 3, $s, $e, 0, 0, 0,1); 
-	
+	player($t, isset($_SESSION['player']) ?  $_SESSION['player'] : 3, $s, $e, 0, 1, 0,1); 
 ?>
+
+    <script>
+    if (pa[1]) {
+        pa[1].enablePS(false);
+        pa[1].setStartDelay(0.1);
+    }
+    </script>
+
 </td>
 <td width="8%" valign="top">
 &nbsp;

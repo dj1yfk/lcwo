@@ -90,7 +90,7 @@ global $db;
 	<?
 
 	player($txtext, $_SESSION['player'], $_SESSION['plain']['cw_speed'],
-	$_SESSION['plain']['cw_eff'],0, 0, 0,1);
+	$_SESSION['plain']['cw_eff'],0, 1, 0,1);
 	
 
 }

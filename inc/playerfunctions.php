@@ -1,11 +1,13 @@
 <?
 
-
 function player ($text, $mode, $speed, $eff, $autostart, $nr, $layout, $focus) {
 
 global $servers;
 
-$text = $text . "    ^";				# XXX Hack to add space at the end...
+if ($mode != 1) {
+    $text = $text . "    ^";				# XXX Hack to add space at the end...
+}
+
 $text_escaped = preg_replace('/"/', '\"', $text);
 $text_encoded = rawurlencode($text);
 $text_escaped = preg_replace('/\+/', '<AR>', $text_escaped);
@@ -47,23 +49,57 @@ href=\"javascript:playpause($mnr);\">$playpause</a>";
 
 
 if (($mode == '') || !isset($mode))  {
-	$mode = 0;
+	$mode = 1;
 }
 
 switch ($mode) {
-	case '1':	/* Embedded OLD */
-	if ($autostart == 1) {
-		$autostart = "true";
-	}
-	else {
-		$autostart = "false";
-	}
-	
-echo "<embed src=\"$cgi_mp3$url_encoded\" autostart=\"$autostart\" hidden=\"false\" height=\"100\"
-width=\"250\"><br> ";
-	echo "<br> <a onMouseover=\"top.status='';return true;\"
-	href=\"".$cgi_mp3.$url_encoded.'">'.l('linktomp3file').'</a>';
-	break;
+	case '1':	/* jscwlib */
+
+        $prefix = $_SESSION['vvv'] ? true : false;
+        $dly = $_SESSION['delay_start'];
+
+        $player = <<<JS
+
+<div id="pv"></div>
+
+<script>
+
+    // make an array which holds all player objects (if not already there)
+    if (!pa) {
+        var pa = Array();    
+    }
+
+    var pv = new jscw();
+    pv.setText("$text");
+    pv.setWpm($speed);
+    pv.setEff($eff);
+    pv.setFreq($cw_tone);
+    pv.setPrefix("vvv = ");
+    pv.enablePS($prefix);
+    pv.setStartDelay($dly);
+    pv.renderPlayer("pv", pv);
+    pv.onPlay = function () { if(tmp=document.getElementById('eform')){tmp.input.focus();} };
+
+    pa[$mnr] = pv;
+
+
+    function playpause(p) {
+        if (pa[p].getRemaining()) {
+            pa[p].pause();
+        }
+        else {
+            pa[p].play();
+        }
+    }
+
+</script>
+JS;
+
+        $player = preg_replace("/pv/", "pv".$mnr, $player);
+
+        echo $player;
+
+    break;
 
 	/* JW Player Flash stuff */
 	case '0':
@@ -130,11 +166,7 @@ width=\"250\"><br> ";
 	function getUpdate(typ,pr1,pr2,swf) {
 	};
 	function thisMovie(swf) {
-//		  if(navigator.appName.indexOf("Miicrosoft") != -1) {
-//		    return window[swf];
-//		  } else {
 		    return document[swf];
-//		  }
 	};
 	function loadFile(swf,obj) { 
 			  thisMovie(swf).loadFile(obj); 
@@ -164,6 +196,7 @@ width=\"250\"><br> ";
 		if ($autostart) {
 			$layout = 3;
 		}
+        $autostart = 0;
 		
 		$cgi_url = $cgi_mp3;
 		
@@ -207,117 +240,6 @@ width=\"250\"><br> ";
 				</script>\n";
 		echo "</div>";
 	break;
-	
-	case '4':		/* New Flash */
-
-		$id = $mnr;	
-		if ($autostart) { $layout = 3; }
-
-			?>
-		<script type="text/javascript">
-			var myListener<?=$id;?> = new Object();
-			myListener<?=$id;?>.onInit = function() {
-				this.position = 0;
-				this.paused = 0;
-			};
-
-			myListener<?=$id;?>.onUpdate = function() {
-				var pos_seconds = parseInt(this.position/1000);
-				var pos_minutes = 0, dur_minutes = 0;
-				while (pos_seconds >= 60) { pos_minutes++; pos_seconds -= 60; }
-				if (pos_seconds < 10) { pos_seconds = '0' + pos_seconds; }	
-				document.getElementById("info_position<?=$id;?>").innerHTML = 
-					pos_minutes + ':' + pos_seconds;
-
-				var timelineWidth = 160;
-				var sliderWidth = 40;
-				var sliderPositionMin = 0;
-				var sliderPositionMax = sliderPositionMin + timelineWidth - sliderWidth;
-				var sliderPosition = sliderPositionMin + Math.round((timelineWidth - sliderWidth) * this.position / this.duration);
-
-				if (sliderPosition < sliderPositionMin) {
-					sliderPosition = sliderPositionMin;
-				}
-				if (sliderPosition > sliderPositionMax) {
-					sliderPosition = sliderPositionMax;
-				}
-				document.getElementById("playerslider<?=$id;?>").style.left = sliderPosition+"px";
-			};
-                
-			function getFlashObject<?=$id;?>() {
-				return document.getElementById("myFlash<?=$id;?>");
-			}
-
-			function playpause<?=$id;?>() {
-				if (myListener<?=$id;?>.isPlaying && !this.paused) {
-					getFlashObject<?=$id;?>().SetVariable("method:pause", "");
-					this.paused = 1;
-				}
-				else {
-					if (myListener<?=$id;?>.position == 0) {
-					getFlashObject<?=$id;?>().SetVariable("method:setUrl", "<?=$cgi_mp3.$url_encoded;?>");
-					}
-					getFlashObject<?=$id;?>().SetVariable("method:play", "");
-					getFlashObject<?=$id;?>().SetVariable("enabled", "true");
-					this.paused = 0;
-				}
-			}
-		</script>
-
-		<!--[if IE]>
-		<script type="text/javascript" event="FSCommand(command,args)" for="myFlash<?=$id;?>">
-		eval(args);
-		</script>
-		<![endif]-->
-
-		<object id="myFlash<?=$id;?>" type="application/x-shockwave-flash" data="/player_mp3_js.swf" width="1" height="1">
-			<param name="movie" value="/player_mp3_js.swf" />
-			<param name="AllowScriptAccess" value="always" />
-			<param name="FlashVars" value="listener=myListener<?=$id;?>&amp;interval=500" />
-		</object>
-<?
-		if ($layout == 1) {	/* small for previews */
-?>
-		<table><tr><td>
-		<?=$buttonhtml;?></td><td>
-		<div id="playercontroller">
-			<span class="timeline"><a id="playerslider<?=$id;?>" href="#slider">SLIDER</a></span>
-			<span class="position" id="info_position<?=$id;?>">0:00</span>
-		</div>
-		</td></tr></table>
-<?
-		}
-		else if ($layout == 0) {	/* full */
-			echo " <div style=\"width:220px;border-width:thin;border-style:".
-					"dashed; padding:10px\">";
-			?>			
-		<div id="playercontroller">
-			<span class="timeline"><a id="playerslider<?=$id;?>" href="#slider">SLIDER</a></span>
-			<span class="position" id="info_position<?=$id;?>">0:00</span>
-		</div>
-		<?
-			echo "<br><p style='text-align:center;'>$buttonhtml</p>";
-			echo "<p style='text-align:center;'><a href=\"".$cgi_mp3.$url_encoded.'">'.l('linktomp3file').'</a></p></div>';
-		}
-		else if ($layout == 3) {
-			/* no controls */
-	?>
-		<div id="playercontroller">
-			<span class="timeline"><a id="playerslider<?=$id;?>" href="#slider">SLIDER</a></span>
-			<span class="position" id="info_position<?=$id;?>">0:00</span>
-		</div>
-	<?
-		}
-		
-?>
-		<script>
-			function playpause (player) {
-				eval('playpause' + player + '();');
-			}
-		</script>
-
-<?
-	break;	
 	
 } /* switch */
 

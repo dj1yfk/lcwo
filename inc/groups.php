@@ -273,12 +273,14 @@ if ($_SESSION['groups_mode'] == 'figures') {
     }
 }
 
-if ($_SESSION['groups_mode'] == 'custom') {
-    $playertext = "|W".$_SESSION['cw_ews']." ".$playertext;
-}
+if ($_SESSION['player'] != PL_JSCWLIB) {
+    if ($_SESSION['groups_mode'] == 'custom') {
+        $playertext = "|W".$_SESSION['cw_ews']." ".$playertext;
+    }
 
-if ($_SESSION['delay_start'] > 0) {
+    if ($_SESSION['delay_start'] > 0) {
 		$playertext = '|S'.($_SESSION['delay_start']*1000).' '.$playertext;
+    }
 }
 
 
@@ -305,7 +307,7 @@ if ($_SESSION['delay_start'] > 0) {
 	<td>
 	<?
 		$text2 = $text;
-            if ($_SESSION['vvv'] == 1) { 
+            if ($_SESSION['vvv'] == 1 && $_SESSION['player'] != PL_JSCWLIB) { 
                 $text2 = substr($text2, 6);
 				$text2 = substr($text2, 0, -5);
             }

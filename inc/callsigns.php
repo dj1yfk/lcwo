@@ -165,12 +165,13 @@ function playcall (cnr, auto_start) {
 		cwspeedtmp = mincharspeed;	
 	}
 
-    var delay = <?=$_SESSION['delay_start'];?>;
+    var delay = <? if ($_SESSION['player'] != PL_JSCWLIB) { echo $_SESSION['delay_start']; } else { echo "0.05"; } ?>;
 
     if (delay) {
         var text = '|S' + (delay*1000) + ' ' + calls[cnr];
     }
-    else {
+    else 
+    {
         var text = calls[cnr];
     }
 
@@ -178,12 +179,12 @@ function playcall (cnr, auto_start) {
     cs.innerHTML = '&nbsp; &nbsp; &nbsp; <input type="button" value="<?=l('pressdottoreplay',1);?>" onclick="playcall(nr, true);return false;">';
 	
     <?
-    if ($_SESSION['player'] < 3) {   /* Flash Player */
+    if ($_SESSION['player'] == PL_FLASH) {   /* Flash Player */
     ?> 
     loadFile('js1', {file:'<?=CGIURL();?>cw.mp3?s='+cwspeedtmp+'&e='+cwspeed+'&f='+freq+'&t='+text, type:'mp3', autostart: auto_start})
     <?
     }
-    else if ($_SESSION['player'] == 3) {              /* HTML5 player */
+    else if ($_SESSION['player'] == PL_HTML5) {              /* HTML5 player */
     ?>
     var p = document.getElementById('player1');
     p.src = '<?=CGIURL();?>'+h5c+'?s='+cwspeedtmp+'&e='+cwspeed+'&f='+freq+'&t='+text;
@@ -193,15 +194,15 @@ function playcall (cnr, auto_start) {
 	}
     <?
     }
-	else if ($_SESSION['player'] == 4) {
-	?>
-        getFlashObject1().SetVariable("method:setUrl",
-		'<?=CGIURL();?>cw2.mp3?s='+cwspeedtmp+'&e='+cwspeed+'&f='+freq+'&t='+text);
-	if (auto_start) {
-	        getFlashObject1().SetVariable("method:play", "");
-	}
-	getFlashObject1().SetVariable("enabled", "true");
-	<?
+    else if ($_SESSION['player'] == PL_JSCWLIB) {
+    ?>
+        pa[1].setText(text);
+        pa[1].setWpm(cwspeedtmp);
+        pa[1].setEff(cwspeed);
+        pa[1].setFreq(freq);
+        pa[1].enablePS(false);
+        pa[1].play();
+    <?
 	}
     ?>
 }
@@ -307,11 +308,6 @@ echo "<tr>
 
 <?
     $mode = $_SESSION['player'];
-    /* Only HTML5 gets through directly, otherwise normal Flash */
-    if ($mode < 3) {
-        $mode = 0;
-    }
-                            /* as, nr, layout, focus */
     player("", $mode, 99, 99, 1, 1,0,0);
     
 ?>

@@ -66,7 +66,7 @@ qtcs = new Array();
 function startQTCs () {
 
 sentgrpnr = 1;
-playerload('?s='+cwspeed+'&e='+cwspeed+'&f='+cwfreq+'&t= QTC '+qtcs[0]+' = QRV?  ^');
+playerload(cwspeed, cwspeed, cwfreq, " QTC " + qtcs[0] + " = QRV?  ^");
 
 document.getElementById('grpnr').focus();
 		
@@ -152,16 +152,16 @@ function hasfocus (x) {
 
 function makeallcallsuppercase () {
 	var i, tmp;
-	var cwtest2 = '40 99 41 32 70 97 98 105 97 110 32 75 117 114 122 32 68 74 49 89 70 75';
 	for (i = 1; i<=10; i++) {
 		tmp = document.getElementById('call'+i);
 	    tmp.value = tmp.value.toUpperCase();
 	}	
 }
 
-function playerload (file) {
+function playerload (wpm, eff, freq, text) {
+    var file = '?s='+wpm+'&e='+eff+'&f='+freq+'&t= ' + text;
 	<?
-		if($_SESSION['player'] == 3) {	/* HTML 5 */
+	if($_SESSION['player'] == PL_HTML5) {	/* HTML 5 */
 	?>
 		var p = document.getElementById('player1');
 		p.src = '<?=CGIURL();?>'+h5c+file;
@@ -169,19 +169,22 @@ function playerload (file) {
 		p.play();	
 	<?
 	}
-	else if ($_SESSION['player'] == 4) {
-	?>
-		getFlashObject1().SetVariable("method:setUrl",
-		'<?=CGIURL();?>cw.mp3'+file);
-		getFlashObject1().SetVariable("method:play", "");
-		getFlashObject1().SetVariable("enabled", "true");
-	<?
-	}
-	else 	{	/* Flash */
+    else if ($_SESSION['player'] == PL_JSCWLIB) {
+    ?>
+        pa[1].setText(text);
+        pa[1].setWpm(wpm);
+        pa[1].setEff(eff);
+        pa[1].setFreq(freq);
+        pa[1].setStartDelay(0.1);
+        pa[1].enablePS(false);
+        pa[1].play();
+    <?
+    }
+	else {	/* Flash */
 	?>
 	loadFile('js1', {file:'<?=CGIURL();?>cw.mp3'+file, type:'mp3', autostart:'true'})
 	<?
-	}	/* if else */
+	}	
 	?>
 }
 
@@ -259,7 +262,7 @@ function sendQTC (repeat) {
 	QTC[0] = abbreviatenumbers(QTC[0]);	
 	QTC[2] = abbreviatenumbers(QTC[2]);	
 
-	playerload('?s='+cwspeed+'&e='+cwspeed+'&f=<?=$_SESSION['cw_tone'];?>&t='+r+' '+QTC[0]+' '+QTC[1]+' '+QTC[2]+'         ^');
+    playerload(cwspeed, cwspeed, <?=$_SESSION['cw_tone'];?>, r+' '+QTC[0]+' '+QTC[1]+' '+QTC[2]+'         ^');
 
 }
 
@@ -296,7 +299,7 @@ function finishQTCs () {
 
 	var grpnr = document.getElementById('grpnr').value;
 		
-playerload('?s='+cwspeed+'&e='+cwspeed+'&f=500&t= R QSL QTC '+grpnr+'  ^');
+playerload(cwspeed, cwspeed, 500, ' R QSL QTC '+grpnr+'  ^');
 }
 
 
@@ -463,12 +466,7 @@ l("time") ?></th><th class="tborder"><? echo l('callsign')
 
 
 <?
-if ($_SESSION['player'] < 3) {	/* flasm for 0-2 */
-		$mode = 0;
-}
-else {
-		$mode = $_SESSION['player'];
-}
+$mode = $_SESSION['player'];
 player ("", $mode, 99, 99, 1, 1,0,0);
 ?>
 
