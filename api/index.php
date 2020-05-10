@@ -52,7 +52,7 @@ function export_results () {
     $type= $_GET['type'];
     $fmt = $_GET['fmt'];
 
-    if (!in_array($type, array("signups", "koch", "groups", "plaintext", "callsigns", "words", "qtc"))) {
+    if (!in_array($type, array("koch", "groups", "plaintext", "callsigns", "words", "qtc"))) {
         echo '{"msg": "invalid data type"}';
         return;
     }
