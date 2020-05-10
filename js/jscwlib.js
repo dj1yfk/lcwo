@@ -533,6 +533,9 @@
                 // is the suffix beginning?
                 if (this.vvv && i == text.length - this.suffix.length) {
                     this.textEnd = time;
+                } // or are we simply at the end?
+                else if (!this.vvv && i == (text.length - 1)) {
+                    this.textEnd = time;
                 }
             }
 
