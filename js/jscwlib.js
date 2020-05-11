@@ -67,14 +67,20 @@
             else {
                 this.gainNode = this.audioCtx.createGain(); // this gainNode modulates the CW
                 this.gainNodePlay = this.audioCtx.createGain(); // this gainNode is the overall volume
+                this.gainNodeLimiter = this.audioCtx.createGain(); // this limits the osc output so we don't start clipping even with a high Q of the filter
                 this.oscillator = this.audioCtx.createOscillator();
                 this.biquadFilter = this.audioCtx.createBiquadFilter();
                 this.noiseFilter = this.audioCtx.createBiquadFilter();
                 this.whiteNoise = this.audioCtx.createBufferSource();
 
+                this.analyser = this.audioCtx.createAnalyser();
+                this.analyser.fftSize = 32768 ;
+                this.bufferLength = this.analyser.frequencyBinCount;
+                this.dataArray = new Uint8Array(this.bufferLength);
+
                 this.noiseFilter.type = "bandpass";
                 this.noiseFilter.frequency.setValueAtTime(500, this.audioCtx.currentTime);
-                this.noiseFilter.Q.setValueAtTime(5, this.audioCtx.currentTime);
+                this.noiseFilter.Q.setValueAtTime(9, this.audioCtx.currentTime);
                 this.noiseFilter.gain.setValueAtTime(0.9, this.audioCtx.currentTime);
 
                 var bufferSize = 2 * this.audioCtx.sampleRate;
@@ -93,18 +99,21 @@
 
                 this.biquadFilter.type = "lowpass";
                 this.biquadFilter.frequency.setValueAtTime(500, this.audioCtx.currentTime);
-                this.biquadFilter.gain.setValueAtTime(0.5, this.audioCtx.currentTime);
+                this.biquadFilter.Q.setValueAtTime(10, this.audioCtx.currentTime);
 
                 this.oscillator.type = 'sine';
                 this.oscillator.frequency.setValueAtTime(600, this.audioCtx.currentTime); // value in hertz
 
                 this.oscillator.connect(this.gainNode);
-                this.gainNode.connect(this.biquadFilter);
+                this.gainNode.connect(this.gainNodeLimiter);
+                this.gainNodeLimiter.connect(this.biquadFilter);
                 this.biquadFilter.connect(this.gainNodePlay);
-                this.gainNodePlay.connect(this.audioCtx.destination);
+                this.gainNodePlay.connect(this.analyser);
+                this.analyser.connect(this.audioCtx.destination);
 
                 this.gainNode.gain.value = 0;
                 this.gainNodePlay.gain.value = this.playvolume;
+                this.gainNodeLimiter.gain.value = 0.5;
                 this.oscillator.start();
             }
             this.init_done = true;
@@ -125,7 +134,13 @@
         }
 
         this.setFilter = function (f) {
+            console.log("setFilter f = " + f);
             this.biquadFilter.frequency.setValueAtTime(f, this.audioCtx.currentTime);
+        }
+
+        this.setQ = function (q) {
+            console.log("setQ = " + q);
+            this.biquadFilter.Q.setValueAtTime(q, this.audioCtx.currentTime);
         }
 
         this.setReal = function (r) {
@@ -189,11 +204,12 @@
         }
 
         this.setFreq = function(f) {
+            console.log("setFreq: " + f);
             this.freq = f;
             if (this.mode == 'audio' && this.init_done) {
                 this.gainNode.gain.cancelScheduledValues(this.audioCtx.currentTime);
                 this.oscillator.frequency.setValueAtTime(f, this.audioCtx.currentTime);
-                this.biquadFilter.frequency.setValueAtTime(f, this.audioCtx.currentTime);
+                this.setFilter(f);
             }
             this.updateControls();
         }
@@ -248,6 +264,35 @@
             }
         }
 
+        this.oscilloscope = function(c) {
+            var ctx = c.getContext("2d");
+            var w = c.width;
+            var h = c.height;
+            this.analyser.getByteTimeDomainData(this.dataArray);
+            ctx.fillStyle = 'rgb(200, 200, 200)';
+            ctx.fillRect(0, 0, w, h);
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = 'rgb(0, 0, 0)';
+            ctx.beginPath();
+            var sliceWidth = w * 1.0 / this.bufferLength;
+            var x = 0;
+
+            for(var i = 0; i < this.bufferLength; i++) {
+
+                var v = this.dataArray[i] / 128.0;
+                var y = v * h/2;
+
+                if(i === 0) {
+                    ctx.moveTo(x, y);
+                } 
+                else {
+                    ctx.lineTo(x, y);
+                }
+                x += sliceWidth;
+            }
+            ctx.lineTo(w, h/2);
+            ctx.stroke()
+        } // oscilloscope
 
         // draw last generated text on a canvas
         this.draw = function(c) {
