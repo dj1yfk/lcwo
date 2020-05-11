@@ -217,7 +217,7 @@ function getgroups ($speed, $eff, $lesson, $kochchar, $minutes, $randlength) {
     }
     else {
         // just take the number of groups requested
-        $ret = implode(' ', array_slice($grp, 0, $eff));
+        $ret = implode(' ', array_slice($grp, 0, $eff*$minutes));
     }
         
 	return $ret;
