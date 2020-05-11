@@ -58,8 +58,9 @@ switch ($mode) {
         $prefix = $_SESSION['vvv'] ? true : false;
         $dly = $_SESSION['delay_start'];
 
-        $player = <<<JS
+        $text = preg_replace('/"/', '\"', $text);
 
+        $player = <<<JS
 <div id="pv"></div>
 
 <script>
