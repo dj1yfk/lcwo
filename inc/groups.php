@@ -233,6 +233,10 @@ if (isset($_POST['text']))  {
     if ($paris != $_SESSION['cw_eff']) {
         $eff = $paris;
         $speed = $paris;
+        $_SESSION['groups']['real'] = true;
+    }
+    else {
+        $_SESSION['groups']['real'] = false;
     }
 
 	$in = mysqli_query($db,"insert into lcwo_groupsresults set `uid`='".$_SESSION['uid']."', `mode`='".$_SESSION['groups_mode']."', `speed`='$speed', `eff`='$eff', `accuracy`='$accuracy', `time`=NULL, valid='$valid';");
@@ -331,7 +335,7 @@ if ($_SESSION['player'] != PL_JSCWLIB) {
     <br>
 <? if ($_SESSION['player'] == PL_JSCWLIB) {
 ?>
-    <input onClick="pa[1].setReal(this.checked);" type="checkbox" value="1"> Use REAL speed (not PARIS)
+    <input onClick="pa[1].setReal(this.checked);" type="checkbox" value="1" <? if ($_SESSION['groups']['real']) echo "checked"; ?>> Use REAL speed (not PARIS)
 <?
     }
 ?>
