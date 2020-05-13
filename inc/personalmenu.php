@@ -74,12 +74,11 @@
 	</ul>
 </td>
 </tr>
-
 <?
 
 } // if member of usergroups
-
 ?>
 
+</table>
 
 
