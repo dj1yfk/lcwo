@@ -79,9 +79,8 @@
                 this.dataArray = new Uint8Array(this.bufferLength);
 
                 this.noiseFilter.type = "bandpass";
-                this.noiseFilter.frequency.setValueAtTime(500, this.audioCtx.currentTime);
-                this.noiseFilter.Q.setValueAtTime(9, this.audioCtx.currentTime);
-                this.noiseFilter.gain.setValueAtTime(0.9, this.audioCtx.currentTime);
+                this.noiseFilter.frequency.setValueAtTime(600, this.audioCtx.currentTime);
+                this.noiseFilter.Q.setValueAtTime(20, this.audioCtx.currentTime);
 
                 var bufferSize = 2 * this.audioCtx.sampleRate;
                 var noiseBuffer = this.audioCtx.createBuffer(1, bufferSize, this.audioCtx.sampleRate);
@@ -92,7 +91,7 @@
 
                 this.whiteNoise.buffer = noiseBuffer;
                 this.whiteNoise.loop = true;
-                // this.whiteNoise.start(0);
+                //this.whiteNoise.start(0);
                 this.whiteNoise.connect(this.noiseFilter);
 
                 this.noiseFilter.connect(this.audioCtx.destination);
@@ -637,31 +636,12 @@
                     }
                 }
                 var sec = obj.progressbar.value;
-                var min = 0;
 
                 sec -= obj.textStart;   // start in negative time if we have vvv prefx
                 var sign = sec >= 0 ? " " : "-";
                 sec = Math.abs(sec);
                 
-                while (sec > 60) {
-                    min++;
-                    sec -= 60;
-                }
-
-                if (sign == "-") {
-                    sec = Math.ceil(sec);
-                }
-                else {
-                    sec = Math.floor(sec);
-                }
-
-                if (sec < 10) {
-                    sec = "0" + sec;
-                }
-
-                var fmt_time = " " + sign + min + ":" + sec;
-
-                obj.progresslabel.innerHTML = fmt_time;
+                obj.progresslabel.innerHTML = obj.fmtTime(sec, sign) + " /" + obj.fmtTime(obj.getLength() - obj.textStart,"");
 
                 if (obj.paused || obj.getRemaining() == 0) {
                     if (obj.btn_pp.src != play_svg) {
@@ -678,11 +658,33 @@
             }
         }
 
+        this.fmtTime = function(sec, sign) {
+            var min = 0;
+            while (sec > 60) {
+                min++;
+                sec -= 60;
+            }
+
+            if (sign == "-") {
+                sec = Math.ceil(sec);
+            }
+            else {
+                sec = Math.floor(sec);
+            }
+
+            if (sec < 10) {
+                sec = "0" + sec;
+            }
+
+            return " " + sign + min + ":" + sec;
+        }
+
+ 
         // render a player with play/pause button to element "el"
         this.renderPlayer = function(el, obj) {
             var el = document.getElementById(el);
             el.innerHTML = "";
-            el.style.width = '170px';
+            el.style.width = '220px';
             el.style.borderWidth = 'thin';
             el.style.borderStyle= 'dashed';
             el.style.padding = '6px';
@@ -690,7 +692,7 @@
             el.style.fontFamily = 'Ubuntu,calibri,tahoma,arial,sans-serif';
 
             var pb = document.createElement("progress");
-            pb.style.width = '165px';
+            pb.style.width = '215px';
             pb.style.height = '15px';
             pb.id = "pb";
 
