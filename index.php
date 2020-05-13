@@ -131,7 +131,6 @@ include("inc/menu.php");
 					include("inc/personalmenu.php"); 
 				}
 			?>
-			<br>
 			<? include("inc/online.php"); ?>
 		</td>
 		<td valign="top">
