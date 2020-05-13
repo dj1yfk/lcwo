@@ -269,6 +269,7 @@ function get_wordtraining_collection() {
     $filter = mysqli_real_escape_string($db, $_GET['filter']);
     $left = ($_GET['left'] == '1') ? '' : '%'; 
     $right = ($_GET['right'] == '1') ? '' : '%'; 
+    $middle = ($_GET['middle'] == '1') ? true : false;
 
     if (!preg_match('/^[a-z]{2}\d+$/', $coll)) {
         return "[]";
@@ -276,7 +277,12 @@ function get_wordtraining_collection() {
 
     $lang = substr($coll, 0,2);
     $collid = substr($coll, 2);
-    $query = "select ID, word, lesson from lcwo_words where lang='$lang' and collid=$collid and word like '$left$filter$right' order by word asc";
+    if (!$middle) {
+        $query = "select ID, word, lesson from lcwo_words where lang='$lang' and collid=$collid and word like '$left$filter$right' order by word asc";
+    }
+    else {
+        $query = "select ID, word, lesson from lcwo_words where lang='$lang' and collid=$collid and word like '%$filter%' and word not like '%$filter' and word not like '$filter%' order by word asc";
+    }
     error_log($query);
     $q = mysqli_query($db, $query);
     $out = array();

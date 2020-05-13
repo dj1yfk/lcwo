@@ -14,6 +14,7 @@ var g_collection = "";
 var g_filter = "";
 var g_left = 1;     // match against start of word
 var g_right = 0;    // match against end of word
+var g_middle = 0;    // match against end of word
 
 var koch_chars = ['K','M','U','R','E','S','N','A','P','T','L','W', 'I','.','J','Z','=','F','O','Y',',','V','G','5','/','Q','9','2', 'H','3','8','B','?','4','7','C','1','D','6','0','X'];
 
@@ -76,7 +77,7 @@ function load(lang, collid, collection, g_filter) {
     var d = document.getElementById('editor');
 
     var request =  new XMLHttpRequest();
-    request.open("GET", '/api/index.php?action=get_wordtraining_collection&id=' + l + '&filter=' + g_filter + '&left=' + g_left + '&right=' + g_right, true);
+    request.open("GET", '/api/index.php?action=get_wordtraining_collection&id=' + l + '&filter=' + g_filter + '&left=' + g_left + '&right=' + g_right + '&middle=' + g_middle, true);
     request.onreadystatechange = function() {
             var done = 4, ok = 200;
             if (request.readyState == done && request.status == ok) {
@@ -86,6 +87,7 @@ function load(lang, collid, collection, g_filter) {
                         o += 'Filter: <input type="text" id="filter" onkeyup="filter_list(this.value);" value="' +  g_filter + '">';
                         o += ' <input onChange="load_g();" id="filterLeft" type="checkbox" value="1" ' + (g_left == 1 ? 'checked' : '') + '> Match left - ';
                         o += ' <input onChange="load_g();" id="filterRight" type="checkbox" value="1" ' + (g_right == 1 ? 'checked' : '') + '> Match right ';
+                        o += ' <input onChange="load_g();" id="filterMiddle" type="checkbox" value="1" ' + (g_middle == 1 ? 'checked' : '') + '> Match middle ';
                         o += '<table> <thead> <tr><th>ID</th><th>Word</th><th>Lesson</th><th>Actions</th></thead><tbody>';
                         for (var i = 0; i < p.length; i++) {
                             o += '<tr><td>' + p[i]['ID'] + '</td><td><input id="w' + p[i]['ID'] + '" onkeyup="upd_lesson(this.id);" type="text" width="20" value="' + p[i]['word'] + '"></td><td><span id="l' + p[i]['ID'] + '">' + p[i]['lesson'] + '</span></td><td><a href="javascript:save(' + p[i]['ID'] + ');">Save</a> <a href="javascript:del(' + p[i]['ID'] + ');">Delete</a> <span id="r'+ p[i]['ID'] + '"></span></td></tr>';
@@ -108,6 +110,16 @@ function filter_list (f) {
 function load_g() {
     g_left = document.getElementById('filterLeft').checked ? 1 : 0;
     g_right = document.getElementById('filterRight').checked ? 1 : 0;
+    g_middle = document.getElementById('filterMiddle').checked ? 1 : 0;
+
+    // id middle is checked, we cannot have left and right
+    if (g_middle && (g_right || g_left)) {
+        g_left = 0;
+        g_right = 0;
+        document.getElementById('filterLeft').checked = false;
+        document.getElementById('filterRight').checked = false;
+    }
+
     load(g_lang, g_collid, g_collection, g_filter);
 }
 
