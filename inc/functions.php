@@ -185,41 +185,35 @@ function getgroups ($speed, $eff, $lesson, $kochchar, $minutes, $randlength) {
 #    }
 
 
-    // jscwlib gets farnsworth right, ebook2cw not
+    # Calculate actual length ($rs[2]) and then cut accordingly
+    $rs = realspeed($ret, $speed, $eff);
+
+    # New number of groups: 
+    # floor or ceil of ($grpcnt * $minutes*60 / $rs[2])
+    # whichever is closer to 60 seconds
+    
+    $grpcnt1 = floor($grpcnt * $minutes*60 / $rs[2]); 
+    $grpcnt2 = ceil($grpcnt * $minutes*60 / $rs[2]); 
+
+    $ret1 = implode(' ', array_slice($grp, 0, $grpcnt1));
+    $ret2 = implode(' ', array_slice($grp, 0, $grpcnt2));
+
+    $rs1 = realspeed($ret1, $speed, $eff);
+    $rs2 = realspeed($ret2, $speed, $eff);
+
+    if (abs(60-$rs1[2]) < abs(60-$rs2[2])) {
+            $ret = $ret1;
+    }
+    else {
+            $ret = $ret2;
+    }
+
     if ($_SESSION['player'] != PL_JSCWLIB) {
-        # Calculate actual length ($rs[2]) and then cut accordingly
-
-        $rs = realspeed($ret, $speed, $eff);
-
-        # New number of groups: 
-        # floor or ceil of ($grpcnt * $minutes*60 / $rs[2])
-        # whichever is closer to 60 seconds
-        
-        $grpcnt1 = floor($grpcnt * $minutes*60 / $rs[2]); 
-        $grpcnt2 = ceil($grpcnt * $minutes*60 / $rs[2]); 
-
-        $ret1 = implode(' ', array_slice($grp, 0, $grpcnt1));
-        $ret2 = implode(' ', array_slice($grp, 0, $grpcnt2));
-
-        $rs1 = realspeed($ret1, $speed, $eff);
-        $rs2 = realspeed($ret2, $speed, $eff);
-
-        if (abs(60-$rs1[2]) < abs(60-$rs2[2])) {
-                $ret = $ret1;
-        }
-        else {
-                $ret = $ret2;
-        }
-
         if ($_SESSION['vvv'] == 1) {
             $ret = "VVV = ".$ret." <AR>";
         }
     }
-    else {
-        // just take the number of groups requested
-        $ret = implode(' ', array_slice($grp, 0, $eff*$minutes));
-    }
-        
+    
 	return $ret;
 }
 
@@ -1157,17 +1151,31 @@ function realspeed($text, $wpm, $wpmeff) {
 	if ($wpmeff > $wpm or $wpmeff == 0) {
 		$wpmeff = $wpm;
 	}
-	
-	$dot_sec = 1.2/$wpm;		# length of a dot in seconds
-	$fdot_sec = 1.2/$wpmeff;	# length of a farnswirth dot in seconds
 
-	$letterspace = 2*$dot_sec;	# 3 - 1 (inter-symbol space)
-	$wordspace = 4*$dot_sec;	# 7 - 3 (already got a letterspace)
+    # ebook2cw timing
+    if ($_SESSION['player'] != PL_JSCWLIB) {
+        $dot_sec = 1.2/$wpm;		# length of a dot in seconds
+        $fdot_sec = 1.2/$wpmeff;	# length of a farnswirth dot in seconds
 
-	if ($wpmeff != $wpm) {
-        $letterspace = 3*$fdot_sec-$dot_sec;
-        $wordspace = 4*$fdot_sec;
-	}
+        $letterspace = 2*$dot_sec;	# 3 - 1 (inter-symbol space)
+        $wordspace = 4*$dot_sec;	# 7 - 3 (already got a letterspace)
+
+        if ($wpmeff != $wpm) {
+            $letterspace = 3*$fdot_sec-$dot_sec;
+            $wordspace = 4*$fdot_sec;
+        }
+    }
+    # jscwlib timing
+    else {
+        $dot_sec = 1.2 / $wpm;
+        $fdot_sec  = 1.2 / $wpmeff;
+        // stretch all pauses by this magic formula (fitted to a measured
+        // set :) to get a good match. One day I will do the proper math!
+        $stretch = (2.5 - 1.5/(pow(($wpm / $wpmeff),1.25)));
+        $fdot_sec *= $stretch;
+        $letterspace = 3 * $fdot_sec;
+        $wordspace = 7 * $fdot_sec - $letterspace;
+    }
 	
 	$length = 0;
 	$characters = 0;
@@ -1185,7 +1193,9 @@ function realspeed($text, $wpm, $wpmeff) {
 			elseif (substr($char, $j, 1) == "-") {
 				$length += 3*$dot_sec;
 			}
-			$length += $dot_sec;	# intersymbol space
+            if ($j < strlen($char) - 1) {
+    			$length += $dot_sec;	# intersymbol space
+            }
 		}
 		$length += $letterspace;
 	}
@@ -1195,8 +1205,7 @@ function realspeed($text, $wpm, $wpmeff) {
 	$realspeed_cpm = 60*$characters/$length;
 	$realspeed_wpm = 12*$characters/$length;
 
-	return array(round($realspeed_cpm,1), round($realspeed_wpm,1),
-	round($length,1), $characters);
+	return array(round($realspeed_cpm,1), round($realspeed_wpm,1), round($length,1), $characters, $length);
 }
 
 
