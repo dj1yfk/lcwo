@@ -297,7 +297,7 @@ for ($i = 1; $i <= $_SESSION['download']['number']; $i++) {
 	$tonerandom = $_SESSION['cw_tone_random'];
 	$_SESSION['cw_tone_random'] = false;
 	$text = my_strtoupper(getgroups($_SESSION['download']['speed'], $_SESSION['download']['eff'], $nr, $char,
-                $_SESSION['download']['duration'], $grouplength));
+                $_SESSION['download']['duration'], $grouplength, false));
 	$_SESSION['cw_tone_random'] = $tonerandom;
 
 	if ($_POST['mode'] == 'callsigntraining') {

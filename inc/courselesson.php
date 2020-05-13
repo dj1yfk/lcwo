@@ -266,7 +266,7 @@ else {
 </div>
 
 
-<? $text = getgroups($_SESSION['cw_speed'], $_SESSION['cw_eff'], $_SESSION['koch_lesson'], $kochchar, $_SESSION['koch_duration'], $_SESSION['koch_randomlength']); ?>
+<? $text = getgroups($_SESSION['cw_speed'], $_SESSION['cw_eff'], $_SESSION['koch_lesson'], $kochchar, $_SESSION['koch_duration'], $_SESSION['koch_randomlength'], false); ?>
 
 <form action="/courselesson" method="POST" id="eform">
 <table>

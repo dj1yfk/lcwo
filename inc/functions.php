@@ -116,7 +116,7 @@ global $db;
 }
 
 
-function getgroups ($speed, $eff, $lesson, $kochchar, $minutes, $randlength) {
+function getgroups ($speed, $eff, $lesson, $kochchar, $minutes, $randlength, $realchar) {
 	global $db;
 
 	/* Not nice, but I changed things. outside, randomlength=0
@@ -185,27 +185,35 @@ function getgroups ($speed, $eff, $lesson, $kochchar, $minutes, $randlength) {
 #    }
 
 
-    # Calculate actual length ($rs[2]) and then cut accordingly
-    $rs = realspeed($ret, $speed, $eff);
-
-    # New number of groups: 
-    # floor or ceil of ($grpcnt * $minutes*60 / $rs[2])
-    # whichever is closer to 60 seconds
-    
-    $grpcnt1 = floor($grpcnt * $minutes*60 / $rs[2]); 
-    $grpcnt2 = ceil($grpcnt * $minutes*60 / $rs[2]); 
-
-    $ret1 = implode(' ', array_slice($grp, 0, $grpcnt1));
-    $ret2 = implode(' ', array_slice($grp, 0, $grpcnt2));
-
-    $rs1 = realspeed($ret1, $speed, $eff);
-    $rs2 = realspeed($ret2, $speed, $eff);
-
-    if (abs(60-$rs1[2]) < abs(60-$rs2[2])) {
-            $ret = $ret1;
+    # for code groups we may want "real" characters, so x wpm will mean
+    # that we generate x groups, no matter how long it takes to send them
+    # in PARIS speed
+    if ($realchar) {
+        $ret = implode(' ', array_slice($grp, 0, $eff*$minutes));
     }
     else {
-            $ret = $ret2;
+        # Calculate actual length ($rs[2]) and then cut accordingly
+        $rs = realspeed($ret, $speed, $eff);
+
+        # New number of groups: 
+        # floor or ceil of ($grpcnt * $minutes*60 / $rs[2])
+        # whichever is closer to 60 seconds
+        
+        $grpcnt1 = floor($grpcnt * $minutes*60 / $rs[2]); 
+        $grpcnt2 = ceil($grpcnt * $minutes*60 / $rs[2]); 
+
+        $ret1 = implode(' ', array_slice($grp, 0, $grpcnt1));
+        $ret2 = implode(' ', array_slice($grp, 0, $grpcnt2));
+
+        $rs1 = realspeed($ret1, $speed, $eff);
+        $rs2 = realspeed($ret2, $speed, $eff);
+
+        if (abs(60-$rs1[2]) < abs(60-$rs2[2])) {
+                $ret = $ret1;
+        }
+        else {
+                $ret = $ret2;
+        }
     }
 
     if ($_SESSION['player'] != PL_JSCWLIB) {

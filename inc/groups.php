@@ -21,6 +21,14 @@ if (in_array($_POST['mode'], array("letters", "figures", "mixed", "custom"))
 	if (!$upd) {
 		echo "<p>Error: Updating duration failed. .".mysqli_error($db)."</p>";
 	}
+
+    if (isset($_POST['real'])) {
+        $_SESSION['groups']['real'] = true;
+    }
+    else {
+        $_SESSION['groups']['real'] = false;
+    }
+
 }
 
 if (isset($_POST['duration']) && is_numeric($_POST['duration']) && $_SESSION['uid']) {
@@ -32,13 +40,10 @@ if (isset($_POST['duration']) && is_numeric($_POST['duration']) && $_SESSION['ui
 		echo "<p>Error: Updating duration failed. .".mysqli_error($db)."</p>";
 	}
 }
-
-
 ?>
 
 <h1><? echo l('codegroups') ?></h1>
 
-<p>
 <form action="/groups" method="POST">
 <table>
 <tr>
@@ -107,9 +112,16 @@ if (isset($_POST['duration']) && is_numeric($_POST['duration']) && $_SESSION['ui
 ?>
 </select>
 </td>
+<td>
+<? if ($_SESSION['player'] == PL_JSCWLIB) {
+?>
+&nbsp;Use REAL speed (not PARIS): <input onchange="this.form.submit()" name="real" type="checkbox" value="real" <? if ($_SESSION['groups']['real']) echo "checked"; ?>> 
+<?
+    }
+?>
+</td>
 </tr>
 </table>
-</p>
 </form>
 
 <h2><? echo l('codegroups')." (".$_SESSION['groups_duration'] ?>  <?=l("minute")?>)</h2>
@@ -269,9 +281,7 @@ switch ($_SESSION['groups_mode']) {
 
 $nr = count($char)-1;
 
-$text = my_strtoupper(getgroups($_SESSION['cw_speed'], $_SESSION['cw_eff'], $nr, $char,
-				$_SESSION['groups_duration'],
-				$_SESSION['koch_randomlength'])); 
+$text = my_strtoupper(getgroups($_SESSION['cw_speed'], $_SESSION['cw_eff'], $nr, $char, $_SESSION['groups_duration'], $_SESSION['koch_randomlength'], $_SESSION['groups']['real'])); 
 
 # customcharacters could be empty?
 
@@ -333,13 +343,6 @@ if ($_SESSION['player'] != PL_JSCWLIB) {
 	<? player($playertext, $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 1, 0, 1); ?>
 
     <br>
-<? if ($_SESSION['player'] == PL_JSCWLIB) {
-?>
-    <input onClick="pa[1].setReal(this.checked);" type="checkbox" value="1" <? if ($_SESSION['groups']['real']) echo "checked"; ?>> Use REAL speed (not PARIS)
-<?
-    }
-?>
-
 	</td>
 	</tr>
 	<tr>
@@ -361,9 +364,17 @@ if ($_SESSION['player'] != PL_JSCWLIB) {
 
 
 </form>
-<?
 
+<?
+if ($_SESSION['player'] == 1 && $_SESSION['groups']['real']) {
+?>
+<script>
+    pa[1].setReal(true);
+</script>
+<?
 }
+
+} // groups attempt
 
 
 function is_selected ($var, $val) {
