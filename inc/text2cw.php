@@ -19,6 +19,7 @@ function text2cw () {
 	update_text2cw();
 
 	$text = stripslashes($_POST['text']);
+    $text = str_replace('\\', '', $text);
 
 	if (!$text) {
 		$text = "LCWO";
@@ -30,12 +31,15 @@ function text2cw () {
 <?	
 	echo "<h2>".l('yourtext')."</h2>";
 	echo "<p class=\"tborder\">".htmlspecialchars($text)."</p>";
+    echo "<!-- $text -->";
 
 	echo "<h2>".l('cwplayeranddownload')."</h2>";
 
 	$s = intval($_POST['speed']);
 	$e = intval($_POST['eff']);
 	$f = intval($_POST['freq']);
+    $text = preg_replace('/[\n\r]/', ' ', $text);
+    $text = preg_replace('/"/', '\"', $text);
 	$t = $text;
 
 	/* shitty global */
