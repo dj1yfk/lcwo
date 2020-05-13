@@ -5,10 +5,10 @@
 </head>
 <body>  <?# if ($_GET[z]) { echo "onload='playpause1();'";}?>
 <?
-function l($x) {
-	return "Play/Pause";
-}
 include("../inc/definitions.php");
+function l() {
+}
+function CGIURL () {}
 if ($_GET['z']) {
 	$a = explode('~~', base64_decode($_GET['z']));
 	$s = $a[0];
@@ -27,11 +27,6 @@ else { # Normal GET variables
 
 $_SESSION['cw_tone'] = $f;
 
-function cgiurl() {
-	global $servers;
-	return "http://".$servers["eu"]["1"]."/cgi-bin/";
-}
-
 include('../inc/playerfunctions.php');
 
 if (!$t) { $t = "Hallo"; }
@@ -44,7 +39,6 @@ $_SESSION['delay_start']= 0;
 player($t, 1, $s, $e, 0, 1,1,0);
 ?>
 <div id="pv1"></div>
-<a class="footer" target="_blank" href="http://lcwo.net/">Learn CW Online
-- LCWO.net</a> - <a class="footer" target="_blank"  href="http://lcwo.net/text2cw">Text to Morse Converter</a>
+<a class="footer" target="_blank" href="http://lcwo.net/">LCWO.net</a> - <a class="footer" target="_blank"  href="http://lcwo.net/text2cw">Text to Morse Converter</a>
 </body>
 </html>
