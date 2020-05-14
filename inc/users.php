@@ -1,5 +1,8 @@
 <?
 
+# users per page
+$upp = 1000;
+
 if ($_SESSION['user_order'] && $_SESSION['user_order_dir']) {
 	$order = $_SESSION['user_order'];
 	$orderdir = $_SESSION['user_order_dir'];
@@ -62,8 +65,7 @@ $count = mysqli_fetch_object($ct);
 $count = $count->c;
 
 $us = mysqli_query($db,"select `id`, `username`, `name`, `location`, `signupdate`
-				from lcwo_users $validmembers order by `$order` $orderdir limit $limit,
-				100");
+				from lcwo_users $validmembers order by `$order` $orderdir limit $limit, $upp");
 
 if (!$us) {
 	echo "Failed to get user list.".mysqli_error($db);
@@ -98,7 +100,7 @@ else {
 	/* Show Links to all pages of the list */
 	echo "<hr noshade width=75%>\n";
 	echo "<div align=\"center\">";
-	for ($i=0; $i < $count; $i+=100) {
+	for ($i=0; $i < $count; $i+=$upp) {
 		if ($i == $limit) {
 			echo "<strong><a href='/users/$i'>".($i+1)."+</a></strong> ";
 		}
