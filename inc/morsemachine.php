@@ -93,9 +93,9 @@ Character set: &nbsp;
 
 		$height2 = 101 - $height1;
 		
-		echo "<td><img src=\"/pics/mm-0.png\" id=\"$k-0\" onClick=\"changebar(this, event)\" width=\"10px\"".
-		" height=\"$height1"."px\"><br>";
-		echo "    <img src=\"/pics/mm-1.png\" id=\"$k-1\" onClick=\"changebar(this, event)\" width=\"10px\"".
+		echo "<td><img style='display:block;' src=\"/pics/mm-0.png\" id=\"$k-0\" onClick=\"changebar(this, event)\" width=\"10px\"".
+		" height=\"$height1"."px\">";
+		echo "<img style='display:block;' src=\"/pics/mm-1.png\" id=\"$k-1\" onClick=\"changebar(this, event)\" width=\"10px\"".
 		" height=\"".$height2."px\"></td>\n";
 		
 	}

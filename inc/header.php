@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
 <head>
 <title><? 
@@ -43,27 +43,18 @@ if ($forward[$_GET['p']]) {
 <link href="/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="/js/leaflet.css">
 
-<?  if ($_SESSION['player'] != 3 or $p == "cwsettings") { ?>
+<?  if ($_SESSION['player'] == PL_FLASH or $p == "cwsettings") { ?>
 <script type="text/javascript" src="/swfobject.js"></script>
 <?  }?>
 <script type="text/javascript" src="/js/jscwlib.js?cachebreak=<? echo time(); ?>"></script>
 </head>
-
-<body bgcolor="#ffffff"<?
-	if ($_GET['p'] == 'callsigns' and $_POST['sent']==1) {
-		echo " onLoad=\"document.getElementById('callentry').focus();\" ";
-	}
-	if ($_GET['p'] == 'wordtraining' and $_POST['sent']==1) {
-		echo " onLoad=\"document.getElementById('wordentry').focus();\" ";
-	}
-?>> 
+<body bgcolor="#ffffff"> 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tbody>
 		<tr>
-			<td style="background-image:url(/pics/lcwo-bg.png)" width="41%">
-				<a href="/"><img style="border-style:none" src="/pics/lcwo.png" height="75" width="214" title="LCWO - Home" alt="[LCWO LOGO]"></a> </td>
-			<td style="background-image:url(/pics/lcwo-bg.png)" 
-			width="59%"> 
+			<td style="background-image:url(/pics/lcwo-bg2.png)" width="41%">
+			<a href="/"><img style="border-style:none" src="/pics/lcwo.png" height="75" width="214" title="LCWO - Home" alt="[LCWO LOGO]"></a> </td>
+			<td style="background-image:url(/pics/lcwo-bg2.png)" width="59%"> 
 <?
 	if (DEV) {
 ?>			
@@ -93,7 +84,6 @@ limited functionality without JavaScript.</p>
 </noscript>
 <?
 }
-
 if (!$_SERVER['HTTPS']) { ?> <a rel="nofollow" href="https://lcwo.net/">Click to switch to a secure connection (https).</a> <? }
 
 if ($_SESSION['consent'] == "0") {
@@ -108,8 +98,7 @@ Please be aware of LCWO's <a href="/privacy">privacy policy</a> to comply with t
 ?>
 
 &nbsp;
-</td> </tr> </tbody> </table>
-
+</td> </tr> </tbody></table>
 <script>
 function agree_policy () {
 	var i = document.getElementById("consent");
