@@ -6,6 +6,7 @@ if (file_exists($_SERVER['DOCUMENT_ROOT']."/inc/connectdb.custom.php")) {
 else {
     # default values; this works in the docker container
     $db = mysqli_connect("localhost","lcwo","lcwo", "LCWO") or die ("<h1>Sorry: Could not connect to database.</h1>");
-    mysqli_set_charset($db, "latin1");
+    #mysqli_set_charset($db, "latin1");
+    mysqli_set_charset($db, "utf8");
 }
 ?>

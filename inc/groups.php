@@ -142,10 +142,10 @@ if (isset($_POST['text']))  {
 		$rxtext = preg_replace('/;/', '?', $rxtext);
 	}
 
-    /* sa7c: accept Å for À */
+    /* sa7c: accept Ã… for Ã€ */
 	if ($_SESSION['groups_mode'] == 'custom') {
-		$rxtext = preg_replace('/Å/', 'À', $rxtext);
-		$rxtext = preg_replace('/å/', 'À', $rxtext);
+		$rxtext = preg_replace('/Ã…/', 'Ã€', $rxtext);
+		$rxtext = preg_replace('/Ã¥/', 'Ã€', $rxtext);
 	}
 
 	$rcvd = preg_split('/[\s\n]+/', $rxtext);
@@ -175,9 +175,9 @@ if (isset($_POST['text']))  {
         $text = stripcommands($_POST['text']);
         $text = preg_replace("/\s/", "", $text);
         $sec = $_POST['length']+0;
-        $realspeed_cpm = strlen($text) / ($sec/60);
+        $realspeed_cpm = mb_strlen($text) / ($sec/60);
         $realspeed_wpm = $realspeed_cpm / 5;
-        $characters = strlen($text);
+        $characters = mb_strlen($text);
         $real = array(round($realspeed_cpm,1), round($realspeed_wpm,1), round($sec,1), $characters);
         $paris = round($_POST['paris']+0,1);
     }
@@ -197,10 +197,9 @@ if (isset($_POST['text']))  {
 
     echo "<p>PARIS: ".$paris." ".l('wpm')."</p>";
 
-	if (strlen($_POST['text']) < 255) { 
-
+	if (strlen($_POST['text']) < 255) {     # must be strlen, not mb_strlen because levenshtein doesn't care about multibyte encodings
         $lserrors =
-	levenshtein(my_strtoupper(substr($_POST['text'],0,255)), my_strtoupper(substr($rxtext,0,255)));
+	levenshtein(my_strtoupper(mb_substr($_POST['text'],0,255)), my_strtoupper(mb_substr($rxtext,0,255)));
 	$lserrpct = (intval(1000*$lserrors/($real[3]))/10);
 
 	if ($lserrpct > 100) {
@@ -350,8 +349,8 @@ if ($_SESSION['player'] != PL_JSCWLIB) {
 	<?
 		$text2 = $text;
             if ($_SESSION['vvv'] == 1 && $_SESSION['player'] != PL_JSCWLIB) { 
-                $text2 = substr($text2, 6);
-				$text2 = substr($text2, 0, -5);
+                $text2 = mb_substr($text2, 6);
+				$text2 = mb_substr($text2, 0, -5);
             }
 		$text2 = stripcommands($text2);
 	?>

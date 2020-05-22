@@ -1,5 +1,5 @@
 <?
-header("Content-Type: text/html; charset=iso-8859-1");
+header("Content-Type: text/html; charset=utf-8");
 session_start();
 
 if (!$_SESSION['uid']) {
@@ -119,7 +119,7 @@ function babelfishnormal () {
 <html>
 <head>
 <title>babelfish</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>

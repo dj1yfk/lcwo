@@ -29,6 +29,7 @@ else {							/* normal babelfish, format NAME-LANG */
 }
 
 
+/* utf8 - not needed anymore
 for (i=0;i<v.length;i++) {
 	c = v.charCodeAt(i);
 	if (!c) continue;
@@ -39,6 +40,8 @@ for (i=0;i<v.length;i++) {
 		encodedv += v.charAt(i);
 	}
 }
+*/
+encodedv = v;
 
 if( typeof XMLHttpRequest == "undefined" ) XMLHttpRequest = function() {
   try { return new ActiveXObject("Msxml2.XMLHTTP.6.0") } catch(e) {}

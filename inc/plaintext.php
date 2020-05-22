@@ -106,21 +106,21 @@ function checktext () {
 	echo "<table><tr><th>".l('sent')."</th><td>".$txtext."</td></tr>";
 	echo "<tr><th>".l('received')."</th><td>".$input."</td></tr></table>";
 
-	$txtext = simplify($slang, strtolower($txtext));
-	$input = simplify($slang, strtolower($input));
+	$txtext = simplify($slang, mb_strtlower($txtext));
+	$input = simplify($slang, mb_strtlower($input));
 
 	$input = preg_replace("/[ ]+/", ' ', $input); 
 	$input = preg_replace("/^ /", '', $input); 
 	$input = preg_replace("/ $/", '', $input); 
 	
-    $lserrors = levenshtein(substr($txtext,0,255), substr($input,0,255));
-    $accuracy = (intval(1000-1000*$lserrors/strlen($txtext))/10);
+    $lserrors = levenshtein(mb_substr($txtext,0,255), mb_substr($input,0,255));
+    $accuracy = (intval(1000-1000*$lserrors/mb_strlen($txtext))/10);
 
 	if ($accuracy < 0) {
 		$accuracy= 0;
 	}
 
-	echo "<p>".l('accuracy').": $lserrors ".l('errors')." / ".strlen($_POST['input'])." ".l('characters')." = ".$accuracy."%</p>";
+	echo "<p>".l('accuracy').": $lserrors ".l('errors')." / ".mb_strlen($_POST['input'])." ".l('characters')." = ".$accuracy."%</p>";
 
 	$i = mysqli_query($db,"insert into lcwo_plaintextresults set
 			`uid`='".$_SESSION['uid']."', `speed`='".$_SESSION['plain']['cw_speed']."',
@@ -221,12 +221,12 @@ type="text" value="<? echo $_SESSION['plain']['cw_eff']; ?>" size=3></td>
 		$coll = getavailableplaintextcollections();
 	
 		foreach ($coll as $w) {
-			$collid = intval(substr($w, -2));
-			$w = substr($w,0,strlen($w)-3);
+			$collid = intval(mb_substr($w, -2));
+			$w = mb_substr($w,0,mb_strlen($w)-3);
 			
 			// No preferred collection set yet? Use first with home lang
 			if (!isset($_SESSION['plain']['collid'])) {
-				if (substr($w,0,2) == $preflang) {
+				if (mb_substr($w,0,2) == $preflang) {
 					echo "<option value=\"$collid\" selected>$w</option>";
 					$preflang ="void";
 				}

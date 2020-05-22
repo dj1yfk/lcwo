@@ -272,8 +272,8 @@ function wordtraining () {
 	# XX duplicate code - put into function
 	foreach ($_POST['lang'] as $ltmp) {
 		# Language must be formed   LLx   e.g. de0  de1 ... it2	
-		if ((!in_array(substr($ltmp, 0, 2), $langs))
-				or  !isint(substr($ltmp,2,1))) {
+		if ((!in_array(mb_substr($ltmp, 0, 2), $langs))
+				or  !isint(mb_substr($ltmp,2,1))) {
 				echo "Error. Invalid language!";
 				return;
 		}
@@ -365,11 +365,7 @@ var score = 0;
 var tone  = <? echo $tone; ?>;
 var thistone = tone;
 
-var h5c = "cw.ogg";     /* CGI for HTMl5. Ogg for Firefox and all others */
-if (true || navigator.userAgent.indexOf("Safari") > -1) {   /* except Safari */
-	h5c = "cw2.mp3";
-}
-
+var h5c = "cw-u.mp3";   // cw-unicode
 
 var nr = -1;		/* 0..24 */
 
@@ -429,8 +425,6 @@ function check (word) {
 			score += (cwspeed * words[nr].length);
 	
 	}
-
-	var cwtest2 = '40 99 41 32 70 97 98 105 97 110 32 75 117 114 122 32 68 74 49 89 70 75';
 
 	t[0].innerHTML = words[nr];
 	t[1].innerHTML = word;

@@ -2,6 +2,7 @@
 
 session_start();
 header("Cache-Control: no-cache, must-revalidate");
+header("Content-Type: text/html; charset=utf-8");
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 header("Pragma: no-cache");
 
@@ -287,7 +288,7 @@ function get_wordtraining_collection() {
     $q = mysqli_query($db, $query);
     $out = array();
     while ($d = mysqli_fetch_array($q, MYSQLI_ASSOC)) {
-        $d['word'] = iconv("ISO-8859-1", "UTF-8//IGNORE", $d['word']);
+        #$d['word'] = iconv("ISO-8859-1", "UTF-8//IGNORE", $d['word']);
         array_push($out, $d);
     }
     error_log(count($out));
@@ -304,8 +305,8 @@ function get_usergroups () {
     $q = mysqli_query($db, "select gid, groupname, groupdescription, lat, lon from lcwo_usergroups");
     $out = array();
     while ($d = mysqli_fetch_array($q, MYSQLI_ASSOC)) {
-        $d['groupname'] = iconv("ISO-8859-1", "UTF-8//IGNORE", $d['groupname']);
-        $d['groupdescription'] = iconv("ISO-8859-1", "UTF-8//IGNORE", $d['groupdescription']);
+        #$d['groupname'] = iconv("ISO-8859-1", "UTF-8//IGNORE", $d['groupname']);
+        #$d['groupdescription'] = iconv("ISO-8859-1", "UTF-8//IGNORE", $d['groupdescription']);
         array_push($out, $d);
     }
     echo json_encode($out);

@@ -134,17 +134,17 @@ array(9,19), $lesson, "koch", array('Accuracy', 'Lesson', '%',
 
 
 function days ($from, $to) {	# from - to
-	$f['year'] = substr($from, 0, 4);
-	$f['month'] = substr($from, 5, 2);
-	$f['day'] = substr($from, 8, 2);
-	$f['hr'] = substr($from, 11, 2);
-	$f['min'] = substr($from, 14, 2);
+	$f['year'] = mb_substr($from, 0, 4);
+	$f['month'] = mb_substr($from, 5, 2);
+	$f['day'] = mb_substr($from, 8, 2);
+	$f['hr'] = mb_substr($from, 11, 2);
+	$f['min'] = mb_substr($from, 14, 2);
 
-	$t['year'] = substr($to, 0, 4);
-	$t['month'] = substr($to, 5, 2);
-	$t['day'] = substr($to, 8, 2);
-	$t['hr'] = substr($to, 11, 2);
-	$t['min'] = substr($to, 14, 2);
+	$t['year'] = mb_substr($to, 0, 4);
+	$t['month'] = mb_substr($to, 5, 2);
+	$t['day'] = mb_substr($to, 8, 2);
+	$t['hr'] = mb_substr($to, 11, 2);
+	$t['min'] = mb_substr($to, 14, 2);
 
 	$from = mktime(0,$f['min'],$f['hour'], $f['month'], $f['day'], $f['year']);
 	$to = mktime(0,$t['min'],$t['hour'], $t['month'], $t['day'], $t['year']);
@@ -164,5 +164,3 @@ function days ($from, $to) {	# from - to
 
 ?>
 <p><a href="/main"><? echo l('home') ?></a></p>
-<div class="vcsid">$Id: kochstat.php 143 2012-01-10 21:34:26Z dj1yfk $</div>
-

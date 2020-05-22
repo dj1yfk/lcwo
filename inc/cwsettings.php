@@ -93,8 +93,8 @@ return 0;
 
 			$customchars = "";
 			foreach ($_POST as $p => $x){
-				if (substr($p, 0, 4) == "char") {
-					$char = substr($p, 4, 1);
+				if (mb_substr($p, 0, 4) == "char") {
+					$char = mb_substr($p, 4, 1);
 					if ($char == "q") {			# exception for "
 						$customchars .= '"';
 					}
@@ -345,7 +345,7 @@ foreach ($kochchar as $k) {
 	if (!(strpos($_SESSION['customcharacters'], $k) === FALSE)) {
 		echo " checked ";
 	}
-	echo '>'.strtoupper($k)."</td>\n";
+	echo '>'.mb_strtoupper($k)."</td>\n";
 	if ($nr == 8) {
 		echo "</tr>\n";
 		$nr=-1;

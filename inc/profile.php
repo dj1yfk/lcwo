@@ -70,7 +70,7 @@ while ($g = mysqli_fetch_object($getgroups)) {
 		$groups .= '<a href="/usergroups/'.$g->gid.'">'.$g->groupname."</a>, ";
 }
 
-$groups = substr($groups, 0, strlen($groups)-2);
+$groups = mb_substr($groups, 0, mb_strlen($groups)-2);
 
 
 ?>
@@ -396,8 +396,8 @@ function newaboutmetext () {
 
 	$text = esc($_POST['text']);
 	$text = strip_tags($text);
-	if (strlen($text) > 62000) {
-		$text = substr($text, 0, 62000);
+	if (mb_strlen($text) > 62000) {
+		$text = mb_substr($text, 0, 62000);
 	}
 	
 	// Possible Spam 

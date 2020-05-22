@@ -5,34 +5,34 @@ von <a href="http://fkurz.net/">Fabian Kurz, DJ1YFK</a>
 <a href="http://lcwo.net/profile/dj1yfk">Profil</a>) und ging im Mai 2008
 ans Netz. </p>
 
-<p>LCWO wird ständig weiterentwickelt und jegliche Hinweise und
-Vorschläge sind willkommen. Zur Kontaktaufnahme kann das <a
+<p>LCWO wird stÃ¤ndig weiterentwickelt und jegliche Hinweise und
+VorschlÃ¤ge sind willkommen. Zur Kontaktaufnahme kann das <a
 href="/impressum#form">Kontaktformular</a> verwendet werden, oder Sie schicken
 eine E-Mail an <a href="mailto:help&#64;lcwo.net">help&#64;lcwo.net</a>. 
-Für allgemeine Fragen und Diskussionen rund im LCWO und CW gibt es ein <a
-href="/forum">Forum</a>.  An dieser Stelle ein herzliches Dankeschön an die zahlreichen Benutzer, die sich durch konstruktive Kritik und gute Vorschläge an diesem Projekt beteiligt haben!</p> 
+FÃ¼r allgemeine Fragen und Diskussionen rund im LCWO und CW gibt es ein <a
+href="/forum">Forum</a>.  An dieser Stelle ein herzliches DankeschÃ¶n an die zahlreichen Benutzer, die sich durch konstruktive Kritik und gute VorschlÃ¤ge an diesem Projekt beteiligt haben!</p> 
 
 <p><strong>Diese Seite ist nichtkommerziell und die Benutzung ist kostenlos.</strong> Es besteht kein Interesse an Geldspenden.</p>
 
-<h2>Übersetzer</h2>
-<p><em>Vielen herzlichen Dank</em> an die folgenden Personen für die Übersetzung dieser Seite in eine der <?=count($langs);?> Sprachen, die LCWO anbietet:
+<h2>Ãœbersetzer</h2>
+<p><em>Vielen herzlichen Dank</em> an die folgenden Personen fÃ¼r die Ãœbersetzung dieser Seite in eine der <?=count($langs);?> Sprachen, die LCWO anbietet:
 </p>
 
 <? include("inc/about-translators.php"); ?>
 
 
-<p>Falls Sie LCWO in eine neue Sprache übersetzen möchten, wenden Sie sich
+<p>Falls Sie LCWO in eine neue Sprache Ã¼bersetzen mÃ¶chten, wenden Sie sich
 bitte per <a href="mailto:help&#64;lcwo.net">E-Mail</a> an uns. Vielen Dank!</p>
 
 <h2>Weitersagen!</h2>
 <p>Um von Ihrer Webseite oder Ihrem Blog auf LCWO zu verweisen, 
-können Sie einen der folgenden Banner oder Buttons verwenden. Ebenso sind hochaufgelöste Grafiken für Druckmedien oder QSL-Karten in verschiedenen Formaten verfügbar.</p>
+kÃ¶nnen Sie einen der folgenden Banner oder Buttons verwenden. Ebenso sind hochaufgelÃ¶ste Grafiken fÃ¼r Druckmedien oder QSL-Karten in verschiedenen Formaten verfÃ¼gbar.</p>
 <div>
 Banner, 468x60px: <br><img src="/pics/lcwo-banner.png" alt="[LCWO Banner]"><br><br>
 Buttons, 80x15px: <br>
 <img src="/pics/lcwo-button1.png" alt="[LCWO Button 1]">&nbsp; <img
 src="/pics/lcwo-button2.png" alt="[LCWO Button 2]"><br><br>
-Logos für QSO-Karten (ZIP-Archiv mit PDF-, EPS- und PNG-Dateien):<br>
+Logos fÃ¼r QSO-Karten (ZIP-Archiv mit PDF-, EPS- und PNG-Dateien):<br>
 <a href="/pics/qsl-logos.zip"><img
 src="/pics/qsl-logo-small.png" alt="[LCWO print logo]"></a><br><br>
 </div>
@@ -44,10 +44,10 @@ src="/pics/qsl-logo-small.png" alt="[LCWO print logo]"></a><br><br>
 <td valign="top" width="45%">
 <a href="http://www.eham.net"><img style="border:none;" src="/pics/ehamlogo.gif" alt="[eham.net logo]"></a><br>
 <p>Diese Seite wurde auf eHam.net bewertet (<?=$eham1?> bei <?=$eham2?> Bewertungen). <br><a
-href="http://www.eham.net/reviews/detail/8401">Vielen Dank! Hier können
+href="http://www.eham.net/reviews/detail/8401">Vielen Dank! Hier kÃ¶nnen
 auch Sie eine Bewertung abgeben!</a></p>
 <p>LCWO wird auch in der <a
-href="http://www.eham.net/links/rating/10889">Link-Liste</a> von eHam geführt.</p>
+href="http://www.eham.net/links/rating/10889">Link-Liste</a> von eHam gefÃ¼hrt.</p>
 </td>
 <td width="10%">
 &nbsp;
@@ -60,7 +60,7 @@ href="http://www.eham.net/links/rating/10889">Link-Liste</a> von eHam geführt.</
 
 <h2>Pressemitteilung</h2>
 <p>Der folgende Text kann gerne in beliebigen Medien (Blogs, Foren, Newsletter)
-übernommen werden:
+Ã¼bernommen werden:
 </p>
 
 <pre style="border:1px solid #aaaaaa; margin:3px">
@@ -68,16 +68,16 @@ href="http://www.eham.net/links/rating/10889">Link-Liste</a> von eHam geführt.</
 </pre>
 
 
-<h2>Technisches, Kompatibilität</h2>
+<h2>Technisches, KompatibilitÃ¤t</h2>
 
 <p>Alle modernen Browser, insbesondere die letzten beiden Generationen von
 of <a href="http://www.firefox.com/">Mozilla Firefox</a> und des Microsoft
-Internet Explorer werden unterstützt. Ebenso funktioniert LCWO mit <a
+Internet Explorer werden unterstÃ¼tzt. Ebenso funktioniert LCWO mit <a
 href="http://www.opera.com/">Opera</a> and Apple <a
 href="http://www.apple.com/safari/">Safari</a> in aktuellen Versionen (auch auf iPhone/iPad).</p>
 
-<p>Um alle Funktionen voll nutzen zu können, muss JavaScript aktiviert sein
-und entweder ein Browser mit <a href="http://en.wikipedia.org/wiki/HTML5">HTML5</a>-Unterstützung verwendet werden, oder der 
+<p>Um alle Funktionen voll nutzen zu kÃ¶nnen, muss JavaScript aktiviert sein
+und entweder ein Browser mit <a href="http://en.wikipedia.org/wiki/HTML5">HTML5</a>-UnterstÃ¼tzung verwendet werden, oder der 
 <a href="http://www.adobe.com/de/products/flashplayer/">Flash
 Player</a> muss installiert sein.</p>
 
@@ -85,7 +85,7 @@ Player</a> muss installiert sein.</p>
 href="http://www.debian.org/">Debian GNU/Linux</a> und <a
 href="http://www.ubuntu.com">Ubuntu</a>, mit dem
 genialen Editor <a href="http://www.vim.org/">vim</a>. Die Seite
-läuft auf einem <a href="http://www.apache.org/">Apache</a>
+lÃ¤uft auf einem <a href="http://www.apache.org/">Apache</a>
 Webserver und ist weitestgehend in <a href="http://www.php.net/">PHP</a> 
 programmiert (ohne Frameworks, alles selbstgebaut); im Hintergrund
 arbeitet eine <a href="http://www.mysql.com/">MySQL</a>-Datenbank. Die Morse

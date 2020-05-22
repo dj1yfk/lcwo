@@ -160,7 +160,8 @@ function save (id) {
     var text = document.getElementById('w' + id).value;
     var lesson = document.getElementById('l' + id).innerHTML;
     // https://stackoverflow.com/questions/18749591/encode-html-entities-in-javascript#18750001
-    var enc = text.replace(/[\u00A0-\u9999<>\&]/gim, function(i) { return '&#'+i.charCodeAt(0)+';'; });
+    //var enc = text.replace(/[\u00A0-\u9999<>\&]/gim, function(i) { return '&#'+i.charCodeAt(0)+';'; });
+    enc = text;
     
     document.getElementById('r' + id).innerHTML = "";
 
@@ -182,7 +183,7 @@ function save (id) {
     if (id == 0) {  // new word
         var lang   = document.getElementById('lang0').value;
         var collection = document.getElementById('c0').value;
-        collection = collection.replace(/[\u00A0-\u9999<>\&]/gim, function(i) { return '&#'+i.charCodeAt(0)+';'; });
+       // collection = collection.replace(/[\u00A0-\u9999<>\&]/gim, function(i) { return '&#'+i.charCodeAt(0)+';'; });
     }
     else {
         var lang = "";
@@ -207,7 +208,7 @@ function load_file(f) {
             var dupes = {};
 
             for (var i = 0; i < words.length; i++) {
-                words[i] = words[i].replace(/[\u00A0-\u9999<>\&]/gim, function(i) { return '&#'+i.charCodeAt(0)+';'; });
+                //words[i] = words[i].replace(/[\u00A0-\u9999<>\&]/gim, function(i) { return '&#'+i.charCodeAt(0)+';'; });
                 if (words[i].includes(" ") || words[i].length == 0) {
                     t += "Error: Spaces or empty lines not allowed (line " + i + ": '" + words[i] + "')<br>";
                 }

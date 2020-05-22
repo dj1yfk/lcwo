@@ -1,26 +1,26 @@
 <h1>Informationen zum Datenschutz</h1>
 <p>(English version below)</p>
 <p>Lieber Besucher! Auf dieser Seite wird das Datenschutzkonzept dieses
-Internetauftritts erläutert. Alle Daten werden nach geltendem deutschen
+Internetauftritts erlÃ¤utert. Alle Daten werden nach geltendem deutschen
 Datenschutzrecht behandelt.</p>
 
-<p>Zweck dieser Seite ist die Förderung des Amateurfunks. Diese Seite stellt
-ein komplettes Morselern- und Übungsprogramm im Browser bereit.</p>
+<p>Zweck dieser Seite ist die FÃ¶rderung des Amateurfunks. Diese Seite stellt
+ein komplettes Morselern- und Ãœbungsprogramm im Browser bereit.</p>
 
 <h2>Verarbeitung personenbezogener Daten</h2>
 <ul>
     <li>Es gibt auf dieser Seite Benutzeraccounts. Die Erstellung eines
-        Accounts ist nur nach Einwilligung in diese Bedingungen möglich.</li>
+        Accounts ist nur nach Einwilligung in diese Bedingungen mÃ¶glich.</li>
     <li>Es werden <strong>keine Daten an Dritte</strong> weitergegeben, weder durch Einbettung
         externer Inhalte, noch durch Weitergabe der Daten, die durch den Besuch
         dieser Seite entstanden sind.</li>
     <li>Diese Webseite verwendet <strong>nur Session-Cookies</strong>, die dazu
-    dienen, einen Benutzer während seines Besuchs auf dieser Webseite
-    identifizieren zu können. Davon wird nur gebrauch gemacht, wenn sich
+    dienen, einen Benutzer wÃ¤hrend seines Besuchs auf dieser Webseite
+    identifizieren zu kÃ¶nnen. Davon wird nur gebrauch gemacht, wenn sich
     der Nutzer erfolgreich eingeloggt hat, und nur zu dem Zwecke, dass
     die Benutzereinstellungen, die Ergebnishistorie, usw. dem Benutzer zur
-    Verfügung steht. <strong>Das Cookie wird beim Logout unwiderruflich
-        gelöscht.</strong></li>
+    VerfÃ¼gung steht. <strong>Das Cookie wird beim Logout unwiderruflich
+        gelÃ¶scht.</strong></li>
     <li>Die folgenden Daten werden im Log des Servers gespeichert:
         <ul>
             <li>Datum und Zeitpunkt der Anfrage</li>
@@ -31,117 +31,117 @@ ein komplettes Morselern- und Übungsprogramm im Browser bereit.</p>
                 mitgesendet wird.</li>
         </ul>
     <li>Die oben genannten Daten werden gespeichert um einen sicheren Betrieb
-        der Webseite zu ermöglichen (Detektion von Einbruchsversuchen,
-        Bekämpfung von Spam, usw.), sowie um <strong>anonymisierte</strong>
+        der Webseite zu ermÃ¶glichen (Detektion von Einbruchsversuchen,
+        BekÃ¤mpfung von Spam, usw.), sowie um <strong>anonymisierte</strong>
         Statistiken zu erzeugen. Logs werden maximal 30 Tage gespeichert
          und 
-        sind in dieser Zeit nur dem Betreiber der Seite zugänglich. Danach
-        werden die Logs unwiderruflich gelöscht. Zu keiner Zeit werden diese
-        Daten Dritten zugänglich gemacht.</li>
-    <li><strong>Zusätzlich werden bei der Benutzung Daten gespeichert, die im nächsten
+        sind in dieser Zeit nur dem Betreiber der Seite zugÃ¤nglich. Danach
+        werden die Logs unwiderruflich gelÃ¶scht. Zu keiner Zeit werden diese
+        Daten Dritten zugÃ¤nglich gemacht.</li>
+    <li><strong>ZusÃ¤tzlich werden bei der Benutzung Daten gespeichert, die im nÃ¤chsten
             Abschnitt genauer beschrieben werden.</strong></li>
     <li>Der Standort des Servers ist Deutschland. <strong>Ausnahme:</strong>
         Ein Nutzer kann in den Benutzeroptionen einstellen, dass Teile der
         Seite auf einem Server in <strong>Kanada</strong> verarbeitet werden.</li>
-    <li>Diese Webseite kann nur über einen gesicherten Kanal (https) abgerufen
+    <li>Diese Webseite kann nur Ã¼ber einen gesicherten Kanal (https) abgerufen
         werden.</li>
     <li>Falls Sie eine Mail an den Betreiber der Seite schicken, wird diese,
         inklusive der Metadaten,  permanent archiviert. Falls Sie dies nicht
-        wünschen, weisen Sie bitte in der Mail kurz darauf hin.</li>
+        wÃ¼nschen, weisen Sie bitte in der Mail kurz darauf hin.</li>
 </ul>
 
 <h2>Nutzergenerierte Daten</h2>
 <p>Nutzer der Seite generieren durch die Verwendung des Morsetrainers und der weiteren Funktionen
 Daten, die in einer Datenbank gespeichert werden. Konkret werden die folgenden
 Daten gespeichert (mit Angabe der Speicherdauer und Sichtbarkeit) und mit dem
-Benutzeraccount assoziiert. <strong>Sämtliche Daten werden in dieser Form nur zur
+Benutzeraccount assoziiert. <strong>SÃ¤mtliche Daten werden in dieser Form nur zur
 Bereitstellung eines komfortabel benutzbaren Morsetrainers mit der
-dazugehörigen Benutzercommunity verwendet.</strong></p>
+dazugehÃ¶rigen Benutzercommunity verwendet.</strong></p>
 <ol>
     <li><strong>Bei Erstellung eines Accounts:</strong> Der Benutzername (kann
         anonymes Pseudonym sein), der Name (freiwillig), das Passwort in
-        verschlüsselter Form, der Ort (freiwillig), E-Mail-Adresse (freiwillig) die Sprache, der nächste Server (Europa oder Nordamerika), Datum. <br>
-        <strong>Dauer der Speicherung:</strong> Bis zur Änderung durch den Nutzer bzw.
-        Löschung des Accounts. <br>
+        verschlÃ¼sselter Form, der Ort (freiwillig), E-Mail-Adresse (freiwillig) die Sprache, der nÃ¤chste Server (Europa oder Nordamerika), Datum. <br>
+        <strong>Dauer der Speicherung:</strong> Bis zur Ã„nderung durch den Nutzer bzw.
+        LÃ¶schung des Accounts. <br>
         <strong>Sichtbarkeit:</strong> Mitgliederliste / Benutzerprofil (ohne
         E-Mail und Passwort).</li>
     <li><strong>Beim jedem Login:</strong> Benutzer und Zeitpunkt des Logins.<br>
         <strong>Dauer der Speicherung:</strong> Max. 10 Minuten nach der
-        letzten Aktivität auf der Seite.<br>
+        letzten AktivitÃ¤t auf der Seite.<br>
         <strong>Sichtbarkeit:</strong> Diese Information wird verwendet um auf der Seite anzuzeigen, welche Benutzer online sind.</li>
-    <li><strong>Bei Absolvierung einer Morseübung:</strong> Typ der Übung, 
+    <li><strong>Bei Absolvierung einer MorseÃ¼bung:</strong> Typ der Ãœbung, 
         Geschwindigkeit, Anzahl Punkte bzw. Fehler, Datum.<br>
-        <strong>Dauer der Speicherung:</strong> Bis zur Löschung durch den
-        Nutzer bzw. Löschung des Accounts.<br>
-        <strong>Sichtbarkeit:</strong> Im Detail nur für den Nutzer. Auf Nutzerwunsch
-        auch in seinem öffentlichen Profil. Höchstleistungen in der
-        öffentlichen Liste der Bestleistungen.</li>
-    <li><strong>Forumseinträge:</strong> Einträge im Forum werden nach
-        Überprüfung durch die Moderation veröffentlicht.<br>
-        <strong>Dauer der Speicherung:</strong> Bis zur Löschung durch den
-        Benutzer oder Löschung des Benutzerkontos.<br>
-        <strong>Sichtbarkeit:</strong> Öffentlich (im Hauptforum und
-        öffentlichen Benutzergruppen; ansonsten nur im Kreis der
+        <strong>Dauer der Speicherung:</strong> Bis zur LÃ¶schung durch den
+        Nutzer bzw. LÃ¶schung des Accounts.<br>
+        <strong>Sichtbarkeit:</strong> Im Detail nur fÃ¼r den Nutzer. Auf Nutzerwunsch
+        auch in seinem Ã¶ffentlichen Profil. HÃ¶chstleistungen in der
+        Ã¶ffentlichen Liste der Bestleistungen.</li>
+    <li><strong>ForumseintrÃ¤ge:</strong> EintrÃ¤ge im Forum werden nach
+        ÃœberprÃ¼fung durch die Moderation verÃ¶ffentlicht.<br>
+        <strong>Dauer der Speicherung:</strong> Bis zur LÃ¶schung durch den
+        Benutzer oder LÃ¶schung des Benutzerkontos.<br>
+        <strong>Sichtbarkeit:</strong> Ã–ffentlich (im Hauptforum und
+        Ã¶ffentlichen Benutzergruppen; ansonsten nur im Kreis der
         Benutzergruppe).</li>
     <li><strong>Privatnachtichten:</strong> Diese Textnachrichten werden direkt an den
         Adressaten (Nutzer der Seite) geschickt.<br>
-        <strong>Dauer der Speicherung:</strong> Bis zur Löschung durch den
-        Empfänger oder Löschung des Nutzeraccounts des Absenders.<br>
-        <strong>Sichtbarkeit:</strong> Nur für den Empfänger sichtbar.</li>
+        <strong>Dauer der Speicherung:</strong> Bis zur LÃ¶schung durch den
+        EmpfÃ¤nger oder LÃ¶schung des Nutzeraccounts des Absenders.<br>
+        <strong>Sichtbarkeit:</strong> Nur fÃ¼r den EmpfÃ¤nger sichtbar.</li>
     <li><strong>Benutzerprofil:</strong> Selbst verfasster Profiltext und ggf.
         Bild.<br>
-        <strong>Dauer der Speicherung:</strong> Bis zur Löschung durch den
-        Nutzer bzw. Löschung des Accounts.<br>
-        <strong>Sichtbarkeit:</strong> Öffentlich für alle Benutzer (auch ohne
+        <strong>Dauer der Speicherung:</strong> Bis zur LÃ¶schung durch den
+        Nutzer bzw. LÃ¶schung des Accounts.<br>
+        <strong>Sichtbarkeit:</strong> Ã–ffentlich fÃ¼r alle Benutzer (auch ohne
         Login).</li>
     <li><strong>Sonstiges:</strong> Sollten weitere Daten anfallen, werden
         diese nach den Prinzipien der Datensparsamkeit behandelt.</li>
 </ol>
 
-<p>Der Benutzer erhält nur unter folgenden Umständen E-Mails von LCWO:</p>
+<p>Der Benutzer erhÃ¤lt nur unter folgenden UmstÃ¤nden E-Mails von LCWO:</p>
 <ul>
     <li>Mails zur Account-Wiederherstellung bei Passwortverlust.</li>
-    <li>Benachrichtigungen über neue Nachrichten in Benutzergruppen, sofern
+    <li>Benachrichtigungen Ã¼ber neue Nachrichten in Benutzergruppen, sofern
         explizit aktiviert.</li>
     <li>Wichtige administrative Nachrichten.</li>
 </ul>
 
-<p>Der Betreiber der Seite hat technisch gesehen vollen Zugriff auf sämtliche
-Daten, macht von diesem Privileg aber nur in Notfällen Gebrauch, z.B. zur
-Abwehrung von Cyberangriffen, zur Vermeidung von missbräuchlichem Verhalten
-oder um berechtigte behördliche Anfragen zu beantworten.</p>
+<p>Der Betreiber der Seite hat technisch gesehen vollen Zugriff auf sÃ¤mtliche
+Daten, macht von diesem Privileg aber nur in NotfÃ¤llen Gebrauch, z.B. zur
+Abwehrung von Cyberangriffen, zur Vermeidung von missbrÃ¤uchlichem Verhalten
+oder um berechtigte behÃ¶rdliche Anfragen zu beantworten.</p>
 
-<p>Der Betreiber der Seite behält es sich vor, die Daten, die den
+<p>Der Betreiber der Seite behÃ¤lt es sich vor, die Daten, die den
 Morse-Lernfortschritt aller Benutzer betreffen in <strong>komplett anonymisierter
 und normalisierter Form</strong> (keine absoluten Datumsangaben, keine
 Zuordnung zu Nutzern) zu wissenschaftlichen Zwecken auszuwerten und die
-Ergebnisse dieser Auswertung zu veröffentlichen.</p>
+Ergebnisse dieser Auswertung zu verÃ¶ffentlichen.</p>
 
-<h2>Auskunft über gespeicherte Daten</h2>
-<p>Jedem Nutzer der Seite steht ein uneingeschränktes Recht auf Auskunft über
-die Daten zu, die über ihn oder sie gespeichert sind. Diese können jederzeit
-über die im Impressum angegebene Adresse (E-Mail oder Post) abgefragt
+<h2>Auskunft Ã¼ber gespeicherte Daten</h2>
+<p>Jedem Nutzer der Seite steht ein uneingeschrÃ¤nktes Recht auf Auskunft Ã¼ber
+die Daten zu, die Ã¼ber ihn oder sie gespeichert sind. Diese kÃ¶nnen jederzeit
+Ã¼ber die im Impressum angegebene Adresse (E-Mail oder Post) abgefragt
 werden.</p>
 
-<h2>Löschung von Daten</h2>
-<p>Jeder Nutzer kann jederzeit seinen Benutzeraccount selbst löschen, oder die
-Löschung beim Seitenbetreiber anfordern. Daraufhin werden sämtliche
-Benutzerdaten aus der Datenbank unwiderruflich gelöscht. Die Löschung
-sämtlicher Daten (inklusive Sicherheitskopien) erfolgt spätestens
+<h2>LÃ¶schung von Daten</h2>
+<p>Jeder Nutzer kann jederzeit seinen Benutzeraccount selbst lÃ¶schen, oder die
+LÃ¶schung beim Seitenbetreiber anfordern. Daraufhin werden sÃ¤mtliche
+Benutzerdaten aus der Datenbank unwiderruflich gelÃ¶scht. Die LÃ¶schung
+sÃ¤mtlicher Daten (inklusive Sicherheitskopien) erfolgt spÃ¤testens
 nach einem Monat.</p>
 
 <h2>Sicherungskopien</h2>
-<p>Der Betreiber dieser Seite fertigt wöchentlich Sicherheitskopien an, um im
-Falle eines Datenverlusts die Seite wiederherstellen zu können. Dazu wird die
-gesamte Seite und Datenbank abgespeichert und an einem sicheren Ort für Dritte
-unzugänglich verwahrt. Diese Sicherungskopien werden maximal einen Monat lang
-aufbewahrt und danach unwiderruflich gelöscht.</p>
-<p>Sollte ein Nutzer seine Daten löschen lassen, muss dieser hinnehmen, dass diese
+<p>Der Betreiber dieser Seite fertigt wÃ¶chentlich Sicherheitskopien an, um im
+Falle eines Datenverlusts die Seite wiederherstellen zu kÃ¶nnen. Dazu wird die
+gesamte Seite und Datenbank abgespeichert und an einem sicheren Ort fÃ¼r Dritte
+unzugÃ¤nglich verwahrt. Diese Sicherungskopien werden maximal einen Monat lang
+aufbewahrt und danach unwiderruflich gelÃ¶scht.</p>
+<p>Sollte ein Nutzer seine Daten lÃ¶schen lassen, muss dieser hinnehmen, dass diese
 noch bis zu 4 Wochen lang in Form einer Sicherungskopie existieren.</p>
 
 <h2>Beschwerden</h2>
 <p>Bei Beschwerden wenden Sie sich bitte an den <a href="https://www.datenschutz-bayern.de/">Bayerische Landesbeauftragten
-für den Datenschutz</a>.</p>
+fÃ¼r den Datenschutz</a>.</p>
 
 <h2>Sonstiges</h2>
 <p>Diese Seite ist ein rein privates Projekt. Es
@@ -276,7 +276,7 @@ in the backups for up to four weeks.</p>
 
 <h2>Complaints</h2>
 <p>Complaints can be filed with the <a href="https://www.datenschutz-bayern.de/">Bayerische Landesbeauftragte
-für den Datenschutz</a>.</p>
+fÃ¼r den Datenschutz</a>.</p>
 
 <h2>Miscellaneous</h2>
 <p>This website is a strictly private project. There are no commercial interests of any kind.</p>

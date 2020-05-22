@@ -169,7 +169,7 @@ $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'], 0, 1, 1,0);
 if (isset($_POST['text']))  {
 	$sent = explode(' ', $_POST['text']);	
 
-	$rxtext = strtoupper($_POST['input']);
+	$rxtext = mb_strtoupper($_POST['input']);
 	/* remove superfluous \n and \s and accept ; for ?, etc. */
 	$rxtext = preg_replace('/[\s]+/', ' ', $rxtext);
 	$rxtext = preg_replace('/[\n]+/', ' ', $rxtext);
@@ -218,7 +218,7 @@ if (isset($_POST['text']))  {
     ' '.l('seconds').' = '.$real[1].' '.l('wpm').' / '.$real[0].' '.l('cpm').'</p>';
 
 	
-	$lserrors = levenshtein(strtoupper(substr($_POST['text'],0,255)), strtoupper(substr($rxtext,0,255)));
+	$lserrors = levenshtein(mb_strtoupper(mb_substr($_POST['text'],0,255)), mb_strtoupper(mb_substr($rxtext,0,255)));
 	$lserrpct = (intval(1000*$lserrors/($real[3]))/10);
 	
 	if ($lserrpct > 100) {
@@ -304,7 +304,7 @@ player("$playertext", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_
 	    
 	    if ($_SESSION['vvv'] == 1 && $_SESSION['player'] != PL_JSCWLIB) {
 		$text2 = substr($text2, 6);
-		$text2 = substr($text2, 0, strlen($text2)-5);
+		$text2 = substr($text2, 0, mb_strlen($text2)-5);
 	    }
 		$text2 = stripcommands($text2);
 	?>

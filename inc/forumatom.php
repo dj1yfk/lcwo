@@ -76,13 +76,13 @@ $topic = preg_replace_callback('/&#([0-9]+);/', create_function ( '$matches', 'r
 
 <?
 	function da ($in) {
-    if (strlen($in) == 14) {
-        $nd = substr($in, 0, 4).'-';
-        $nd .= substr($in, 4, 2).'-';
-        $nd .= substr($in, 6, 2).' ';
-        $nd .= substr($in, 8, 2).':';
-        $nd .= substr($in, 10, 2).':';
-        $nd .= substr($in, 12, 2);
+    if (mb_strlen($in) == 14) {
+        $nd = mb_substr($in, 0, 4).'-';
+        $nd .= mb_substr($in, 4, 2).'-';
+        $nd .= mb_substr($in, 6, 2).' ';
+        $nd .= mb_substr($in, 8, 2).':';
+        $nd .= mb_substr($in, 10, 2).':';
+        $nd .= mb_substr($in, 12, 2);
 		$nd = da($nd);
 		return $nd;
     } 

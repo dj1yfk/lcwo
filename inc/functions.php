@@ -1,27 +1,27 @@
 <?
 
-$langnames = array('de' => 'Deutsch', 'en' => 'English', 'fr' => 'Français',
-		'cs' => '&#268;esky', 'pt' => 'Português', 'it' => 'Italiano',
-		'es' => 'Español', 'da' => 'Dansk', 'pl' => 'Polski', 
+$langnames = array('de' => 'Deutsch', 'en' => 'English', 'fr' => 'FranÃ§ais',
+		'cs' => '&#268;esky', 'pt' => 'PortuguÃªs', 'it' => 'Italiano',
+		'es' => 'EspaÃ±ol', 'da' => 'Dansk', 'pl' => 'Polski', 
 		'hr' => 'Hrvatski', 'ar' =>
 		'&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;', 'cw' => 
-		'CW abbreviations', 'ro'=>'Român&#259;',
+		'CW abbreviations', 'ro'=>'RomÃ¢n&#259;',
 		'ja'=>'&#x65e5;&#x672c;&#x8a9e;',
 		'sl' => 'Sloven&#353;&#269;ina', 'sv'=>'Svenska', 'nl' =>
 		'Nederlands', 'ru' =>
 		'&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;',
 		'bs' => 'Bosanski', 'fi' => 'Suomi', 'gr' =>
 		'&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;',
-		'bz' => 'Português brasileiro',
-		'ca' => 'Català', 'hu' => 'Magyar', 'gl' => 'Galego',
+		'bz' => 'PortuguÃªs brasileiro',
+		'ca' => 'CatalÃ ', 'hu' => 'Magyar', 'gl' => 'Galego',
 		'ms' => 'Bahasa Melayu', 'th' =>
 		'&#3616;&#3634;&#3625;&#3634;&#3652;&#3607;&#3618;',
-		'tr' => 'Türkçe',
+		'tr' => 'TÃ¼rkÃ§e',
 		'zh' => '&#31616;&#20307;&#20013;&#25991;',
 		'cn' => '&#32321;&#39636;&#20013;&#25991;',
 		'bg' => '&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;',
 		'uk' => '&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072;',
-		'br' => 'Português brasileiro', 'no' => 'Norsk', 'sr' => 'Srpski', 'si' => '&#3523;&#3538;&#3458;&#3524;&#3517;'
+		'br' => 'PortuguÃªs brasileiro', 'no' => 'Norsk', 'sr' => 'Srpski', 'si' => '&#3523;&#3538;&#3458;&#3524;&#3517;'
 
 );
 
@@ -57,13 +57,13 @@ $mixedchar = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 '0', '?', '/', '.', ',', '=');
 
-$extrachar = array("!", "quot", "'", "(", ")", "+", "-", ":", ";", "@", "À", "Ä", "Ç", "É", "È", "Ñ", "Ö", "Ü");
+$extrachar = array("!", "quot", "'", "(", ")", "+", "-", ":", ";", "@", "Ã€", "Ã„", "Ã‡", "Ã‰", "Ãˆ", "Ã‘", "Ã–", "Ãœ");
 
-$extracharlc = array("à" => "À", "ä" => "Ä", "ç" => "Ç", "é" =>
-"É", "è" => "È", "ñ" => "Ñ", "ö" => "Ö", "ü" => "Ü");
+$extracharlc = array("Ã " => "Ã€", "Ã¤" => "Ã„", "Ã§" => "Ã‡", "Ã©" =>
+"Ã‰", "Ã¨" => "Ãˆ", "Ã±" => "Ã‘", "Ã¶" => "Ã–", "Ã¼" => "Ãœ");
 
 $morsecode = array (
-" " => " ", "!" => "..--.", "\"" => ".-..-.", "$" => "...-..-", "&" => ". ...", "'" => ".----.", "(" => "-.--.", ")" => "-.--.-", "+" => ".-.-.", "," => "--..--", "-" => "-....-", "." => ".-.-.-", "/" => "-..-.", "0" => "-----", "1" => ".----", "2" => "..---", "3" => "...--", "4" => "....-", "5" => ".....", "6" => "-....", "7" => "--...", "8" => "---..", "9" => "----.", ":" => "---...", ";" => "-.-.-.", "=" => "-...-", "?" => "..--..", "@" => ".--.-.", "A" => ".-", "B" => "-...", "C" => "-.-.", "D" => "-..", "E" => ".", "F" => "..-.", "G" => "--.", "H" => "....", "I" => "..", "J" => ".---", "K" => "-.-", "L" => ".-..", "M" => "--", "N" => "-.", "O" => "---", "P" => ".--.", "Q" => "--.-", "R" => ".-.", "S" => "...", "T" => "-", "U" => "..-", "V" => "...-", "W" => ".--", "X" => "-..-", "Y" => "-.--", "Z" => "--..", "\\" => "-..-.", "`" => ".----.", "a" => ".-", "b" => "-...", "c" => "-.-.", "d" => "-..", "e" => ".", "f" => "..-.", "g" => "--.", "h" => "....", "i" => "..", "j" => ".---", "k" => "-.-", "l" => ".-..", "m" => "--", "n" => "-.", "o" => "---", "p" => ".--.", "q" => "--.-", "r" => ".-.", "s" => "...", "t" => "-", "u" => "..-", "v" => "...-", "w" => ".--", "x" => "-..-", "y" => "-.--", "z" => "--..", "«" => ".-..-.", "»" => ".-..-.", "À" => ".--.-", "Á" => ".--.-", "Â" => ".-", "Ã" => ".-", "Ä" => ".-.-", "Å" => ".--.-", "Æ" => ".- .", "Ç" => "-.-..", "È" => "..-..", "É" => "..-..", "Ê" => ".", "Ë" => ".", "Ì" => "..", "Í" => "..", "Î" => "..", "Ï" => "..", "Ð" => "..--.", "Ñ" => "--.--", "Ò" => "---", "Ó" => "---", "Ô" => "---", "Õ" => "---", "Ö" => "---.", "Ø" => "---.", "Ù" => "..-", "Ú" => "..-", "Û" => "..-", "Ü" => "..--", "Ý" => "-.--", "Þ" => ".--..", "ß" => "...--..", "à" => ".--.-", "á" => ".--.-", "â" => ".-", "ã" => ".-", "ä" => ".-.-", "å" => ".--.-", "æ" => ".- .", "ç" => "-.-..", "è" => "..-..", "é" => "..-..", "ê" => ".", "ë" => ".", "ì" => "..", "í" => "..", "î" => "..", "ï" => "..", "ð" => "..--.", "ñ" => "--.--", "ò" => "---", "ó" => "---", "ô" => "---", "õ" => "---", "ö" => "---.", "ø" => "---.", "ù" => "..-", "ú" => "..-", "û" => "..-", "ü" => "..--", "ý" => "-.--", "þ" => ".--..", "ÿ" => "-.--", 
+" " => " ", "!" => "..--.", "\"" => ".-..-.", "$" => "...-..-", "&" => ". ...", "'" => ".----.", "(" => "-.--.", ")" => "-.--.-", "+" => ".-.-.", "," => "--..--", "-" => "-....-", "." => ".-.-.-", "/" => "-..-.", "0" => "-----", "1" => ".----", "2" => "..---", "3" => "...--", "4" => "....-", "5" => ".....", "6" => "-....", "7" => "--...", "8" => "---..", "9" => "----.", ":" => "---...", ";" => "-.-.-.", "=" => "-...-", "?" => "..--..", "@" => ".--.-.", "A" => ".-", "B" => "-...", "C" => "-.-.", "D" => "-..", "E" => ".", "F" => "..-.", "G" => "--.", "H" => "....", "I" => "..", "J" => ".---", "K" => "-.-", "L" => ".-..", "M" => "--", "N" => "-.", "O" => "---", "P" => ".--.", "Q" => "--.-", "R" => ".-.", "S" => "...", "T" => "-", "U" => "..-", "V" => "...-", "W" => ".--", "X" => "-..-", "Y" => "-.--", "Z" => "--..", "\\" => "-..-.", "`" => ".----.", "a" => ".-", "b" => "-...", "c" => "-.-.", "d" => "-..", "e" => ".", "f" => "..-.", "g" => "--.", "h" => "....", "i" => "..", "j" => ".---", "k" => "-.-", "l" => ".-..", "m" => "--", "n" => "-.", "o" => "---", "p" => ".--.", "q" => "--.-", "r" => ".-.", "s" => "...", "t" => "-", "u" => "..-", "v" => "...-", "w" => ".--", "x" => "-..-", "y" => "-.--", "z" => "--..", "Â«" => ".-..-.", "Â»" => ".-..-.", "Ã€" => ".--.-", "Ã" => ".--.-", "Ã‚" => ".-", "Ãƒ" => ".-", "Ã„" => ".-.-", "Ã…" => ".--.-", "Ã†" => ".- .", "Ã‡" => "-.-..", "Ãˆ" => "..-..", "Ã‰" => "..-..", "ÃŠ" => ".", "Ã‹" => ".", "ÃŒ" => "..", "Ã" => "..", "ÃŽ" => "..", "Ã" => "..", "Ã" => "..--.", "Ã‘" => "--.--", "Ã’" => "---", "Ã“" => "---", "Ã”" => "---", "Ã•" => "---", "Ã–" => "---.", "Ã˜" => "---.", "Ã™" => "..-", "Ãš" => "..-", "Ã›" => "..-", "Ãœ" => "..--", "Ã" => "-.--", "Ãž" => ".--..", "ÃŸ" => "...--..", "Ã " => ".--.-", "Ã¡" => ".--.-", "Ã¢" => ".-", "Ã£" => ".-", "Ã¤" => ".-.-", "Ã¥" => ".--.-", "Ã¦" => ".- .", "Ã§" => "-.-..", "Ã¨" => "..-..", "Ã©" => "..-..", "Ãª" => ".", "Ã«" => ".", "Ã¬" => "..", "Ã­" => "..", "Ã®" => "..", "Ã¯" => "..", "Ã°" => "..--.", "Ã±" => "--.--", "Ã²" => "---", "Ã³" => "---", "Ã´" => "---", "Ãµ" => "---", "Ã¶" => "---.", "Ã¸" => "---.", "Ã¹" => "..-", "Ãº" => "..-", "Ã»" => "..-", "Ã¼" => "..--", "Ã½" => "-.--", "Ã¾" => ".--..", "Ã¿" => "-.--", 
 );
 
 
@@ -118,6 +118,8 @@ global $db;
 
 function getgroups ($speed, $eff, $lesson, $kochchar, $minutes, $randlength, $realchar) {
 	global $db;
+
+    error_log(print_r($kochchar,1));
 
 	/* Not nice, but I changed things. outside, randomlength=0
 	* now means, random between 2 and 7. Any other value means
@@ -234,13 +236,13 @@ function getgroups ($speed, $eff, $lesson, $kochchar, $minutes, $randlength, $re
 
 function ensure_char ($text, $letter) {
 
-    $min_char = ceil(strlen($text)/3/6/10) + 1;  
+    $min_char = ceil(mb_strlen($text)/3/6/10) + 1;  
     $log = "******GOAL for $letter is $min_char *****************************\n";
     $round = 0;
 
     # correct max. 20 rounds.
     for ($i = 0; $i < 20; $i++) { 
-        $counts = count_chars(substr($text, 0, strlen($text)/3), 0);
+        $counts = count_chars(mb_substr($text, 0, mb_strlen($text)/3), 0);
         $log .= "$i - $letter exists ".$counts[ord($letter)]." times: $text\n";
 
         if ($counts[ord($letter)] > $min_char) {
@@ -249,7 +251,7 @@ function ensure_char ($text, $letter) {
         }
 
         # replace random non-space character with $letter
-        $pos = random_int(0, strlen($text)/3);
+        $pos = random_int(0, mb_strlen($text)/3);
         if ($text[$pos] != " ") {
             $text[$pos] = $letter;
             $log .= "REPLACED $letter at $pos (round $i)\n";
@@ -274,8 +276,8 @@ function geterror ($g1, $g2) {
 	}
 	else {
 		$err = 0;
-		for ($x = 0; $x < strlen($g1); $x++) {
-			if (substr($g1, $x, 1) != substr($g2, $x, 1)) {
+		for ($x = 0; $x < mb_strlen($g1); $x++) {
+			if (mb_substr($g1, $x, 1) != mb_substr($g2, $x, 1)) {
 				$err++;
 			}
 		}
@@ -287,7 +289,7 @@ function check ($w1, $w2) {		#w1 = original; w2 with errors
 	$ret = '';
 	$err = 0;
 
-	$grouplen = strlen($w1);
+	$grouplen = mb_strlen($w1);
 		
 	if ($w1 == $w2) {
 		return array(colorspan($w1, 'green'), 0);
@@ -295,13 +297,13 @@ function check ($w1, $w2) {		#w1 = original; w2 with errors
 
 	# Same length?
 
-	if (strlen($w1) == strlen($w2)) {
-		for ($i=0; $i < strlen($w2); $i++) {
-			if (substr($w1, $i, 1) == substr($w2, $i, 1)) {
-				$ret .= colorspan(substr($w1, $i, 1), 'green');
+	if (mb_strlen($w1) == mb_strlen($w2)) {
+		for ($i=0; $i < mb_strlen($w2); $i++) {
+			if (mb_substr($w1, $i, 1) == mb_substr($w2, $i, 1)) {
+				$ret .= colorspan(mb_substr($w1, $i, 1), 'green');
 			}
 			else {
-				$ret .= colorspan(substr($w1, $i, 1), 'red');
+				$ret .= colorspan(mb_substr($w1, $i, 1), 'red');
 				$err++;
 			}
 		}
@@ -314,13 +316,13 @@ function check ($w1, $w2) {		#w1 = original; w2 with errors
 	}
 
 	# Just compare one by one, regardless of length
-	for ($i=0; $i < strlen($w1); $i++) {
-		if (substr($w2, $i, 1) != FALSE and 
-			substr($w1, $i, 1) == substr($w2, $i, 1)) {
-			$ret .= colorspan(substr($w1, $i, 1), 'green');
+	for ($i=0; $i < mb_strlen($w1); $i++) {
+		if (mb_substr($w2, $i, 1) != FALSE and 
+			mb_substr($w1, $i, 1) == mb_substr($w2, $i, 1)) {
+			$ret .= colorspan(mb_substr($w1, $i, 1), 'green');
 		}
 		else {
-			$ret .= colorspan(substr($w1, $i, 1), 'red');
+			$ret .= colorspan(mb_substr($w1, $i, 1), 'red');
 			$err++;
 		}
 	}
@@ -332,30 +334,30 @@ function check ($w1, $w2) {		#w1 = original; w2 with errors
 	# error and remove first letter of longer string.
 
 	while (1) {
-		if (strlen(substr($w2, 0, 1)) &&
-		substr($w1, 0, 1) == substr($w2, 0, 1)) {
-			$ret .= colorspan(substr($w1, 0, 1), 'green');
-			$w1 = substr($w1, 1);
-			$w2 = substr($w2, 1);
+		if (mb_strlen(mb_substr($w2, 0, 1)) &&
+		mb_substr($w1, 0, 1) == mb_substr($w2, 0, 1)) {
+			$ret .= colorspan(mb_substr($w1, 0, 1), 'green');
+			$w1 = mb_substr($w1, 1);
+			$w2 = mb_substr($w2, 1);
 		}
 		else {
 				$err++;
-				if (strlen($w1) > strlen($w2)) {
-					$ret .= colorspan(substr($w1, 0,1), 'red');
-					$w1 = substr($w1, 1);
+				if (mb_strlen($w1) > mb_strlen($w2)) {
+					$ret .= colorspan(mb_substr($w1, 0,1), 'red');
+					$w1 = mb_substr($w1, 1);
 				}
-				else if (strlen($w1) < strlen($w2)) {
-					$ret .= colorspan(substr($w2, 0,1), 'red');
-					$w2 = substr($w2, 1);
+				else if (mb_strlen($w1) < mb_strlen($w2)) {
+					$ret .= colorspan(mb_substr($w2, 0,1), 'red');
+					$w2 = mb_substr($w2, 1);
 				}
 				else {
-					$w1 = substr($w1, 1);
-					$w2 = substr($w2, 1);
+					$w1 = mb_substr($w1, 1);
+					$w2 = mb_substr($w2, 1);
 					$ret .= colorspan("-", 'blue');
 				}
 		}
 
-		if (strlen($w1) == 0 && strlen($w2) == 0) {
+		if (mb_strlen($w1) == 0 && mb_strlen($w2) == 0) {
 			if ($err > $grouplen) {
 			    $err = $grouplen;
 			}
@@ -392,16 +394,16 @@ include("playerfunctions.php");
 
 
 function da($date) {
-	if (strlen($date) == 14) {
-		$nd = substr($date, 0, 4).'-';
-		$nd .= substr($date, 4, 2).'-';
-		$nd .= substr($date, 6, 2).' ';
-		$nd .= substr($date, 8, 2).':';
-		$nd .= substr($date, 10, 2);
+	if (mb_strlen($date) == 14) {
+		$nd = mb_substr($date, 0, 4).'-';
+		$nd .= mb_substr($date, 4, 2).'-';
+		$nd .= mb_substr($date, 6, 2).' ';
+		$nd .= mb_substr($date, 8, 2).':';
+		$nd .= mb_substr($date, 10, 2);
 		return $nd;
 	}
 	else {
-		return substr($date, 0, 16);
+		return mb_substr($date, 0, 16);
 	}
 
 }
@@ -554,8 +556,8 @@ function text2dotdash ($in) {
 
 global $morsecode;
 
-for ($i=0; $i < strlen($in); $i++) {
-	$out .= $code[substr($in, $i, 1)]." ";
+for ($i=0; $i < mb_strlen($in); $i++) {
+	$out .= $code[mb_substr($in, $i, 1)]." ";
 }
 
 return $out;
@@ -587,13 +589,7 @@ function rand_init()
 
 
 function qrm() {
-	$ret = "";
-	for ($qrmc=0; $qrmc < 1000; $qrmc++) {
-		$ret .=	chr(rand(40,125));
-	}
-	$ret = strtr($ret, '*', 'x');
-	$ret = strtr($ret, '/', 'x');
-	return  "/* ".$ret." */"; 
+	return  "/* qrm */"; 
 }
 
 
@@ -666,11 +662,11 @@ $rspace = 20;
 $ifw = imagefontwidth(2); 
 
 if (is_array($ydata1) && max($ydata1) >= 1000) {
-	$lspace += $ifw*(strlen(max($ydata1))-3); # space for 3 is already there
+	$lspace += $ifw*(mb_strlen(max($ydata1))-3); # space for 3 is already there
 }
 
 if (is_array($ydata2) && (max($ydata2) >= 100)) {
-	$rspace += $ifw*(strlen(max($ydata2))-2);
+	$rspace += $ifw*(mb_strlen(max($ydata2))-2);
 }
 
 # calculate neccesary label distances etc.
@@ -786,7 +782,7 @@ $point=0;
 for ($j = $yrange1[0]; $j <= $yrange1[1]; $j += (($yrange1[1]-$yrange1[0])/4)) {
 	$ypos = $height - $bspace - (($ywidth-$tspace) * $point/4);
 	$point++;
-	imagestring($im, 2, $lspace - 4 - $ifw*strlen(intval($j)), $ypos - 7 , intval($j), $black);
+	imagestring($im, 2, $lspace - 4 - $ifw*mb_strlen(intval($j)), $ypos - 7 , intval($j), $black);
 	imageline($im, $lspace-2, $ypos, $lspace+2, $ypos, $black);
 }
 
@@ -810,7 +806,11 @@ imagegif($im, "img/$filename".imgurl($_SESSION['uid']).".gif");
 
 
 function getcustomcharacters () {
-	return preg_split('//', $_SESSION['customcharacters'], -1, PREG_SPLIT_NO_EMPTY);
+    $arr = array();
+    for ($i = 0; $i < mb_strlen($_SESSION['customcharacters']); $i++) {
+        array_push($arr, mb_substr($_SESSION['customcharacters'], $i, 1));
+    }
+    return $arr;
 }
 
 function addquot ($a) {
@@ -821,7 +821,7 @@ function addquot ($a) {
 
 function my_strtoupper ($s) {
 
-	$s = strtoupper($s);
+	$s = mb_strtoupper($s);
 
 	global $extracharlc;
 	foreach ($extracharlc as $c => $k) {
@@ -971,52 +971,52 @@ function simplify ($lang, $text) {
 	switch ($lang) {
 		case 'fi':
 		case 'de':
-			$replace['ä'] = 'ae';
-			$replace['ö'] = 'oe';
-			$replace['ü'] = 'ue';
-			$replace['Ä'] = 'ae';
-			$replace['Ö'] = 'oe';
-			$replace['Ü'] = 'ue';
-			$replace['ß'] = 'ss';
+			$replace['Ã¤'] = 'ae';
+			$replace['Ã¶'] = 'oe';
+			$replace['Ã¼'] = 'ue';
+			$replace['Ã„'] = 'ae';
+			$replace['Ã–'] = 'oe';
+			$replace['Ãœ'] = 'ue';
+			$replace['ÃŸ'] = 'ss';
 			break;
 		case 'fr':
-			$replace['ô'] = 'o';
-			$replace['ù'] = 'u';
-			$replace['û'] = 'u';
-			$replace['á'] = 'a';
-			$replace['à'] = 'a';
-			$replace['â'] = 'a';
-			$replace['ç'] = 'c';
-			$replace['é'] = 'e';
-			$replace['è'] = 'e';
-			$replace['ê'] = 'e';
-			$replace['ë'] = 'e';
-			$replace['ï'] = 'i';
-			$replace['î'] = 'i';
+			$replace['Ã´'] = 'o';
+			$replace['Ã¹'] = 'u';
+			$replace['Ã»'] = 'u';
+			$replace['Ã¡'] = 'a';
+			$replace['Ã '] = 'a';
+			$replace['Ã¢'] = 'a';
+			$replace['Ã§'] = 'c';
+			$replace['Ã©'] = 'e';
+			$replace['Ã¨'] = 'e';
+			$replace['Ãª'] = 'e';
+			$replace['Ã«'] = 'e';
+			$replace['Ã¯'] = 'i';
+			$replace['Ã®'] = 'i';
 			break;
 		case 'es':
-			$replace['à'] = 'a';
-			$replace['á'] = 'a';
-			$replace['é'] = 'e';
-			$replace['è'] = 'e';
-			$replace['í'] = 'i';
-			$replace['ñ'] = 'n';
-			$replace['ó'] = 'o';
+			$replace['Ã '] = 'a';
+			$replace['Ã¡'] = 'a';
+			$replace['Ã©'] = 'e';
+			$replace['Ã¨'] = 'e';
+			$replace['Ã­'] = 'i';
+			$replace['Ã±'] = 'n';
+			$replace['Ã³'] = 'o';
 			break;
 		case 'pt':
-			$replace['á'] = 'a';
-			$replace['à'] = 'a';
-			$replace['â'] = 'a';
-			$replace['ã'] = 'a';
-			$replace['ç'] = 'c';
-			$replace['é'] = 'e';
-			$replace['ê'] = 'e';
-			$replace['í'] = 'i';
-			$replace['ó'] = 'o';
-			$replace['ô'] = 'o';
-			$replace['õ'] = 'o';
-			$replace['ú'] = 'u';
-			$replace['ü'] = 'u';
+			$replace['Ã¡'] = 'a';
+			$replace['Ã '] = 'a';
+			$replace['Ã¢'] = 'a';
+			$replace['Ã£'] = 'a';
+			$replace['Ã§'] = 'c';
+			$replace['Ã©'] = 'e';
+			$replace['Ãª'] = 'e';
+			$replace['Ã­'] = 'i';
+			$replace['Ã³'] = 'o';
+			$replace['Ã´'] = 'o';
+			$replace['Ãµ'] = 'o';
+			$replace['Ãº'] = 'u';
+			$replace['Ã¼'] = 'u';
 			break;
 		default:
 			$replace['a'] = 'a';
@@ -1068,8 +1068,8 @@ function gettextsbylanguage ($type, $lang, $maxlen, $count, $simplify, $lesson){
 			# (languages+collections)
 			$querylangs = array();
 			foreach ($lang as $ltmp) {
-				$mylang = substr($ltmp, 0, 2);
-				$coll   = substr($ltmp, 2, 1);
+				$mylang = mb_substr($ltmp, 0, 2);
+				$coll   = mb_substr($ltmp, 2, 1);
 				$querylangs[] =  "(`lang` = '$mylang' and `collid`='$coll')"; 
 			}
 			$langscolls = join(' or ', $querylangs);
@@ -1125,12 +1125,12 @@ function gettextsbylanguage ($type, $lang, $maxlen, $count, $simplify, $lesson){
 	
 	$words = array();
 	while ($tmp = mysqli_fetch_row($query)) {
-		$word = strtolower($tmp[0]);
+		$word = mb_strtolower($tmp[0]);
 
         # replace HTML entities with their respective
-        # representations in Latin1: &#252; => ü
+        # representations in Latin1: &#252; => Ã¼
         # *LEGACY* #UTF8
-        $word= preg_replace_callback( '/&#(\d+);/', function ($m) { return chr($m[1]); }, $word); 
+        $word= preg_replace_callback( '/&#(\d+);/', function ($m) { return mb_chr($m[1]); }, $word); 
 
 		if ($simplify) {
 			$word = simplify($tmp[1], $word);
@@ -1187,21 +1187,21 @@ function realspeed($text, $wpm, $wpmeff) {
 	
 	$length = 0;
 	$characters = 0;
-	for ($i = 0; $i < strlen($text); $i++) {
-		if (substr($text, $i, 1) == " ") {
+	for ($i = 0; $i < mb_strlen($text); $i++) {
+		if (mb_substr($text, $i, 1) == " ") {
 				$length += $wordspace;
 				continue; 
 		}
 		$characters++;
-		$char = $morsecode[substr($text, $i, 1)];
-		for ($j = 0; $j < strlen($char); $j++) {
-			if (substr($char, $j, 1) == ".") {
+		$char = $morsecode[mb_substr($text, $i, 1)];
+		for ($j = 0; $j < mb_strlen($char); $j++) {
+			if (mb_substr($char, $j, 1) == ".") {
 				$length += $dot_sec;
 			}
-			elseif (substr($char, $j, 1) == "-") {
+			elseif (mb_substr($char, $j, 1) == "-") {
 				$length += 3*$dot_sec;
 			}
-            if ($j < strlen($char) - 1) {
+            if ($j < mb_strlen($char) - 1) {
     			$length += $dot_sec;	# intersymbol space
             }
 		}
@@ -1246,7 +1246,7 @@ function bb2html ($text) {
                 }
             }
 
-            $text = strtolower(rawurlencode(strip_tags($m[count($m) - 1])));
+            $text = mb_strtolower(rawurlencode(strip_tags($m[count($m) - 1])));
             $params['text'] = $text;
 
             if ($params['ews']) {
@@ -1318,7 +1318,7 @@ function toURLpath($foo) {
     $foo = preg_replace('/&#[0-9]+(;)?/', "", $foo);
     $foo = preg_replace('/[^0-9a-zA-Z-]/', "", $foo);
     $foo = preg_replace('/[-]+$/', "", $foo);
-    if (strlen($foo)) {
+    if (mb_strlen($foo)) {
         return "/".$foo;
     }
     else return "";

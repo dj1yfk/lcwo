@@ -1,22 +1,22 @@
 <h1>A propos de LCWO - Learn CW Online</h1>
-<p>Ce site, <em>Learn CW Online</em> (LCWO), a été créé en mai 2008 par
+<p>Ce site, <em>Learn CW Online</em> (LCWO), a Ã©tÃ© crÃ©Ã© en mai 2008 par
 <a href="http://fkurz.net/">Fabian Kurz, DJ1YFK</a> 
 (<a href="/impressum">Impressum</a>, 
 <a href="http://lcwo.net/profile/dj1yfk">profile</a>),
 dans le but de faire apprendre et pratiquer la CW (code Morse) le plus facilement et le moins contraignant possible.
 </p>
 
-<p>LCWO est en développement constant, ainsi les commentaires et suggestions
+<p>LCWO est en dÃ©veloppement constant, ainsi les commentaires et suggestions
 sont les bienvenus. Pour prendre contact avec l&rsquo;auteur, utiliser le
-<a href="/impressum#form">formulaire de contact</a> ou bien envoyez un mèl à <a href="mailto:help&#64;lcwo.net">help&#64;lcwo.net</a>. Pour des questions ou
-discussions d&rsquo;ordre général, n&rsquo;hésitez pas à vous servir du <a href="/forum">forum</a>.
-Merci à tous les utilisateurs qui ont contribués au projet jusqu&rsquo;à
-présent. Sans tous ces retours d&rsquo;information le site ne serait pas
-ce qu&rsquo;il est aujourd&rsquo;hui !</p>
+<a href="/impressum#form">formulaire de contact</a> ou bien envoyez un mÃ¨l Ã  <a href="mailto:help&#64;lcwo.net">help&#64;lcwo.net</a>. Pour des questions ou
+discussions d&rsquo;ordre gÃ©nÃ©ral, n&rsquo;hÃ©sitez pas Ã  vous servir du <a href="/forum">forum</a>.
+Merci Ã  tous les utilisateurs qui ont contribuÃ©s au projet jusqu&rsquo;Ã 
+prÃ©sent. Sans tous ces retours d&rsquo;information le site ne serait pas
+ce qu&rsquo;il est aujourd&rsquo;huiÂ !</p>
 
 <p><strong>L&rsquo;usage de LCWO est et restera toujours gratuit.</strong>
-Les dons ne nous intéressent pas, cela dit si vous êtes en mesure de fournir
-une bande passante fiable pour les CGI (génération des MP3/OGG), merci
+Les dons ne nous intÃ©ressent pas, cela dit si vous Ãªtes en mesure de fournir
+une bande passante fiable pour les CGI (gÃ©nÃ©ration des MP3/OGG), merci
 de <a href="mailto:help&#64;lcwo.net">nous contacter</a>.</p>
 
 
@@ -27,20 +27,20 @@ l&rsquo;interface utilisateur:</p>
 
 <? include("inc/about-translators.php"); ?>
 
-<p>Si vous souhaitez aider à traduire LCWO dans d&rsquo;autres langues, merci de prendre contact avec
-<a href="mailto:help@lcwo.net">Fabian, DJ1YFK par mèl</a>. Merci&nbsp;!</p>
+<p>Si vous souhaitez aider Ã  traduire LCWO dans d&rsquo;autres langues, merci de prendre contact avec
+<a href="mailto:help@lcwo.net">Fabian, DJ1YFK par mÃ¨l</a>. Merci&nbsp;!</p>
 
 <h2>Spread the word!</h2>
-<p>Si ça vous dit de placer un lien depuis votre site web ou votre blog,
-merci d&rsquo;utiliser une des bannières et boutons ci-après. Des logos
-(en N&amp;B) sont également disponibles pour vos cartes QSL.</p>
+<p>Si Ã§a vous dit de placer un lien depuis votre site web ou votre blog,
+merci d&rsquo;utiliser une des banniÃ¨res et boutons ci-aprÃ¨s. Des logos
+(en N&amp;B) sont Ã©galement disponibles pour vos cartes QSL.</p>
 
 <div>
-Bannière, 468x60 pixels: <br><img src="/pics/lcwo-banner.png" alt="[LCWO Banner]"><br><br>
+BanniÃ¨re, 468x60 pixels: <br><img src="/pics/lcwo-banner.png" alt="[LCWO Banner]"><br><br>
 Boutons, 80x15 pixels: <br>
 <img src="/pics/lcwo-button1.png" alt="[LCWO Button 1]">&nbsp; <img
 src="/pics/lcwo-button2.png" alt="[LCWO Button 2]"><br><br>
-Logos pour cartes QSL (fichier ZIP en différents formats, PDF, EPS, PNG):
+Logos pour cartes QSL (fichier ZIP en diffÃ©rents formats, PDF, EPS, PNG):
 <br>
 <a href="/pics/qsl-logos.zip"><img
 src="/pics/qsl-logo-small.png" alt="[LCWO print logo]"></a><br><br>
@@ -52,8 +52,8 @@ src="/pics/qsl-logo-small.png" alt="[LCWO print logo]"></a><br><br>
 <tr>
 <td valign="top" width="45%">
 <a href="http://www.eham.net"><img style="border:none;" src="/pics/ehamlogo.gif" alt="[eham.net logo]"></a><br>
-<p>Le site a été évalué (<?=$eham1?> sur <?=$eham2?> opinions) sur eHam.net.<br><a
-href="http://www.eham.net/reviews/detail/8401">Merci et n&rsquo;hésitez pas à ajouter votre propre opinion également&nbsp;!</a></p>
+<p>Le site a Ã©tÃ© Ã©valuÃ© (<?=$eham1?> sur <?=$eham2?> opinions) sur eHam.net.<br><a
+href="http://www.eham.net/reviews/detail/8401">Merci et n&rsquo;hÃ©sitez pas Ã  ajouter votre propre opinion Ã©galement&nbsp;!</a></p>
 <p>Vous pouvez aussi noter LCWO sur la 
 <a
 href="http://www.eham.net/links/rating/10889">section Liens de eHam.
@@ -70,7 +70,7 @@ href="http://www.eham.net/links/rating/10889">section Liens de eHam.
 
 <h2>Annonce de presse</h2>
 <p>
-N&rsquo;hésitez pas à utiliser le texte suivant de promotion de LCWO pour votre bulletin de radio-club, site web, blog, etc.
+N&rsquo;hÃ©sitez pas Ã  utiliser le texte suivant de promotion de LCWO pour votre bulletin de radio-club, site web, blog, etc.
 </p>
 
 <pre style="border:1px solid #aaaaaa; margin:3px">
@@ -78,37 +78,37 @@ N&rsquo;hésitez pas à utiliser le texte suivant de promotion de LCWO pour votre 
 </pre>
 
 
-<h2>Compatibilité des navigateurs, aspects techniques</h2>
+<h2>CompatibilitÃ© des navigateurs, aspects techniques</h2>
 
 <p>LCWO supporte la plupart des navigateurs modernes, en particulier les
-deux dernières générations de
+deux derniÃ¨res gÃ©nÃ©rations de
 <a href="http://www.firefox.com/">Mozilla Firefox</a>
-et de Microsoft Internet Explorer. Il a été signalé comme étant compatible
+et de Microsoft Internet Explorer. Il a Ã©tÃ© signalÃ© comme Ã©tant compatible
 avec 
 <a
 href="http://www.opera.com/">Opera</a> et <a
 href="http://www.apple.com/safari/">Safari</a> d&rsquo;Apple.</p>
 
-<p>Pour profiter de toutes les fonctionnalités de LCWO, JavaScript doit
-être installé et un navigateur utilisant soit
+<p>Pour profiter de toutes les fonctionnalitÃ©s de LCWO, JavaScript doit
+Ãªtre installÃ© et un navigateur utilisant soit
 <a href="http://en.wikipedia.org/wiki/HTML5">HTML5</a> ou bien le
 <a href="http://www.adobe.com/de/products/flashplayer/">Flash
-Player</a> d&rsquo;Adobe pour la lecture CW est fortement recommandé.
+Player</a> d&rsquo;Adobe pour la lecture CW est fortement recommandÃ©.
 </p>
 
-<p>Le développement de LCWO est fait sous
+<p>Le dÃ©veloppement de LCWO est fait sous
 <a href="http://www.debian.org/">Debian GNU/Linux</a> et <a
 href="http://www.ubuntu.com">Ubuntu</a>, 
-grâce à l&rsquo;éditeur fantastique
+grÃ¢ce Ã  l&rsquo;Ã©diteur fantastique
 <a href="http://www.vim.org/">vim</a>. 
 Le site tourne sur un serveur
-<a href="http://www.apache.org/">Apache</a>, il est programmé quasiment entièrement en
+<a href="http://www.apache.org/">Apache</a>, il est programmÃ© quasiment entiÃ¨rement en
 <a href="http://www.php.net/">PHP</a> (sans aucun framework, tout fait maison) 
-et emploie une base de données
+et emploie une base de donnÃ©es
 <a href="http://www.mysql.com/">MySQL</a>.
-Les fichiers CW en MP3 et les fichiers OGG sont générés à partir de versions customisées de
+Les fichiers CW en MP3 et les fichiers OGG sont gÃ©nÃ©rÃ©s Ã  partir de versions customisÃ©es de
 <a href="http://fkurz.net/ham/ebook2cw.html">ebook2cw</a>,
-qui tournent comme des CGI compilées, écrites en C.
+qui tournent comme des CGI compilÃ©es, Ã©crites en C.
 </p>
 
 

@@ -171,9 +171,9 @@ function sendpmsg () {
 	if ($_POST['send'] == 1) {
 
 			$text = strip_tags(esc($_POST['text']));
-			if (strlen($text) > 50000) { $text = substr($text, 0, 50000); }
+			if (mb_strlen($text) > 50000) { $text = mb_substr($text, 0, 50000); }
 		    $subject = strip_tags(esc($_POST['subject']));
-			if (strlen($subject) > 255) { $subject = substr($subject, 0, 255); }
+			if (mb_strlen($subject) > 255) { $subject = mb_substr($subject, 0, 255); }
 
 			if (!$text) {
 					echo "<p>Error: No text!</p>";

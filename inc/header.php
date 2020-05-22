@@ -13,7 +13,7 @@ if (!$tmptitle) {
 	echo "LCWO.net - ";
 }
 ?>Learn CW Online</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="description" lang="en" content="Learn CW Online - At LCWO you can learn Morse Code (CW) online, in your web browser!">
 <?
 if ($_SESSION['lang'] != "en") {
