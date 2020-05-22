@@ -308,7 +308,7 @@ echo "<tr>
 
 <?
     $mode = $_SESSION['player'];
-    player("", $mode, 99, 99, 1, 1,0,0);
+    player("", $mode, $_SESSION['callsigns']['speed'], $_SESSION['callsigns']['speed'], 1, 1,0,0);
     
 ?>
 

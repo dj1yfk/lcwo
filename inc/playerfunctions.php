@@ -62,6 +62,10 @@ switch ($mode) {
         $text = str_replace('"', '\"', $text);
         $text = preg_replace('/[\n\r]/', ' ', $text);
 
+        if ($eff >= $speed) {
+            $eff = 0;
+        }
+
         $player = <<<JS
 <div id="pv"></div>
 

@@ -39,7 +39,9 @@ function text2cw () {
 	$e = intval($_POST['eff']);
 	$f = intval($_POST['freq']);
     $text = preg_replace('/[\n\r]/', ' ', $text);
-    $text = preg_replace('/"/', '\"', $text);
+    if ($_SESSION['player'] == PL_JSCWLIB) {
+        $text = preg_replace('/"/', '\"', $text);
+    }
 	$t = $text;
 
 	/* shitty global */
