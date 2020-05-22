@@ -16,19 +16,63 @@
             ".....", "6": "-....", "7": "--...", "8": "---..", "9": "----.",
             "0": "-----", "/": "-..-.", "+": ".-.-.", "=": "-...-", "?": "..--..",
             ".": ".-.-.-", ",": "--..--", ":": "---...", "(": "-.--.", ")": "-.--.-",
-            "@": ".--.-.", "-": "-....-",
+            "@": ".--.-.", "-": "-....-", "\"": ".-..-.", "!": "..--.",
+            "$": "...-..-", "'": ".----.", "`": ".-----.", 
+            "-": "-....-", ";": "-.-.-.", 
+            "«": ".-..-.", "»": ".-..-.", 
+            "ä": ".-.-", "ß": "...--..",
+            "à": ".--.-", "á": ".--.-", "â": ".-", "ã": ".-",
+            "å": ".--.-", "æ": ".- .", "ç": "-.-..", "è": "..-..", "é": "..-..", 
+            "ê": ".", "ë": ".", "ì": "..", "í": "..", "î": "..", "ï": "..",
+            "ð": "..--.", "ñ": "--.--", "ò": "---", "ó": "---", "ô": "---",
+            "õ": "---", "ö": "---.", "ø": "---.", "ù": "..-", "ú": "..-",
+            "û": "..-", "ü": "..--", "ý": "-.--", "þ": ".--..", "ÿ": "-.--",
+            "ā": ".-", "ă": ".-", "ą": ".-", "ć": "-.-.", "ĉ": "-.-..",
+            "ċ": "-.-.", "č": "-.-.", "ď": "-..", "đ": "-..", "ē": ".",
+            "ĕ": ".", "ė": ".", "ę": ".", "ě": ".", "ĝ": "--.-.", "ğ": "--.",
+            "ġ": "--.", "ģ": "--.", "ĥ": "----", "ħ": "....", "ĩ": "..",
+            "ī": "..", "ĭ": "..", "į": "..", "ı": "..", "ĳ": ".. .---",
+            "ĵ": ".---.", "ķ": "-.-", "ĸ": "-.-", "ĺ": ".-..", "ļ": ".-..",
+            "ľ": ".-..", "ŀ": ".-..", "ł": ".-..", "ń": "-.", "ņ": "-.",
+            "ň": "-.", "ŉ": "-.", "ŋ": "-.", "ō": "---", "ŏ": "---",
+            "ő": "---", "œ": "---.", "ŕ": ".-.", "ŗ": ".-.", "ř": ".-.",
+            "ś": "...", "ŝ": "...-.", "ş": "...", "š": "...", "ţ": "-",
+            "ť": "-", "ŧ": "-", "ũ": "..-", "ū": "..-", "ŭ": "..--",
+            "ů": "..-", "ű": "..-", "ų": "..-", "ŵ": ".--", "ŷ": "-.--",
+            "Ÿ": "-.--", "ź": "--..", "ż": "--..", "ž": "--..", "ſ": "...",
+            /* cyrillic */
+            "а": ".-", "б": "-...", "в": ".--", "г": "--.", "д": "-..",
+            "е": ".", "ж": "...-", "з": "--..", "и": "..", "й": ".---",
+            "к": "-.-", "л": ".-..", "м": "--", "н": "-.", "о": "---",
+            "п": ".--.", "р": ".-.", "с": "...", "т": "-", "у": "..-",
+            "ф": "..-.", "х": "....", "ц": "-.-.", "ч": "---.", "ш": "----",
+            "щ": "--.-", "ъ": "-..-", "ы": "-.--", "ь": "-..-", "э": "..-..",
+            "ю": "..--", "я": ".-.-", "ѐ": ".", "ё": ".", "ђ": "-.. .---",
+            "ѓ": "--. .---", "є": ".", "ѕ": "-.. --..", "і": "..",
+            "ї": "..", "ј": ".---", "љ": ".-.. .---", "њ": "-. .---",
+            "ћ": "-.-.", "ќ": "-.- .---", "ѝ": "..", "ў": "..-", "џ": "-.. --..",
             " ":" " };
         var el_len = { ".": 1, "-": 3, " ": 4 };
 
-        this.controls_options = {"wpm_min": 5, "wpm_max": 50, "eff_min": 1, "eff_max": 50, "freq_min": 300, "freq_max": 1500, "volume_min": 0, "volume_max": 100};
+        this.controls_options = {
+            "wpm_min": 5, "wpm_max": 50, 
+            "eff_min": 0, "eff_max": 50, 
+            "ews_min": 0, "ews_max": 5, 
+            "freq_min": 300, "freq_max": 1500,
+            "edge_min": 1, "edge_max": 25,
+            "volume_min": 0, "volume_max": 100
+        };
+
         this.control_labels = {};
         this.control_inputs = {};
 
         this.wpm = 20;
-        this.eff = 1000;
+        this.eff = 0;
+        this.ews = 0;           // extra word space
         this.freq = 600;
         this.volume = 0.5;      // relative volume how CW is generated internally
-        this.playvolume = 1;  // player volume (relative * player volume = total volume)
+        this.playvolume = 1;    // player volume (relative * player volume = total volume)
+        this.q = 10;
         this.dotlen;
         this.playLength = 0;
         this.playEnd = 0;
@@ -47,6 +91,7 @@
         this.textEnd   = Number.MAX_VALUE;     // time when the actual text ends (i.e. without the "+")
         this.showSettings = false;
         this.startDelay = 0;    // delay in seconds before audio starts
+        this.prosign = false;   // we're within a prosign (no letter spaces)
 
         try {
     	    this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -67,7 +112,8 @@
             else {
                 this.gainNode = this.audioCtx.createGain(); // this gainNode modulates the CW
                 this.gainNodePlay = this.audioCtx.createGain(); // this gainNode is the overall volume
-                this.gainNodeLimiter = this.audioCtx.createGain(); // this limits the osc output so we don't start clipping even with a high Q of the filter
+                this.gainNodeLimiter = this.audioCtx.createGain(); // this limits the osc output to avoid clipping with high Q filters 
+
                 this.oscillator = this.audioCtx.createOscillator();
                 this.biquadFilter = this.audioCtx.createBiquadFilter();
                 this.noiseFilter = this.audioCtx.createBiquadFilter();
@@ -98,7 +144,7 @@
 
                 this.biquadFilter.type = "lowpass";
                 this.biquadFilter.frequency.setValueAtTime(500, this.audioCtx.currentTime);
-                this.biquadFilter.Q.setValueAtTime(10, this.audioCtx.currentTime);
+                this.biquadFilter.Q.setValueAtTime(this.q, this.audioCtx.currentTime);
 
                 this.oscillator.type = 'sine';
                 this.oscillator.frequency.setValueAtTime(600, this.audioCtx.currentTime); // value in hertz
@@ -112,7 +158,7 @@
 
                 this.gainNode.gain.value = 0;
                 this.gainNodePlay.gain.value = this.playvolume;
-                this.gainNodeLimiter.gain.value = 0.5;
+                this.gainNodeLimiter.gain.value = 0.55;
                 this.oscillator.start();
             }
             this.init_done = true;
@@ -139,7 +185,12 @@
 
         this.setQ = function (q) {
             console.log("setQ = " + q);
+            this.q = q;
             this.biquadFilter.Q.setValueAtTime(q, this.audioCtx.currentTime);
+            // the filter gain depends on the Q - this will compensate for it
+            // (values determined experimentally)
+            this.gainNodeLimiter.gain.setValueAtTime(1.8 * Math.exp(-0.115 * q), this.audioCtx.currentTime);
+            this.updateControls();
         }
 
         this.setReal = function (r) {
@@ -186,6 +237,7 @@
         }
 
         this.setWpm = function (w) {
+            console.log("setWpm = " + w);
             w = parseInt(w);
             this.wpm = w;
             if (this.mode == 'audio' && this.init_done)
@@ -202,11 +254,19 @@
             this.updateControls();
         }
 
+        this.setEws = function (w) {
+            console.log("setEws = " + w);
+            w = parseFloat(w);
+            this.ews = w;
+            if (this.mode == 'audio' && this.init_done)
+                this.gainNode.gain.cancelScheduledValues(this.audioCtx.currentTime);
+            this.updateControls();
+        }
+
         this.setFreq = function(f) {
             console.log("setFreq: " + f);
             this.freq = f;
             if (this.mode == 'audio' && this.init_done) {
-                this.gainNode.gain.cancelScheduledValues(this.audioCtx.currentTime);
                 this.oscillator.frequency.setValueAtTime(f, this.audioCtx.currentTime);
                 this.setFilter(f);
             }
@@ -243,10 +303,21 @@
                 this.control_labels["wpm"].innerHTML = this.wpm + "&nbsp;WpM";
             }
             if (this.control_labels["eff"]) {
-                this.control_labels["eff"].innerHTML = this.eff + "&nbsp;WpM";
+                if (this.eff) {
+                    this.control_labels["eff"].innerHTML = this.eff + "&nbsp;WpM";
+                }
+                else {
+                    this.control_labels["eff"].innerHTML =  "&nbsp;(off)";
+                }
+            }
+            if (this.control_labels["ews"]) {
+                this.control_labels["ews"].innerHTML = (this.ews + 1) + "&nbsp;&times;";
             }
             if (this.control_labels["freq"]) {
                 this.control_labels["freq"].innerHTML = this.freq + "&nbsp;Hz";
+            }
+            if (this.control_labels["edge"]) {
+                this.control_labels["edge"].innerHTML = this.q + "&nbsp;";
             }
             if (this.control_labels["vol"]) {
                 this.control_labels["vol"].innerHTML = Math.round(this.playvolume * 100) + "&nbsp;%";
@@ -255,9 +326,8 @@
 
         this.enableControls = function (obj, b) {
             console.log("enableControls = " + b);
-            console.log(obj.control_inputs);
             for (var p in obj.control_inputs) {
-                if (p == "vol")
+                if (p == "vol" || p == "edge" || p == "freq")
                     continue;
                 obj.control_inputs[p].disabled = !b;
             }
@@ -359,7 +429,7 @@
             var eff = this.eff;
             
             // real speed (not PARIS) => no farnsworth timing, eff = char speed
-            if (this.real) {
+            if (this.real || this.eff == 0) {
                 eff = this.wpm;
             }
 
@@ -376,7 +446,7 @@
         this.setText = function(text) {
             this.text = text.toLowerCase();
             if (this.btn_down) {
-                this.btn_down.href = this.cgiurl + "cw.mp3?s=" + this.wpm + "&e=" + this.eff + "&f=" + this.freq + "&t=" + this.text + "%20%20%20%20%5E";
+                this.btn_down.href = this.cgiurl + "cw.mp3?s=" + this.wpm + "&e=" + this.eff + "&f=" + this.freq + "&t=|W" + this.ews + " " + this.text + "%20%20%20%20%5E";
                 this.btn_down.download = "cw.mp3";
             }
         }
@@ -398,7 +468,7 @@
 
             // fallback to HTML5
             if (this.mode == 'embed') {
-                this.player.src = this.cgiurl + "cw.mp3?s=" + this.wpm + "&e=" + this.eff + "&f=" + this.freq + "&t=" + text + "%20%20%20%20%5E";
+                this.player.src = this.cgiurl + "cw.mp3?s=" + this.wpm + "&e=" + this.eff + "&f=" + this.freq + "&t=|W" + this.ews + " " + text + "%20%20%20%20%5E";
                 this.player.play();
                 console.log(this.player);
                 return;
@@ -557,17 +627,32 @@
                             //alert(c);
                     }
                 }
+                else if (c == '<') {
+                    this.prosign = true;
+                }
+                else if (c == '>') {
+                    this.prosign = false;
+                    time += 2*this.dotlen;
+                }
                 else if (c != " ") {
                     var ti = this.gen_morse_timing(c, time);
                     if (ti) {
                         out = out.concat(this.gen_morse_timing(c, time));
                         time = out[out.length - 1]['t'];
-                        time += this.letterspace;
+                        if (!this.prosign) {
+                            time += this.letterspace;
+                        }
+                        else {
+                            time += this.dotlen;
+                        }
                         nc++;
                     }
                 }
                 else {
                     time += this.wordspace;
+                    if (this.ews) {
+                        time += (this.wordspace + this.letterspace) * this.ews;
+                    }
                 }
 
                 // is the prefix over?
@@ -613,10 +698,8 @@
 
         this.setProgressbar = function(pb, l) {
             console.log("setProgressbar");
-            console.log(pb);
             this.progressbar = pb;
             this.progresslabel = l;
-            console.log(this.progressbar);
             window.setInterval(this.progressbarUpdate, 100, this)
         }
 
@@ -848,14 +931,13 @@
             var eff = document.createElement("input"); 
             eff.id = "eff";
             eff.type = "range";
-            eff.min = obj.controls_options["wpm_min"];
-            eff.max = obj.controls_options["wpm_max"];
+            eff.min = obj.controls_options["eff_min"];
+            eff.max = obj.controls_options["eff_max"];
             eff.value = obj.eff;
             eff.step = 1;
             eff.style.display = "inline-block";
             eff.style.verticalAlign = "middle";
             eff.style.width = "150px";
-            eff.style.height = "10px";
             eff.onchange = function () {
                 obj.setEff(this.value);
             }
@@ -875,6 +957,37 @@
             td.appendChild(eff);
             td = tr.insertCell();
             td.appendChild(eff_label);
+
+            // ews
+            var ews = document.createElement("input"); 
+            ews.id = "ews";
+            ews.type = "range";
+            ews.min = obj.controls_options["ews_min"];
+            ews.max = obj.controls_options["ews_max"];
+            ews.value = obj.ews;
+            ews.step = 0.1;
+            ews.style.display = "inline-block";
+            ews.style.verticalAlign = "middle";
+            ews.style.width = "150px";
+            ews.onchange = function () {
+                obj.setEws(this.value);
+            }
+
+            var ews_label = document.createElement("label");
+            ews_label.htmlFor = "ews";
+            ews_label.style.fontSize = "12px";
+            ews_label.innerHTML = "0";
+            
+            obj.control_labels["ews"] = ews_label;
+            obj.control_inputs["ews"] = ews;
+
+            tr = tbl.insertRow();
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode("Word space:"));
+            td = tr.insertCell();
+            td.appendChild(ews);
+            td = tr.insertCell();
+            td.appendChild(ews_label);
 
             // freq
             var freq = document.createElement("input"); 
@@ -906,6 +1019,40 @@
             td.appendChild(freq);
             td = tr.insertCell();
             td.appendChild(freq_label);
+
+            // edge
+            var edge = document.createElement("input"); 
+            edge.id = "edge";
+            edge.type = "range";
+            edge.min = obj.controls_options["edge_min"];
+            edge.max = obj.controls_options["edge_max"];
+            edge.value = obj.edge;
+            edge.step = 1;
+            edge.style.display = "inline-block";
+            edge.style.verticalAlign = "middle";
+            edge.style.width = "150px";
+            edge.onchange = function () {
+                obj.setQ(this.value);
+            }
+
+            var edge_label = document.createElement("label");
+            edge_label.htmlFor = "edge";
+            edge_label.style.fontSize = "12px";
+            edge_label.innerHTML = "10";
+
+            obj.control_labels["edge"] = edge_label;
+            obj.control_inputs["edge"] = edge;
+
+            tr = tbl.insertRow();
+            td = tr.insertCell();
+            td.appendChild(document.createTextNode("Edge:"));
+            td = tr.insertCell();
+            td.appendChild(edge);
+            td = tr.insertCell();
+            td.appendChild(edge_label);
+
+
+
 
             // volume
             var vol = document.createElement("input"); 

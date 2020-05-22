@@ -61,9 +61,3 @@ directory `db`. There are the following tables:
 The code quality of LCWO varies strongly between the different parts, from
 terrible spaghetti code to somewhat structured and modular. Refactoring needed.
 
-### Character set
-
-The whole site is running in the ISO 8859-1 character set. Characters not
-represented in this character set are saved as HTML entities (&#1234;). This is
-obviously a big mess and the whole site should be converted to Unicode (utf-8).
-

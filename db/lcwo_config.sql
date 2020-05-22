@@ -9,7 +9,7 @@ CREATE TABLE `lcwo_config` (
   `val` varchar(64) NOT NULL DEFAULT '',
   PRIMARY KEY (`ID`),
   KEY `key` (`key`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `lcwo_config`

@@ -11,7 +11,7 @@ CREATE TABLE `lcwo_callsignsresults` (
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `valid` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`NR`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_config`
@@ -24,7 +24,7 @@ CREATE TABLE `lcwo_config` (
   `val` varchar(64) NOT NULL DEFAULT '',
   PRIMARY KEY (`ID`),
   KEY `key` (`key`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_groupmembers`
@@ -36,7 +36,7 @@ CREATE TABLE `lcwo_groupmembers` (
   `member` bigint(5) NOT NULL DEFAULT '0',
   KEY `gid` (`gid`),
   KEY `member` (`member`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_grouprequests`
@@ -48,7 +48,7 @@ CREATE TABLE `lcwo_grouprequests` (
   `member` bigint(5) NOT NULL DEFAULT '0',
   KEY `gid` (`gid`),
   KEY `member` (`member`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_groupsresults`
@@ -65,7 +65,7 @@ CREATE TABLE `lcwo_groupsresults` (
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `valid` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`NR`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_groupsubscribe`
@@ -77,7 +77,7 @@ CREATE TABLE `lcwo_groupsubscribe` (
   `member` bigint(5) NOT NULL DEFAULT '0',
   KEY `gid` (`gid`),
   KEY `member` (`member`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_lessonresults`
@@ -94,7 +94,7 @@ CREATE TABLE `lcwo_lessonresults` (
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`NR`),
   KEY `uid` (`uid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_mmresults`
@@ -158,7 +158,7 @@ CREATE TABLE `lcwo_mmresults` (
   `k50` tinyint(3) unsigned NOT NULL DEFAULT '101',
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_news`
@@ -170,7 +170,7 @@ CREATE TABLE `lcwo_news` (
   `date` date NOT NULL DEFAULT '1970-01-01',
   `news` text NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_online`
@@ -181,7 +181,7 @@ CREATE TABLE `lcwo_online` (
   `UID` bigint(5) NOT NULL DEFAULT '0',
   `LASTACTIVE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`UID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_userprefs`
@@ -192,7 +192,7 @@ CREATE TABLE `lcwo_userprefs` (
   `uid` bigint(5) NOT NULL DEFAULT '0',
   `prefs` text NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 --
@@ -208,7 +208,7 @@ CREATE TABLE `lcwo_plaintext` (
   `collid` int(5) NOT NULL DEFAULT '0',
   PRIMARY KEY (`nr`),
   KEY `lang` (`lang`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_plaintextresults`
@@ -223,7 +223,7 @@ CREATE TABLE `lcwo_plaintextresults` (
   `accuracy` float NOT NULL DEFAULT '0',
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`NR`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_pmsg`
@@ -242,7 +242,7 @@ CREATE TABLE `lcwo_pmsg` (
   PRIMARY KEY (`id`),
   KEY `touid` (`touid`),
   KEY `fromuid` (`fromuid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_posts`
@@ -261,7 +261,7 @@ CREATE TABLE `lcwo_posts` (
   `ip` varchar(16) NOT NULL DEFAULT '',
   `approved` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_pwrequests`
@@ -272,7 +272,7 @@ CREATE TABLE `lcwo_pwrequests` (
   `ip` varchar(64) NOT NULL DEFAULT '0.0.0.0',
   `date` date NOT NULL DEFAULT '1970-01-01',
   `username` varchar(64) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_qtcresults`
@@ -287,7 +287,7 @@ CREATE TABLE `lcwo_qtcresults` (
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`NR`),
   KEY `uid` (`uid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_spamips`
@@ -298,7 +298,7 @@ CREATE TABLE `lcwo_spamips` (
   `IP` varchar(16) NOT NULL DEFAULT '127.0.0.1',
   `LASTACTIVE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`IP`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_texts`
@@ -312,7 +312,7 @@ CREATE TABLE `lcwo_texts` (
   `text` text NOT NULL,
   `old` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_usergroups`
@@ -329,7 +329,7 @@ CREATE TABLE `lcwo_usergroups` (
   `lat` float NOT NULL DEFAULT '0',
   `lon` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`gid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_users`
@@ -372,7 +372,7 @@ CREATE TABLE `lcwo_users` (
   `hide` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_words`
@@ -389,7 +389,7 @@ CREATE TABLE `lcwo_words` (
   PRIMARY KEY (`ID`),
   KEY `lang` (`lang`),
   KEY `lesson` (`lesson`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `lcwo_wordsresults`
@@ -404,4 +404,4 @@ CREATE TABLE `lcwo_wordsresults` (
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `valid` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`NR`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

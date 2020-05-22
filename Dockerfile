@@ -4,7 +4,7 @@ MAINTAINER Fabian Kurz <fabian@fkurz.net>
 CMD ["/sbin/my_init"]
 
 RUN apt-get update && apt-get install -y apache2 mysql-server php \
-    libapache2-mod-php php-mysql php-gd exim4 \
+    libapache2-mod-php php-mysql php-gd exim4 php-mbstring \
     # stuff needed to compile ebook2cw \
     build-essential libmp3lame-dev git libvorbis-dev \
     # stuff to work a little more comfortably within the container
@@ -33,11 +33,12 @@ RUN sed -i 's/php_value session.save_path/#/g' /www/.htaccess
 RUN mkdir /www/img/
 RUN chmod a+rwx /www/img/
 
-# install ebook2cw in CGI mode
+# install ebook2cw in CGI mode (utf8)
 RUN mkdir -p /tmp/ebook2cw_build && \
     cd /tmp/ebook2cw_build && \
     git clone https://git.fkurz.net/dj1yfk/ebook2cw && \
     cd ebook2cw && \
+    sed -i "s/cw->encoding = ISO8859;/cw->encoding = UTF8;/g" ebook2cw.c && \
     make cgi && \
     mkdir -p /www/cgi-bin/ && \
     cp cw.cgi /www/cgi-bin/cw.mp3 && \
