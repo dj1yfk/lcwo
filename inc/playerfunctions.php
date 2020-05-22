@@ -104,7 +104,14 @@ JS;
 
         $player = preg_replace("/pv/", "pv".$mnr, $player);
 
-        echo $player;
+        # we abuse the unused $layout variable to allow returning instead of
+        # printing the player
+        if ($layout == "return") {
+            return $player;
+        }
+        else {
+            echo $player;
+        }
 
     break;
 

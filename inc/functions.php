@@ -1246,67 +1246,18 @@ function bb2html ($text) {
                 }
             }
 
-            $text = mb_strtolower(rawurlencode(strip_tags($m[count($m) - 1])));
+            $text = mb_strtolower(strip_tags($m[count($m) - 1]));
             $params['text'] = $text;
-
-            if ($params['ews']) {
-                $text = " ".rawurlencode("|W").$params['ews']." ".$text;
-            }
 
             $id = rand(1, 1000000);
 
-            $query = "s=".$params['speed']."&e=".$params['eff']."&f=".$params['freq']."&t=".$text;
-
-            $ret = "<table class='quoted'><tr><td><audio id='player_$id' controls src=\"".CGIURL()."/cw.mp3?$query\" type='audio/mpeg; codecs=\"mp3\"'></audio></td>\n";
+            $vvv = $_SESSION['vvv'];
+            $_SESSION['vvv'] = 0;
+            return player($text, PL_JSCWLIB, $params['speed'], $params['eff'], 0 , $id, 'return', 1);
+            $_SESSION['vvv'] = $vvv; # :-/
             
-            $ret .= "<td>".l('charspeed').': <select onChange="change_params_'.$id.'();" id="s'.$id.'" size="1">';
-            for ($i = 5; $i < 100; $i++) {
-                $selected = ($i == $params['speed']) ? " selected" : "";
-                $ret .= "<option$selected>$i</option>\n";
-            }
-            $ret .= "</select>";
 
-            $ret .= "<td>".l('effspeed').': <select onChange="change_params_'.$id.'();" id="e'.$id.'" size="1">';
-            for ($i = 5; $i < 100; $i++) {
-                $selected = ($i == $params['eff']) ? " selected" : "";
-                $ret .= "<option$selected>$i</option>\n";
-            }
-            $ret .= "</select>";
-
-            $ret .= "<td>".l('tone').': <select onChange="change_params_'.$id.'();" id="f'.$id.'" size="1">';
-            for ($i = 300; $i < 1500; $i += 20) {
-                $selected = ($i == $params['freq']) ? " selected" : "";
-                $ret .= "<option$selected>$i</option>\n";
-            }
-            $ret .= "</select>";
-
-            $ret .= "<td>".l('ewslong').': <select onChange="change_params_'.$id.'();" id="w'.$id.'" size="1">';
-            for ($i = 0; $i <= 10; $i++) {
-                $selected = ($i == $params['ews']) ? " selected" : "";
-                $ret .= "<option$selected>$i</option>\n";
-            }
-            $ret .= "</select>";
-           
-            $ret .=" </tr></table>\n";
-
-            $script = "<script>
-                function change_params_ID () {
-                    var param_ID = ".json_encode($params).";
-                    param_ID['speed'] = document.getElementById('sID').value;
-                    param_ID['eff'] = document.getElementById('eID').value;
-                    param_ID['freq'] = document.getElementById('fID').value;
-                    param_ID['ews'] = document.getElementById('wID').value;
-                    var p_ID = document.getElementById('player_ID');
-                    p_ID.src = '".CGIURL()."/cw.mp3?s=' + param_ID['speed'] + '&e=' + param_ID['eff'] + '&f=' + param_ID['freq'] + '&t= |W' + param_ID['ews'] + ' ' + param_ID['text'];
-                }
-                </script>";
-
-            $script = preg_replace('/ID/', $id, $script);
-
-            $ret .= $script;
-
-            return $ret;
-            }
+       }
     , $text);
 
     return $text;	
