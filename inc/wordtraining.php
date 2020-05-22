@@ -647,7 +647,7 @@ echo "<tr>
 
 <?
 	$mode = $_SESSION['player'];
-    player("", $mode, 99, 99, 1, 1,0,0);
+    player("", $mode, $speed, $speed, 1, 1,0,0);
 
 }
 else {
