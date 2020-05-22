@@ -11,10 +11,27 @@
 <input type="submit" value="Clear" onclick="document.getElementById('jskey').innerHTML = '&nbsp;';return false;">
 </form>
 
-<audio id="player">
-<source src="/misc/tut.ogg" type='audio/ogg; codecs="vorbis"'>
-<source src="/misc/tut.mp3" type='audio/mpeg; codecs="mp3"'>
-</audio>
+<script>
+var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+var oscillator = audioCtx.createOscillator();
+var biquadFilter = audioCtx.createBiquadFilter();
+var gainNode = audioCtx.createGain();
+biquadFilter.type = "lowpass";
+biquadFilter.frequency.setValueAtTime(600, audioCtx.currentTime);
+biquadFilter.Q.setValueAtTime(15, audioCtx.currentTime);
+
+oscillator.type = 'sine';
+oscillator.frequency.setValueAtTime(600, audioCtx.currentTime); // value in hertz
+
+oscillator.connect(gainNode);
+gainNode.connect(biquadFilter);
+biquadFilter.connect(audioCtx.destination);
+
+oscillator.start();
+
+gainNode.gain.value = 0;
+
+</script>
 
 
 <div id="speed">Speed: 8WpM
@@ -37,7 +54,6 @@ Morse chat function here on LCWO.net.</p>
 	var idletime = new Date().getTime();
 	var keydown = 0;
 	var sent = 0;
-	var p = document.getElementById('player');
 	var queue = new Queue();
 
 	var code = new Array();
@@ -71,18 +87,16 @@ Morse chat function here on LCWO.net.</p>
 
 	function down () {
 		time = new Date().getTime();
-//		queue.addspace(time-idletime);
 		checkspace();
 		keydown = 1;
-		p.play();
+        gainNode.gain.value = 0.1;
 	}
 
 
 	function up () {
 		keydown = 0;
-		p.pause();
+        gainNode.gain.value = 0.0;
 		time = new Date().getTime() - time;
-//		queue.addmark(time);
 		if (time > dotlength) {
 			element = "-";
 			avgdash = (avgdash + time)/2;
@@ -103,7 +117,6 @@ Morse chat function here on LCWO.net.</p>
 
 		if (diff > 1000) {
 			if (queue.getlength() > 0) {
-			//	append(queue.purge(), 'log');
 				submittext(queue.purge(), Math.round(effspeed));
 			}
 		}
