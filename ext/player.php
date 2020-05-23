@@ -32,7 +32,7 @@ include('../inc/playerfunctions.php');
 if (!$t) { $t = "Hallo"; }
 if (!$e) { $e = 20; }
 if (!$s) { $s = 20; }
-if (!is_int($_SESSION[cw_tone])) { $_SESSION[cw_tone] = 600; }
+if (!is_int($_SESSION['cw_tone'])) { $_SESSION['cw_tone'] = 600; }
 
 $_SESSION['vvv']= 0;
 $_SESSION['delay_start']= 0;

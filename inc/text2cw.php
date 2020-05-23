@@ -31,7 +31,6 @@ function text2cw () {
 <?	
 	echo "<h2>".l('yourtext')."</h2>";
 	echo "<p class=\"tborder\">".htmlspecialchars($text)."</p>";
-    echo "<!-- $text -->";
 
 	echo "<h2>".l('cwplayeranddownload')."</h2>";
 
@@ -47,8 +46,8 @@ function text2cw () {
 	/* shitty global */
 	$_SESSION['cw_tone'] = intval($_POST['freq']);
 
-	// default: HTML5
-	player($t, isset($_SESSION['player']) ?  $_SESSION['player'] : 3, $s, $e, 0, 1, 0,1); 
+	// default: JSCWLIB 1
+	player($t, isset($_SESSION['player']) ?  $_SESSION['player'] : 1, $s, $e, 0, 1, 0,1); 
 ?>
 
     <script>
@@ -67,23 +66,24 @@ function text2cw () {
 
 <p><?=l('includeplayertext');?></p>
 
-<form>
-	<?=l('flashplayer');?>:<br>
-	<textarea cols="40" rows="5"><?
-		include('inc/text2cw-flash.php');
-		echo $flashcode;
-	?></textarea><br><br>
-	<?=l('html5player');?>:<br>
-	<textarea cols="40" rows="5"><?
-		include('inc/text2cw-html5.php');
-		echo $html5code;
-		?></textarea><br><br><?
-		$url = BASEURL."/ext/player?z=";
-		$code = urlencode(base64_encode($s."~~".$e."~~".$f."~~".$t));
-		echo l('playerdirectlink')."<br><a href='".$url.$code."'>".$url.$code."</a>";
+<textarea cols=70 rows=10>
+<script src="https://lcwo.net/js/jscwlib.js"></script>
+<div id="player"></div>  
+<script>
+    var m = new jscw();
+    m.setWpm(<?=$s;?>);
+    m.setEff(<?=$e;?>);
+    m.setFreq(<?=$f;?>);
+    m.setText("<?=$t;?>");
+    m.renderPlayer('player', m);
+</script>
+</textarea>
+<br>
+<?
+    $url = BASEURL."/ext/player?z=";
+    $code = urlencode(base64_encode($s."~~".$e."~~".$f."~~".$t));
+    echo l('playerdirectlink')." (iFrame)<br><a href='".$url.$code."'>".$url.$code."</a>";
 ?>
-</form>
-
 </td>
 </tr>
 </table>
