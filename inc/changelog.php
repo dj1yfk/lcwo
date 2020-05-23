@@ -6,11 +6,16 @@ developer's own reference, but it's public so everyone can see what is going
 on behind the scenes at LCWO. Some things may not make much sense to anyone but
 the author. 
 
+Even more fine grained changes can be observed in the git repository:
+<a href="https://git.fkurz.net/dj1yfk/lcwo">https://git.fkurz.net/dj1yfk/lcwo</a>
+
 Started on 2009-02-08.
 
 2020-05-23:
     * The site now internally uses the utf8 character encoding.
     * Added French proverbs to plain text training (tnx SolarMax)
+    * Link to MP3 file under player: Results in download, doesn't play
+      file in browser
 
 2020-05-10:
     * Include experimental sound generation with jscwlib.

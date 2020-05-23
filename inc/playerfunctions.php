@@ -189,8 +189,7 @@ JS;
 	
 
  	if (!$autostart and $layout == 0) {	 
-		echo "<br> <a onMouseover=\"top.status='';return true;\"
-		href=\"".$cgi_mp3.$url_encoded.'">'.l('linktomp3file').'</a>
+		echo "<br> <a href=\"".$cgi_mp3."?d=001&".substr($url_encoded, 1).'">'.l('linktomp3file').'</a>
 		';
 	}
 
@@ -234,7 +233,7 @@ JS;
 					"dashed; text-align:center;padding:2px\"><br>";
 			echo $playerhtml;
 			echo "<br><br><p>$buttonhtml</p>";
-			echo "<br><a href=\"".$cgi_mp3.$url_encoded.'">'.l('linktomp3file').'</a>
+			echo "<br><a href=\"".$cgi_mp3."?d=001&".substr($url_encoded, 1).'">'.l('linktomp3file').'</a>
 		';
 		}
 		else if ($layout == 3) {	/* no controls and stuff */

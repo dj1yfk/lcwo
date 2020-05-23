@@ -116,7 +116,8 @@
 
                 this.oscillator = this.audioCtx.createOscillator();
                 this.biquadFilter = this.audioCtx.createBiquadFilter();
-                this.noiseFilter = this.audioCtx.createBiquadFilter();
+                this.noiseFilterL = this.audioCtx.createBiquadFilter();
+                this.noiseFilterH = this.audioCtx.createBiquadFilter();
                 this.whiteNoise = this.audioCtx.createBufferSource();
 
                 this.analyser = this.audioCtx.createAnalyser();
@@ -124,23 +125,28 @@
                 this.bufferLength = this.analyser.frequencyBinCount;
                 this.dataArray = new Uint8Array(this.bufferLength);
 
-                this.noiseFilter.type = "bandpass";
-                this.noiseFilter.frequency.setValueAtTime(600, this.audioCtx.currentTime);
-                this.noiseFilter.Q.setValueAtTime(20, this.audioCtx.currentTime);
+                this.noiseFilterL.type = "lowpass";
+                this.noiseFilterL.frequency.setValueAtTime(400, this.audioCtx.currentTime);
+                this.noiseFilterL.Q.setValueAtTime(20, this.audioCtx.currentTime);
+
+                this.noiseFilterH.type = "highpass";
+                this.noiseFilterH.frequency.setValueAtTime(700, this.audioCtx.currentTime);
+                this.noiseFilterH.Q.setValueAtTime(20, this.audioCtx.currentTime);
 
                 var bufferSize = 2 * this.audioCtx.sampleRate;
                 var noiseBuffer = this.audioCtx.createBuffer(1, bufferSize, this.audioCtx.sampleRate);
                 var noise = noiseBuffer.getChannelData(0);
                 for (var i = 0; i < bufferSize; i++) {
-                        noise[i] = Math.random() * 2 - 1;
+                        noise[i] = Math.random()*0.5 - 1;
                 }
 
                 this.whiteNoise.buffer = noiseBuffer;
                 this.whiteNoise.loop = true;
-                //this.whiteNoise.start(0);
-                this.whiteNoise.connect(this.noiseFilter);
+//                this.whiteNoise.start(0);
+                this.whiteNoise.connect(this.noiseFilterL);
 
-                this.noiseFilter.connect(this.audioCtx.destination);
+                this.noiseFilterL.connect(this.noiseFilterH);
+                this.noiseFilterH.connect(this.audioCtx.destination);
 
                 this.biquadFilter.type = "lowpass";
                 this.biquadFilter.frequency.setValueAtTime(500, this.audioCtx.currentTime);
@@ -446,7 +452,7 @@
         this.setText = function(text) {
             this.text = text.toLowerCase();
             if (this.btn_down) {
-                this.btn_down.href = this.cgiurl + "cw.mp3?s=" + this.wpm + "&e=" + this.eff + "&f=" + this.freq + "&t=|W" + this.ews + " " + this.text + "%20%20%20%20%5E";
+                this.btn_down.href = this.cgiurl + "cw.mp3?d=001&s=" + this.wpm + "&e=" + this.eff + "&f=" + this.freq + "&t=|W" + this.ews + " " + this.text + "%20%20%20%20%5E";
                 this.btn_down.download = "cw.mp3";
             }
         }
@@ -506,6 +512,7 @@
                 this.wpm = wpm_set;
                 this.eff = eff_set;
                 this.real = true;
+                this.updateControls();
             }
 
             var out = ret["timings"];
