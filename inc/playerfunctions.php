@@ -106,7 +106,7 @@ JS;
 
         # we abuse the unused $layout variable to allow returning instead of
         # printing the player
-        if ($layout == "return") {
+        if ($layout && $layout == "return") {
             return $player;
         }
         else {
