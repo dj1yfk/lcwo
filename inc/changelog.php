@@ -10,6 +10,7 @@ Started on 2009-02-08.
 
 2020-05-23:
     * The site now internally uses the utf8 character encoding.
+    * Added French proverbs to plain text training (tnx SolarMax)
 
 2020-05-10:
     * Include experimental sound generation with jscwlib.
