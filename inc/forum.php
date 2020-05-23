@@ -160,7 +160,7 @@ if (!$deleted && file_exists("img/userimage".$m->uid.".jpg")) {
 }
 		echo "<br><br>".l('posted').": ".(da($m->time));
 		if (($m->uid == $_SESSION['uid']) && ($_SESSION['uid'] != TESTUSER) && ($_SESSION['forum_whitelist'] == 1)) {
-			echo " - <a href=\"/forum/edit/$m->id\">".l(edit)."</a>";
+			echo " - <a href=\"/forum/edit/$m->id\">".l('edit')."</a>";
 		}
 		elseif ($_SESSION['uid']) {
 			echo " - <a onClick='quote($m->id);return false;' href=\"#\">".l('quote')."</a>";
@@ -462,10 +462,9 @@ global $db;
 
 
 if (!$_SESSION['uid']) {
-	echo "<p>".l(mustbeloggedin)."</p>";
+	echo "<p>".l('mustbeloggedin')."</p>";
 }
 
 
 ?>
-<div class="vcsid">$Id: forum.php 62 2015-01-12 17:34:44Z fabian $</div>
 

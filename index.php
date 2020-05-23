@@ -1,4 +1,5 @@
 <?
+error_reporting(0);
 header("Content-Type: text/html; charset=utf-8");
 ini_set("session.gc_maxlifetime",43200);
 session_start();

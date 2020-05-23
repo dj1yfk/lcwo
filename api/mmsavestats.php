@@ -6,7 +6,7 @@
 	header("Pragma: no-cache");
 
 	
-	$uid = $_SESSION[uid];
+	$uid = $_SESSION['uid'];
 	if (!$uid) {
 		echo "<b>You need to be logged in!</b>";
 		exit();
@@ -34,7 +34,7 @@
 	$query = mysqli_query($db,"$update");
 
 	if ($query) {
-		echo "<b>Stats saved (".$_POST[count].").</b>";
+		echo "<b>Stats saved (".$_POST['count'].").</b>";
 	}	
 
 
