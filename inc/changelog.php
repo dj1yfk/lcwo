@@ -8,6 +8,9 @@ the author.
 
 Started on 2009-02-08.
 
+2020-05-23:
+    * The site now internally uses the utf8 character encoding.
+
 2020-05-10:
     * Include experimental sound generation with jscwlib.
     * Allow selecting REAL characters for code groups (instead of PARIS)
