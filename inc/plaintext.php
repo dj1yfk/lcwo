@@ -106,8 +106,8 @@ function checktext () {
 	echo "<table><tr><th>".l('sent')."</th><td>".$txtext."</td></tr>";
 	echo "<tr><th>".l('received')."</th><td>".$input."</td></tr></table>";
 
-	$txtext = simplify($slang, mb_strtlower($txtext));
-	$input = simplify($slang, mb_strtlower($input));
+	$txtext = simplify($slang, mb_strtolower($txtext));
+	$input = simplify($slang, mb_strtolower($input));
 
 	$input = preg_replace("/[ ]+/", ' ', $input); 
 	$input = preg_replace("/^ /", '', $input); 
