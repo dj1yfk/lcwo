@@ -86,7 +86,7 @@ function sendmail () {
 			.$_POST['text']."\n\nSpam: ".$spam.
 			"\n\nFrom:".getenv("REMOTE_ADDR")."\n\n",
 					"From: LCWO Robot <".ADMINMAIL.">\r\nReply-To: ".$_POST['email']."\r\n".
-					"Content-Type: text/plain; charset=iso-8859-1\r\n".
+					"Content-Type: text/plain; charset=utf8\r\n".
 					"Content-Transfer-Encoding: 8bit");
 }
 
