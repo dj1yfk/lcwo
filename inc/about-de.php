@@ -70,16 +70,7 @@ href="http://www.eham.net/links/rating/10889">Link-Liste</a> von eHam geführt.<
 
 <h2>Technisches, Kompatibilität</h2>
 
-<p>Alle modernen Browser, insbesondere die letzten beiden Generationen von
-of <a href="http://www.firefox.com/">Mozilla Firefox</a> und des Microsoft
-Internet Explorer werden unterstützt. Ebenso funktioniert LCWO mit <a
-href="http://www.opera.com/">Opera</a> and Apple <a
-href="http://www.apple.com/safari/">Safari</a> in aktuellen Versionen (auch auf iPhone/iPad).</p>
-
-<p>Um alle Funktionen voll nutzen zu können, muss JavaScript aktiviert sein
-und entweder ein Browser mit <a href="http://en.wikipedia.org/wiki/HTML5">HTML5</a>-Unterstützung verwendet werden, oder der 
-<a href="http://www.adobe.com/de/products/flashplayer/">Flash
-Player</a> muss installiert sein.</p>
+<p>Alle modernen Browser (Firefox, Chromium, Safari, Edge) werden unterstützt.</p>
 
 <p>Die Entwicklungsumgebung von LCWO ist <a
 href="http://www.debian.org/">Debian GNU/Linux</a> und <a
@@ -88,8 +79,9 @@ genialen Editor <a href="http://www.vim.org/">vim</a>. Die Seite
 läuft auf einem <a href="http://www.apache.org/">Apache</a>
 Webserver und ist weitestgehend in <a href="http://www.php.net/">PHP</a> 
 programmiert (ohne Frameworks, alles selbstgebaut); im Hintergrund
-arbeitet eine <a href="http://www.mysql.com/">MySQL</a>-Datenbank. Die Morse
-MP3- und OGG-Dateien werden von speziell angepassten Versionen von <a
+arbeitet eine <a href="http://www.mysql.com/">MySQL</a>-Datenbank. Der Morsecode wird direkt im Browser mittels der <a href="https://fkurz.net/ham/jscwlib.html">jscwlib</a> erzeugt. Die Morse
+MP3-Dateien zum Download werden von speziell angepassten Versionen von <a
 href="http://fkurz.net/ham/ebook2cw.html">ebook2cw</a> erzeugt, die
 als kompilierte CGIs (geschrieben in C) laufen.</p>
 
+<p>Der Quellcode von LCWO ist frei verfügbar unter <a href="https://git.fkurz.net/dj1yfk/lcwo">https://git.fkurz.net/dj1yfk/lcwo</a>.</p>

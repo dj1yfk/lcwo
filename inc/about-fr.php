@@ -83,10 +83,9 @@ N&rsquo;hésitez pas à utiliser le texte suivant de promotion de LCWO pour votr
 <p>LCWO supporte la plupart des navigateurs modernes, en particulier les
 deux dernières générations de
 <a href="http://www.firefox.com/">Mozilla Firefox</a>
-et de Microsoft Internet Explorer. Il a été signalé comme étant compatible
+et de Google Chrome. Il a été signalé comme étant compatible
 avec 
-<a
-href="http://www.opera.com/">Opera</a> et <a
+<a href="http://www.opera.com/">Opera</a> et <a
 href="http://www.apple.com/safari/">Safari</a> d&rsquo;Apple.</p>
 
 <p>Pour profiter de toutes les fonctionnalités de LCWO, JavaScript doit
@@ -111,7 +110,4 @@ Les fichiers CW en MP3 et les fichiers OGG sont générés à partir de versions
 qui tournent comme des CGI compilées, écrites en C.
 </p>
 
-
-
-
-
+<p>Sources: <a href="https://git.fkurz.net/dj1yfk/lcwo">https://git.fkurz.net/dj1yfk/lcwo</a>.</p>
