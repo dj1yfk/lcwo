@@ -57,6 +57,21 @@ function text2cw () {
     }
     </script>
 
+<?
+    # separate download link for JSCWLIB player because not everyone
+    # understands the download symbol
+    if (!isset($_SESSION['player']) or ($_SESSION['player'] == 1)) {
+?>
+    <div id="downloadlink"></div>
+    <script>
+        var dl = document.getElementById("downloadlink");
+        dl.innerHTML = "<a href='" + pa[1].btn_down.href + "'>Download MP3</a>";
+    </script>
+<?
+    }
+
+?>
+
 </td>
 <td width="8%" valign="top">
 &nbsp;
@@ -82,7 +97,7 @@ function text2cw () {
 <?
     $url = BASEURL."/ext/player?z=";
     $code = urlencode(base64_encode($s."~~".$e."~~".$f."~~".$t));
-    echo l('playerdirectlink')." (iFrame)<br><a href='".$url.$code."'>".$url.$code."</a>";
+    echo "<a href='".$url.$code."'>".l('playerdirectlink')."</a>";
 ?>
 </td>
 </tr>

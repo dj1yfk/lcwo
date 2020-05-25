@@ -77,6 +77,7 @@ switch ($mode) {
     }
 
     var pv = new jscw();
+    pv.renderPlayer("pv", pv);
     pv.setText("$text");
     pv.setWpm($speed);
     pv.setEff($eff);
@@ -84,7 +85,6 @@ switch ($mode) {
     pv.setPrefix("vvv = ");
     pv.enablePS($prefix);
     pv.setStartDelay($dly);
-    pv.renderPlayer("pv", pv);
     pv.onPlay = function () { if(tmp=document.getElementById('eform')){tmp.input.focus();} };
 
     pa[$mnr] = pv;
