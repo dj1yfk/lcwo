@@ -171,7 +171,7 @@ if (isset($_POST['text']))  {
     $paris = $_SESSION['cw_eff'];
 
     // jscwlib: we get the length and PARIS speed from the player
-    if (is_numeric($_POST['length']) and $_POST['length'] > 0 and is_numeric($_POST['paris'])) {
+    if (is_numeric($_POST['length']) and $_POST['length'] > 0 and is_numeric($_POST['paris']) and $_POST['paris'] > 0) {
         $text = stripcommands($_POST['text']);
         $text = preg_replace("/\s/", "", $text);
         $sec = $_POST['length']+0;
