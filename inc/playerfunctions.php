@@ -57,6 +57,7 @@ switch ($mode) {
 
         $prefix = $_SESSION['vvv'] ? true : false;
         $dly = $_SESSION['delay_start'];
+        $ews = $_SESSION['cw_ews'];
 
         $text = str_replace('\\', '', $text);
         $text = str_replace('"', '\"', $text);
@@ -81,6 +82,7 @@ switch ($mode) {
     pv.setText("$text");
     pv.setWpm($speed);
     pv.setEff($eff);
+    pv.setEws($ews);
     pv.setFreq($cw_tone);
     pv.setPrefix("vvv = ");
     pv.enablePS($prefix);
