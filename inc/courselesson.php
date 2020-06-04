@@ -276,6 +276,7 @@ else {
 	&nbsp;
 
 <? 
+
 if ($_SESSION['player'] != PL_JSCWLIB) {
     $playertext = "|W".$_SESSION['cw_ews']." ".$text;
     if ($_SESSION['delay_start'] > 0) {
@@ -338,13 +339,15 @@ function keypressed(e) {
 }
 
 // disable vvv and start delay in preview players
-if (pa[1]) {
-    pa[1].enablePS(false);
-    pa[1].setStartDelay(0.1);
-}
-if (pa[2]) {
-    pa[2].enablePS(false);
-    pa[2].setStartDelay(0.1);
+if (typeof pa !== 'undefined') {
+    if (pa[1]) {
+        pa[1].enablePS(false);
+        pa[1].setStartDelay(0.1);
+    }
+    if (pa[2]) {
+        pa[2].enablePS(false);
+        pa[2].setStartDelay(0.1);
+    }
 }
 </script>
 
