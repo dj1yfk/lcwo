@@ -3,11 +3,13 @@
 include($_SERVER['DOCUMENT_ROOT']."/inc/definitions.php");
 include($_SERVER['DOCUMENT_ROOT']."/inc/connectdb.php");
 
-# Finding new posts older than 1h but not older than 2h
+$hrs = 1;
+
+# Finding new posts between $hrs and $hrs-1 
 $query = mysqli_query($db,"select * from lcwo_posts where approved = 0 and 
-		(time < (NOW() - INTERVAL 60 MINUTE))
+		(time < (NOW() - INTERVAL ".(1+($hrs-1)*60)." MINUTE))
 		and
-		(time > (NOW() - INTERVAL 120 MINUTE))");
+		(time > (NOW() - INTERVAL ".($hrs*60)." MINUTE))");
 
 $mailtext = "User \tTopic\n===========================================\n";
 while ($d = mysqli_fetch_object($query)) {
@@ -16,7 +18,7 @@ while ($d = mysqli_fetch_object($query)) {
 }
 
 if ($count > 0) {
-	mail (ADMINMAIL, "New posts at LCWO for moderation", "http://lcwo.net/moderation\n\n$mailtext",
+	mail (ADMINMAIL, "New posts at LCWO for moderation", BASEURL."/moderation\n\n$mailtext",
 			"From: LCWO Robot <".ADMINMAIL.">");
 }
 
@@ -34,8 +36,7 @@ function uid2name ($uid) {
 function uid2email ($uid) {
     global $db;
     $uid = intval($uid);
-    $getuname = mysqli_query($db,"SELECT `email`  from
-    lcwo_users where `ID`='$uid';");
+    $getuname = mysqli_query($db,"SELECT `email`  from lcwo_users where `ID`='$uid';");
     if (!$getuname) {
         return false;
     }
@@ -46,8 +47,7 @@ function uid2email ($uid) {
 function forumid2name ($id) {
     global $db;
     $uid = intval($id);
-    $getname = mysqli_query($db,"SELECT `groupname`  from
-    lcwo_usergroups where `GID`='$id';");
+    $getname = mysqli_query($db,"SELECT `groupname`  from lcwo_usergroups where `GID`='$id';");
     if (!$getname) {
         return "unknown";
     }
