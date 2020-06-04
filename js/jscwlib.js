@@ -1,4 +1,4 @@
-    function jscw () {
+    function jscw (params) {
 
         var download_svg = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4LjciIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCA4LjcgMTAiPjxwYXRoIHN0eWxlPSJzdHJva2U6IzAwMDtzdHJva2Utd2lkdGg6MC4yNnB4OyIgZD0ibSA0LjQsMi41IHYgNC43IGwgMS42LC0xLjYgdiAwLjMgbCAtMS42NywxLjY3IC0xLjY3LC0xLjY3IHYgLTAuMyBsIDEuNTYsMS42IDAsLTQuNyB6IiAvPjxwYXRoIHN0eWxlPSJzdHJva2U6IzAwMDtzdHJva2Utd2lkdGg6MC40OyIgZD0iTSAyLjUsOCBIIDYuMSIgLz48L3N2Zz4K";
         var play_svg = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgdmlld0JveD0iMCAwIDEwIDEwIj48cGF0aCBkPSJNMyAyIEwzIDggTDcgNSBaIiBzdHlsZT0iZmlsbDojZmZmO3N0cm9rZS13aWR0aDowLjM7c3Ryb2tlOiMwMDA7c3Ryb2tlLWxpbmVqb2luOmJldmVsOyIvPjwvc3ZnPgo=";
@@ -51,8 +51,98 @@
             "ѓ": "--. .---", "є": ".", "ѕ": "-.. --..", "і": "..",
             "ї": "..", "ј": ".---", "љ": ".-.. .---", "њ": "-. .---",
             "ћ": "-.-.", "ќ": "-.- .---", "ѝ": "..", "ў": "..-", "џ": "-.. --..",
+            /* Japanese, tnx JE1TRV */
+            /* KataKana    HiraGana */
+            "イ": ".-",    "い": ".-",     /* i  */
+            "ロ": ".-.-",  "ろ": ".-.-",   /* ro */
+            "ハ": "-...",  "は": "-...",   /* ha */
+            "ニ": "-.-.",  "に": "-.-.",   /* ni */
+            "ホ": "-..",   "ほ": "-..",    /* ho */
+            "ヘ": ".",     "へ": ".",      /* he */
+            "ト": "..-..", "と": "..-..",  /* to */
+            "チ": "..-.",  "ち": "..-.",   /* ti */
+            "リ": "--.",   "り": "--.",    /* ri */
+            "ヌ": "....",  "ぬ": "....",   /* nu */
+            "ル": "-.--.", "る": "-.--.",  /* ru */
+            "ヲ": ".---",  "を": ".---",   /* wo */
+            "ワ": "-.-",   "わ": "-.-",    /* wa */
+            "カ": ".-..",  "か": ".-..",   /* ka */
+            "ヨ": "--",    "よ": "--",     /* yo */
+            "ョ": "--",    "ょ": "--",     /* yo (small) */
+            "タ": "-.",    "た": "-.",     /* ta */
+            "レ": "---",   "れ": "---",    /* re */
+            "ソ": "---.",  "そ": "---.",   /* so */
+            "ツ": ".--.",  "つ": ".--.",   /* tu */
+            "ッ": ".--.",  "っ": ".--.",   /* tu (small) */
+            "ネ": "--.-",  "ね": "--.-",   /* ne */
+            "ナ": ".-.",   "な": ".-.",    /* na */
+            "ラ": "...",   "ら": "...",    /* ra */
+            "ム": "-",     "む": "-",      /* mu */
+            "ウ": "..-",   "う": "..-",    /* u  */
+            "ヰ": ".-..-", "ゐ": ".-..-",  /* yi */
+            "ノ": "..--",  "の": "..--",   /* no */
+            "オ": ".-...", "お": ".-...",  /* o  */
+            "ク": "...-",  "く": "...-",   /* ku */
+            "ヤ": ".--",   "や": ".--",    /* ya */
+            "ャ": ".--",   "ゃ": ".--",    /* ya (small) */
+            "マ": "-..-",  "ま": "-..-",   /* ma */
+            "ケ": "-.--",  "け": "-.--",   /* ke */
+            "フ": "--..",  "ふ": "--..",   /* fu */
+            "コ": "----",  "こ": "----",   /* ko */
+            "エ": "-.---", "え": "-.---",  /* e  */
+            "テ": ".-.--", "て": ".-.--",  /* te */
+            "ア": "--.--", "あ": "--.--",  /* a  */
+            "サ": "-.-.-", "さ": "-.-.-",  /* sa */
+            "キ": "-.-..", "き": "-.-..",  /* ki */
+            "ユ": "-..--", "ゆ": "-..--",  /* yu */
+            "ュ": "-..--", "ゅ": "-..--",  /* yu (small) */
+            "メ": "-...-", "め": "-...-",  /* me */
+            "ミ": "..-.-", "み": "..-.-",  /* mi */
+            "シ": "--.-.", "し": "--.-.",  /* si */
+            "ヱ": ".--..", "ゑ": ".--..",  /* ye */
+            "ヒ": "--..-", "ひ": "--..-",  /* hi */
+            "モ": "-..-.", "も": "-..-.",  /* mo */
+            "セ": ".---.", "せ": ".---.",  /* se */
+            "ス": "---.-", "す": "---.-",  /* su */
+            "ン": ".-.-.", "ん": ".-.-.",  /* n  */
+            /* characters with turbidity suffix */
+            "゛": "..",                    /* "  */
+            "ガ": ".-.. ..",     "が": ".-.. ..",    /* ga */
+            "ギ": "-.-.. ..",    "ぎ": "-.-.. ..",   /* gi */
+            "グ": "...- ..",     "ぐ": "...- ..",    /* gu */
+            "ゲ": "-.-- ..",     "げ": "-.-- ..",    /* ge */
+            "ゴ": "---- ..",     "ご": "---- ..",    /* go */
+            "ザ": "-.-.- ..",    "ざ": "-.-.- ..",   /* za */
+            "ジ": "--.-. ..",    "じ": "--.-. ..",   /* zi */
+            "ズ": "---.- ..",    "ず": "---.- ..",   /* zu */
+            "ゼ": ".---. ..",    "ぜ": ".---. ..",   /* ze */
+            "ゾ": "---. ..",     "ぞ": "---. ..",    /* zo */
+            "ダ": "-. ..",       "だ": "-. ..",      /* da */
+            "ヂ": "..-. ..",     "ぢ": "..-. ..",    /* di */
+            "ヅ": ".--. ..",     "づ": ".--. ..",    /* du */
+            "デ": ".-.-- ..",    "で": ".-.-- ..",   /* de */
+            "ド": "..-.. ..",    "ど": "..-.. ..",   /* do */
+            "バ": "-... ..",     "ば": "-... ..",    /* ba */
+            "ビ": "--..- ..",    "び": "--..- ..",   /* bi */
+            "ブ": "--.. ..",     "ぶ": "--.. ..",    /* bu */
+            "ベ": ". ..",        "べ": ". ..",       /* be */
+            "ボ": "-.. ..",      "ぼ": "-.. ..",     /* bo */
+            /* characters with semi-turbidity suffix */
+            "゜": "..--.",                 /* *  */
+            "パ": "-... ..--.",  "ぱ": "-... ..--.", /* pa */
+            "ピ": "--..- ..--.", "ぴ": "--..- ..--.",/* pi */
+            "プ": "--.. ..--.",  "ぷ": "--.. ..--.", /* pu */
+            "ペ": ". ..--.",     "ぺ": ". ..--.",    /* pe */
+            "ポ": "-.. ..--.",   "ぽ": "-.. ..--.",  /* po */
+
+            "－": ".--.-",                 /* -  */
+            "ー": ".--.-",                 /* -  */
+            "（": "-.--.-",                /* (  */
+            "）": ".-..-.",                /* )  */
+            "、": ".-.-.-",                /* .  */
+            "」": ".-.-..",                /* \n */
             " ":" " };
-        var el_len = { ".": 1, "-": 3, " ": 4 };
+        var el_len = { ".": 1, "-": 3, " ": 1 };
 
         this.controls_options = {
             "wpm_min": 5, "wpm_max": 50, 
@@ -92,6 +182,14 @@
         this.showSettings = false;
         this.startDelay = 0;    // delay in seconds before audio starts
         this.prosign = false;   // we're within a prosign (no letter spaces)
+
+        // override with values passed to the constructor
+        if (params) {
+            for (var p in params) {
+                this[p] = params[p];
+            }
+        }
+
 
         try {
     	    this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -328,6 +426,8 @@
             if (this.control_labels["vol"]) {
                 this.control_labels["vol"].innerHTML = Math.round(this.playvolume * 100) + "&nbsp;%";
             }
+
+            this.refresh_download_link();
         } 
 
         this.enableControls = function (obj, b) {
@@ -450,10 +550,14 @@
         }
 
         this.setText = function(text) {
+            text = text.replace(/\|W/g, "|z");
             this.text = text.toLowerCase();
+            this.refresh_download_link();
+        }
+
+        this.refresh_download_link = function() {
             if (this.btn_down) {
                 this.btn_down.href = this.cgiurl + "cw.mp3?d=001&s=" + this.wpm + "&e=" + this.eff + "&f=" + this.freq + "&t=|W" + this.ews + " " + this.text + "%20%20%20%20%5E";
-                this.btn_down.download = "cw.mp3";
             }
         }
 
@@ -479,6 +583,14 @@
                 console.log(this.player);
                 return;
             }    
+
+            /*
+             * ugly: in ebook2cw we use |Wx to set the extra word spacing. Here
+             * we convert everything to lowercase so it becomes |w which
+             * changes wpm. So at this point we change |W to |z and later
+             * handle |z commands instead of |W
+             */
+            text = text.replace(/\|W/g, "|z");
 
             text = text.toLowerCase();
             this.setText(text);
@@ -573,10 +685,14 @@
                 console.log("Don't know CW for character: '" + c + "'");
                 return false;
             }
+//            else {
+//                console.log("Character: " + c + " Code point: " + c.codePointAt(0));
+//            }
 
             for (var j = 0; j < l.length; j++) {
                 var el = l.substr(j,1);  // . or -
-                out.push({"t": time, "v": this.volume});
+                if (el != " ")
+                    out.push({"t": time, "v": this.volume});
                 time += this.dotlen * el_len[el];
                 out.push({"t": time, "v": 0});
                 if (j < l.length - 1) {
@@ -622,6 +738,11 @@
                             break;
                         case 'e':
                             this.eff = arg[0];
+                            this.calcSpeed();
+                            break;
+                        case 'z':   // |W => extra word spacing
+                            this.ews = arg[0];
+                            console.log("EWS = " + this.ews);
                             this.calcSpeed();
                             break;
                         case 'v':
@@ -790,6 +911,8 @@
             l.htmlFor =  "pb";
             l.innerHTML= "0:00 ";
             l.style.fontSize = "12px";
+            l.style.fontWeight = "normal";
+            l.style.display = "inline-block";
             
             obj.setProgressbar(pb, l);
 
