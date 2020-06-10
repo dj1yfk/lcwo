@@ -85,8 +85,7 @@ else {
 	}
 
 	if (!preg_match("/^[a-zA-Z0-9]{2,24}$/", $_POST['username'])) {
-		$error .= "Illegal user name (too long or invalid
-		characters. Only letters and numerals allowed).<br>";
+		$error .= "Illegal user name (too long or invalid characters. Only letters and numerals allowed).<br>";
 	}
 
 	if ($_POST['pw1'] == '') {
@@ -103,8 +102,8 @@ if ($valid) {
 
 	if (!$spam) {
 	$add = mysqli_query($db,"INSERT INTO lcwo_users (`username`,
-	`password`, `email`, `player`, `name`, `location`, `lang`, `continent`, `signupdate`, `consent`, `profileaboutme`) VALUES 
-	('".$_POST['username']."', 'notyet', '$email', 3,
+	`password`, `email`, `player`, `cw_tone`, `name`, `location`, `lang`, `continent`, `signupdate`, `consent`, `profileaboutme`) VALUES 
+	('".$_POST['username']."', 'notyet', '$email', ".PL_DEFAULT.", 600, 
 	'$name', '$location', '$newlang', '$continent', CURDATE(), 1, '');");
 	}	
 

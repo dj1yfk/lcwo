@@ -11,7 +11,7 @@
 		}
 
   		var posturl;
-		posturl = "//<?=HOSTNAME;?>/api/user_exists.php";
+		posturl = "/api/user_exists.php";
 
 		var request =  new XMLHttpRequest();
 		request.open("POST", posturl, true);

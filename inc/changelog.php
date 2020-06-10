@@ -11,6 +11,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2020-06-10:
+    * jscwlib is now the default CW player for new users
+
 2020-05-23:
     * The site now internally uses the utf8 character encoding.
     * Added French proverbs to plain text training (tnx SolarMax)

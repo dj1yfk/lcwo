@@ -41,6 +41,9 @@ define("PL_JSCWLIB", 1);
 define("PL_FLASH", 2);
 define("PL_HTML5", 3);
 
+# default player for new users
+define("PL_DEFAULT", PL_JSCWLIB);
+
 # User IDs of the forum moderators.
 $g_moderators = array("1", "2");
 

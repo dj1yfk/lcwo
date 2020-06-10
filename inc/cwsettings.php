@@ -230,9 +230,9 @@ var locked = <? echo ($_SESSION['lockspeeds']==1 ? "true" : "false") ?>;
 	<tr style="background-color:#dddddd">
 	<td valign="top"><? echo l('cwplayer') ?>:</td>
 	<td colspan="2">
-	<input type="radio" name="ply" value="3" <? if ($_SESSION['player']==3) { echo 'checked'; }?>> <strong><? echo l('html5player') ?></strong><br>
+    <input type="radio" name="ply" value="1" <? if ($_SESSION['player']==1) { echo 'checked'; }?>> <a style="font-weight:bold;" href="https://fkurz.net/ham/jscwlib.html"><?=l('jscwlib');?></a><br>
+	<input type="radio" name="ply" value="3" <? if ($_SESSION['player']==3) { echo 'checked'; }?>> <? echo l('html5player') ?><br>
 	<input type="radio" name="ply" value="2" <? if ($_SESSION['player']==2) { echo 'checked'; }?>> <? echo l('flashplayer') ?><br>
-	<input type="radio" name="ply" value="1" <? if ($_SESSION['player']==1) { echo 'checked'; }?>> Experimental (<a href="https://fkurz.net/ham/jscwlib.html">jscwlib</a>)<br>
 	</td>
 	</tr>
 	<tr>
