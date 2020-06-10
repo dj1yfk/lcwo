@@ -116,7 +116,7 @@ function entryform () {
 
 <form action="/text2cw" method="POST">
 
-<table width="90%">
+<table>
 <tr>
 <td><? echo l('charspeedlong') ?>: 
 <select name="speed" size="1">

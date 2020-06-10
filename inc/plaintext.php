@@ -182,7 +182,7 @@ var locked = <? echo ($_SESSION['plain']['lockspeeds']==1 ? "true" : "false") ?>
 		<? echo l('charspeedlong')?> (<? echo l('wpm') ?>):
 		&nbsp;&nbsp;&nbsp;
 	</td>
-	<td width="10%">
+	<td>
 		<input id="speed" onChange="if(locked) {lockspeed(this.value);}" 
 			name="speed" type="text" value="<? echo $_SESSION['plain']['cw_speed']; ?>"
 		   	size="3">
