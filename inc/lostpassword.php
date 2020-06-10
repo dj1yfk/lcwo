@@ -108,7 +108,7 @@ Best Regards,
 LCWO.net Password Robot
 
 -- 
-Responsible for this mail:".MAILSIGNATURE." ";
+Responsible for this mail:\n".MAILSIGNATURE." ";
 
 $msgid = "Message-Id: <".time()."-".md5($_POST['username'])."@msgid.lcwo.net>";
 
