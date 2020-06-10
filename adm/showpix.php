@@ -1,11 +1,18 @@
 <?
+	include("inc/definitions.php");
 
+    session_start();
+
+    if ($_SESSION['uid'] != ADMIN) {
+        echo "Not admin";
+        return;
+    }
 
 	include("inc/connectdb.php");
 	include("inc/functions.php");
 
 
-	$d = opendir("img/");
+	$d = opendir("../img/");
 
 	if (!$d) {
 		echo "Fail!";
@@ -13,10 +20,10 @@
 	}
 	while ($f = readdir($d)) {
 			if (preg_match('/userimage(\d+)/', $f, $matches)) {
-					echo "<img src='img/$f'> $f - ".uid2uname($matches[1])."<br><hr>\n";
+					echo "<img src='/img/$f'> $f - ".uid2uname($matches[1])."<br><hr>\n";
 			}
                         if (preg_match('/groupimage(\d+)/', $f, $matches)) {
-                                        echo "<img src='img/$f'> $f - <br><hr>\n";
+                                        echo "<img src='/img/$f'> $f - <br><hr>\n";
                         }
 
 	}
