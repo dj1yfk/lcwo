@@ -151,11 +151,8 @@ JS;
 		$mnr = $nr;
 	}
 	echo '
-	<div id="container'.$mnr.'"> <a
-	href="http://www.macromedia.com/go/getflashplayer">Get the
-	Flash Player</a> and activate JavaScript to see this
-	player. If you are using Android or an Apple device, 
-	please chose the HTML5 audio option in your <a href="/cwsettings">CW settings</a>.</div>';
+	<div id="container'.$mnr.'"> 
+	Flash player not supported! <a href="/cwsettings">Click here to select another player: CW settings</a>.</div>';
 	if ($layout == 1) {
 		echo "</td></tr></table>";
 	}

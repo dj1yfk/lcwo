@@ -10,17 +10,30 @@
     }
 
     $charset = Array();
-    $charsetname = Array("Koch", "CWops", "ABC", "Swedish");
+    $charsetname = Array("Koch", l('customchars'), "CWops", "ABC", "Swedish", "Hiragana", "Katakana");
+    
+
     $charset[0] = $kochchar;
 
+    $charset[1] = Array();
+    for ($i = 0; $i < mb_strlen($_SESSION['customcharacters']); $i++) {
+        array_push($charset[1], mb_substr($_SESSION['customcharacters'], $i, 1));
+    }
+
     # CWops CW Academy
-    $charset[1] = Array("T", "E", "A", "N", "O", "I", "S", "1", "4", "R", "H", "D", "L", "2", "5", "U",
+    $charset[2] = Array("T", "E", "A", "N", "O", "I", "S", "1", "4", "R", "H", "D", "L", "2", "5", "U",
         "C", "M", "W", "3", "6", "?", "F", "Y", "P", "G", "7", "9", "/", "B", "V", "K",
         "J", "8", "0", "=", "X", "Q", "Z", /* "&lt;BK&gt;", */ "-", /* "&lt;SK&gt;" */);
     
-    $charset[2] = Array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
+    $charset[3] = Array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
 
-    $charset[3] = Array("=", "+", "N", "L", "O", "E", "I", "X", "V", "T", "/", "?", "A", "Z", "H", "Ö", ",", "R", "D", "F", "Y", "-", "Ä", "B", "P", "S", "U", "Q", "W", "K", "Å", "M", "7", "4", "9", "5", "C", "G", "J", "8", "1", "3", "6","2", "0", "@"); 
+    $charset[4] = Array("=", "+", "N", "L", "O", "E", "I", "X", "V", "T", "/", "?", "A", "Z", "H", "Ö", ",", "R", "D", "F", "Y", "-", "Ä", "B", "P", "S", "U", "Q", "W", "K", "Å", "M", "7", "4", "9", "5", "C", "G", "J", "8", "1", "3", "6","2", "0", "@"); 
+
+    if ($_SESSION['cw_player'] == PL_JSCWLIB) {
+        $charset[5] = Array("い","ろ","は","に","ほ","へ","と","ち","り","ぬ","る","を","わ","か","よ","た","れ","そ","つ","ね","な","ら","む","う","ゐ","の","お","く","や","ま","け","ふ","こ","え","て","あ","さ","き","ゆ","め","み","し","ゑ","ひ","も","せ","す","ん");
+
+        $charset[6] = Array("イ","ロ","ハ","ニ","ホ","ヘ","ト","チ","リ","ヌ","ル","ヲ","ワ","カ","ヨ","タ","レ","ソ","ツ","ネ","ナ","ラ","ム","ウ","ヰ","ノ","オ","ク","ヤ","マ","ケ","フ","コ","エ","テ","ア","サ","キ","ユ","メ","ミ","シ","ヱ","ヒ","モ","セ","ス","ン");
+    }
 
     if (isint($_POST['charset']+0) and $_POST['charset'] <= count($charset)) {
         $_SESSION['mm']['charset'] = $_POST['charset']+0;

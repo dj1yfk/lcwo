@@ -11,6 +11,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2020-06-11:
+    * MorseMachine: Practice with custom character set, and Hiragana/Katakana (jscwlib only)
+
 2020-06-10:
     * jscwlib is now the default CW player for new users
 
