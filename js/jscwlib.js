@@ -344,15 +344,19 @@
             console.log("setWpm = " + w);
             w = parseInt(w);
             this.wpm = w;
-            if (this.mode == 'audio' && this.init_done)
+            if (this.mode == 'audio' && this.init_done) {
                 this.gainNode.gain.cancelScheduledValues(this.audioCtx.currentTime);
+                this.gainNode.gain.setValueAtTime(0, this.audioCtx.currentTime);
+            }
             this.updateControls();
         }
  
         this.setEff = function (e) {
             console.log("setEff = " + e);
-            if (this.mode == 'audio' && this.init_done)
+            if (this.mode == 'audio' && this.init_done) {
                 this.gainNode.gain.cancelScheduledValues(this.audioCtx.currentTime);
+                this.gainNode.gain.setValueAtTime(0, this.audioCtx.currentTime);
+            }
             e = parseInt(e);
             this.eff = e;
             this.updateControls();
@@ -362,8 +366,10 @@
             console.log("setEws = " + w);
             w = parseFloat(w);
             this.ews = w;
-            if (this.mode == 'audio' && this.init_done)
+            if (this.mode == 'audio' && this.init_done) {
                 this.gainNode.gain.cancelScheduledValues(this.audioCtx.currentTime);
+                this.gainNode.gain.setValueAtTime(0, this.audioCtx.currentTime);
+            }
             this.updateControls();
         }
 
@@ -595,8 +601,6 @@
             text = text.toLowerCase();
             this.setText(text);
 
-            var start = this.audioCtx.currentTime + 0.01;
-
             // generate array with all events on a timeline.
             // possible events are 
             // 1) changes of volume (the Morse "keying") itself
@@ -632,6 +636,12 @@
             if (!out.length) {
                 return;
             }
+
+            var start = this.audioCtx.currentTime + 0.01;
+
+            // if the generated audio is very long, we need to add an extra
+            // delay. About one second for every 10k elements in the our array
+            start += Math.ceil(out.length/10000);
 
             for (var i = 0; i < out.length; i++) {
                 var s = start + out[i]['t'];
