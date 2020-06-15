@@ -448,7 +448,7 @@ while ($t = mysqli_fetch_object($gt)) {
 		}
 		else {
 			unset($_SESSION['l'][$t->name]);
-			$_SESSION['l'][$t->name] = $t->text;
+			$_SESSION['l'][$t->name] = preg_replace("/wpm/i", "WPM", $t->text);
 		}
 		unset($names[$t->name]);
 }
@@ -460,7 +460,7 @@ $gt = mysqli_query($db, "SELECT `text`, `name` from `lcwo_texts` where `lang`='e
 while ($t = mysqli_fetch_object($gt)) {
 		if (isset($names[$t->name])) {
 			unset($_SESSION['l'][$t->name]);
-			$_SESSION['l'][$t->name] = $t->text;
+			$_SESSION['l'][$t->name] = preg_replace("/wpm/i", "WPM", $t->text);
 			unset($names[$t->name]);
 		}
 }
