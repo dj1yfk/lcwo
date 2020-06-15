@@ -37,7 +37,7 @@ else {
 	return;
 }
 
-$uq = mysqli_query($db,"SELECT id, name, location, signupdate, koch_lesson, lang, profileaboutme, show_ministat from lcwo_users where username = '$username'");
+$uq = mysqli_query($db,"SELECT id, name, location, signupdate, koch_lesson, lang, profileaboutme, show_ministat, player from lcwo_users where username = '$username'");
 
 if (!$uq) {
 	echo "error: ".mysqli_error($db);
@@ -104,6 +104,13 @@ $langnames[$user->lang]; if ($user->lang != "en") { echo
 $user->koch_lesson ?> </td></tr>
 <tr><td><strong><? echo l('signedup') ?>:</strong></td><td><?
 echo $user->signupdate ?> </td></tr>
+<? 
+if ($_SESSION['uid'] == ADMIN) {
+?>
+    <tr><td><strong><?=l('cwplayer') ?>:</strong></td><td><?=$user->player;?></td></tr>
+<?
+}
+?>
 <tr><td><strong><? echo l('usergroups') ?>:</strong></td><td><?
 echo $groups; ?></td></tr>
 <tr><td valign="top"><strong><? echo l('aboutme') ?>:</strong></td><td>
@@ -441,6 +448,5 @@ function handleshowstat () {
 }
 
 ?>
-<div class="vcsid">$Id: profile.php 168 2012-09-06 17:42:01Z dj1yfk $</div>
 
 
