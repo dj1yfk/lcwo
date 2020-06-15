@@ -1449,21 +1449,14 @@ function delete_user_url() {
 # Return the CGI base-URL (e.g. http://cgi2.lcwo.net/cgi-bin/)
 # depending on $_SESSION['continent']
 function CGIURL() {
-        global $servers;
-
-        $proto = "https://";
-        if (!$_SERVER['HTTPS']) {   # Docker etc.
-            $proto = "http://";
-        }
-
-
-        if (isset($servers[$_SESSION['continent']]['1'])) {
-            return $proto.$servers[$_SESSION['continent']]['1']."/cgi-bin/";
-        }
-        else {
-            return $proto.$servers['eu']['1']."/cgi-bin/";
-        }
+    global $cgiserver;
+    $proto = "https://";
+    if (!$_SERVER['HTTPS']) {   # Docker etc.
+        $proto = "http://";
+    }
+    return $proto.$cgiserver."/cgi-bin/";
 }
+
 
 # Check if IP address is in the "untrusted" list, as
 # defined in definitions.php

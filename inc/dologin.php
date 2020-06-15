@@ -19,7 +19,7 @@ else {
 	$getuser = mysqli_query($db,"SELECT id, username, location, name, email,
 			password, cw_speed, cw_eff, cw_ews, cw_tone, koch_lesson,
 			player, lang, vvv, lockspeeds, groups_duration,
-			groups_abbrev, continent,
+			groups_abbrev,
 			koch_duration, koch_randomlength,
 			groups_randomlength, customcharacters,
 			cw_tone_random, groups_mode, show_ministat,
@@ -66,7 +66,6 @@ if ($valid) {
 	$_SESSION['player'] = $user->player;
 	unset($_SESSION['lang']);
 	$_SESSION['lang'] = $user->lang;
-	$_SESSION['continent'] = $user->continent;
 	$_SESSION['vvv'] = $user->vvv;
 	$_SESSION['lockspeeds'] = $user->lockspeeds;
 	$_SESSION['customcharacters'] = $user->customcharacters;

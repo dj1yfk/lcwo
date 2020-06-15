@@ -48,13 +48,6 @@
 				$newlang = $_SESSION['lang'];
 			}
 
-			if (in_array($_POST['continent'], array_keys($serverlocations))) {
-					$newcont = $_POST['continent'];
-			}
-			else {
-					$newcont = 'eu';
-			}
-
             $hide = 0;
             if (isset($_POST['hide'])) {
                 $hide = 1;
@@ -82,7 +75,7 @@
 					`username` = '$username',
 					`name`='$name',
 					`email`='$email', `location`='$location',
-					`lang` = '$newlang', `continent` = '$newcont', `hide` = $hide
+					`lang` = '$newlang', `hide` = $hide
 					where `id`=".$_SESSION['uid']);
 
 					if (!$update) {
@@ -102,7 +95,6 @@
 						$_SESSION['email'] = $email;
 						$_SESSION['location'] = stripslashes($location);
 						$_SESSION['lang'] = $newlang;
-						$_SESSION['continent'] = $newcont;
 						$_SESSION['hide'] = $hide;
     					# forces reload of locale
 						loadlocale($newlang);
@@ -187,23 +179,6 @@ foreach ($langs as $lang) {
 ?>
 </select>
 </td>
-</tr>
-<tr>
-	<td><? echo l('closeserver') ?>:</td>
-	<td>
-    <select name="continent" size="1">
-<?
-foreach ($serverlocations as $s => $n) {
-		echo "		<option value=\"$s\"";
-		if ($_SESSION['continent'] == $s) {
-				echo " selected";
-		}
-		echo ">".l($n)."</option>\n";
-}
-?>
-    </select>
-	<? echo l('closeserver2') ?>
-    </td>
 </tr>
 <tr>
     <td>Privacy:</td>

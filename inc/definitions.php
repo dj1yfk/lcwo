@@ -65,30 +65,9 @@ sort($langs);
 # how long will users be shown as "online" after last activity
 define("TIMEOUT",  "15");
 
-# URL from where we will get CGIs
-define("CGIURL",  "https://cgi2.lcwo.net/cgi-bin/");
+# CGI server for HTML5 player
+$cgiserver = "localhost:8000/";
 
-
-# Default continent (for users without a login [used: text2cw, transmit])
-# Defines which server will be used for CGIs.
-if (!isset($_SESSION['continent'])) {
-	$_SESSION['continent'] = 'eu';
-}
- 
-# Possible server locations which can be selected in
-# the signup dialogue and in the account settings.
-# "continenteu" etc will be translated in the interface.
-$serverlocations = array(
-		"eu" => "continenteu",
-		"na" => "continentna"
-);
-
-# Set servers for each continent where any exist.
-# The server #1 will always get top priority for
-# an user of the respective continent.
-# Further servers are currently ignored (FIXME).
-$servers["na"]["1"] = "localhost:8000"; 
-$servers["eu"]["1"] = "localhost:8000";
 
 # Ranges of untrusted IP addresses - when signing in, users from these
 # IP ranges need to solve a captcha.

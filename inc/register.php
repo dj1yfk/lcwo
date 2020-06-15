@@ -67,16 +67,6 @@ $_POST['pw2']) && strlen($_POST['pw1']) > 0) {
 		$error .= "Username too short. Minimum 2 characters.<br>";
 		$valid = 0;
 	}
-
-	if (in_array($_POST['continent'], array_keys($serverlocations))) {
-	    $continent = $_POST['continent'];
-	}
-	else {
-		$error .= "Invalid continent <br>";
-		$valid = 0;
-	}
-
-			
 }
 else {
 	$valid = 0;
@@ -104,7 +94,7 @@ if ($valid) {
 	$add = mysqli_query($db,"INSERT INTO lcwo_users (`username`,
 	`password`, `email`, `player`, `cw_tone`, `name`, `location`, `lang`, `continent`, `signupdate`, `consent`, `profileaboutme`) VALUES 
 	('".$_POST['username']."', 'notyet', '$email', ".PL_DEFAULT.", 600, 
-	'$name', '$location', '$newlang', '$continent', CURDATE(), 1, '');");
+	'$name', '$location', '$newlang', 'eu', CURDATE(), 1, '');");
 	}	
 
 	loadlocale($newlang);
@@ -144,6 +134,3 @@ else {
 }
 
 ?>
-
-<div class="vcsid">$Id: register.php 248 2014-06-15 20:47:20Z dj1yfk $</div>
-

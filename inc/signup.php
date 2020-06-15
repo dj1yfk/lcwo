@@ -103,20 +103,6 @@ foreach ($langs as $lang) {
 
 </tr>
 
-<tr>
-	<td><? echo l('closeserver') ?>:</td>
-	<td>
-    <select name="continent" size="1">
-<?
-foreach ($serverlocations as $s => $n) {
-	echo "		<option value=\"$s\">".l($n)."</option>\n";
-}
-?>
-    </select>
-	<? echo l('closeserver2') ?>
-    </td>
-</tr>
-
 <?
 
 if (is_untrusted_ip($_SERVER['REMOTE_ADDR'])) {
@@ -165,5 +151,4 @@ else { // trusted IP
 <p style="color:#666666">
 <? echo l('disclaimer'); ?>
 </p>
-<div class="vcsid">$Id: signup.php 83 2016-07-31 18:51:41Z fabian $</div>
 
