@@ -46,7 +46,7 @@ if ($forward[$_GET['p']]) {
 <?  if ($_SESSION['player'] == PL_FLASH or $p == "cwsettings") { ?>
 <script type="text/javascript" src="/swfobject.js"></script>
 <?  }?>
-<script type="text/javascript" src="/js/jscwlib.js?cachebreak=<? echo time(); ?>"></script>
+<script type="text/javascript" src="/js/jscwlib.js?cachebreak=<? echo filemtime("js/jscwlib.js"); ?>"></script>
 </head>
 <body bgcolor="#ffffff"> 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
