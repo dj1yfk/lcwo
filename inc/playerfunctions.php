@@ -153,6 +153,7 @@ JS;
 	echo '
 	<div id="container'.$mnr.'"> 
 	Flash player not supported! <a href="/cwsettings">Click here to select another player: CW settings</a>.</div>';
+    echo "Flash support ends 12/2020.<br><a href='/cwsettings'>Switch to another play soon!</a><br>";
 	if ($layout == 1) {
 		echo "</td></tr></table>";
 	}
