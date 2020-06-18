@@ -1246,7 +1246,7 @@ function bb2html ($text) {
                 }
             }
 
-            $text = mb_strtolower(strip_tags($m[count($m) - 1]));
+            $text = strip_tags($m[count($m) - 1]);
             $params['text'] = $text;
 
             $id = rand(1, 1000000);
