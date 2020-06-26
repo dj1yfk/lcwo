@@ -11,6 +11,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2020-06-26:
+    * Fix automatic skip to next word in Word training (jscwlib)
+
 2020-06-15:
     * Remove option to select geographically closest server
       (not needed anymore thanks to jscwlib)

@@ -523,11 +523,22 @@ function playcall () {
 	?>
 
     if (autoskip) {
+<?
+    if ($_SESSION['player'] == PL_HTML5) {
+?>
         p.onended = function () {
             console.log("onended => skip timer started");
             skiptimer = window.setInterval(skip, 5000);
         }
+<?
     }
+    else if ($_SESSION['player'] == PL_JSCWLIB) {
+?>
+        skiptimer = window.setInterval(skip, 5000 + pa[1].getLength()*1000);
+<?
+    }
+?>
+    } /* if autoskip */
 }
 
 function skip () {
