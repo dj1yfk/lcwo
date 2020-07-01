@@ -13,6 +13,7 @@ if (!$_SESSION['callsigns']['set']) {
 	$_SESSION['callsigns']['maxspeed'] = 125;
 	$_SESSION['callsigns']['fixspeed'] = 0;
 	$_SESSION['callsigns']['stoponerror'] = 0;
+	$_SESSION['callsigns']['blind'] = 0;
 	$_SESSION['callsigns']['filter'] = 0;
 	$_SESSION['callsigns']['set'] = 1;
 }
@@ -34,25 +35,18 @@ function callsignattempt () {
 
 ?>
 <script type="text/javascript">
-calls = new Array();
-cwspeed = <? if (is_numeric($_POST['csspeed'])) { echo $_POST['csspeed']; } else { echo "25"; }; ?>;
-mincharspeed = <? if (is_numeric($_POST['csmincharspeed'])) { echo $_POST['csmincharspeed']; } else { echo "0"; }; ?>;
-limitspeed = <? if (is_numeric($_POST['csmaxspeed'])) { echo $_POST['csmaxspeed']; }
-else { echo "150"; }; ?>;
-fixedspeed = <? if($_POST['csfixspeed']) { echo 1; } else {echo 0;} ?>;
-maxspeed = 0;
-score = 0;
-freq = <? echo intval($_POST['tone']) ? $_POST['tone'] : $_SESSION['cw_tone']; ?>;
-rand_tone = <? echo intval($_POST['tone1']); ?>;
-stop_on_error =  <? if($_POST['stoponerror']) { echo 1; } else {echo 0;} ?>;
+var calls = new Array();
+var cwspeed = <? if (is_numeric($_POST['csspeed'])) { echo $_POST['csspeed']; } else { echo "25"; }; ?>;
+var mincharspeed = <? if (is_numeric($_POST['csmincharspeed'])) { echo $_POST['csmincharspeed']; } else { echo "0"; }; ?>;
+var limitspeed = <? if (is_numeric($_POST['csmaxspeed'])) { echo $_POST['csmaxspeed']; } else { echo "150"; }; ?>;
+var fixedspeed = <? if($_POST['csfixspeed']) { echo 1; } else {echo 0;} ?>;
+var maxspeed = 0;
+var score = 0;
+var freq = <? echo intval($_POST['tone']) ? $_POST['tone'] : $_SESSION['cw_tone']; ?>;
+var rand_tone = <? echo intval($_POST['tone1']); ?>;
+var stop_on_error =  <? if($_POST['stoponerror']) { echo 1; } else {echo 0;} ?>;
+var blind =  <? if($_POST['blind']) { echo 1; } else {echo 0;} ?>;
 var stop_active = false;
-
-var cwtest2 = '40 99 41 32 70 97 98 105 97 110 32 75 117 114 122 32 68 74 49 89 70 75';
-
-var h5c = "cw.ogg";     /* CGI for HTMl5. Ogg for Firefox and all others */
-if (true || navigator.userAgent.indexOf("Safari") > -1) {   /* except Safari */
-    h5c = "cw2.mp3";
-}
 
 
 nr = -1;		/* 0..24 */
@@ -68,6 +62,14 @@ getcalls();
 ?>
 
 
+// show or hide call table, score, etc.?
+function hide_elements(x) {
+    document.getElementById("calltable").style.display = x ? 'none' : '';
+    document.getElementById("score").style.display = x ? 'none' : '';
+    document.getElementById("curspeed").style.display = x ? 'none' : '';
+    document.getElementById("maxspeed").style.display = x ? 'none' : '';
+    document.getElementById("blindmode").style.display = x ? '' : 'none';
+}
 
 function check (call) {
 	var error;
@@ -80,6 +82,9 @@ function check (call) {
 	
 	var t = document.getElementById('calltable').rows[nr+1].cells;
 	t[2].innerHTML = cwspeed;
+
+    var last_speed = cwspeed;
+
 	if (call != calls[nr]) {
 			error = true;
 			call = "<span style=\"color:#ff0000\">" + call +
@@ -99,7 +104,7 @@ function check (call) {
 			score += (cwspeed * calls[nr].length);
 	}
 	
-	t[0].innerHTML = '<a href="javascript:playcall('+nr+', true);document.getElementById(' + "'" + 'callentry' + "'" + ').focus();">' + calls[nr] + '</a>';
+	t[0].innerHTML = '<a href="javascript:playcall('+nr+', true, '+last_speed+');document.getElementById(' + "'" + 'callentry' + "'" + ').focus();">' + calls[nr] + '</a>';
 	t[1].innerHTML = call;
 	
 	var s = document.getElementById('curspeed');
@@ -125,20 +130,21 @@ function check (call) {
 		}
 
 		if (!stop_on_error) {
-			playcall(nr, true);
+			playcall(nr, true, 0);
 		}
 		else {
 			if (!error) {
-				playcall(nr, true);
+				playcall(nr, true, 0);
 			}
 			else {
 				stop_active = true;
-				playcall(nr, false);	// only load the new call, do not play yet
+				playcall(nr, false, 0);	// only load the new call, do not play yet
 			}
 		}
 		
 	}
-	else {
+    else {
+            hide_elements(false);
 			var ef = document.getElementById('entryform');
 			var h1 = document.getElementById('header1');
 			var newattemptdivvar = document.getElementById('newattemptdiv');
@@ -158,12 +164,20 @@ function check (call) {
 <? include "submitscore.js"; ?>
 
 
-function playcall (cnr, auto_start) {
+function playcall (cnr, auto_start, opt_speed) {
 
-	var cwspeedtmp = cwspeed;
-	if (cwspeed < mincharspeed) {
-		cwspeedtmp = mincharspeed;	
-	}
+    if (opt_speed) {
+        var cwspeedtmp = opt_speed;
+    }
+    else {
+    	var cwspeedtmp = cwspeed;
+    }
+
+    var cwspeedeff = cwspeedtmp;
+
+    if (cwspeedtmp < mincharspeed) {
+        cwspeedtmp = mincharspeed;
+    }
 
     var delay = <? if ($_SESSION['player'] != PL_JSCWLIB) { echo $_SESSION['delay_start']; } else { echo "0.05"; } ?>;
 
@@ -175,19 +189,23 @@ function playcall (cnr, auto_start) {
         var text = calls[cnr];
     }
 
-	var cs = document.getElementById('clicktostart');
-    cs.innerHTML = '&nbsp; &nbsp; &nbsp; <input type="button" value="<?=l('pressdottoreplay',1);?>" onclick="playcall(nr, true);return false;">';
+    try {
+    	var cs = document.getElementById('clicktostart');
+        cs.innerHTML = '&nbsp; &nbsp; &nbsp; <input type="button" value="<?=l('pressdottoreplay',1);?>" onclick="playcall(nr, true, 0);return false;">';
+    }
+    catch (e) {
+    }
 	
     <?
     if ($_SESSION['player'] == PL_FLASH) {   /* Flash Player */
     ?> 
-    loadFile('js1', {file:'<?=CGIURL();?>cw.mp3?s='+cwspeedtmp+'&e='+cwspeed+'&f='+freq+'&t='+text, type:'mp3', autostart: auto_start})
-    <?
+    loadFile('js1', {file:'<?=CGIURL();?>cw.mp3?s='+cwspeedtmp+'&e='+cwspeedeff+'&f='+freq+'&t='+text, type:'mp3', autostart: auto_start})
+    <? 
     }
     else if ($_SESSION['player'] == PL_HTML5) {              /* HTML5 player */
     ?>
     var p = document.getElementById('player1');
-    p.src = '<?=CGIURL();?>'+h5c+'?s='+cwspeedtmp+'&e='+cwspeed+'&f='+freq+'&t='+text;
+    p.src = '<?=CGIURL();?>cw.mp3?s='+cwspeedtmp+'&e='+cwspeedeff+'&f='+freq+'&t='+text;
     p.load();
 	if (auto_start) {
 		p.play();
@@ -198,7 +216,7 @@ function playcall (cnr, auto_start) {
     ?>
         pa[1].setText(text);
         pa[1].setWpm(cwspeedtmp);
-        pa[1].setEff(cwspeed);
+        pa[1].setEff(cwspeedeff);
         pa[1].setFreq(freq);
         pa[1].enablePS(false);
         pa[1].play();
@@ -222,7 +240,7 @@ function disableEnterKey(e)
 			case 13:
 				var ce = document.getElementById('callentry');
 				if (stop_on_error && stop_active) {
-					playcall(nr, true);
+					playcall(nr, true, 0);
 					stop_active = false;
 				}
 				else {
@@ -233,7 +251,7 @@ function disableEnterKey(e)
 		case 46:	/* dot */
 		case 32:	/* space */
 				if (nr >= 0) {	/* attempt already started */
-					playcall(nr, true);		/* repeat call */
+					playcall(nr, true, 0);		/* repeat call */
 					stop_active = false;
 				}
 				else {	/* start */
@@ -284,19 +302,20 @@ echo "<tr>
 	$_SESSION['callsigns']['tone_random'] = $_POST['tone1'];
 	$_SESSION['callsigns']['fixspeed'] = $_POST['csfixspeed'];
 	$_SESSION['callsigns']['stoponerror'] = $_POST['stoponerror'];
+	$_SESSION['callsigns']['blind'] = $_POST['blind'];
 	$_SESSION['callsigns']['filter'] = intval($_POST['csfilter']);
 
 
 ?>
 <p><? echo l('curspeed'); ?>: <span id="curspeed"><? echo $_POST['csspeed'];
 ?></span><? echo l('wpm'); ?> - <? echo l('maxspeed') ?>: <span id="maxspeed">0</span><? echo l('wpm') ?></p>
-	<p><? echo l('score') ?>: <span id="score">0</span></p>
+    <p><? echo l('score') ?>: <span id="score">0</span> <span id="blindmode"> (<?=l('blindmode');?>)</span></p>
 
 <div id="entryform">
 
 <form id="rform" action="" method="" onkeypress="return disableEnterKey(event)">
 <input value="" spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off" id="callentry" name="call" size="12">
-<input id="okbutton" type="button" value="OK" onclick="javascript:if(stop_on_error && stop_active) { playcall(nr, true); stop_active = false; } else { check(this.form.call.value); }; if (nr != -1) { document.getElementById('callentry').focus(); console.log('focus'); } "> <span id="clicktostart">
+<input id="okbutton" type="button" value="OK" onclick="javascript:if(stop_on_error && stop_active) { playcall(nr, true, 0); stop_active = false; } else { check(this.form.call.value); }; if (nr != -1) { document.getElementById('callentry').focus(); console.log('focus'); } "> <span id="clicktostart">
 &lt;- <? echo l('clicktostart') ?></span> 
 </form>
 
@@ -327,6 +346,9 @@ echo "<tr>
             console.log('cleared');
         }
     }
+
+    hide_elements(blind);
+
     var interval = window.setInterval(force_focus, 500);
 </script>
 <?
@@ -481,6 +503,16 @@ Stop on error:
 <input type="checkbox" name="stoponerror" <? if ($_SESSION['callsigns']['stoponerror']) { echo ' checked '; } ?> >
 </td>
 </tr>
+
+<tr>
+<td>
+<?=l('blindmode');?>:
+</td>
+<td>
+<input type="checkbox" name="blind" <? if ($_SESSION['callsigns']['blind']) { echo ' checked '; } ?> >
+</td>
+</tr>
+
 
 
 <tr>

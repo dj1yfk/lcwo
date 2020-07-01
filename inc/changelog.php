@@ -11,6 +11,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2020-07-01:
+    * Add "Blind mode" to Callsign training (suggested by CT1EAT)
+    * Fix replaying of callsigns in Callsign training (correct speed)
+
 2020-06-26:
     * Fix automatic skip to next word in Word training (jscwlib)
 
