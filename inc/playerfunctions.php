@@ -22,7 +22,7 @@ else {
 	$mnr = $nr;
 }
 
-$cw_tone = $_SESSION['cw_tone'];
+$cw_tone = $_SESSION['cw_tone'] ? $_SESSION['cw_tone'] : 600;
 
 
 /* Flash 10 hack */
@@ -55,9 +55,9 @@ if (($mode == '') || !isset($mode))  {
 switch ($mode) {
 	case '1':	/* jscwlib */
 
-        $prefix = $_SESSION['vvv'] ? true : false;
-        $dly = $_SESSION['delay_start'];
-        $ews = $_SESSION['cw_ews'];
+        $prefix = $_SESSION['vvv'] ? 'true' : 'false';
+        $dly = $_SESSION['delay_start'] ? $_SESSION['delay_start'] : 0.1;
+        $ews = $_SESSION['cw_ews'] ? $_SESSION['cw_ews'] : 0;
 
         $text = str_replace('\\', '', $text);
         $text = str_replace('"', '\"', $text);
