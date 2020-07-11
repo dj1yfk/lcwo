@@ -114,12 +114,14 @@ function entryform () {
 <p> <? echo l('text2cwdesc2'); ?> </p>
 <p> <? echo l('text2cwdesc3'); ?> </p>
 
+
+
 <form action="/text2cw" method="POST">
 
 <table>
 <tr>
-<td><? echo l('charspeedlong') ?>: 
-<select name="speed" size="1">
+<td><? echo l('charspeedlong') ?>:</td><td> 
+<select id="speed" name="speed" size="1" onchange="change_spd();">
 <?
 	$preset1 = $_SESSION['text2cw']['cw_speed']; 
 	$preset2 = $_SESSION['text2cw']['cw_eff'];
@@ -136,8 +138,11 @@ function entryform () {
 ?>
 </select> <? echo l('wpm'); ?>
 </td>
-<td><? echo l('effspeedlong') ?>: 
-<select name="eff" size="1">
+<td rowspan="2"><a href="#" onClick="locktoggle();"><img border="0" id="lockico" src="/pics/unlock.png"></a></td>
+</tr>
+<tr>
+<td><? echo l('effspeedlong') ?>:</td><td> 
+<select id="eff" name="eff" size="1">
 <?
 	for ($i = 5; $i < 151; $i++) {
 		if ($i == $preset2) {
@@ -151,7 +156,9 @@ function entryform () {
 ?>
 </select> <? echo l('wpm'); ?>
 </td>
-<td><? echo l('tone') ?>: 
+</tr>
+<tr>
+<td><? echo l('tone') ?>:</td><td> 
 <select name="freq" size="1">
 <?
 	for ($i = 250; $i < 1000; $i+=10) {
@@ -167,12 +174,10 @@ function entryform () {
 </select> Hz
 </td>
 </tr>
-<tr>
-<td width="100%" colspan="3">
-<textarea name="text" id="txt" cols="80" rows="10"></textarea>
-</td>
-</tr>
 </table>
+
+<textarea name="text" id="txt" cols="80" rows="10"></textarea>
+<br>
 <input type="hidden" name="sent" value="1">
 <input type="submit" value=" <? echo l('convert',1) ?> ">
 &nbsp;
@@ -199,7 +204,49 @@ Open text: <input type="file" id="t2c_file" onChange="javascript:load_text(this)
     }
 </script>
 
+<script type="text/javascript">
+function lockspeed(spd) {
+	var eff = document.getElementById('eff');
+	eff.value = spd;
+}
 
+function locktoggle() {
+	var eff = document.getElementById('eff');
+	var spd = document.getElementById('speed');
+	var ico = document.getElementById('lockico');
+	if (locked) {
+			locked = false;
+//			eff.style.background='white';
+			eff.disabled = false;
+			ico.src="pics/unlock.png";
+	}
+	else {
+			locked = true;
+			// eff.style.background = '#cccccc';
+			eff.disabled = false;
+            eff.selectedIndex = spd.selectedIndex;
+			eff.disabled = true;
+			ico.src="pics/lock.png";
+	}
+}
+var locked = <? echo ($_SESSION['lockspeeds']==1 ? "true" : "false") ?>;
+
+
+function change_spd () {
+    if (locked) {
+        var eff = document.getElementById('eff');
+        var spd = document.getElementById('speed');
+        eff.selectedIndex = spd.selectedIndex;
+    }
+}
+
+/* Make sure the form loads in the locked status if the session variable for 
+* locking is set */
+if (locked) {
+	locked = false;
+	locktoggle();
+}
+</script>
 
 
 <?
@@ -229,7 +276,4 @@ function update_text2cw () {
 
 ?>
 
-
-
-<div class="vcsid">$Id: text2cw.php 119 2011-01-26 17:19:39Z dj1yfk $</div>
 
