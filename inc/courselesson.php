@@ -228,7 +228,11 @@ if (isset($_POST['text']))  {
 	echo "<p><a href='http://en.wikipedia.org/wiki/Levenshtein_distance'>Levenshtein</a>-".l('errors').": ".$lserrors." = $lserrpct %</p>";
 
 	if (($errpct < 10) || ($lserrpct < 10)) {
-		echo "<p><strong>".l('good')."</strong> ".l('goodaccuracy')."</p>";
+        echo "<p><strong>".l('good')."</strong> ";
+        if ($_SESSION['koch_lesson'] < 40) {
+            echo l('goodaccuracy');
+        }
+        echo "</p>";
 	}
 	echo '<p><a href="/courselesson" id="newattempt">'.l('continuetraining').'</a></p>';
 
@@ -244,8 +248,8 @@ if (isset($_POST['text']))  {
 	$accuracy = 100-min($errpct, $lserrpct);
 
 	$in = mysqli_query($db,"insert into lcwo_lessonresults set
-	`uid`='$_SESSION[uid]', `lesson`='$_SESSION[koch_lesson]',
-	`speed`='$_SESSION[cw_speed]', `eff`='$_SESSION[cw_eff]',
+	`uid`='".$_SESSION['uid']."', `lesson`='".$_SESSION['koch_lesson']."',
+	`speed`='".$_SESSION['cw_speed']."', `eff`='".$_SESSION['cw_eff']."',
 	`accuracy`='$accuracy', `time`=NULL;");
 
 	if (!$in) {
