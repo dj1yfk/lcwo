@@ -27,7 +27,6 @@ switch ($_GET['action']) {
 }
 ?>
 <br><br>
-<div class="vcsid">$Id: pmsg.php 104 2011-01-12 20:01:02Z dj1yfk $</div>
 
 <?
 return 0;
@@ -91,7 +90,7 @@ function readpmsg () {
 		return;
 	}
 
-	$query = mysqli_query($db,"select * from lcwo_pmsg where `id`= '$msgid' and touid='".$_SESSION['uid']."' or fromuid='".$_SESSION['uid']."' limit 1;");
+	$query = mysqli_query($db,"select * from lcwo_pmsg where `id`= '$msgid' and (touid='".$_SESSION['uid']."' or fromuid='".$_SESSION['uid']."') limit 1;");
 
 	if (!$query) { echo "Error: ".mysqli_error($db); return 0; }
 
