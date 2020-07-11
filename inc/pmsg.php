@@ -49,7 +49,7 @@ global $db;
 		$limit = "";
 	}
 
-	$query = mysqli_query($db,"select * from lcwo_pmsg where touid=".$_SESSION['uid']." order by time desc ".$limit);
+	$query = mysqli_query($db,"select * from lcwo_pmsg where touid=".$_SESSION['uid']." or fromuid=".$_SESSION['uid']." order by time desc ".$limit);
 
 	if (!$query) {
 			echo "Error: ".mysqli_error();
@@ -59,15 +59,18 @@ global $db;
 	$i=0;
 	while ($o = mysqli_fetch_object($query)) {
 			$i++;
-			$uname = uid2uname($o->fromuid);
-			echo "<tr><td><a href='/profile/$uname'>$uname</a></td>";
+			$fname = uid2uname($o->fromuid);
+			$tname = uid2uname($o->touid);
+			echo "<tr><td><a href='/profile/$fname'>$fname</a> &rarr; <a href='/profile/$tname'>$tname</a></td>";
 			echo "<td>".da($o->time)."</td>";
 			echo "<td>";
 			if (!$o->read) { echo "<strong>"; }
 			echo "<a href='/pmsg/read/$o->id'>$o->subject</a>";
 			if (!$o->read) { echo "</strong>"; }
-			echo "</td>";
-			echo "<td align='center'>".deletereply($o->id)."</td></tr>\n";
+            echo "</td>";
+            if ($o->touid == $_SESSION['uid']) {
+                echo "<td align='center'>".deletereply($o->id)."</td></tr>\n";
+            }
 	}
 
 	if (!$i) {
@@ -88,16 +91,23 @@ function readpmsg () {
 		return;
 	}
 
-	$query = mysqli_query($db,"select * from lcwo_pmsg where `id`= '$msgid' and touid='".$_SESSION['uid']."' limit 1;");
+	$query = mysqli_query($db,"select * from lcwo_pmsg where `id`= '$msgid' and touid='".$_SESSION['uid']."' or fromuid='".$_SESSION['uid']."' limit 1;");
 
 	if (!$query) { echo "Error: ".mysqli_error($db); return 0; }
 
 	if ($msg = mysqli_fetch_object($query)) {
-		$query = mysqli_query($db,"update lcwo_pmsg set `read`=1,time=time where `id`= '$msgid' and touid='".$_SESSION['uid']."' limit 1;");
+
+        # only mark as 'read' if the recipient reads the mail.
+        if ($msg->touid == $_SESSION['uid']) {
+		    $query = mysqli_query($db,"update lcwo_pmsg set `read`=1,time=time where `id`= '$msgid' and touid='".$_SESSION['uid']."' limit 1;");
+        }
+        else {
+            $action = false;
+        }
 
 		$username = uid2uname($msg->fromuid);
 	?>
-	<h1><?=$msg->subject;?></h1>
+    <h1><?=$msg->subject;?></h1>
 		<p><?  echo "<strong>".l('pmsgfrom').": </strong> <a href='/profile/$username'>$username</a>; <strong>".l('datetime').": </strong> ".da($msg->time)." &nbsp;&nbsp;&nbsp;&nbsp; ".deletereply($msg->id); ?></p>
 
 	<div class="pmsgbox">
