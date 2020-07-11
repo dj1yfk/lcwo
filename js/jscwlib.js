@@ -183,13 +183,23 @@
         this.startDelay = 0;    // delay in seconds before audio starts
         this.prosign = false;   // we're within a prosign (no letter spaces)
 
-        // override with values passed to the constructor
+        // see if volume is saved in localStorage
+        try {
+            var vl = parseFloat(localStorage.getItem("jscwlib_vol"));
+            if (vl >= 0 && vl <= 1) {
+                this.playvolume = vl;
+            }
+        }
+        catch (e) {
+            console.log("No volume in local storage.");
+        }
+
+        // override default parameters with values passed to the constructor
         if (params) {
             for (var p in params) {
                 this[p] = params[p];
             }
         }
-
 
         try {
     	    this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -385,6 +395,13 @@
 
         this.setVolume = function(v) {
             this.playvolume = v;
+            /* try storing this in local storage */
+            try {
+                localStorage.setItem('jscwlib_vol', v);
+            }
+            catch (e) {
+                console.log("localStorage not available. Not saving volume");
+            }
             this.updateControls();
             if (this.mode == 'audio' && this.init_done) {
                 this.gainNodePlay.gain.setValueAtTime(v, this.audioCtx.currentTime);
