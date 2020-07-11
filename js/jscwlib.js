@@ -421,7 +421,12 @@
                 }
             }
             if (this.control_labels["ews"]) {
-                this.control_labels["ews"].innerHTML = (this.ews + 1) + "&nbsp;&times;";
+                if (this.ews) {
+                    this.control_labels["ews"].innerHTML = (this.ews + 1) + "&nbsp;&times;";
+                }
+                else {
+                    this.control_labels["ews"].innerHTML = "&nbsp;(off)";
+                }
             }
             if (this.control_labels["freq"]) {
                 this.control_labels["freq"].innerHTML = this.freq + "&nbsp;Hz";
@@ -564,6 +569,12 @@
         this.refresh_download_link = function() {
             if (this.btn_down) {
                 this.btn_down.href = this.cgiurl + "cw.mp3?d=001&s=" + this.wpm + "&e=" + this.eff + "&f=" + this.freq + "&t=|W" + this.ews + " " + this.text + "%20%20%20%20%5E";
+                // Silently remove anything above 8k characters to avoid
+                // hitting the maximum request URI length of Apache running ebook2cw.
+                if (this.btn_down.href.length > 8000) {
+                    console.log("Warning: Download URL truncated, requested URL was too long.");
+                    this.btn_down.href = this.btn_down.href.substr(0, 8000) + "%20%20%20%20%5E";
+                }
             }
         }
 
@@ -1047,9 +1058,8 @@
             speed.style.display = "inline-block";
             speed.style.verticalAlign = "middle";
             speed.style.width = "150px";
-            speed.onchange = function () {
-                obj.setWpm(this.value);
-            }
+            speed.onchange = function () { obj.setWpm(this.value); }
+            speed.oninput = function () { obj.setWpm(this.value); }
 
             var speed_label = document.createElement("label");
             speed_label.htmlFor = "speed";
@@ -1078,9 +1088,8 @@
             eff.style.display = "inline-block";
             eff.style.verticalAlign = "middle";
             eff.style.width = "150px";
-            eff.onchange = function () {
-                obj.setEff(this.value);
-            }
+            eff.onchange = function () { obj.setEff(this.value); }
+            eff.oninput = function () { obj.setEff(this.value); }
 
             var eff_label = document.createElement("label");
             eff_label.htmlFor = "eff";
@@ -1109,9 +1118,8 @@
             ews.style.display = "inline-block";
             ews.style.verticalAlign = "middle";
             ews.style.width = "150px";
-            ews.onchange = function () {
-                obj.setEws(this.value);
-            }
+            ews.onchange = function () { obj.setEws(this.value); }
+            ews.oninput = function () { obj.setEws(this.value); }
 
             var ews_label = document.createElement("label");
             ews_label.htmlFor = "ews";
@@ -1140,9 +1148,8 @@
             freq.style.display = "inline-block";
             freq.style.verticalAlign = "middle";
             freq.style.width = "150px";
-            freq.onchange = function () {
-                obj.setFreq(this.value);
-            }
+            freq.onchange = function () { obj.setFreq(this.value); }
+            freq.oninput = function () { obj.setFreq(this.value); }
 
             var freq_label = document.createElement("label");
             freq_label.htmlFor = "freq";
@@ -1171,9 +1178,8 @@
             edge.style.display = "inline-block";
             edge.style.verticalAlign = "middle";
             edge.style.width = "150px";
-            edge.onchange = function () {
-                obj.setQ(this.value);
-            }
+            edge.onchange = function () { obj.setQ(this.value); }
+            edge.oninput = function () { obj.setQ(this.value); }
 
             var edge_label = document.createElement("label");
             edge_label.htmlFor = "edge";
@@ -1205,9 +1211,8 @@
             vol.style.display = "inline-block";
             vol.style.verticalAlign = "middle";
             vol.style.width = "150px";
-            vol.onchange = function () {
-                obj.setVolume(this.value/100);
-            }
+            vol.onchange = function () { obj.setVolume(this.value/100); }
+            vol.oninput = function () { obj.setVolume(this.value/100); }
 
             var vol_label = document.createElement("label");
             vol_label.htmlFor = "vol";
