@@ -668,8 +668,9 @@
             var start = this.audioCtx.currentTime + 0.01;
 
             // if the generated audio is very long, we need to add an extra
-            // delay. About one second for every 10k elements in the our array
-            start += Math.ceil(out.length/10000);
+            // delay of about one second for every 10k elements in the our
+            // array. For short text, this is not noticeable at all.
+            start += out.length/10000;
 
             for (var i = 0; i < out.length; i++) {
                 var s = start + out[i]['t'];
@@ -887,7 +888,7 @@
                 var sec = obj.progressbar.value;
 
                 sec -= obj.textStart;   // start in negative time if we have vvv prefx
-                var sign = sec >= 0 ? " " : "-";
+                var sign = sec >= 0 ? "&nbsp;" : "-";
                 sec = Math.abs(sec);
                 
                 obj.progresslabel.innerHTML = obj.fmtTime(sec, sign) + " /" + obj.fmtTime(obj.getLength() - obj.textStart,"");
