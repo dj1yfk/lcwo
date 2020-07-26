@@ -133,19 +133,16 @@ Character set: &nbsp;
 </tr>
 </table>
 
-<form onsubmit="skipletter();return false;">
+<form onsubmit="enteraction();return false;">
 <input value="" name="entrybox" id="entrybox" size="1"> &nbsp;&mdash;&nbsp; <?=l('mminstructions');?>
 <script>
     document.getElementById('entrybox').addEventListener('keyup', keypressed2); 
+
     function keypressed2(e) {
-        if (e.key == "Enter") {
-//            skipletter();
-        }
-        else if (e.key == "Control" || e.key.substr(0,5) == "Arrow") {
+        if (e.key == "Control" || e.key.substr(0,5) == "Arrow") {
             showsolution();
         }
-        else if (e.key.length == 1) {
-            document.getElementById('entrybox').value = "";
+        else if (!multi_input && e.key.length == 1) {
             keypressed(e.key);
         }
     }
@@ -197,6 +194,14 @@ Character set: &nbsp;
 	var charcount = <?=$values[2];?>;
 	var sessioncharcount = 0;
 	var mmchar = new Array("<? echo join('","', $cs); ?>");
+    var started = false;
+
+     /* for languages where we can enter one character with one key,
+       * enter can be used to skip a letter. for languages where several
+       * keystrokes are needed (e.g. Japanese), enter will be used to
+       * evaluate the input.
+      */
+    var multi_input = <? if ($_SESSION['mm']['charset'] == 5 or $_SESSION['mm']['charset'] == 6) { echo "true"; } else { echo "false"; } ?>;
 
 	var h5c = "cw.mp3";
 	
@@ -215,6 +220,7 @@ Character set: &nbsp;
 	function keypressed (s) {
 
         console.log("pressed >" +  s + "<");
+        document.getElementById('entrybox').value = "";
 
 		if (sessioncharcount && (s == ' ')) {	/* Space -> Send again */
 			// replay w/o buzzer
@@ -262,7 +268,22 @@ Character set: &nbsp;
 
 	}
 
-	function skipletter () {
+    function enteraction () {
+        if (!started) {
+            skipletter();
+            started = true;
+            return;
+        }
+
+        if (multi_input) {
+            keypressed(document.getElementById('entrybox').value);
+        }
+        else {
+            skipletter();
+        }
+    }
+
+    function skipletter () {
 			/* show which letter is really was and increase error bar */
 			highlight(currchar, '#ff6666');
 			if (badness[currchar] < 95) {
