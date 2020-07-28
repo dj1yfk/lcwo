@@ -18,6 +18,9 @@ function qtctrainer () {
 $speed = intval($_POST['speed']);
 $abbrev = intval($_POST['abbrev']);
 
+$_SESSION['qtc']['cw_speed'] = $speed;
+$_SESSION['qtc']['abbrev'] = $abbrev;
+
 if (!$speed) {
 	$speed = 30;
 }
@@ -243,6 +246,7 @@ function validateQTC() {
 
 	submitscore();
 
+    document.getElementById('newattempt').focus();
 	
 	return false;
 }
@@ -294,12 +298,17 @@ function abbreviatenumbers (x)  {
 		return x;
 }
 
-
+var finished = false;
 function finishQTCs () {
+    if (!finished) {    /* press enter first time after last QTC */
+    	var grpnr = document.getElementById('grpnr').value;
+        playerload(cwspeed, cwspeed, 500, ' R QSL QTC '+grpnr+'  ^');
+        finished = true;
+    }
+    else {              /* press enter second time after last QTC - Check */
+        validateQTC();
+    }
 
-	var grpnr = document.getElementById('grpnr').value;
-		
-playerload(cwspeed, cwspeed, 500, ' R QSL QTC '+grpnr+'  ^');
 }
 
 
@@ -455,7 +464,7 @@ l("time") ?></th><th class="tborder"><? echo l('callsign')
 	value="<? echo l('validate',1) ?>" onClick="validateQTC();"> </center> </td> </tr>
  	<tr> <td colspan=2> <center> <input type="submit" style="width:80%" 
 	value="<? echo l('cancel',1) ?>" onClick="newattempt();";> </center> </td> </tr>
- 	<tr> <td colspan=2> <center> <input type="submit"
+ 	<tr> <td colspan=2> <center> <input type="submit" id="newattempt"
 	style="width:80%" value="<? echo l('newattempt',1) ?>"
 	onClick="window.location.href='/qtc'";> </center> </td> </tr>
 	</table>
@@ -507,6 +516,12 @@ echo '<p>'.l('qtctraining1').'</p>';
 echo '<p>'.l('qtctraining2').'</p>';		
 echo '<p>'.l('qtctraining3').'</p>';		
 
+if (!$_SESSION['qtc']['set']) {
+    $_SESSION['callsigns']['cw_speed'] = $_SESSION['cw_speed'];
+    $_SESSION['callsigns']['abbrev'] = 0;
+}
+
+
 ?>
 
 <form action="/qtc" method="POST">
@@ -518,7 +533,7 @@ echo '<p>'.l('qtctraining3').'</p>';
 <select name="speed" size="1">
 <?
 	for ($i = 5; $i < 101; $i++) {
-		if ($i == $_SESSION['cw_speed']) {
+		if ($i == $_SESSION['qtc']['cw_speed']) {
 			echo "<option selected>$i</option>";
 		}
 		else {
@@ -533,9 +548,9 @@ echo '<p>'.l('qtctraining3').'</p>';
 <td><? echo l('abbreviatednumbers')?>: </td>
 <td>
 <select name="abbrev" size="1">
-	<option value="0">-</option>
-	<option value="1">1, 9, 0</option>
-	<option value="2">0 - 9</option>
+    <option value="0" <? if ($_SESSION['qtc']['abbrev'] == 0) { echo "selected"; } ?>>-</option>
+    <option value="1" <? if ($_SESSION['qtc']['abbrev'] == 1) { echo "selected"; } ?>>1, 9, 0</option>
+    <option value="2" <? if ($_SESSION['qtc']['abbrev'] == 2) { echo "selected"; } ?>>0 - 9</option>
 </select> 
 </td>
 </tr>
@@ -570,5 +585,3 @@ if (0) {
 <?
 }
 ?>
-<div class="vcsid">$Id: qtc.php 8 2014-12-06 19:20:35Z fabian $</div>
-

@@ -11,8 +11,14 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2020-07-28:
+    * QTC: After finishing, pressing enter again will check QTCs and
+           highlight "new attempt" button, so you can practice without
+           using the mouse (tnx DF9TS)
+    * QTC: Remember settings permanently (tnx DF9TS)
+
 2020-07-27:
-    * MorseMachine fix (?) multi character entry (e.g. Japanese)
+    * MorseMachine fix multi character entry (e.g. Japanese)
 
 2020-07-01:
     * Add "Blind mode" to Callsign training (suggested by CT1EAT)
