@@ -523,6 +523,7 @@ echo '<p>'.l('qtctraining3').'</p>';
 if (!$_SESSION['qtc']['set']) {
     $_SESSION['callsigns']['cw_speed'] = $_SESSION['cw_speed'];
     $_SESSION['callsigns']['abbrev'] = 0;
+    $_SESSION['callsigns']['set'] = true;
 }
 
 
