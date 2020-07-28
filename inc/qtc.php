@@ -143,6 +143,9 @@ function keyaction(e) {
 		}
 		return false;
 	}
+    else if (key == 120) {  /* F9 = new attempt */
+        newattempt();
+    }
 	else {
 		return true;
 	}
@@ -456,6 +459,7 @@ l("time") ?></th><th class="tborder"><? echo l('callsign')
 	<? echo l('nextfield') ?> </td></tr>
 	<tr> <td> <strong><? echo l('returnkey') ?></strong> </td> <td> <? echo l('nextqtc'); ?> </td></tr>
 	<tr> <td> <strong>F7/F8</strong> </td> <td> <? echo l('repeatqtc'); ?> </td></tr>
+	<tr> <td> <strong>F9</strong> </td> <td> <? echo l('newattempt'); ?> </td></tr>
 	<tr> <td> &nbsp; </td></tr>
 	<tr><th class="tborder" colspan=2><? echo l('functions') ?></th></tr>
 	<tr> <td colspan=2> <center> <input type="submit"
