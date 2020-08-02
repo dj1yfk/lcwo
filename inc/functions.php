@@ -1056,7 +1056,36 @@ function getavailablewordcollections() {
 	return $wordlangs;
 }
 
+
+
 function gettextsbylanguage ($type, $lang, $maxlen, $count, $simplify, $lesson){
+
+    switch ($type) {
+    case 'plaintext':
+        return gettextsbylanguage1($type, $lang, $maxlen, $count, $simplify, $lesson);
+        break;
+    case 'words':
+        # $lang is an array in the form "de0"  "de1"  "it0"  
+        # (languages+collections)
+
+        # we will generate a word list of length ceil($count/count(lang)) for each
+        # language, shuffle the result, and then (if needed) cut the list to $count.
+
+        $words = Array();
+        foreach ($lang as $ltmp) {
+            $t = gettextsbylanguage1($type, $ltmp, $maxlen, ceil($count/count($lang)), $simplify, $lesson);
+            $words = array_merge($words, $t);
+        }
+        shuffle($words);
+        $words = array_slice($words, 0, $count);
+        return $words;
+    }
+
+}
+
+
+/* get texts for word or plain text training for *one* language/collection */
+function gettextsbylanguage1 ($type, $lang, $maxlen, $count, $simplify, $lesson){
 	global $db;
 	if ($maxlen < 2) {
 		$maxlen = 2;
@@ -1066,16 +1095,11 @@ function gettextsbylanguage ($type, $lang, $maxlen, $count, $simplify, $lesson){
 		case "words":
 			$table = "lcwo_words";
 			$item = "word";
-			# $lang is an array in the form "de0"  "de1"  "it0"  
-			# (languages+collections)
-			$querylangs = array();
-			foreach ($lang as $ltmp) {
-				$mylang = mb_substr($ltmp, 0, 2);
-				$coll   = mb_substr($ltmp, 2, 1);
-				$querylangs[] =  "(`lang` = '$mylang' and `collid`='$coll')"; 
-			}
-			$langscolls = join(' or ', $querylangs);
-			$querystring =  "SELECT ID from $table where $langscolls and length($item) <= $maxlen and lesson <= $lesson";
+			# $lang looks like "de0" "de1" "it0"  
+			# (language+collection)
+			$mylang = mb_substr($lang, 0, 2);
+			$coll   = mb_substr($lang, 2, 1);
+			$querystring =  "SELECT ID from $table where (`lang` = '$mylang' and `collid`='$coll') and length($item) <= $maxlen and lesson <= $lesson";
 			break;
 		case "plaintext":
 			$table = "lcwo_plaintext";
@@ -1146,7 +1170,6 @@ function gettextsbylanguage ($type, $lang, $maxlen, $count, $simplify, $lesson){
 	}
 	
 	shuffle($words);
-
 
 	return $words;
 }
