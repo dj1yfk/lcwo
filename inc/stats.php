@@ -2,7 +2,7 @@
 
 <p>Monthly statistics of user activity on LCWO.net. The value for the current month is extrapolated.</p>
 
-<h2 id="accounts">User accounts</h2>
+<h2>User accounts</h2>
 <table><tr><td>
 <canvas id="signups" width="1000" height="300"></canvas>
 </td><td>
@@ -10,7 +10,7 @@
 <input type="checkbox" onclick="plot('signups', this.checked);"> Cumulative
 </td></tr></table>
 
-<h2 id="lesson">Koch lessons</h2>
+<h2>Koch lessons</h2>
 <table><tr><td>
 <canvas id="koch" width="1000" height="300"></canvas>
 </td><td>
@@ -18,7 +18,7 @@
 <input type="checkbox" onclick="plot('koch', this.checked);"> Cumulative
 </td></tr></table>
 
-<h2 id="codegroups">Codegroups sessions</h2>
+<h2>Codegroups sessions</h2>
 <table><tr><td>
 <canvas id="groups" width="1000" height="300"></canvas>
 </td><td>
@@ -26,7 +26,7 @@
 <input type="checkbox" onclick="plot('groups', this.checked);"> Cumulative
 </td></tr></table>
 
-<h2 id="plaintext">Plaintext sessions</h2>
+<h2>Plaintext sessions</h2>
 <table><tr><td>
 <canvas id="plaintext" width="1000" height="300"></canvas>
 </td><td>
@@ -34,7 +34,7 @@
 <input type="checkbox" onclick="plot('plaintext', this.checked);"> Cumulative
 </td></tr></table>
 
-<h2 id="callsigns">Callsign training sessions</h2>
+<h2>Callsign training sessions</h2>
 <table><tr><td>
 <canvas id="callsigns" width="1000" height="300"></canvas>
 </td><td>
@@ -42,7 +42,7 @@
 <input type="checkbox" onclick="plot('callsigns', this.checked);"> Cumulative
 </td></tr></table>
 
-<h2 id="words">Word training sessions</h2>
+<h2>Word training sessions</h2>
 <table><tr><td>
 <canvas id="words" width="1000" height="300"></canvas>
 </td><td>
@@ -50,7 +50,7 @@
 <input type="checkbox" onclick="plot('words', this.checked);"> Cumulative
 </td></tr></table>
 
-<h2 id="qtc">QTC training sessions</h2>
+<h2>QTC training sessions</h2>
 <table><tr><td>
 <canvas id="qtc" width="1000" height="300"></canvas>
 </td><td>
