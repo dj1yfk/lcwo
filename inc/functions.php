@@ -382,10 +382,10 @@ function check ($w1, $w2) {		#w1 = original; w2 with errors
 
 function colorspan ($e, $c) {
 	if ($c == 'red') {
-		return ('<span style="font-family:monospace;color:#ff0000;">'.$e.'</span>');
+		return ('<span style="font-family:monospace;color:#aa0000;text-decoration:underline;">'.$e.'</span>');
 	}
 	else if ($c == 'blue') {
-		return ('<span style="font-family:monospace;color:#1111ff;">'.$e.'</span>');
+		return ('<span style="font-family:monospace;color:#1111ff;font-style:italic;">'.$e.'</span>');
 	}
 	else {
 		return ('<span style="font-family:monospace;color:#00aa00;">'.$e.'</span>');

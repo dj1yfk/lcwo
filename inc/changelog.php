@@ -11,6 +11,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2020-08-03:
+    * Improve colour contrast of checked groups. Also underline errors.
+      (tnx gin)
+
 2020-08-02:
     * Word training: When selecting words from multiple languages,
       make sure that an equal number of words is selected from each
