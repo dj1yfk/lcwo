@@ -1,11 +1,10 @@
 <div>
 <h1>Transmitting practice &mdash; Send Morse Code with the Mouse Button</h1>
 
-<p>Use the "Key" button to send Morse code. QRS/QRQ buttons change the speed the decoder expects to decode, Clear removes the decoded text.</p>
+<p>Use the "Key" button or Space bar to send Morse code. QRS/QRQ buttons change the speed the decoder expects to decode, Clear (or Escape) removes the decoded text.</p>
 
 <form onsubmit="return false;">
-<input type="submit" value="Key" onmousedown="down();return false;" onmouseup="up();return false;">
-<input type="submit" value="Key (for Smartphones)" ontouchstart="down();return false;" ontouchend="up();return false;"> 
+<input style="width:250px;height:250px" type="submit" value="Key" onmousedown="down();return false;" onmouseup="up();return false;" ontouchstart="down();return false;" ontouchend="up();return false;"><br>
 <input type="submit" value="QRQ" onclick="changespeed(1);return false;">
 <input type="submit" value="QRS" onclick="changespeed(0);return false;">
 <input type="submit" value="Clear" onclick="document.getElementById('jskey').innerHTML = '&nbsp;';return false;">
@@ -30,6 +29,29 @@ biquadFilter.connect(audioCtx.destination);
 oscillator.start();
 
 gainNode.gain.value = 0;
+
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    if ("key" in evt) {
+        if (evt.key === "Escape" || evt.key === "Esc") {
+			document.getElementById('jskey').innerHTML = "&nbsp;";
+		}
+		else if (evt.key == " "){
+            down();
+		}
+    } 
+}
+
+document.onkeyup= function(evt) {
+    evt = evt || window.event;
+    if ("key" in evt) {
+		if (evt.key == " "){
+            up();
+		}
+    } 
+}
+
+
 
 </script>
 

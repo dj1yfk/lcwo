@@ -11,6 +11,11 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2020-08-05:
+    * TX training: Make key button larger. Same key for mouse and touch
+      events. ESC clears text. Space bar can be used as an alternative
+      input method.
+
 2020-08-03:
     * Improve colour contrast of checked groups. Also underline errors.
       (tnx gin)
