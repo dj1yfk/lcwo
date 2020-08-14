@@ -328,13 +328,15 @@ Character set: &nbsp;
 			z = document.getElementById('label-'+mmchar[i]);
 	
 			if (i <= lesson) {
+                x.src = "/pics/mm-0.png";
 				x.height = 101-badness[mmchar[i]];			
 				y.height = badness[mmchar[i]];			
 				z.style.fontWeight = 'bold';
 				z.style.color = 'black';
 			}
 			else {
-				x.height = 100;			
+                x.height = 100;
+                x.src = "/pics/mm-2.png";
 				y.height = 1;			
 				z.style.fontWeight = 'normal';
 				z.style.color = 'lightgray';
