@@ -331,11 +331,13 @@ Character set: &nbsp;
 				x.height = 101-badness[mmchar[i]];			
 				y.height = badness[mmchar[i]];			
 				z.style.fontWeight = 'bold';
+				z.style.color = 'black';
 			}
 			else {
 				x.height = 100;			
 				y.height = 1;			
 				z.style.fontWeight = 'normal';
+				z.style.color = 'lightgray';
 			}
 		}
 		
