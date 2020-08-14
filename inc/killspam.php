@@ -19,7 +19,7 @@ if (is_suspicious_ip($_SERVER['REMOTE_ADDR'])) {
 		}
 
 }
-else if ($_SERVER['HTTP_REFERER'] == "http://lcwo.net/?p=welcome&hl=pt") {
+else if ($_SERVER['HTTP_REFERER'] == "https://lcwo.net/?p=welcome&hl=pt") {
 		add_suspicious_ip($_SERVER['REMOTE_ADDR']);
 }
 
