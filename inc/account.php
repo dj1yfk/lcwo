@@ -226,6 +226,9 @@ foreach ($themes as $theme) {
 function loadCSS(a) {
     document.getElementById('lcwocss').href = "/" + a + ".css";
 }
+
+loadCSS('<?=$_SESSION['theme'];?>');
+
 </script>
 
 
