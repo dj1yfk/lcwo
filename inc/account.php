@@ -17,7 +17,7 @@
 	$valid = 1;
 	$error = "";
 			
-			if ($_POST['pw1'] != '') {
+			if ($_POST['pw1'] != '' && $_POST['pw2'] != '') {
 					if ($_POST['pw1'] != $_POST['pw2']) {
 						$valid = 0;
 						$error .= l('passwordsnotmatch')."<br>";
