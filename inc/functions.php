@@ -1472,7 +1472,6 @@ function delete_user_url() {
 }
 
 # Return the CGI base-URL (e.g. http://cgi2.lcwo.net/cgi-bin/)
-# depending on $_SESSION['continent']
 function CGIURL() {
     global $cgiserver;
     $proto = "https://";

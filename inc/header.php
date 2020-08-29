@@ -39,8 +39,12 @@ $forward = array('dologin' => 'main', 'logout' => 'bye', 'delete'=> 'main');
 if ($forward[$_GET['p']]) {
 	    echo "<meta http-equiv=\"refresh\" content=\"1;url=/".$forward[$_GET['p']]."\"/>";
 	}
+
+
+$theme = $_SESSION['theme'] ? $_SESSION['theme'] : 'style';
+
 ?>
-<link href="/style.css" rel="stylesheet" type="text/css">
+<link id="lcwocss" href="/<?=$theme;?>.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="/js/leaflet.css">
 
 <?  if ($_SESSION['player'] == PL_FLASH or $p == "cwsettings") { ?>
@@ -51,10 +55,10 @@ if ($forward[$_GET['p']]) {
 <body bgcolor="#ffffff"> 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tbody>
-		<tr>
-			<td style="background-image:url(/pics/lcwo-bg2.png)" width="41%">
-			<a href="/"><img style="border-style:none" src="/pics/lcwo.png" height="75" width="214" title="LCWO - Home" alt="[LCWO LOGO]"></a> </td>
-			<td style="background-image:url(/pics/lcwo-bg2.png)" width="59%"> 
+		<tr class="headerline">
+			<td style="background-image:url(/pics/lcwo-bg2.png);" width="41%">
+			<a href="/"><img style="border-style:none;" src="/pics/lcwo.png" height="75" width="214" title="LCWO - Home" alt="[LCWO LOGO]"></a> </td>
+			<td style="background-image:url(/pics/lcwo-bg2.png);" width="59%"> 
 <?
 	if (DEV) {
 ?>			

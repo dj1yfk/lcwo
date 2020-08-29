@@ -327,7 +327,7 @@ if ($_SESSION['player'] != PL_JSCWLIB) {
 
 ?>
 
-<div id="formatwarning" style="width:65%;background-color:#cef010;display:none">
+<div id="formatwarning">
 <?=l('formatwarning');?>
 </div>
 

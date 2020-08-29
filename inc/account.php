@@ -48,6 +48,14 @@
 				$newlang = $_SESSION['lang'];
 			}
 
+            # if new theme does not exist, ignore it
+			if (in_array($_POST['theme'], $themes)) {
+				$newtheme = $_POST['theme'];
+			}
+			else {
+				$newtheme = $_SESSION['theme'];
+			}
+
             $hide = 0;
             if (isset($_POST['hide'])) {
                 $hide = 1;
@@ -75,7 +83,8 @@
 					`username` = '$username',
 					`name`='$name',
 					`email`='$email', `location`='$location',
-					`lang` = '$newlang', `hide` = $hide
+                    `lang` = '$newlang', `hide` = $hide,
+                    `theme` = '$newtheme'
 					where `id`=".$_SESSION['uid']);
 
 					if (!$update) {
@@ -89,12 +98,14 @@
 						unset($_SESSION['email']);
 						unset($_SESSION['location']);
 						unset($_SESSION['lang']);
+						unset($_SESSION['theme']);
 						unset($_SESSION['loadedlocale']);
 						$_SESSION['username'] = $username;
 						$_SESSION['name'] = stripslashes($name);
 						$_SESSION['email'] = $email;
 						$_SESSION['location'] = stripslashes($location);
 						$_SESSION['lang'] = $newlang;
+						$_SESSION['theme'] = $newtheme;
 						$_SESSION['hide'] = $hide;
     					# forces reload of locale
 						loadlocale($newlang);
@@ -131,7 +142,7 @@
 <div align="center">
 <form action="/account" method="POST">
 <table width="75%">
-<tr style="background-color:#dfdfdf">
+<tr class='hl'>
 	<td width="20%"><?echo l('username')?>:</td>
 	<td><input type="text" size="20" name="username" value="<? echo $_SESSION['username']; ?>">
 	</td>
@@ -143,7 +154,7 @@
 	<td><input type="password" size="20" name="pw1"></td>
 	<td>* (<? echo l('leaveemptyifnochange') ?>)</td> 
 </tr>
-<tr style="background-color:#dfdfdf">
+<tr class="hl">
 <td><?echo l('cfmpassword')?>:</td>
 	<td><input type="password" size="20" name="pw2"></td>
 	<td>*</td>
@@ -153,7 +164,7 @@
 	<td><input type="text" size="20" name="email" value="<? echo $_SESSION['email']; ?>">
 	</td>
 </tr>
-<tr  style="background-color:#dfdfdf">
+<tr class="hl">
 	<td><?echo l('name')?>:</td>
 	<td><input type="text" size="20" name="name" value="<? echo htmlspecialchars($_SESSION['name']); ?>">
 	</td>
@@ -163,7 +174,7 @@
 	<td><input type="text" size="20" name="location" value="<? echo htmlspecialchars($_SESSION['location']); ?>">
 	</td>
 </tr>
-<tr  style="background-color:#dfdfdf">
+<tr class="hl">
 	<td><?echo l('language') ?>:</td>
 	<td>
 <select name="lang" size="1">
@@ -181,6 +192,23 @@ foreach ($langs as $lang) {
 </td>
 </tr>
 <tr>
+	<td><?echo l('theme') ?>:</td>
+	<td>
+<select name="theme" size="1" onchange="loadCSS(this.value);">
+<?
+foreach ($themes as $theme) {
+	if ($theme == $_SESSION['theme']) {
+		echo "<option value=\"$theme\" selected>".l($theme)."</option>";
+	}
+	else {
+		echo "<option value=\"$theme\">".l($theme)."</option>";
+	}
+}
+?>
+</select>
+</td>
+</tr>
+<tr class='hl'>
     <td>Privacy:</td>
     <td><input type="checkbox" name="hide" <? echo $_SESSION['hide'] == 1 ? 'checked' : ''; ?>> Don't show me in <?=l('whoisonline');?></td>
 </tr>
@@ -194,6 +222,11 @@ foreach ($langs as $lang) {
 </form>
 </div>
 
+<script>
+function loadCSS(a) {
+    document.getElementById('lcwocss').href = "/" + a + ".css";
+}
+</script>
 
 
 <h2><?=l('deleteaccount');?></h2>

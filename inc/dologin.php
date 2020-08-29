@@ -23,7 +23,7 @@ else {
 			koch_duration, koch_randomlength,
 			groups_randomlength, customcharacters,
 			cw_tone_random, groups_mode, show_ministat,
-			forum_whitelist, delay_start, consent, hide
+			forum_whitelist, delay_start, consent, hide, theme
 		   	from lcwo_users where username='$username'");
 
 	if ($user = mysqli_fetch_object($getuser)) {
@@ -75,6 +75,7 @@ if ($valid) {
 	$_SESSION['debug'] = 0;
 	$_SESSION['consent'] = $user->consent;
 	$_SESSION['hide'] = $user->hide;
+	$_SESSION['theme'] = $user->theme;
 
 	loadlocale($_SESSION['lang']);
 	

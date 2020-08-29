@@ -62,6 +62,9 @@ $langs = array('de', 'da', 'en', 'fr', 'cs', 'pt', 'it', 'es', 'pl', 'ro', 'ja',
    'tr', 'zh', 'cn', 'bg', 'uk', 'br', 'no', 'sr', 'si');
 sort($langs);
 
+# Themes. .css is appended to the selected theme.
+$themes = array("style", "styledark");
+
 # how long will users be shown as "online" after last activity
 define("TIMEOUT",  "15");
 

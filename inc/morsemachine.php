@@ -331,15 +331,13 @@ Character set: &nbsp;
                 x.src = "/pics/mm-0.png";
 				x.height = 101-badness[mmchar[i]];			
 				y.height = badness[mmchar[i]];			
-				z.style.fontWeight = 'bold';
-				z.style.color = 'black';
+                z.className = 'mmactive';
 			}
 			else {
                 x.height = 100;
                 x.src = "/pics/mm-2.png";
 				y.height = 1;			
-				z.style.fontWeight = 'normal';
-				z.style.color = 'lightgray';
+                z.className = 'mminactive';
 			}
 		}
 		
@@ -350,9 +348,8 @@ Character set: &nbsp;
 	function highlight (ch, color) {
 			var tmp;
 			for (i=0; i < mmchar.length; i++) {
-				if ((tmp = document.getElementById('label-'+mmchar[i])) !=
-				null) {
-						tmp.style.backgroundColor = '#ffffff';
+				if ((tmp = document.getElementById('label-'+mmchar[i])) != null) {
+						tmp.style.backgroundColor = document.body.style.backgroundColor;
 				}
 			}
 			if ((tmp = document.getElementById('label-'+ch)) != null) {

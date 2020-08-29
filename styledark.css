@@ -22,7 +22,7 @@ textarea {font-family:monospace;}
 .menuText {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 11px;
-	color: #000000;
+	color: #dddddd;
 	text-decoration: none;
 	background-image:url(/pics/menu2.png);
 }
@@ -46,8 +46,9 @@ textarea {font-family:monospace;}
 
 #formatwarning {
     width:65%;
-    background-color:#cef010;
-    display: none;
+    color:#cef010;
+    background-color:#222222;
+    display:none
 }
 
 ul {
@@ -61,10 +62,16 @@ body {
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
+    color: #cccccc;
+    background: #000;
+}
+
+tr.headerline {
+    filter: brightness(40%);
 }
 
 a {
-	color: #000000;
+	color: #cccccc;
 }
 
 .footer {
@@ -88,18 +95,25 @@ a {
 	border: 1px dashed #4444ff;
 }
 
+textarea {
+    background: #222;
+    color: #cccccc;
+    font-family:monospace;
+}
+
+
 h1 {
 	font-size: 18px;
 	border-bottom-style: solid;
 	border-bottom-width: 2px;
-	border-bottom-color: #000000;
+	border-bottom-color: #cccccc;
 }
 
 h2 {
 	font-size: 16px;
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
-	border-bottom-color: #000000;
+	border-bottom-color: #cccccc;
 }
 
 a:hover {
@@ -109,15 +123,14 @@ a:hover {
 .mLink {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-weight: bold; 
-	color: #ffffff;
+	color: #cccccc;
 	text-decoration: none;
 }
 
 .sLink {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	color: #000000;
+	color: #cccccc;
 	font-size: 10px;
-/*	text-decoration: none; */
 }
 
 .greytext {
@@ -128,7 +141,7 @@ a:hover {
 
 th {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	background-color: #aaaaff;
+	background-color: #4444aa;
 	font-size: 11px;
 }
 
@@ -137,26 +150,25 @@ td {
 	font-size: 11px;
 }
 
-tr.hl {
-    background-color:#dfdfdf;
+.hl {
+    background-color:#2a2a2a;
 }
 
 .mmbackground {
-    background: #ffffff;
+    background: #000000;
 }
 
 .mmactive {
     font-weight: bold;
-    color: #000000;
-    background: #ffffff;
+    color: #ffffff;
+    background: #000000;
 }
 
 .mminactive {
     font-weight: normal;
     color: #444444;
-    background: #ffffff;
+    background: #000000;
 }
-
 
 .smalltd {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -173,7 +185,17 @@ tr.hl {
 input {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 11px;
+    background: #222;
+    color: #cccccc;
 }
+
+select {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+    background: #222;
+    color: #cccccc;
+}
+
 
 pre {
 	font-size: 11px;

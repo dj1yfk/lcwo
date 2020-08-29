@@ -11,6 +11,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2020-08-29:
+    * Add dark mode (suggested by K5RHA)
+
 2020-08-05:
     * TX training: Make key button larger. Same key for mouse and touch
       events. ESC clears text. Space bar can be used as an alternative

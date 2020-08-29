@@ -33,7 +33,6 @@ function lessoncheck() {
 }
 
 function wordtrainingcheck() {
-	var cwtest2 = '40 99 41 32 70 97 98 105 97 110 32 75 117 114 122 32 68 74 49 89 70 75';
 	var lang = document.getElementById('wlanguage');
 	var simplify = document.getElementById('wsimplify');
 	var maxlen = document.getElementById('wmaxlen');

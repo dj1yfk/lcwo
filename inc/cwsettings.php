@@ -206,7 +206,7 @@ var locked = <? echo ($_SESSION['lockspeeds']==1 ? "true" : "false") ?>;
 	&nbsp; 
 	</td>
 	</tr>
-	<tr style="background-color:#dddddd">
+	<tr class="hl">
 	<td><?echo l('effspeedlong')?>  (<? echo l('wpm') ?>):</td>
 	<td><input id="eff" disable="disabled" onFocus="if(locked){this.blur();}" onClick="if(locked) { locktoggle(); }" style="background:#ffffff;" name="eff" type="text" value="<? echo $_SESSION['cw_eff']; ?>" size=3></td>
 	</tr>
@@ -227,7 +227,7 @@ var locked = <? echo ($_SESSION['lockspeeds']==1 ? "true" : "false") ?>;
 	<? if ($_SESSION['cw_tone_random']) { echo 'checked'; }?> > <? echo l('random') ?> (500-900Hz)
 	</td>
 	</tr>
-	<tr style="background-color:#dddddd">
+	<tr class="hl">
 	<td valign="top"><? echo l('cwplayer') ?>:</td>
 	<td colspan="2">
     <input type="radio" name="ply" value="1" <? if ($_SESSION['player']==1) { echo 'checked'; }?>> <a style="font-weight:bold;" href="https://fkurz.net/ham/jscwlib.html"><?=l('jscwlib');?></a><br>
@@ -242,7 +242,7 @@ var locked = <? echo ($_SESSION['lockspeeds']==1 ? "true" : "false") ?>;
 	($_SESSION['vvv']==1) { echo 'checked'; }?>> "VVV = / AR"
 	</td>
 	</tr>
-	<tr style="background-color:#dddddd">
+	<tr class="hl">
 	<td valign="top"><? echo l('startdelay') ?>:</td>
 	<td colspan="2">
 	<input type="text" value="<?=$_SESSION['delay_start']?>" size=2 name="delay_start"> <?=l('seconds')?>
@@ -341,7 +341,7 @@ foreach ($kochchar as $k) {
 	if ($nr == 0) {
 		echo "<tr>";
 	}
-	echo '<td style="background-color:#dddddd"><input id="char'.$k.'" type="checkbox" name="char'.$k.'" value="1"';
+	echo '<td class="hl"><input id="char'.$k.'" type="checkbox" name="char'.$k.'" value="1"';
 	if (!(strpos($_SESSION['customcharacters'], $k) === FALSE)) {
 		echo " checked ";
 	}
@@ -363,7 +363,7 @@ foreach ($extrachar as $k) {
 	if ($nr == 0) {
 		echo "<tr>";
 	}
-	echo '<td style="background-color:#dddddd"><input id="char'.$k.'" type="checkbox" name="char'.$k.'" value="1"';
+	echo '<td class="hl"><input id="char'.$k.'" type="checkbox" name="char'.$k.'" value="1"';
 	
 	if (!(strpos($_SESSION['customcharacters'], $k2) === FALSE)) {
 		echo " checked ";

@@ -92,9 +92,9 @@ if ($valid) {
 
 	if (!$spam) {
 	$add = mysqli_query($db,"INSERT INTO lcwo_users (`username`,
-	`password`, `email`, `player`, `cw_tone`, `name`, `location`, `lang`, `continent`, `signupdate`, `consent`, `profileaboutme`) VALUES 
+	`password`, `email`, `player`, `cw_tone`, `name`, `location`, `lang`, `theme`, `signupdate`, `consent`, `profileaboutme`) VALUES 
 	('".$_POST['username']."', 'notyet', '$email', ".PL_DEFAULT.", 600, 
-	'$name', '$location', '$newlang', 'eu', CURDATE(), 1, '');");
+	'$name', '$location', '$newlang', 'style', CURDATE(), 1, '');");
 	}	
 
 	loadlocale($newlang);

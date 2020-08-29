@@ -367,7 +367,7 @@ CREATE TABLE `lcwo_users` (
   `groups_abbrev` int(1) NOT NULL DEFAULT '0',
   `forum_whitelist` int(1) NOT NULL DEFAULT '0',
   `delay_start` int(11) NOT NULL DEFAULT '0',
-  `continent` varchar(2) NOT NULL DEFAULT 'eu',
+  `theme` varchar(16) NOT NULL DEFAULT 'style',
   `consent` int(11) NOT NULL DEFAULT '0',
   `hide` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
