@@ -21,7 +21,7 @@ function text2cw () {
 	$text = stripslashes($_POST['text']);
     $text = str_replace('\\', '', $text);
 
-	if (!$text) {
+	if ($text == "") {
 		$text = "LCWO";
 	}
 ?>
