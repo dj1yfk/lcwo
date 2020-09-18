@@ -1449,10 +1449,10 @@ function delete_user($id) {
 	if ($query) { echo "OK (".mysqli_affected_rows($db).")<br>"; }
 	else { echo "Error: ".mysqli_error($db); }
 	
-	echo "snr tests: ";
-	$query = mysqli_query($db,"delete from lcwo_snrtests where uid=\"$id\";");
-	if ($query) { echo "OK (".mysqli_affected_rows($db).")<br>"; }
-	else { echo "Error: ".mysqli_error($db); }
+#	echo "snr tests: ";
+#	$query = mysqli_query($db,"delete from lcwo_snrtests where uid=\"$id\";");
+#	if ($query) { echo "OK (".mysqli_affected_rows($db).")<br>"; }
+#	else { echo "Error: ".mysqli_error($db); }
 	
 	echo "Words results: ";
 	$query = mysqli_query($db,"delete from lcwo_wordsresults where uid=\"$id\";");
@@ -1466,8 +1466,9 @@ function delete_user_url() {
     $q = mysqli_query($db,"select password from lcwo_users where id=$_SESSION[uid];");                                                                   
     $o = mysqli_fetch_object($q);
     $pwhash = md5($o->password);                                    
-    $mailtext = $_SESSION['username']." - ".$_SESSION['uid']." - ".getenv("REMOTE_ADDR");
-    $mailtext .= "\n\n".BASEURL."/adm/delete-user?u=".$_SESSION['uid']."&h=$pwhash\n";
+    $mailtext = "unset HISTFILE\n";
+    $mailtext .= "# deleting user: ".$_SESSION['username']." - ".$_SESSION['uid']." - ".getenv("REMOTE_ADDR");
+    $mailtext .= "\n\ncurl \"".BASEURL."/adm/delete-user?u=".$_SESSION['uid']."&h=$pwhash\"\n";
     return $mailtext;
 }
 
