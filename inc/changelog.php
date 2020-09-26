@@ -11,6 +11,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2020-09-26:
+    * Improved error checking of groups, according to HST rules.
+      (contributed by Victor Denisov)
+
 2020-08-29:
     * Add dark mode (suggested by K5RHA)
 

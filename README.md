@@ -14,7 +14,7 @@ There's a shell script called `docker_start.sh` which builds
 and runs the Docker image and fires up an instance of LCWO which you can reach
 at `http://localhost:8000`. There's an user `admin` with the password `admin`.
 
-On Ubuntu, install Docker and add your user to the docker group first;
+On Ubuntu, install Docker and add your user to the docker group first:
 ```
 sudo apt-get install docker.io    # unless you already installed docker
 sudo usermod -a -G docker $USER   # you must log out and to make this work
@@ -35,20 +35,18 @@ deployment as a public website this may not be what you want.
 ## Configuration
 
 Most configuration options are set in `inc/definitions.php`. A template is
-included in the official sources, which is also used for the Docker image. For
-your own instance.
+included in the official sources, which is also used for the Docker image.
 
 If you want to change the configuration you could change this file directly,
 but the *clean* way of doing this is by copying this file to
-`inc/definitions.custom.php` which overrides the default file if present.
+`inc/definitions.custom.php`. If this file is present, the default file will
+be ignored.
 
 ## Database
 
 The database table schemata and contents needed to run LCWO are located in the
-directory `db`. There are the following tables:
-
-* ...
-* ...
+directory `db`. Have a look at the Dockerfile on how to set up a minimum 
+database that LCWO runs on.
 
 ## Architecture
 
@@ -60,4 +58,12 @@ directory `db`. There are the following tables:
 
 The code quality of LCWO varies strongly between the different parts, from
 terrible spaghetti code to somewhat structured and modular. Refactoring needed.
+
+## Authors
+
+LCWO was written by Fabian Kurz, DJ1YFK &lt;fabian@fkurz.net&gt;.
+
+Thanks to the following authors for contributing code:
+
+* [VictorDenisov](https://github.com/VictorDenisov/)
 
