@@ -69,6 +69,7 @@ if (!preg_match("/^[a-zA-Z0-9]{1,24}$/", $_POST['username'])) {
 	return 0;
 }
 
+    $username = $_POST['username'];
 	# Check abuse
 	$ip = getenv("REMOTE_ADDR");
 
@@ -82,7 +83,7 @@ if (!preg_match("/^[a-zA-Z0-9]{1,24}$/", $_POST['username'])) {
 	}
 
 
-$getemail = mysqli_query($db,"SELECT `email`, `password` from `lcwo_users` where `username` = '".$_POST['username']."'");
+$getemail = mysqli_query($db,"SELECT `email`, `password` from `lcwo_users` where `username` = '$username';");
 
 $e = mysqli_fetch_object($getemail);
 
@@ -99,7 +100,7 @@ password for https://lcwo.net/.
 
 To set a new password, please visit the following link:
 
-".BASEURL."/lostpassword/$hash/".$_POST['username']."
+".BASEURL."/lostpassword/$hash/".$username."
 
 If you didn't request a new password yourself, please
 disregard this message.
@@ -110,7 +111,7 @@ LCWO.net Password Robot
 -- 
 Responsible for this mail:\n".MAILSIGNATURE." ";
 
-$msgid = "Message-Id: <".time()."-".md5($_POST['username'])."@msgid.lcwo.net>";
+$msgid = "Message-Id: <".time()."-".md5($username)."@msgid.lcwo.net>";
 
 mail($e->email, $subject, $mailtext, "From: LCWO Robot <".ADMINMAIL.">\r\nBcc: ".ADMINMAIL."\r\n$msgid", "-f".ADMINMAIL);
 
@@ -120,12 +121,12 @@ echo "<p>Note: Some providers, like AT&T and Verizon are known to reject
 		minutes, please check your spam/junk mail folder. If you don't
         find a message there, please contact the administrator by mail.</p>";
 echo "<p>Please specify your user name in your email. Thanks!</p>";
-echo "<p>Admin: <a href='mailto:".ADMINMAIL."'>".ADMINMAIL."</a></p>";
+echo "<p>Admin: <a href='mailto:".ADMINMAIL."?subject=LCWO Password request for $username'>".ADMINMAIL."</a></p>";
 		
 }
 else {
 	echo "<p>Error: ".l('noemailindb')."</p>
-	<p>Send an email to <a href=\"mailto:".ADMINMAIL."\">the
+	<p>Send an email to <a href=\"mailto:".ADMINMAIL."?subject=LCWO Password request for $username\">the
 admin (".ADMINMAIL.")</a> and ask for a new password.</p>";
 echo "<p>Please specify your user name in your email. Thanks!</p>";
 }
@@ -200,7 +201,7 @@ global $db;
 </form>
 <p>
 <? echo l('forgotpassword3') ?>
-<a href="mailto:<?=ADMINMAIL;?>"><?=ADMINMAIL;?></a></p>
+<a href="mailto:<?=ADMINMAIL;?>?subject=Request for LCWO password reset&body=Hello LCWO, please send me password reset instructions. My username is "><?=ADMINMAIL;?></a></p>
 <?
 }
 ?>
