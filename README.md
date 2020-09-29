@@ -2,8 +2,7 @@
 
 This is the source repository for *Learn CW Online*, a website to learn and
 practice Morse code in the browser. The official website of LCWO is
-https://lcwo.net/. The code can be found at
-https://git.fkurz.net/dj1yfk/lcwo
+https://lcwo.net/. The code can be found at https://git.fkurz.net/dj1yfk/lcwo
 
 The code is licensed under the GNU AGPL 3. 
 
@@ -12,12 +11,12 @@ The code is licensed under the GNU AGPL 3.
 The fastest way to get a running instance of LCWO is by using Docker.
 There's a shell script called `docker_start.sh` which builds
 and runs the Docker image and fires up an instance of LCWO which you can reach
-at `http://localhost:8000`. There's an user `admin` with the password `admin`.
+at `http://localhost:8000/`. There's an user `admin` with the password `admin`.
 
 On Ubuntu, install Docker and add your user to the docker group first:
 ```
 sudo apt-get install docker.io    # unless you already installed docker
-sudo usermod -a -G docker $USER   # you must log out and to make this work
+sudo usermod -a -G docker $USER   # you must log out and in again to make this work
 ```
 
 Then simply clone the repository and run the container:
