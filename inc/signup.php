@@ -111,6 +111,8 @@ if (is_untrusted_ip($_SERVER['REMOTE_ADDR'])) {
 		$nr2 = rand(1, 4);
 		$solution = $nr1 + $nr2;
 		$_SESSION['captcha'] = md5($solution."asaltydog");
+
+if (CAPTCHA_IMG) {
 		$im = imagecreate(60,18);
 		$white = imagecolorallocate ($im, 0xff,0xff,0xff);
 		$green = imagecolorallocate ($im, 0xa4,0xbf,0x12);
@@ -124,6 +126,17 @@ if (is_untrusted_ip($_SERVER['REMOTE_ADDR'])) {
 ?>
 		<img src="data:image/jpeg;base64,<?= $image_data_base64; ?>" >
 <input type="text" size="20" name="captcha" value=""> example: <img style="border:1px" src="/pics/solve.png"> 
+
+<?
+}
+else { // text captcha
+    echo "$nr1 + $nr2 = ";
+?>
+<input type="text" size="20" name="captcha" value=""> 
+<?
+}  // text captcha
+?>
+
 </td>
 </tr>
 <?
