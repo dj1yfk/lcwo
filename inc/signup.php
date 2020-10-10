@@ -64,18 +64,15 @@
 </tr>
 <tr>
 	<td><?=l('email')?>:</td>
-	<td><input type="text" size="20" name="email" value="<?
-echo $_SESSION['signup']['email']; ?>"></td>
+	<td><input type="text" size="20" name="email" placeholder="yourname@example.com" value="<?  echo $_SESSION['signup']['email']; ?>"></td>
 </tr>
 <tr style="background-color:#dfdfdf">
 	<td><? echo l('name') ?>:</td>
-	<td><input type="text" size="20" name="name" value="<? echo
-$_SESSION['signup']['name']; ?>"></td>
+	<td><input type="text" size="20" name="name" placeholder="Your Name" value="<? echo $_SESSION['signup']['name']; ?>"></td>
 </tr>
 <tr>
 	<td><? echo l('location') ?>:</td>
-	<td><input type="text" size="20" name="location" value = "<?
-	echo $_SESSION['signup']['location']; ?>"></td>
+	<td><input type="text" size="20" name="location" placeholder="Your Location" value = "<?  echo $_SESSION['signup']['location']; ?>"></td>
 </tr>
 <tr style="background-color:#dfdfdf">
 	<td><? echo l('language') ?>:</td>
