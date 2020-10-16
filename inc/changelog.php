@@ -1,3 +1,4 @@
+<? $url = BASEURL."/changelogatom.xml"; ?>
 <h1>LCWO ChangeLog</h1>
 <pre>
 
@@ -5,6 +6,8 @@ This is a detailed list of changes made to LCWO. It's mostly for the
 developer's own reference, but it's public so everyone can see what is going
 on behind the scenes at LCWO. Some things may not make much sense to anyone but
 the author. 
+
+This log is available as an Atom feed: <a href="<?=$url;?>"><?=$url;?></a>.
 
 Even more fine grained changes can be observed in the git repository:
 <a href="https://git.fkurz.net/dj1yfk/lcwo">https://git.fkurz.net/dj1yfk/lcwo</a>
