@@ -54,6 +54,7 @@ RewriteRule ^news/delete/([0-9]+) ?p=news&delete=$1 [L]
 RewriteRule ^lostpassword/([a-z0-9]+)/([a-zA-Z0-9]+) ?p=lostpassword&h=$1&u=$2 [L]
 RewriteRule ^atom.xml api/atom.php [L]
 RewriteRule ^forumatom.xml api/forumatom.php [L]
+RewriteRule ^checklogatom.xml api/checklogatom.php [L]
 ErrorDocument 404 /?p=404
 ErrorDocument 403 /403.php
 RedirectMatch permanent ^/u/([a-zA-Z0-9]+)$ /profile/$1
