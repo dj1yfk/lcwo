@@ -42,9 +42,22 @@ case 'stats':
 case 'export_results':
     export_results();
     break;
+case 'keepalive':
+    keepalive();
+    break;
 default:
     return;
 }
+
+function keepalive () {
+    if (!$_SESSION['uid']) {
+        echo '{"result": false}';
+    }
+    else {
+        echo '{"result": true}';
+    }
+}
+
 
 function export_results () {
     global $db;

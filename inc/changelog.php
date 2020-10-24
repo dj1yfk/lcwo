@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2020-10-24:
+    * Fix the session keepalive function (tnx lidsville)
+
 2020-10-16:
     * Changelog available as Atom feed (/changelogatom.xml) (tnx oc)
 

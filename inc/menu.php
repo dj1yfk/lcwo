@@ -16,7 +16,7 @@
 		  <a class="mLink" href="/about"><? echo l('about') ?></a>
 		  <img style="vertical-align:middle" src="/pics/menusep2.png" height="19" width="15" alt=":">
 		  <? if ($_SESSION['uid']) { ?>
-		  <a class="mLink" href="/logout"><?
+		  <a id="logoutlink" class="mLink" href="/logout"><?
 				  echo l('logout')." (".$_SESSION['username']; ?>)</a>
 		  <img style="vertical-align:middle" src="/pics/menusep2.png"  height="19" width="15" alt=":">
 			<? } ?>
