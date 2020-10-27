@@ -20,6 +20,8 @@ function text2cw () {
 
 	$text = stripslashes($_POST['text']);
     $text = str_replace('\\', '', $text);
+    $hide = $_POST['cbhide'] ? true : false;
+    print_r($_POST);
 
 	if ($text == "") {
 		$text = "LCWO";
@@ -30,7 +32,14 @@ function text2cw () {
 <td width="46%" valign="top">
 <?	
 	echo "<h2>".l('yourtext')."</h2>";
-	echo "<p class=\"tborder\">".htmlspecialchars($text)."</p>";
+
+	echo "<p id='text' class=\"tborder\">".htmlspecialchars($text)."</p>";
+
+    if ($hide) {
+?>
+    <a id="reveal" href="#" onclick="document.getElementById('text').style.display = 'block';document.getElementById('reveal').style.display='none';"><?=l('revealtext');?></a>
+<?
+    }
 
 	echo "<h2>".l('cwplayeranddownload')."</h2>";
 
@@ -55,6 +64,15 @@ function text2cw () {
         pa[1].enablePS(false);
         pa[1].setStartDelay(0.1);
     }
+
+<?
+    if ($hide) {
+?>
+    document.getElementById('text').style.display = "none";
+<?
+    }
+?>
+
     </script>
 
 <?
@@ -182,8 +200,23 @@ function entryform () {
 <input type="submit" value=" <? echo l('convert',1) ?> ">
 &nbsp;
 Open text: <input type="file" id="t2c_file" onChange="javascript:load_text(this);return false">
+&nbsp;
+<input id="hide" type="checkbox" onChange="javascript:toggle_hide();" name="cbhide" value="1"<? if ($_SESSION['text2cw']['hide'] == true) { echo " checked "; } ?>> <?=l('hidetext');?>
 </form>
 <script>
+  var hide = false;
+  function toggle_hide() {
+      hide = document.getElementById('hide').checked;
+      if (hide) {
+          document.getElementById('txt').style.display = "none";
+      }
+      else {
+          document.getElementById('txt').style.display = "block";
+      }
+  }
+  toggle_hide();
+
+
     function load_text(f) {
         if (!f.files[0]) {
             return;
@@ -271,6 +304,7 @@ function update_text2cw () {
 		$_SESSION['text2cw']['cw_speed'] = intval($_POST['speed']);
 		$_SESSION['text2cw']['cw_eff']  = intval($_POST['eff']);
 		$_SESSION['text2cw']['cw_tone'] = intval($_POST['freq']);
+		$_SESSION['text2cw']['hide'] = $_POST['cbhide'] ? true : false;
 }
 
 

@@ -14,6 +14,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2020-10-27:
+    * Allow to hide the text in text2cw mode (useful in conjunction
+      with loading a text file with a practice text) - tnx DF1DV
+
 2020-10-24:
     * Fix the session keepalive function (tnx lidsville)
 
