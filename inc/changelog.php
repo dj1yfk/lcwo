@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2020-10-31:
+    * text2cw: Hide text also from code snipped.
+
 2020-10-28:
     * Added new Dutch proverbs (tnx nonagenarian)
 

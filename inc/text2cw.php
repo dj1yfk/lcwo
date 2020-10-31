@@ -106,7 +106,18 @@ function text2cw () {
     m.setWpm(<?=$s;?>);
     m.setEff(<?=$e;?>);
     m.setFreq(<?=$f;?>);
+<?
+    if ($hide) {
+?>
+    m.setTextB64("<?=base64_encode($t);?>");
+<?
+    }
+    else {
+?>
     m.setText("<?=$t;?>");
+<?
+    }
+?>
     m.renderPlayer('player', m);
 </script>
 </textarea>

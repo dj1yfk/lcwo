@@ -583,6 +583,17 @@
             this.refresh_download_link();
         }
 
+        this.setTextB64 = function (text) {
+            try {
+                text = atob(text);
+                console.log("setText: Text is base64 encoded.");
+            }
+            catch (e){
+                console.log("setText: Text is not base64 encoded.");
+            }
+            this.setText(text);
+        }
+
         this.refresh_download_link = function() {
             if (this.btn_down) {
                 this.btn_down.href = this.cgiurl + "cw.mp3?d=001&s=" + this.wpm + "&e=" + this.eff + "&f=" + this.freq + "&t=|W" + this.ews + " " + this.text + "%20%20%20%20%5E";
@@ -672,11 +683,23 @@
             // array. For short text, this is not noticeable at all.
             start += out.length/10000;
 
+            // if there's a "lamp" element, we generate visual CW.
+            var lamp = document.getElementById('lamp')
+
             for (var i = 0; i < out.length; i++) {
                 var s = start + out[i]['t'];
                 // volume change
                 if (out[i].hasOwnProperty('v')) {
                     this.gainNode.gain.setValueAtTime(out[i]['v'], s);
+                    var tmp;
+                    if (lamp) {
+                        if (out[i]['v'] == 0) {
+                            setTimeout(function() { lamp.style.backgroundColor = 'white';}, out[i]['t']*1000);
+                        }
+                        else {
+                            setTimeout(function() { lamp.style.backgroundColor = 'yellow';}, out[i]['t']*1000);
+                        }
+                    }
                 }
                 // freq change
                 if (out[i].hasOwnProperty('f')) {
