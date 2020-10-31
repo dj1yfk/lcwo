@@ -59,7 +59,7 @@ function text2cw () {
 ?>
 
     <script>
-    if (pa[1]) {
+    if (typeof(pa) != 'undefined') {
         pa[1].enablePS(false);
         pa[1].setStartDelay(0.1);
     }
