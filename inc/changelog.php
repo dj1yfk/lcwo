@@ -14,6 +14,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2020-11-04:
+    * CW settings page: Notify user that they need to click the "Save"
+      button to save, if settings were changed.
+
 2020-10-31:
     * text2cw: Hide text also from code snipped.
 

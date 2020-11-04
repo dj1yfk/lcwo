@@ -155,11 +155,18 @@ return 0;
 
 <script type="text/javascript">
 
+var changed = false;
+
+function value_changed () {
+    changed = true;
+    document.getElementById('changed_hint').style.display = "block";
+}
 
 function lockspeed(spd) {
 	var eff = document.getElementById('eff');
 	//var speed = document.getElementById('speed').value;
 	eff.value = spd;
+    value_changed();
 }
 
 function locktoggle() {
@@ -197,7 +204,7 @@ var locked = <? echo ($_SESSION['lockspeeds']==1 ? "true" : "false") ?>;
 		<? echo l('charspeedlong')?> (<? echo l('wpm') ?>):
 	</td>
 	<td width="10%">
-		<input id="speed" onChange="if(locked) {lockspeed(this.value);}" 
+		<input id="speed" onChange="if(locked) {lockspeed(this.value);}; value_changed();" 
 			name="speed" type="text" value="<? echo $_SESSION['cw_speed']; ?>"
 		   	size="3">
 	</td>
@@ -208,56 +215,56 @@ var locked = <? echo ($_SESSION['lockspeeds']==1 ? "true" : "false") ?>;
 	</tr>
 	<tr class="hl">
 	<td><?echo l('effspeedlong')?>  (<? echo l('wpm') ?>):</td>
-	<td><input id="eff" disable="disabled" onFocus="if(locked){this.blur();}" onClick="if(locked) { locktoggle(); }" style="background:#ffffff;" name="eff" type="text" value="<? echo $_SESSION['cw_eff']; ?>" size=3></td>
+	<td><input onChange="value_changed();" id="eff" disable="disabled" onFocus="if(locked){this.blur();}" onClick="if(locked) { locktoggle(); }" style="background:#ffffff;" name="eff" type="text" value="<? echo $_SESSION['cw_eff']; ?>" size=3></td>
 	</tr>
 	<tr>
 	<td>
 		<? echo l('ewslong')?>:
 	</td>
-	<td width="10%"> <input id="ews" name="ews" type="text" value="<? echo $_SESSION['cw_ews']; ?>" size="2">
+	<td width="10%"> <input onChange="value_changed();" id="ews" name="ews" type="text" value="<? echo $_SESSION['cw_ews']; ?>" size="2">
 	</td>
 	</tr>
 	<tr>
 	<td valign="top"><? echo l('tone') ?> (Hz):</td>
 	<td colspan="2">
-	<input type="radio" name="tonetype" value="0" <? if
+	<input type="radio" onChange="value_changed();" name="tonetype" value="0" <? if
 (!$_SESSION['cw_tone_random']) { echo 'checked'; }?>>
-	<input name="tone" type="text" value="<? echo $_SESSION['cw_tone']; ?>" size=3> <br>
-	<input type="radio" name="tonetype" value="1"
+	<input name="tone" onChange="value_changed();" type="text" value="<? echo $_SESSION['cw_tone']; ?>" size=3> <br>
+	<input type="radio"onChange="value_changed();"  name="tonetype" value="1"
 	<? if ($_SESSION['cw_tone_random']) { echo 'checked'; }?> > <? echo l('random') ?> (500-900Hz)
 	</td>
 	</tr>
 	<tr class="hl">
 	<td valign="top"><? echo l('cwplayer') ?>:</td>
 	<td colspan="2">
-    <input type="radio" name="ply" value="1" <? if ($_SESSION['player']==1) { echo 'checked'; }?>> <a style="font-weight:bold;" href="https://fkurz.net/ham/jscwlib.html"><?=l('jscwlib');?></a><br>
-	<input type="radio" name="ply" value="3" <? if ($_SESSION['player']==3) { echo 'checked'; }?>> <? echo l('html5player') ?><br>
-	<input type="radio" name="ply" value="2" <? if ($_SESSION['player']==2) { echo 'checked'; }?>> <? echo l('flashplayer') ?><br>
+    <input type="radio" onChange="value_changed();" name="ply" value="1" <? if ($_SESSION['player']==1) { echo 'checked'; }?>> <a style="font-weight:bold;" href="https://fkurz.net/ham/jscwlib.html"><?=l('jscwlib');?></a><br>
+	<input type="radio" onChange="value_changed();" name="ply" value="3" <? if ($_SESSION['player']==3) { echo 'checked'; }?>> <? echo l('html5player') ?><br>
+	<input type="radio" onChange="value_changed();" name="ply" value="2" <? if ($_SESSION['player']==2) { echo 'checked'; }?>> <? echo l('flashplayer') ?><br>
 	</td>
 	</tr>
 	<tr>
 	<td><? echo l('cwprefix') ?>:</td>
 	<td colspan="2">
-	<input type="checkbox" name="vvv" value="1" <? if
+	<input type="checkbox" onChange="value_changed();" name="vvv" value="1" <? if
 	($_SESSION['vvv']==1) { echo 'checked'; }?>> "VVV = / AR"
 	</td>
 	</tr>
 	<tr class="hl">
 	<td valign="top"><? echo l('startdelay') ?>:</td>
 	<td colspan="2">
-	<input type="text" value="<?=$_SESSION['delay_start']?>" size=2 name="delay_start"> <?=l('seconds')?>
+	<input type="text" onChange="value_changed();" value="<?=$_SESSION['delay_start']?>" size=2 name="delay_start"> <?=l('seconds')?>
 	</td>
 	</tr>
 	<tr>
 	<td valign="top"><? echo l('grouplength') ?>:</td>
 	<td colspan="2">
-	<input type="radio" name="rand" value="0" <? if
+	<input type="radio" onChange="value_changed();" name="rand" value="0" <? if
 	($_SESSION['koch_randomlength'] > 0) { echo 'checked'; }?>>
 	<input type="text" value="<? echo
 ($_SESSION['koch_randomlength'] > 0) ? 
 $_SESSION['koch_randomlength'] : 5 ?>" size=3 name="randlength">
 	(<? echo l('fixed') ?>)<br>
-	<input type="radio" name="rand" value="1" 
+	<input type="radio" onChange="value_changed();" name="rand" value="1" 
 	<? if ($_SESSION['koch_randomlength']==0) { echo 'checked';
 }?>> 2-7 (<? echo l('random') ?>)
 	</tr>
@@ -268,8 +275,18 @@ $_SESSION['koch_randomlength'] : 5 ?>" size=3 name="randlength">
 	<br>
 	<br>
 	<br>
-	
-	<input type="submit" value=" <? echo l('submit',1) ?> ">	
+
+    <table>
+    <tr>
+      <td>    
+        <input type="submit" value=" <? echo l('submit',1) ?> ">	
+      </td>
+      <td>
+      &nbsp; <span style="display:none;color:red;" id="changed_hint">&vltri; <?=l('changedhint');?></span>
+      </td>
+    </tr>
+    </table>
+
 </td>
 <td width="45%" valign="top">
 
@@ -311,7 +328,9 @@ function togglechecks (larray) {
 	var i;
 	var newvalue = true;
 	var tmp;
-	
+
+    value_changed();
+
 	/* check if members of the array are checked */
 	
 	for	(i=0; i < larray.length; i++) {
@@ -341,7 +360,7 @@ foreach ($kochchar as $k) {
 	if ($nr == 0) {
 		echo "<tr>";
 	}
-	echo '<td class="hl"><input id="char'.$k.'" type="checkbox" name="char'.$k.'" value="1"';
+	echo '<td class="hl"><input onChange="value_changed();" id="char'.$k.'" type="checkbox" name="char'.$k.'" value="1"';
 	if (!(strpos($_SESSION['customcharacters'], $k) === FALSE)) {
 		echo " checked ";
 	}
