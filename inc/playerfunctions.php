@@ -41,10 +41,8 @@ $url_encoded = "?s=$speed"."&e=$eff&f=$cw_tone&"."t=$fp10"."$text_encoded";
 
 
 /* HTML for the Button  (used by HTML5 and New Flash) */
-$buttonhtml = "<a id=\"playbutton$mnr\"
-style=\"white-space:nowrap;font-size:16px;border-style:outset;border-width:4px;
-padding:2px;background-color:#dddddd;font-weight:bold;
-text-decoration:none;\" onMouseup=\"if(tmp=getElementById('eform')){tmp.input.focus();}\" onkeyup=\"if(tmp=getElementById('eform')){tmp.input.focus();}\"
+$buttonhtml = "<a id=\"playbutton$mnr\" class=\"playbutton\"
+onMouseup=\"if(tmp=getElementById('eform')){tmp.input.focus();}\" onkeyup=\"if(tmp=getElementById('eform')){tmp.input.focus();}\"
 href=\"javascript:playpause($mnr);\">$playpause</a>";
 
 

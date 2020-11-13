@@ -14,7 +14,7 @@ textarea {font-family:monospace;}
 		width:150px;
 		border-width:4px;
 		padding:2px;
-		background-color:#dddddd;
+		background-color:#000000;
 		font-weight:bold;
 		text-align:center;
 }
@@ -123,7 +123,7 @@ a:hover {
 .mLink {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-weight: bold; 
-	color: #cccccc;
+	color: #dddddd;
 	text-decoration: none;
 }
 
