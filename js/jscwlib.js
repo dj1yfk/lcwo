@@ -1069,7 +1069,7 @@
             // popup dialog for settings
             var pop = document.createElement("span");
             pop.style.width = "300px";
-            //pop.style.height = "300px";
+            pop.style.color = '#000000';
             pop.style.backgroundColor = '#eaeaea';
             pop.style.borderRadius = "6px";
             pop.style.borderWidth = 'thin';
