@@ -186,11 +186,6 @@ function playerload (wpm, eff, freq, text) {
         pa[1].play();
     <?
     }
-	else {	/* Flash */
-	?>
-	loadFile('js1', {file:'<?=CGIURL();?>cw.mp3'+file, type:'mp3', autostart:'true'})
-	<?
-	}	
 	?>
 }
 

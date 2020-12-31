@@ -494,15 +494,9 @@ function playcall () {
 			
 	var cs = document.getElementById('clicktostart');
 	cs.innerHTML = '&nbsp; &nbsp; &nbsp; <input type="button" value="<?=l('pressdottoreplay',1);?>" onclick="playcall();return false;">';
-	
-	<?
-	if ($_SESSION['player'] == PL_FLASH) {	/* Flash Player */
-	?>	
-	loadFile('js1', {file:'<?=CGIURL();?>cw2.mp3?s='+cwspeedtmp+'&e='+cwspeed+'&f='+thistone+'&t='+text, type:'mp3', autostart:'true'})
-	console.log({file:'<?=CGIURL();?>cw2.mp3?s='+cwspeedtmp+'&e='+cwspeed+'&f='+thistone+'&t='+text, type:'mp3', autostart:'true'})
-	<?
-	}
-	else if ($_SESSION['player'] == PL_HTML5) {				/* HTML5 player */
+
+    <?    
+	if ($_SESSION['player'] == PL_HTML5) {				/* HTML5 player */
 	?>
 	var p = document.getElementById('player1');
 	p.src = '<?=CGIURL();?>'+h5c+'?s='+cwspeedtmp+'&e='+cwspeed+'&f='+thistone+'&t='+text;	

@@ -14,6 +14,11 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2020-12-31:
+    * Remove the Flash player; Flash is EOLed by Adobe, no more
+      updates will be supplied, and we now have perfectly working
+      alternatives.
+
 2020-11-13:
     * Improve contrast of play button and menu links in dark mode.
 

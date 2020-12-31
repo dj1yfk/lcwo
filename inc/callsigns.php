@@ -196,13 +196,8 @@ function playcall (cnr, auto_start, opt_speed) {
     catch (e) {
     }
 	
-    <?
-    if ($_SESSION['player'] == PL_FLASH) {   /* Flash Player */
-    ?> 
-    loadFile('js1', {file:'<?=CGIURL();?>cw.mp3?s='+cwspeedtmp+'&e='+cwspeedeff+'&f='+freq+'&t='+text, type:'mp3', autostart: auto_start})
     <? 
-    }
-    else if ($_SESSION['player'] == PL_HTML5) {              /* HTML5 player */
+    if ($_SESSION['player'] == PL_HTML5) {              /* HTML5 player */
     ?>
     var p = document.getElementById('player1');
     p.src = '<?=CGIURL();?>cw.mp3?s='+cwspeedtmp+'&e='+cwspeedeff+'&f='+freq+'&t='+text;

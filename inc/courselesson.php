@@ -23,16 +23,16 @@ $_SESSION['cw_speed'];?>&e=<? echo $_SESSION['cw_eff']?>&f=<?echo
 $_SESSION['cw_tone'];?>&t='+nc+nc+nc+nc+nc+nc+nc+nc+nc+nc+nc+nc+nc;
 
 		
-<? if ($_SESSION['player'] == PL_FLASH) { ?>
-loadFile('js1', {file:'<?=CGIURL();?>cw.mp3'+newurl, type:'mp3'})
-sendEvent('js1', 'playpause');
-<? } else if ($_SESSION['player'] == PL_HTML5) {		/* HTML5 */ ?>
+<? if ($_SESSION['player'] == PL_HTML5) {		/* HTML5 */ ?>
 var p = document.getElementById('player1');
 p.src = '<?=CGIURL();?>cw.mp3'+newurl;
 p.load();
 p.play();
 <? }
 else if ($_SESSION['player'] == PL_JSCWLIB) {        /* HTML5 */ ?>
+if (pa[1].getRemaining() > 0) {
+    pa[1].stop();
+}
 pa[1].setText(nc+nc+nc+nc+nc+nc+nc+nc+nc+nc+nc+nc+nc);
 pa[1].play();
 <? } ?>

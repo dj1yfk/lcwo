@@ -19,12 +19,12 @@ return 0;
 		(in_array($_POST['tonetype'], array("1", "0")))
 		) {
 
-			if (in_array($_POST['ply'], array(0,1,2,3,4))) {
-				$player = $_POST['ply'];
-			}
-			else {
-				$player = 3;
-			}
+            if ($_POST['ply'] == PL_HTML5) {
+                $player = PL_HTML5;
+            }
+            else {
+                $player = PL_JSCWLIB;
+            }
 
 			if ($_POST['lock'] == 1) {
 				$lock = 1;
@@ -237,9 +237,8 @@ var locked = <? echo ($_SESSION['lockspeeds']==1 ? "true" : "false") ?>;
 	<tr class="hl">
 	<td valign="top"><? echo l('cwplayer') ?>:</td>
 	<td colspan="2">
-    <input type="radio" onChange="value_changed();" name="ply" value="1" <? if ($_SESSION['player']==1) { echo 'checked'; }?>> <a style="font-weight:bold;" href="https://fkurz.net/ham/jscwlib.html"><?=l('jscwlib');?></a><br>
-	<input type="radio" onChange="value_changed();" name="ply" value="3" <? if ($_SESSION['player']==3) { echo 'checked'; }?>> <? echo l('html5player') ?><br>
-	<input type="radio" onChange="value_changed();" name="ply" value="2" <? if ($_SESSION['player']==2) { echo 'checked'; }?>> <? echo l('flashplayer') ?><br>
+    <input type="radio" onChange="value_changed();" name="ply" value="1" <? if ($_SESSION['player']==PL_JSCWLIB) { echo 'checked'; }?>> <a style="font-weight:bold;" href="https://fkurz.net/ham/jscwlib.html"><?=l('jscwlib');?></a><br>
+	<input type="radio" onChange="value_changed();" name="ply" value="3" <? if ($_SESSION['player']==PL_HTML5) { echo 'checked'; }?>> <? echo l('html5player') ?><br>
 	</td>
 	</tr>
 	<tr>
@@ -425,6 +424,3 @@ if (locked) {
 	locktoggle();
 }
 </script>
-
-<div class="vcsid">$Id: cwsettings.php 245 2014-06-14 15:25:34Z dj1yfk $</div>
-

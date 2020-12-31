@@ -46,10 +46,6 @@ $theme = $_SESSION['theme'] ? $_SESSION['theme'] : 'style';
 ?>
 <link id="lcwocss" href="/<?=$theme;?>.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="/js/leaflet.css">
-
-<?  if ($_SESSION['player'] == PL_FLASH or $p == "cwsettings") { ?>
-<script type="text/javascript" src="/swfobject.js"></script>
-<?  }?>
 <script type="text/javascript" src="/js/jscwlib.js?cachebreak=<? echo filemtime("js/jscwlib.js"); ?>"></script>
 </head>
 <body bgcolor="#ffffff"> 
