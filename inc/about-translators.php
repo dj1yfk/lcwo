@@ -42,7 +42,8 @@
 <li>Reinhardt, LA6ALA (<abbr title="Norwegian (Bokmal)">no</abbr>)</li>
 <li>Alex, YU0W (<abbr title="Serbian">sr</abbr>)</li>
 <li>Jerry A. (<abbr title="Czech">cs</abbr>)</li>
-<li><a href="http://www.tekcroach.tk/">TekCroach</a> (<abbr title="Sinhala">si</abbr>)</li>
+<li>TekCroach (<abbr title="Sinhala">si</abbr>)</li>
+<li>Joe, HL5KY (<abbr title="Korean">ko</abbr>)</li>
 </ul>
 </td>
 </tr>
