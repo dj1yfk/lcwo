@@ -22,7 +22,7 @@ $langnames = array('de' => 'Deutsch', 'en' => 'English', 'fr' => 'Français',
 		'bg' => '&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;',
 		'uk' => '&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072;',
         'br' => 'Português brasileiro', 'no' => 'Norsk', 'sr' => 'Srpski', 'si' => '&#3523;&#3538;&#3458;&#3524;&#3517;',
-        'ko' => '한국어'
+        'ko' => '한국어', 'id' => 'Bahasa Indonesia'
 
 );
 
@@ -39,7 +39,7 @@ $enlangnames = array('de' => 'German', 'en' => 'English', 'fr' => 'French',
 		'zh' => 'Simplified Chinese', 'cn' => 'Traditional Chinese',
 		'bg' => 'Bulgarian', 'uk' => 'Ukrainian', 'br' => 'Brazilian Portuguese', 'no' => 'Norwegian',
         'sr' => 'Serbian', 'si' => 'Sinhala',
-        'ko' => 'Korean'
+        'ko' => 'Korean', 'id' => 'Indonesian'
 );
 
 $kochchar =
