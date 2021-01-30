@@ -14,6 +14,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2021-01-30:
+    * Download practice files: Make sure to include "VVV/AR" in
+      generated files, even if jscwlib is currently selected (tnx IV3GSO)
+
 2020-12-31:
     * Remove the Flash player; Flash is EOLed by Adobe, no more
       updates will be supplied, and we now have perfectly working

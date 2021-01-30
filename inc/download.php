@@ -291,13 +291,19 @@ for ($i = 1; $i <= $_SESSION['download']['number']; $i++) {
 		$grouplength = 5;
 	}
 
-	// XXX FIXME cw-download.mp3 does not support variable / random
+	// HACK: cw-download.mp3 does not support variable / random
 	// frequencies... so temporarily disable it here!
 	$tonerandom = $_SESSION['cw_tone_random'];
-	$_SESSION['cw_tone_random'] = false;
-	$text = my_strtoupper(getgroups($_SESSION['download']['speed'], $_SESSION['download']['eff'], $nr, $char,
-                $_SESSION['download']['duration'], $grouplength, false));
-	$_SESSION['cw_tone_random'] = $tonerandom;
+    $_SESSION['cw_tone_random'] = false;
+
+    // HACK: Enforce "VVV" prefix to be generated in getgroups() - only when we
+    // use HTML5 player
+
+    $pl = $_SESSION['player'];
+    $_SESSION['player'] = PL_HTML5;
+	$text = my_strtoupper(getgroups($_SESSION['download']['speed'], $_SESSION['download']['eff'], $nr, $char, $_SESSION['download']['duration'], $grouplength, false));
+    
+    $_SESSION['cw_tone_random'] = $tonerandom;
 
 	if ($_POST['mode'] == 'callsigntraining') {
 		$text = "";
@@ -334,6 +340,7 @@ for ($i = 1; $i <= $_SESSION['download']['number']; $i++) {
 	href=\"".CGIURL()."cw-download.mp3?d=$i&s=".$_POST['speed']."&e=".$_POST['eff']."&f=".$_POST['tone']."&t=$text\">lcwo-$i.mp3</a>".
 	"</td><td><a id='downloadtxt-$idnr' href=\"/api/gettext.php?nr=$i\">lcwo-$i.txt</a></td></tr>\n";
 
+    $_SESSION['player'] = $pl;  # restore player
 } # for
 
 ?>
