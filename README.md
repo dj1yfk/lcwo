@@ -24,12 +24,16 @@ Then simply clone the repository and run the container:
 git clone https://git.fkurz.net/dj1yfk/lcwo.git
 cd lcwo
 ./docker_build.sh
-./docker_start.sh
+./docker_run.sh
 ```
 
-Note that this is mainly meant for development and testing purposes, to give
-you a fully working LCWO instance from scratch without any effort. For a
-deployment as a public website this may not be what you want.
+(The build script assumes that you have a public ssh-key in `~/.ssh/`. If this
+is not the case, please create one with `ssh-keygen`, otherwise the build
+process will fail.)
+
+Note that this Docker image is mainly meant for development and testing
+purposes, to give you a fully working LCWO instance from scratch without any
+effort. For a deployment as a public website this may not be what you want.
 
 ## Configuration
 
