@@ -10,12 +10,12 @@
     }
 
     $charset = Array();
-    $charsetname = Array("Koch", l('customchars'), "CWops", "ABC", "Swedish", "Hiragana", "Katakana");
+    $charsetname = Array("Koch", l('customchars'), "CWops", "ABC", "Swedish", "Danish", "Hiragana", "Katakana");
     
+    $cnr = 0;
+    $charset[$cnr++] = $kochchar;
 
-    $charset[0] = $kochchar;
-
-    $charset[1] = Array();
+    $charset[$cnr++] = Array();
     # FIXME limited to 50 character
     # FIXME allow "
     for ($i = 0; $i < mb_strlen($_SESSION['customcharacters']); $i++) {
@@ -29,18 +29,20 @@
     }
 
     # CWops CW Academy
-    $charset[2] = Array("T", "E", "A", "N", "O", "I", "S", "1", "4", "R", "H", "D", "L", "2", "5", "U",
+    $charset[$cnr++] = Array("T", "E", "A", "N", "O", "I", "S", "1", "4", "R", "H", "D", "L", "2", "5", "U",
         "C", "M", "W", "3", "6", "?", "F", "Y", "P", "G", "7", "9", "/", "B", "V", "K",
         "J", "8", "0", "=", "X", "Q", "Z", /* "&lt;BK&gt;", */ "-", /* "&lt;SK&gt;" */);
     
-    $charset[3] = Array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
+    $charset[$cnr++] = Array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
 
-    $charset[4] = Array("=", "+", "N", "L", "O", "E", "I", "X", "V", "T", "/", "?", "A", "Z", "H", "Ö", ",", "R", "D", "F", "Y", "-", "Ä", "B", "P", "S", "U", "Q", "W", "K", "Å", "M", "7", "4", "9", "5", "C", "G", "J", "8", "1", "3", "6","2", "0", "@"); 
+    $charset[$cnr++] = Array("=", "+", "N", "L", "O", "E", "I", "X", "V", "T", "/", "?", "A", "Z", "H", "Ö", ",", "R", "D", "F", "Y", "-", "Ä", "B", "P", "S", "U", "Q", "W", "K", "Å", "M", "7", "4", "9", "5", "C", "G", "J", "8", "1", "3", "6","2", "0", "@"); 
+
+    $charset[$cnr++] = Array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Æ","Ø","Å");
 
     if ($_SESSION['player'] == PL_JSCWLIB) {
-        $charset[5] = Array("い","ろ","は","に","ほ","へ","と","ち","り","ぬ","る","を","わ","か","よ","た","れ","そ","つ","ね","な","ら","む","う","ゐ","の","お","く","や","ま","け","ふ","こ","え","て","あ","さ","き","ゆ","め","み","し","ゑ","ひ","も","せ","す","ん");
+        $charset[$cnr++] = Array("い","ろ","は","に","ほ","へ","と","ち","り","ぬ","る","を","わ","か","よ","た","れ","そ","つ","ね","な","ら","む","う","ゐ","の","お","く","や","ま","け","ふ","こ","え","て","あ","さ","き","ゆ","め","み","し","ゑ","ひ","も","せ","す","ん");
 
-        $charset[6] = Array("イ","ロ","ハ","ニ","ホ","ヘ","ト","チ","リ","ヌ","ル","ヲ","ワ","カ","ヨ","タ","レ","ソ","ツ","ネ","ナ","ラ","ム","ウ","ヰ","ノ","オ","ク","ヤ","マ","ケ","フ","コ","エ","テ","ア","サ","キ","ユ","メ","ミ","シ","ヱ","ヒ","モ","セ","ス","ン");
+        $charset[$cnr++] = Array("イ","ロ","ハ","ニ","ホ","ヘ","ト","チ","リ","ヌ","ル","ヲ","ワ","カ","ヨ","タ","レ","ソ","ツ","ネ","ナ","ラ","ム","ウ","ヰ","ノ","オ","ク","ヤ","マ","ケ","フ","コ","エ","テ","ア","サ","キ","ユ","メ","ミ","シ","ヱ","ヒ","モ","セ","ス","ン");
     }
 
     if (isint($_POST['charset']+0) and $_POST['charset'] <= count($charset)) {
@@ -201,7 +203,7 @@ Character set: &nbsp;
        * keystrokes are needed (e.g. Japanese), enter will be used to
        * evaluate the input.
       */
-    var multi_input = <? if ($_SESSION['mm']['charset'] == 5 or $_SESSION['mm']['charset'] == 6) { echo "true"; } else { echo "false"; } ?>;
+    var multi_input = <? if ($_SESSION['mm']['charset'] == 6 or $_SESSION['mm']['charset'] == 7) { echo "true"; } else { echo "false"; } ?>;
 
 	var h5c = "cw.mp3";
 	

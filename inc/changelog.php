@@ -14,6 +14,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2021-02-03:
+    * Added a Danish character set to the Morse Machine
+    * Updated to latest dev version of jscwlib (fix Æ = .-.- instead if .- .)
+
 2021-01-30:
     * Download practice files: Make sure to include "VVV/AR" in
       generated files, even if jscwlib is currently selected (tnx IV3GSO)
