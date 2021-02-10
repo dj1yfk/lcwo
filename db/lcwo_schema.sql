@@ -8,7 +8,7 @@ CREATE TABLE `lcwo_callsignsresults` (
   `uid` int(11) NOT NULL DEFAULT '0',
   `max` int(11) NOT NULL DEFAULT '0',
   `score` int(11) NOT NULL DEFAULT '0',
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `valid` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`NR`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -62,7 +62,7 @@ CREATE TABLE `lcwo_groupsresults` (
   `speed` int(11) NOT NULL DEFAULT '0',
   `eff` int(11) NOT NULL DEFAULT '0',
   `accuracy` float NOT NULL DEFAULT '0',
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `valid` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`NR`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -91,7 +91,7 @@ CREATE TABLE `lcwo_lessonresults` (
   `speed` int(11) NOT NULL DEFAULT '0',
   `eff` int(11) NOT NULL DEFAULT '0',
   `accuracy` float NOT NULL DEFAULT '0',
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`NR`),
   KEY `uid` (`uid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -221,7 +221,7 @@ CREATE TABLE `lcwo_plaintextresults` (
   `speed` int(11) NOT NULL DEFAULT '0',
   `eff` int(11) NOT NULL DEFAULT '0',
   `accuracy` float NOT NULL DEFAULT '0',
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`NR`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -235,7 +235,7 @@ CREATE TABLE `lcwo_pmsg` (
   `fromuid` bigint(3) NOT NULL DEFAULT '0',
   `touid` bigint(3) NOT NULL DEFAULT '0',
   `subject` varchar(255) NOT NULL DEFAULT '',
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `text` text NOT NULL,
   `ip` varchar(64) NOT NULL DEFAULT '127.0.0.1',
   `read` int(11) NOT NULL DEFAULT '0',
@@ -285,7 +285,7 @@ CREATE TABLE `lcwo_qtcresults` (
   `uid` int(11) NOT NULL DEFAULT '0',
   `speed` int(11) NOT NULL DEFAULT '0',
   `qtcs` int(11) NOT NULL DEFAULT '0',
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`NR`),
   KEY `uid` (`uid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -402,7 +402,7 @@ CREATE TABLE `lcwo_wordsresults` (
   `uid` int(11) NOT NULL DEFAULT '0',
   `max` int(11) NOT NULL DEFAULT '0',
   `score` int(11) NOT NULL DEFAULT '0',
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `valid` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`NR`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
