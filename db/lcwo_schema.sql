@@ -239,6 +239,7 @@ CREATE TABLE `lcwo_pmsg` (
   `text` text NOT NULL,
   `ip` varchar(64) NOT NULL DEFAULT '127.0.0.1',
   `read` int(11) NOT NULL DEFAULT '0',
+  `spam` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `touid` (`touid`),
   KEY `fromuid` (`fromuid`)

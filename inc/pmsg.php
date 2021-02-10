@@ -22,6 +22,9 @@ switch ($_GET['action']) {
 	case 'del':
 			delpmsg();
 			break;
+	case 'spam':
+			spam();
+			break;
 	default:
 		showinbox(0);
 }
@@ -60,6 +63,12 @@ global $db;
 			$i++;
 			$fname = uid2uname($o->fromuid);
 			$tname = uid2uname($o->touid);
+
+            # if it's a sent message, hide the read/unread status for the sender
+            if ($_SESSION['uid'] == $o->fromuid) {
+                $o->read = 1;
+            }
+
 			echo "<tr><td><a href='/profile/$fname'>$fname</a> &rarr; <a href='/profile/$tname'>$tname</a></td>";
 			echo "<td>".da($o->time)."</td>";
 			echo "<td>";
@@ -68,7 +77,7 @@ global $db;
 			if (!$o->read) { echo "</strong>"; }
             echo "</td>";
             if ($o->touid == $_SESSION['uid']) {
-                echo "<td align='center'>".deletereply($o->id)."</td></tr>\n";
+                echo "<td align='center'>".deletereply($o->id, $o->spam)."</td></tr>\n";
             }
 	}
 
@@ -107,7 +116,7 @@ function readpmsg () {
 		$username = uid2uname($msg->fromuid);
 	?>
     <h1><?=$msg->subject;?></h1>
-		<p><?  echo "<strong>".l('pmsgfrom').": </strong> <a href='/profile/$username'>$username</a>; <strong>".l('datetime').": </strong> ".da($msg->time)." &nbsp;&nbsp;&nbsp;&nbsp; ".deletereply($msg->id); ?></p>
+		<p><?  echo "<strong>".l('pmsgfrom').": </strong> <a href='/profile/$username'>$username</a>; <strong>".l('datetime').": </strong> ".da($msg->time)." &nbsp;&nbsp;&nbsp;&nbsp; ".deletereply($msg->id, $msg->spam); ?></p>
 
 	<div class="pmsgbox">
 <?
@@ -251,11 +260,49 @@ function delpmsg () {
 <?
 }
 
+function spam () {
+	global $db;
+	$msg = intval($_GET['id']);
+	if ($msg <= 0) {
+		echo "Invalid Message.";
+		return;
+	}
+
+	$query = mysqli_query($db,"select * from lcwo_pmsg where `id`= '$msg' and touid='".$_SESSION['uid']."' limit 1;");
+
+	if (!$query) {
+		echo "Error: ".mysqli_error($db);
+    }
+    else {
+        $pmsg = mysqli_fetch_object($query);
+        if ($pmsg->spam == 1) {
+            echo "<p>Removed the spam flag from message.</p>";
+	        mysqli_query($db,"update lcwo_pmsg set spam = 0 where `id`= '$msg' and touid='".$_SESSION['uid']."' limit 1;");
+        }
+        else {
+            echo "<p>Flagged this message as SPAM. An administrator will look into the issue. If you flagged this message errorneously, just click <a href='/pmsg/spam/$msg'>here</a>.</p>";
+	        mysqli_query($db,"update lcwo_pmsg set spam = 1 where `id`= '$msg' and touid='".$_SESSION['uid']."' limit 1;");
+            echo mysqli_error($db);
+        }
+    }
+?>
+   <p><a href="/pmsg"><?=l('back');?></a></p>
+<?
+}
 
 
-function deletereply($id) {
 
-return "<a href='/pmsg/del/$id'><img style='border:none;vertical-align:middle' src='/pics/del.png' alt='X' title='".l('delete')."'></a>&nbsp;&nbsp;<a href='/pmsg/reply/$id'><img style='border:none;vertical-align:middle' src='/pics/reply.png' alt='Re' title='".l('reply')."'></a>";
+function deletereply($id, $isspam) {
+    if ($isspam) {
+        $img = "nospam.png";
+    }
+    else {
+        $img = "spam.png";
+    }
+    $ret = "<a href='/pmsg/del/$id'><img style='border:none;vertical-align:middle' src='/pics/del.png' alt='[del]' title='".l('delete')."'></a>";
+    $ret .= "&nbsp;&nbsp;<a href='/pmsg/reply/$id'><img style='border:none;vertical-align:middle' src='/pics/reply.png' alt='[reply]' title='".l('reply')."'></a>";
+    $ret .= "&nbsp;&nbsp;<a href='/pmsg/spam/$id'><img style='border:none;vertical-align:middle' src='/pics/$img' alt='[spam]' title='".l('spam')."'></a>";
+    return $ret;
 
 }
 

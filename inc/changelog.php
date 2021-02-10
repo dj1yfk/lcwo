@@ -16,6 +16,7 @@ Started on 2009-02-08.
 
 2021-02-10:
     * Code groups: Properly display missed '-' characters (tnx KC9NXA)
+    * Allow users to flag personal messages as spam (tnx ksk)
 
 2021-02-03:
     * Added a Danish character set to the Morse Machine
