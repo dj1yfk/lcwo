@@ -301,7 +301,8 @@ function merge_error_spans($sp1, $sp2) {
 	$result = '';
 	for ($i = 0; $i < mb_strlen($mspan); $i++) {
 		$c = mb_substr($mspan, $i, 1);
-		if ($c == '-') {
+		if ($c == '^') {
+            $c = '-';
 			$result .= colorspan($c, 'blue');
 		} else {
 			$result .= colorspan($c, 'red');
@@ -365,7 +366,7 @@ function check ($w1, $w2) {		#w1 = original; w2 with errors
 		}
 		if (($i > 0) && ($j > 0) && ($a[$i - 1][$j - 1] + 1 == $a[$i][$j])) {
 			$error_span1 = mb_substr($w1, $i - 1, 1) . $error_span1;
-			$error_span2 = '-' . $error_span2;
+			$error_span2 = '^' . $error_span2;
 			$i = $i - 1;
 			$j = $j - 1;
 			continue;
@@ -374,7 +375,7 @@ function check ($w1, $w2) {		#w1 = original; w2 with errors
 		if (($j > 0) && ($a[$i][$j - 1] + 1 == $a[$i][$j])) {
 			$i = $i;
 			$j = $j - 1;
-			$error_span2 = '-' . $error_span2;
+			$error_span2 = '^' . $error_span2;
 			continue;
 		}
 		if (($i > 0) && ($a[$i - 1][$j] + 1 == $a[$i][$j])) {
