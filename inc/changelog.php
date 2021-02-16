@@ -14,6 +14,11 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2021-02-16:
+    * Generate robots.txt by a script, disallowing all access for the DEV
+      instance
+    * Enable start delay for the plain text training (tnx oc)
+
 2021-02-10:
     * Code groups: Properly display missed '-' characters (tnx KC9NXA)
     * Allow users to flag personal messages as spam (tnx ksk)
