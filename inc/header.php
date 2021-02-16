@@ -58,8 +58,7 @@ $theme = $_SESSION['theme'] ? $_SESSION['theme'] : 'style';
 <?
 	if (DEV) {
 ?>			
-&nbsp;<strong>Development
-			Version</strong> - <a href="/babelfish.php?limit=0">Babelfish</a> - 
+&nbsp;<strong>Development Version</strong> (<a href="https://lcwo.net/">Click here to go to LCWO.net</a>) - <a href="/babelfish.php?limit=0">Babelfish</a> - 
 <?
 	if ($_SESSION['debug'] == 1) {
 		echo '<a href="/?debug=2">Switch debug off</a> - ';
