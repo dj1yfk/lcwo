@@ -83,7 +83,7 @@ if (!preg_match("/^[a-zA-Z0-9]{1,24}$/", $_POST['username'])) {
 	}
 
 
-$getemail = mysqli_query($db,"SELECT `email`, `password` from `lcwo_users` where `username` = '$username';");
+$getemail = mysqli_query($db,"SELECT `email`, `password`, `id` from `lcwo_users` where `username` = '$username';");
 
 $e = mysqli_fetch_object($getemail);
 
@@ -125,10 +125,15 @@ echo "<p>Admin: <a href='mailto:".ADMINMAIL."?subject=LCWO Password request for 
 		
 }
 else {
-	echo "<p>Error: ".l('noemailindb')."</p>
-	<p>Send an email to <a href=\"mailto:".ADMINMAIL."?subject=LCWO Password request for $username\">the
+    if (!$e->id) {
+        echo "<p>Unknown user $username!</p>";
+    }
+    else {
+        echo "<p>Error: ".l('noemailindb')."</p>";
+	echo "<p>Send an email to <a href=\"mailto:".ADMINMAIL."?subject=LCWO Password request for $username\">the
 admin (".ADMINMAIL.")</a> and ask for a new password.</p>";
 echo "<p>Please specify your user name in your email. Thanks!</p>";
+    }
 }
 		
 return 0;

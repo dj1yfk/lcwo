@@ -14,6 +14,14 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2021-02-19:
+    * Small improvements to login and password request process:
+      - Do not forward to start page if the password was incorrect (gives
+        the user time to read the error message)
+      - If a password for a non-existing account is requested, tell the
+        user about it (it used to say there's no email address on record
+        for this account)
+
 2021-02-16:
     * Generate robots.txt by a script, disallowing all access for the DEV
       instance

@@ -44,7 +44,19 @@ else {
 
 
 if ($valid) {
-		echo '<a href="/">'.l('loginsuccessful').'</a>';
+?>
+<a href="/"><?=l('loginsuccessful');?></a>
+
+<script>
+    window.setTimeout( function () {
+        window.location.href = '<?=BASEURL;?>';
+    }, 1000);
+
+</script>
+
+
+
+<?
 	$_SESSION['username'] = $user->username;
 	$_SESSION['location'] = $user->location;
 	$_SESSION['uid'] = $user->id;
@@ -108,6 +120,4 @@ else {
 	echo "Sorry, login failed: <br> $error\n";
 }
 ?>
-
-<div class="vcsid">$Id: dologin.php 248 2014-06-15 20:47:20Z dj1yfk $</div>
 

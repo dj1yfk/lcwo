@@ -34,7 +34,7 @@ include('inc/canonical.php');
 <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="LCWO News Feed">
 <link href="/forumatom.xml" type="application/atom+xml" rel="alternate" title="LCWO Forum Feed">
 <?
-$forward = array('dologin' => 'main', 'logout' => 'bye', 'delete'=> 'main'); 
+$forward = array('logout' => 'bye', 'delete'=> 'main'); 
 
 if ($forward[$_GET['p']]) {
 	    echo "<meta http-equiv=\"refresh\" content=\"1;url=/".$forward[$_GET['p']]."\"/>";
