@@ -70,9 +70,10 @@ function sendmail () {
 	}
 
 	if (
-			preg_match('/a href/i', $_POST['text'])
+			preg_match('/a href/i', $_POST['text']) or
+			preg_match('/bit.ly/i', $_POST['text']) 
 	) {
-		echo "<b>Looks like spam. Don't use HTML links, thanks.</b>";
+		echo "<b>Looks like spam. Not delivered.</b>";
 		return;
 		$spam = "true";
 	}
