@@ -14,6 +14,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2021-04-06:
+    * Updated jscwlib to ensure constant volume when frequency changes with |f
+      command (tnx oc).
+
 2021-02-19:
     * Small improvements to login and password request process:
       - Do not forward to start page if the password was incorrect (gives

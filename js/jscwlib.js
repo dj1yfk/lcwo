@@ -1,3 +1,11 @@
+/*  jscwlib - JavaScript Morse Code Library
+ *
+ *  Author:     Fabian Kurz, DJ1YFK
+ *  Homepage:   https://fkurz.net/ham/jscwlib.html
+ *  Repository: https://git.fkurz.net/dj1yfk/jscwlib
+ *  
+ *  The MIT license applies.
+ */
     function jscw (params) {
 
         var download_svg = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4LjciIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCA4LjcgMTAiPjxwYXRoIHN0eWxlPSJzdHJva2U6IzAwMDtzdHJva2Utd2lkdGg6MC4yNnB4OyIgZD0ibSA0LjQsMi41IHYgNC43IGwgMS42LC0xLjYgdiAwLjMgbCAtMS42NywxLjY3IC0xLjY3LC0xLjY3IHYgLTAuMyBsIDEuNTYsMS42IDAsLTQuNyB6IiAvPjxwYXRoIHN0eWxlPSJzdHJva2U6IzAwMDtzdHJva2Utd2lkdGg6MC40OyIgZD0iTSAyLjUsOCBIIDYuMSIgLz48L3N2Zz4K";
@@ -182,6 +190,7 @@
         this.showSettings = false;
         this.startDelay = 0;    // delay in seconds before audio starts
         this.prosign = false;   // we're within a prosign (no letter spaces)
+        this.finishedTimeout = null;
 
         // see if volume is saved in localStorage
         try {
@@ -622,6 +631,7 @@
                 this.onPlay();
             }
 
+
             this.paused = false;
 
             var text = playtext ? playtext : this.text;
@@ -709,13 +719,19 @@
                 }
                 // freq change
                 if (out[i].hasOwnProperty('f')) {
-           		    this.oscillator.frequency.setValueAtTime(out[i]['f'], s); // value in hertz
+                    this.oscillator.frequency.setValueAtTime(out[i]['f'], s); // value in hertz
+                    this.biquadFilter.frequency.setValueAtTime(out[i]['f'], s);
                 }
             }
 
             this.playLength = out[out.length-1]['t'];
             this.playEnd = start + this.playLength;
             this.playTiming = out;
+
+            if (this.onFinished) {
+                clearTimeout(this.finishedTimeout);
+                this.finishedTimeout = setTimeout(this.onFinished, this.playLength*1000);
+            }
 
         } // play
 
@@ -724,10 +740,12 @@
             if (this.audioCtx.state === "running") {
                 this.paused = true;
                 this.audioCtx.suspend();
+                clearTimeout(this.finishedTimeout);
             }
             else {
                 this.paused = false;
                 this.audioCtx.resume();
+                this.finishedTimeout = setTimeout(this.onFinished, this.getRemaining()*1000);
             }
             console.log("paused: " + this.paused);
         }
@@ -737,6 +755,7 @@
                 this.gainNode.gain.cancelScheduledValues(this.audioCtx.currentTime);
                 this.gainNode.gain.setValueAtTime(0, this.audioCtx.currentTime);
                 this.playEnd = 0;
+                clearTimeout(this.finishedTimeout);
             }
             else {
                 this.player.pause();
@@ -926,7 +945,7 @@
                     if (obj.btn_pp.src != play_svg) {
                         obj.btn_pp.src = play_svg;
                         obj.enableControls(obj, true);
-                    }
+                   }
                 }
                 else {
                     if (obj.btn_pp.src != pause_svg) {
@@ -934,6 +953,8 @@
                         obj.enableControls(obj, false);
                     }
                 }
+
+
             }
         }
 
