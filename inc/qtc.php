@@ -45,7 +45,7 @@ var shiftpressed = 0;
 
 
 // MP3 for everyone - dj1yfk 2017-10-06
-var h5c = "cw2.mp3";
+var h5c = "cw.mp3";
 
 qtcs = new Array();
 

@@ -433,7 +433,7 @@ Character set: &nbsp;
 		if (buzz && buzzer_active) {
 			l = '|T2 |f200 |v55 T |v100 |T0 |f' + freq + ' ' + l;
 		}
-		var flashurl =  '<?=CGIURL();?>cw2.mp3?s='+speed+'&e='+speed+'&f='+freq+'&t='+l;
+		var flashurl =  '<?=CGIURL();?>cw.mp3?s='+speed+'&e='+speed+'&f='+freq+'&t='+l;
         if (player == <?=PL_HTML5;?>) {	
 			/* espeed hack to make quite sure a different URL is called;
 			otherwise sometimes the HTML5 player of Firefox get stuck on single

@@ -365,7 +365,7 @@ var score = 0;
 var tone  = <? echo $tone; ?>;
 var thistone = tone;
 
-var h5c = "cw-u.mp3";   // cw-unicode
+var h5c = "cw.mp3";
 
 var nr = -1;		/* 0..24 */
 
