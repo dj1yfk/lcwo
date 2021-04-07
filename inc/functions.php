@@ -1198,31 +1198,15 @@ function realspeed($text, $wpm, $wpmeff) {
 		$wpmeff = $wpm;
 	}
 
-    # ebook2cw timing
-    if ($_SESSION['player'] != PL_JSCWLIB) {
-        $dot_sec = 1.2/$wpm;		# length of a dot in seconds
-        $fdot_sec = 1.2/$wpmeff;	# length of a farnswirth dot in seconds
+	$dot_sec = 1.2 / $wpm;
+	$fdot_sec  = 1.2 / $wpmeff;
+	// stretch all pauses by this magic formula (fitted to a measured
+	// set :) to get a good match. One day I will do the proper math!
+	$stretch = (2.5 - 1.5/(pow(($wpm / $wpmeff),1.25)));
+	$fdot_sec *= $stretch;
+	$letterspace = 3 * $fdot_sec;
+	$wordspace = 7 * $fdot_sec - $letterspace;
 
-        $letterspace = 2*$dot_sec;	# 3 - 1 (inter-symbol space)
-        $wordspace = 4*$dot_sec;	# 7 - 3 (already got a letterspace)
-
-        if ($wpmeff != $wpm) {
-            $letterspace = 3*$fdot_sec-$dot_sec;
-            $wordspace = 4*$fdot_sec;
-        }
-    }
-    # jscwlib timing
-    else {
-        $dot_sec = 1.2 / $wpm;
-        $fdot_sec  = 1.2 / $wpmeff;
-        // stretch all pauses by this magic formula (fitted to a measured
-        // set :) to get a good match. One day I will do the proper math!
-        $stretch = (2.5 - 1.5/(pow(($wpm / $wpmeff),1.25)));
-        $fdot_sec *= $stretch;
-        $letterspace = 3 * $fdot_sec;
-        $wordspace = 7 * $fdot_sec - $letterspace;
-    }
-	
 	$length = 0;
 	$characters = 0;
 	for ($i = 0; $i < mb_strlen($text); $i++) {

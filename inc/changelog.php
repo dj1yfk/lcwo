@@ -14,6 +14,12 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2021-04-07:
+	* Update ebook2cw to latest version (0.8.4) which fixes Farnsworth timing
+	  (tnx DM4SG!)
+	* Compile ebook2cw CGI with "cgibuffered" option (fixes the downloads for
+	  the Docker version)
+
 2021-04-06:
     * Updated jscwlib to ensure constant volume when frequency changes with |f
       command (tnx oc).

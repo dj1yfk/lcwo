@@ -39,11 +39,11 @@ RUN mkdir -p /tmp/ebook2cw_build && \
     git clone https://git.fkurz.net/dj1yfk/ebook2cw && \
     cd ebook2cw && \
     sed -i "s/cw->encoding = ISO8859;/cw->encoding = UTF8;/g" ebook2cw.c && \
-    make cgi && \
+    make cgibuffered && \
     mkdir -p /www/cgi-bin/ && \
     cp cw.cgi /www/cgi-bin/cw.mp3 && \
     cp cw.cgi /www/cgi-bin/cw2.mp3 && \
-    make cgi USE_LAME=NO && \
+    make cgibuffered USE_LAME=NO && \
     cp cw.cgi /www/cgi-bin/cw.ogg && \
     cp cw.cgi /www/cgi-bin/cw2.ogg 
 
