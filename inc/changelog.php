@@ -14,6 +14,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2021-04-08:
+	* Change default CW speed to 20 wpm (characters) / 15 wpm (effective) to
+      account for the corrected speed settings.
+
 2021-04-07:
 	* Update ebook2cw to latest version (0.8.4) which fixes Farnsworth timing
 	  (tnx DM4SG!)
