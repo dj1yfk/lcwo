@@ -220,8 +220,8 @@ Character set: &nbsp;
 	
 	/* evaluate correctness of entry, and send next */	
 	function keypressed (s) {
-
-        console.log("pressed >" +  s + "<");
+        s = document.getElementById('entrybox').value;
+        // console.log("pressed >" +  s + "<");
         document.getElementById('entrybox').value = "";
 
 		if (sessioncharcount && (s == ' ')) {	/* Space -> Send again */

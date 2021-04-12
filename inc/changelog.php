@@ -14,15 +14,20 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2021-04-12:
+    * MorseMachine: Use content of entry field as keyboard input, *not* the
+      keycode sent by the keyup event (which apparently is not always correct
+      with keys that require pressing shift)
+
 2021-04-08:
-	* Change default CW speed to 20 wpm (characters) / 15 wpm (effective) to
+    * Change default CW speed to 20 wpm (characters) / 15 wpm (effective) to
       account for the corrected speed settings.
 
 2021-04-07:
-	* Update ebook2cw to latest version (0.8.4) which fixes Farnsworth timing
-	  (tnx DM4SG!)
-	* Compile ebook2cw CGI with "cgibuffered" option (fixes the downloads for
-	  the Docker version)
+    * Update ebook2cw to latest version (0.8.4) which fixes Farnsworth timing
+      (tnx DM4SG!)
+    * Compile ebook2cw CGI with "cgibuffered" option (fixes the downloads for
+      the Docker version)
 
 2021-04-06:
     * Updated jscwlib to ensure constant volume when frequency changes with |f
