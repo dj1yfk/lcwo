@@ -189,9 +189,15 @@ function sendpmsg () {
 	if ($_POST['send'] == 1) {
 
 			$text = strip_tags(esc($_POST['text']));
-			if (mb_strlen($text) > 50000) { $text = mb_substr($text, 0, 50000); }
-		    $subject = strip_tags(esc($_POST['subject']));
-			if (mb_strlen($subject) > 255) { $subject = mb_substr($subject, 0, 255); }
+			if (mb_strlen($text) > 50000) {
+				$text = mb_substr($text, 0, 50000);
+				$text = preg_replace("/'$/", "", $text);
+			}
+			$subject = strip_tags(esc($_POST['subject']));
+			if (mb_strlen($subject) > 255) {
+				$subject = mb_substr($subject, 0, 255);
+				$subject = preg_replace("/'$/", "", $subject);
+			}
 
 			if (!$text) {
 					echo "<p>Error: No text!</p>";

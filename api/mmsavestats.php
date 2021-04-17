@@ -12,11 +12,13 @@
 		exit();
 	}
 
-	/* All variables must be integers > 0 */
-	foreach ($_POST as $p) {
-			$p = (int) $p;
-			if ($p < 0) {
-				echo "Value >$p< invalid!";
+	foreach ($_POST as $k => $v) {
+		if (!preg_match('/^[0-9]{1,3}$/', $v)) {
+			echo "Value invalid!";
+			exit();
+		}
+		if (!preg_match('/^(k\d+)|(count)$/', $k)) {
+			echo "Key invalid!";
 			exit();
 		}
 	}
@@ -34,7 +36,7 @@
 	$query = mysqli_query($db,"$update");
 
 	if ($query) {
-		echo "<b>Stats saved (".$_POST['count'].").</b>";
+		echo "<b>Stats saved (".intval($_POST['count']).").</b>";
 	}	
 
 

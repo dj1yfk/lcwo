@@ -89,9 +89,11 @@ if (($_POST["new"] == 1) && $_POST['text'] && $_POST['title']) {
 	/* too long? */
 	if (strlen($topic) > 1000) {
 		$topic = substr($topic, 0, 999);
+		$topic = preg_replace("/'$/", "", $topic);
 	}
 	if (strlen($text) > 62000) {
 		$text = substr($text, 0, 62000);
+		$text = preg_replace("/'$/", "", $text);
 	}
 
 	/* too short? */
@@ -148,6 +150,7 @@ if (is_numeric($_POST['tid']) && $_POST['text']) {
 
 		if (strlen($text) > 62000) {
 			$text = substr($text, 0, 62000);
+			$text = preg_replace("/'$/", "", $text);
 		}
 
 		if (!strlen($text)) {
