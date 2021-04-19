@@ -13,7 +13,7 @@
 	}
 
 	foreach ($_POST as $k => $v) {
-		if (!preg_match('/^[0-9]{1,3}$/', $v)) {
+		if (!preg_match('/^[0-9]{1,10}$/', $v)) {
 			echo "Value invalid!";
 			exit();
 		}
