@@ -611,12 +611,12 @@
 
         this.refresh_download_link = function() {
             if (this.btn_down) {
-                this.btn_down.href = this.cgiurl + "cw.mp3?d=001&s=" + this.wpm + "&e=" + this.eff + "&f=" + this.freq + "&t=|W" + this.ews + " " + this.text + "%20%20%20%20%5E";
+                this.btn_down.href = this.cgiurl + "cw.mp3?d=001&s=" + this.wpm + "&e=" + this.eff + "&f=" + this.freq + "&t=|W" + this.ews + " " + this.text;
                 // Silently remove anything above 8k characters to avoid
                 // hitting the maximum request URI length of Apache running ebook2cw.
                 if (this.btn_down.href.length > 8000) {
                     console.log("Warning: Download URL truncated, requested URL was too long.");
-                    this.btn_down.href = this.btn_down.href.substr(0, 8000) + "%20%20%20%20%5E";
+                    this.btn_down.href = this.btn_down.href.substr(0, 8000);
                 }
             }
         }

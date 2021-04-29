@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2021-04-29:
+    * Update jscwlib (remove excessive space at the end of downloaded files)
+
 2021-04-19:
     * Improved validation of user input: Fix MorseMachine count validation.
 
