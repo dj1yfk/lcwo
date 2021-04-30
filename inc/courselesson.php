@@ -217,15 +217,20 @@ if (isset($_POST['text']))  {
     echo '<p>'.l('realspeed').': '.$real[3].' '.l('characters').' / '. $real[2].
     ' '.l('seconds').' = '.$real[1].' '.l('wpm').' / '.$real[0].' '.l('cpm').'</p>';
 
-	
-	$lserrors = levenshtein(mb_strtoupper(mb_substr($_POST['text'],0,255)), mb_strtoupper(mb_substr($rxtext,0,255)));
-	$lserrpct = (intval(1000*$lserrors/($real[3]))/10);
-	
-	if ($lserrpct > 100) {
-		$lserrpct = 100;
-	}
 
-	echo "<p><a href='http://en.wikipedia.org/wiki/Levenshtein_distance'>Levenshtein</a>-".l('errors').": ".$lserrors." = $lserrpct %</p>";
+    if (strlen($_POST['text']) < 255) {    
+    	$lserrors = levenshtein(mb_strtoupper(mb_substr($_POST['text'],0,255)), mb_strtoupper(mb_substr($rxtext,0,255)));
+	    $lserrpct = (intval(1000*$lserrors/($real[3]))/10);
+	
+	    if ($lserrpct > 100) {
+		    $lserrpct = 100;
+	    }
+
+	    echo "<p><a href='http://en.wikipedia.org/wiki/Levenshtein_distance'>Levenshtein</a>-".l('errors').": ".$lserrors." = $lserrpct %</p>";
+    }
+    else {
+        $lserrpct = 100;
+    }
 
 	if (($errpct < 10) || ($lserrpct < 10)) {
         echo "<p><strong>".l('good')."</strong> ";
