@@ -17,6 +17,7 @@ Started on 2009-02-08.
 2021-04-30:
     * Course Lessons: Only calculate Levenshtein error if text has less than
       255 characters (limit of PHP's built in function). - tnx oc
+    * Set session cookie with sameSite = Strict.
 
 2021-04-29:
     * Update jscwlib (remove excessive space at the end of downloaded files)

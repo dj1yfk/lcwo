@@ -2,6 +2,14 @@
 error_reporting(0);
 header("Content-Type: text/html; charset=utf-8");
 ini_set("session.gc_maxlifetime",43200);
+session_set_cookie_params([
+    'lifetime' => 43200,
+    'path' => '/',
+    'domain' => $_SERVER['HTTP_HOST'],
+    'secure' => false,
+    'httponly' => false,
+    'samesite' => 'Strict'
+]);
 session_start();
 
 include("inc/definitions.php");
