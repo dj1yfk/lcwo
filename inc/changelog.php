@@ -18,6 +18,8 @@ Started on 2009-02-08.
     * Small tweak of cookie settings.
     * MorseMachine: Only show partial character set in drop down menu to
       avoid breaking the site layout (tnx brbrendan)
+    * MorseMachine: Remember selected character set. For non-Koch character
+      set, always activate all characters
 
 2021-04-30:
     * Course Lessons: Only calculate Levenshtein error if text has less than

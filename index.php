@@ -153,7 +153,7 @@ if ($_SESSION['uid']) {
     $tmp = $_SESSION;
     $tmp['l'] = "";
 
-    foreach (array("plain", "wordtraining", "callsigns", "text2cw", "download", "groups", "qtc") as $item) {
+    foreach (array("plain", "wordtraining", "callsigns", "text2cw", "download", "groups", "qtc", "mm") as $item) {
         if ($_SESSION[$item]) {
             $save[$item] = $_SESSION[$item];
         }

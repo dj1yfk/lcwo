@@ -45,10 +45,9 @@
         $charset[$cnr++] = Array("イ","ロ","ハ","ニ","ホ","ヘ","ト","チ","リ","ヌ","ル","ヲ","ワ","カ","ヨ","タ","レ","ソ","ツ","ネ","ナ","ラ","ム","ウ","ヰ","ノ","オ","ク","ヤ","マ","ケ","フ","コ","エ","テ","ア","サ","キ","ユ","メ","ミ","シ","ヱ","ヒ","モ","セ","ス","ン");
     }
 
-    if (isint($_POST['charset']+0) and $_POST['charset'] <= count($charset)) {
+    if (array_key_exists('charset', $_POST) and isint($_POST['charset']+0) and $_POST['charset'] <= count($charset)) {
         $_SESSION['mm']['charset'] = $_POST['charset']+0;
     }
-
 ?>
 
 
@@ -192,7 +191,7 @@ Character set: &nbsp;
 
 <script>
 	var buzzer_active = 1;
-	var lesson = <?=$_SESSION['koch_lesson']; ?>;
+	var lesson = <? if ($_SESSION['mm']['charset'] == 0) { echo $_SESSION['koch_lesson']; } else { echo count($cs)-1; } ?>;
 	var player = <?=$_SESSION['player']; ?>;
 	var speed = <?=$_SESSION['cw_speed']; ?>;
 	var freq = <?=$_SESSION['cw_tone']; ?>;
