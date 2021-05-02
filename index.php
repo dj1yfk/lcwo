@@ -3,41 +3,16 @@ error_reporting(0);
 header("Content-Type: text/html; charset=utf-8");
 ini_set("session.gc_maxlifetime",43200);
 session_set_cookie_params([
-    'lifetime' => 43200,
     'path' => '/',
-    'domain' => $_SERVER['HTTP_HOST'],
     'secure' => false,
     'httponly' => false,
-    'samesite' => 'Strict'
+    'samesite' => 'Lax'
 ]);
 session_start();
 
 include("inc/definitions.php");
-
-/* Avoid Session-Hijacking by Search Engines and subsequently
-* other users. Skip for test user. */
-
-if ($_SESSION['uid'] != 16) {
-	if (isset($_SESSION['HTTP_USER_AGENT'])) {
-		if ($_SESSION['HTTP_USER_AGENT'] != md5($_SERVER['HTTP_USER_AGENT'])) {
-				session_unset();
-				session_destroy();
-				$destroyed = 1;
-		}
-	}
-	else {
-		session_regenerate_id();
-		$_SESSION['HTTP_USER_AGENT'] = md5($_SERVER['HTTP_USER_AGENT']);
-	}
-}
-
 include("inc/connectdb.php");
 include("inc/killspam.php");
-
-#if ($_SESSION["uid"]) {
-#	mysql_query("update lcwo_online set `LASTACTIVE`=NULL
-#			where `UID`=".$_SESSION["uid"]);
-#}
 
 header("Cache-Control: no-cache, must-revalidate"); 
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); 
