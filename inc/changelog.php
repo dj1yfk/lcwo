@@ -14,6 +14,11 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2021-05-02:
+    * Small tweak of cookie settings.
+    * MorseMachine: Only show partial character set in drop down menu to
+      avoid breaking the site layout (tnx brbrendan)
+
 2021-04-30:
     * Course Lessons: Only calculate Levenshtein error if text has less than
       255 characters (limit of PHP's built in function). - tnx oc

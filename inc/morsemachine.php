@@ -68,7 +68,15 @@ Character set: &nbsp;
     $i = 0;
     foreach ($charset as $c) {
         $selected = ($_SESSION['mm']['charset'] == $i) ? " selected " : "";
-        echo "<option value='$i' $selected>".join(', ', $c)." (".$charsetname[$i].")</option>\n";
+        # if there are more than 30 characters, abbreviate them with "..." in
+        # the middle to avoid a very wide box which can cause layout problems
+        # on screens with limited horizontal size
+        if (count($c) > 32) {
+            echo "<option value='$i' $selected>".join(', ', array_slice($c, 0, 15))." ... ".join(', ', array_slice($c, count($c) - 15, 15))." (".$charsetname[$i].")</option>\n";
+        }
+        else {
+            echo "<option value='$i' $selected>".join(', ', $c)." (".$charsetname[$i].")</option>\n";
+        }
         $i++;
     }
 
