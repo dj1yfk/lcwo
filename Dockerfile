@@ -1,12 +1,12 @@
-FROM phusion/baseimage:0.11
+FROM phusion/baseimage:focal-1.0.0-alpha1-amd64
 MAINTAINER Fabian Kurz <fabian@fkurz.net>
 
 CMD ["/sbin/my_init"]
 
-RUN apt-get update && apt-get install -y apache2 mysql-server php \
+RUN apt-get update && apt-get install -y apache2 mariadb-server php \
     libapache2-mod-php php-mysql php-gd exim4 php-mbstring \
     # stuff needed to compile ebook2cw \
-    build-essential libmp3lame-dev git libvorbis-dev \
+    build-essential libmp3lame-dev git \
     # stuff to work a little more comfortably within the container
     vim
 
@@ -38,13 +38,9 @@ RUN mkdir -p /tmp/ebook2cw_build && \
     cd /tmp/ebook2cw_build && \
     git clone https://git.fkurz.net/dj1yfk/ebook2cw && \
     cd ebook2cw && \
-    make cgibuffered && \
+    make cgibuffered USE_OGG=NO && \
     mkdir -p /www/cgi-bin/ && \
-    cp cw.cgi /www/cgi-bin/cw.mp3 && \
-    cp cw.cgi /www/cgi-bin/cw2.mp3 && \
-    make cgibuffered USE_LAME=NO && \
-    cp cw.cgi /www/cgi-bin/cw.ogg && \
-    cp cw.cgi /www/cgi-bin/cw2.ogg 
+    cp cw.cgi /www/cgi-bin/cw.mp3 
 
 COPY config/.vimrc /root
 
@@ -55,7 +51,7 @@ RUN mkdir /www/web-log/
 # Create a database and tables within the container 
 RUN service mysql start && \
     mysqladmin -u root create LCWO && \
-    echo "GRANT ALL ON LCWO.* TO lcwo@localhost IDENTIFIED BY 'lcwo'; FLUSH PRIVILEGES;" | mysql -uroot && \
+    echo "CREATE USER 'lcwo'@'localhost' IDENTIFIED BY 'lcwo'; GRANT ALL PRIVILEGES ON LCWO.* TO 'lcwo'@'localhost'; FLUSH PRIVILEGES;" | mysql -uroot && \
     mysql -ulcwo -plcwo LCWO < /www/db/lcwo_schema.sql && \
     mysql -ulcwo -plcwo LCWO < /www/db/lcwo_texts.sql && \
     mysql -ulcwo -plcwo LCWO < /www/db/lcwo_users.sql && \
