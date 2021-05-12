@@ -437,11 +437,10 @@ Character set: &nbsp;
 	/* Players need unified JavaScript API!! */
 	function playletter (l, buzz) {
 		console.log('Playletter ' + l + ' Buzz: ' + buzz + " player = " + player);
-		if (buzz && buzzer_active) {
-			l = '|T2 |f200 |v55 T |v100 |T0 |f' + freq + ' ' + l;
-		}
-		var flashurl =  '<?=CGIURL();?>cw.mp3?s='+speed+'&e='+speed+'&f='+freq+'&t='+l;
-        if (player == <?=PL_HTML5;?>) {	
+		if (player == <?=PL_HTML5;?>) {	
+			if (buzz && buzzer_active) {
+				l = '|T2 |f200 |v55 T |v100 |T0 |f' + freq + ' ' + l;
+			}
 			/* espeed hack to make quite sure a different URL is called;
 			otherwise sometimes the HTML5 player of Firefox get stuck on single
 			letters */
@@ -451,8 +450,11 @@ Character set: &nbsp;
 			p.load();
 			p.play(); 
 		}
-        else if (player == <?=PL_JSCWLIB;?>) {
-            l = l.replace(/\|v/gi, "|x");
+        else {
+            var vol = pa[1].volume * 100;
+			if (buzz && buzzer_active) {    // jscwlib doesn't support different waveforms, so simply crank up the volume to 200% to achieve some distortion
+				l = '|f200 |v200 T |v' + vol + '  |f' + freq + ' ' + l;
+			}
             pa[1].setText(l);
             pa[1].setWpm(speed);
             pa[1].setEff(speed);
@@ -461,22 +463,15 @@ Character set: &nbsp;
             pa[1].setStartDelay(0.1);
             pa[1].play();
         }
-		else {
-			loadFile('js1', {file:flashurl, type:'mp3', autostart:'true'})
-		}
 	}
 
 	function replayletter () {
         if (player == <?=PL_HTML5;?>) {	
 			document.getElementById('player1').play();
 		}
-        else if (player == <?=PL_JSCWLIB;?>) {
+        else {
             pa[1].play();
         }
-		else {
-			sendEvent('js1','stop');
-			sendEvent('js1','playpause');
-		}
 	}
 
 

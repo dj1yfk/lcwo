@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2021-05-12:
+    * MorseMachine: make buzzer for jscwlib louder and distorted.
+
 2021-05-02:
     * Small tweak of cookie settings.
     * MorseMachine: Only show partial character set in drop down menu to
