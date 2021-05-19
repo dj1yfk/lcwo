@@ -230,7 +230,7 @@ var locked = <? echo ($_SESSION['lockspeeds']==1 ? "true" : "false") ?>;
 	<input type="radio" onChange="value_changed();" name="tonetype" value="0" <? if
 (!$_SESSION['cw_tone_random']) { echo 'checked'; }?>>
 	<input name="tone" onChange="value_changed();" type="text" value="<? echo $_SESSION['cw_tone']; ?>" size=3> <br>
-	<input type="radio"onChange="value_changed();"  name="tonetype" value="1"
+	<input type="radio" onChange="value_changed();"  name="tonetype" value="1"
 	<? if ($_SESSION['cw_tone_random']) { echo 'checked'; }?> > <? echo l('random') ?> (500-900Hz)
 	</td>
 	</tr>
@@ -381,7 +381,7 @@ foreach ($extrachar as $k) {
 	if ($nr == 0) {
 		echo "<tr>";
 	}
-	echo '<td class="hl"><input id="char'.$k.'" type="checkbox" name="char'.$k.'" value="1"';
+	echo '<td class="hl"><input onChange="value_changed();" id="char'.$k.'" type="checkbox" name="char'.$k.'" value="1"';
 	
 	if (!(strpos($_SESSION['customcharacters'], $k2) === FALSE)) {
 		echo " checked ";

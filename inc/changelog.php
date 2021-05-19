@@ -14,6 +14,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2021-05-19:
+    * CW Settings: Display hint to click save also when activating extra
+      characters (!, ", ', ...) - tnx WA2NFN
+
 2021-05-12:
     * MorseMachine: make buzzer for jscwlib louder and distorted.
 
