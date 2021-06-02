@@ -103,6 +103,7 @@ Morse chat function here on LCWO.net.</p>
     code['.--.-'] = '&Aring;';
     code['........'] = '<u>ERR</u>';
     code['.-...'] = '<u>AS</u>';
+    code['-...-'] = '=';
 
 	window.setInterval("checkspace();", 5*dotlength);
 
