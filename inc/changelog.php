@@ -14,6 +14,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2021-08-05:
+    * Callsign training: Fix broken JavaScript code when translated
+      text snippets contain ' characters (e.g. Catalan, tnx ea3ejt)
+
 2021-05-19:
     * CW Settings: Display hint to click save also when activating extra
       characters (!, ", ', ...) - tnx WA2NFN

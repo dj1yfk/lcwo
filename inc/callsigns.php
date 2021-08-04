@@ -153,7 +153,7 @@ function check (call) {
 			/* Submit the score via "AJAX" now... */
 			submitscore("callsigns", maxspeed, score, valid, ef);
 		
-			h1.innerHTML = '<? echo l('callsigntraining',1)." - ".l('attemptfinished',1); ?>';
+			h1.innerHTML = "<? echo l('callsigntraining',1)." - ".l('attemptfinished',1); ?>";
 			newattemptdivvar.innerHTML = '<p><a href="/callsigns" id="newattempt"><? echo l('newattempt',1); ?></a></P>';
 			document.getElementById('newattempt').focus();
 			
