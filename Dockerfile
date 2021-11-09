@@ -1,4 +1,4 @@
-FROM phusion/baseimage:focal-1.0.0-alpha1-amd64
+FROM phusion/baseimage:focal-1.0.0
 MAINTAINER Fabian Kurz <fabian@fkurz.net>
 
 CMD ["/sbin/my_init"]
@@ -6,7 +6,7 @@ CMD ["/sbin/my_init"]
 RUN apt-get update && apt-get install -y apache2 mariadb-server php \
     libapache2-mod-php php-mysql php-gd exim4 php-mbstring \
     # stuff needed to compile ebook2cw \
-    build-essential libmp3lame-dev git \
+    build-essential libmp3lame-dev git ca-certificates \
     # stuff to work a little more comfortably within the container
     vim
 
