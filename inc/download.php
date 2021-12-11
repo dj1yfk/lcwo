@@ -442,7 +442,7 @@ function updatesessiondownloads() {
 			$_SESSION['download']['eff'] = $_POST['eff'];
 		if (inrange($_POST['tone'],250,3000)) 
 			$_SESSION['download']['tone'] = $_POST['tone'];
-		if (inrange($_POST['number'],1,20)) 
+		if (inrange($_POST['number'],1,50)) 
 			$_SESSION['download']['number'] = $_POST['number'];
 		if (inrange($_POST['lesson'],1,40)) 
 			$_SESSION['download']['lesson'] = $_POST['lesson'];
@@ -451,7 +451,3 @@ function updatesessiondownloads() {
 }
 
 ?>
-<div class="vcsid">$Id: download.php 248 2014-06-15 20:47:20Z dj1yfk $</div>
-
-
-

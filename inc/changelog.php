@@ -14,6 +14,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2021-10-12:
+    * Allow downloading/generating up to 50 practice files at once.
+      (previous limit was 20)
+
 2021-08-05:
     * Callsign training: Fix broken JavaScript code when translated
       text snippets contain ' characters (e.g. Catalan, tnx ea3ejt)
