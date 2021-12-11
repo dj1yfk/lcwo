@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2021-12-11:
+    * Replace DJ1YFK with DJ5CW :-)
+
 2021-10-12:
     * Allow downloading/generating up to 50 practice files at once.
       (previous limit was 20)

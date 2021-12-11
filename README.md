@@ -64,7 +64,7 @@ terrible spaghetti code to somewhat structured and modular. Refactoring needed.
 
 ## Authors
 
-LCWO was written by Fabian Kurz, DJ1YFK &lt;fabian@fkurz.net&gt;.
+LCWO was written by Fabian Kurz, DJ5CW (ex DJ1YFK) &lt;fabian@fkurz.net&gt;.
 
 Thanks to the following authors for contributing code:
 

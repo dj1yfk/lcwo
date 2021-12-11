@@ -1,8 +1,8 @@
 <h1>&Uuml;ber - Learn CW Online</h1>
 <p><em>Learn CW Online</em> (LCWO) ist eine Plattform zum Lernen und Trainieren von Morsetelegraphie (CW). Sie wurde konzipiert und programmiert 
-von <a href="http://fkurz.net/">Fabian Kurz, DJ1YFK</a> 
+von <a href="http://fkurz.net/">Fabian Kurz, DJ5CW</a> 
 (<a href="/impressum">Impressum</a>, 
-<a href="http://lcwo.net/profile/dj1yfk">Profil</a>) und ging im Mai 2008
+<a href="http://lcwo.net/profile/dj5cw">Profil</a>) und ging im Mai 2008
 ans Netz. </p>
 
 <p>LCWO wird ständig weiterentwickelt und jegliche Hinweise und

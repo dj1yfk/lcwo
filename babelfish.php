@@ -134,7 +134,7 @@ function babelfishnormal () {
 <div style="color:#ff0000">New: Texts are submitted in the
 &quot;background&quot; now, no
 more full page-reloads (which were usually slow). Please let me know if you
-face any problems. Tnx! <pre>-- Fabian DJ1YFK</pre></div>
+face any problems. Tnx! <pre>-- Fabian DJ5CW</pre></div>
 
 
 <?

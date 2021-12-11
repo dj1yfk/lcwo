@@ -3,8 +3,8 @@
 <p>LCWO (Learn CW Online - &#199;evrim i&#231;i CW &#214;&#287;ren) sitesi May&#305;s 2008'de, CW (Mors
 alfabesi) &#246;&#287;renmeyi ve uygulamay&#305; m&#252;mk&#252;n oldu&#287;unca kolay ve az &#231;aba
 gerektirecek hale getirmek &#252;zere <a href="http://fkurz.net/">Fabian Kurz,
-DJ1YFK</a> (<a href="/impressum">&#304;leti&#351;im</a>, <a
-href="/profile/dj1yfk">profile</a>), taraf&#305;ndan kuruldu.</p>
+DJ5CW</a> (<a href="/impressum">&#304;leti&#351;im</a>, <a
+href="/profile/dj5cw">profile</a>), taraf&#305;ndan kuruldu.</p>
 
 <p>LCWO s&#252;rekli bir geli&#351;tirme halindedir. Her t&#252;rl&#252; yorum ve &#246;nerilerinize
 a&#231;&#305;kt&#305;r. Yazarla temasa ge&#231;mek i&#231;in l&#252;tfen <a href="/impressum#form">ileti&#351;im form</a>'unu kullan&#305;n ya da
@@ -23,7 +23,7 @@ geni&#351;li&#287;i sa&#287;lama imkan&#305;n&#305;z var ise l&#252;tfen bize bi
 <? include ("inc/about-translators.php"); ?>
 
 <p>LCWO sitesini ba&#351;ka bir dile &#231;evirmek i&#231;in yard&#305;mc&#305; olmak isterseniz, l&#252;tfen
-<a href="help@lcwo.net">Fabian, DJ1YFK</a> ile e-posta yoluyla temasa ge&#231;in. Te&#351;ekk&#252;rler!</p>
+<a href="help@lcwo.net">Fabian, DJ5CW</a> ile e-posta yoluyla temasa ge&#231;in. Te&#351;ekk&#252;rler!</p>
 
 <h2>Sitemizi tan&#305;t&#305;n!</h2>
 <p>LCWO'ya kendi siteniz ya da web g&#252;nl&#252;&#287;&#252;n&#252;zden ba&#287;lant&#305; vermek isterseniz, a&#351;a&#287;&#305;daki banner ya da butonlar&#305; kullanmak isteyebilirsiniz. QSL kartlar i&#231;in y&#252;ksek &#231;&#246;z&#252;n&#252;rl&#252;kte (s/b) logolar&#305;m&#305;z da var.</p>
@@ -71,7 +71,7 @@ k&#305;yaslamaya imkan veren bir y&#252;ksek skorlar listesi de mevcut
 LCWO.net, ticari olmayan bir proje. &#220;cretsiz bir hesap a&#231;mak yaln&#305;zca bir
 ka&#231; saniyenizi al&#305;yor ve CW prati&#287;i yapmaya hemen ba&#351;layabiliyorsunuz!
 
-Fabian Kurz, DJ1YFK</pre>
+Fabian Kurz, DJ5CW (ex DJ1YFK)</pre>
 
 
 <h2>Taray&#305;c&#305; uyumlulu&#287;u, teknik konular</h2>

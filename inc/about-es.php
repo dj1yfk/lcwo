@@ -1,5 +1,5 @@
 <h1>Acerca LCWO - Aprenda CW Online</h1>
-<p>Este sitio, <em>Aprenda CW en l&iacute;nea</em> (LCWO), se constituy&oacute; en mayo de 2008 por <a href="http://fkurz.net/">Fabian Kurz, DJ1YFK</a> 
+<p>Este sitio, <em>Aprenda CW en l&iacute;nea</em> (LCWO), se constituy&oacute; en mayo de 2008 por <a href="http://fkurz.net/">Fabian Kurz, DJ5CW</a> 
 (<a href="/impressum">Impressum</a>, 
 <a href="http://lcwo.net/profile/dj1yfk">profile</a>),
 con la esperanza de que el aprendizaje y la pr&aacute;ctica de CW (c&oacute;digo Morse) sea lo m&aacute;s f&aacute;cil y sin esfuerzo posible.</p>
@@ -13,7 +13,7 @@ con la esperanza de que el aprendizaje y la pr&aacute;ctica de CW (c&oacute;digo
 
 <? include("inc/about-translators.php"); ?>
 
-<p>Si quiere ayudar a traducir LCWO a otro idioma, por favor <a href="mailto:help&#64;lcwo.net">p&oacute;ngase en contacto con Fabi&aacute;n, DJ1YFK por correo electr&oacute;nico</a>. &iexcl;Gracias!</p>
+<p>Si quiere ayudar a traducir LCWO a otro idioma, por favor <a href="mailto:help&#64;lcwo.net">p&oacute;ngase en contacto con Fabi&aacute;n, DJ5CW por correo electr&oacute;nico</a>. &iexcl;Gracias!</p>
 <h2>&iexcl;Corre la voz!</h2>
 <p>Si usted desea enlazar a LCWO desde su sitio web o blog, puede que quiera usar uno de los siguientes banners o botones. Tambi&eacute;n los logotipos de alta resoluci&oacute;n (b/w) est&aacute;n disponibles para las tarjetas QSL.</p>
 
@@ -107,7 +107,7 @@ otros usuarios, las estad&iacute;sticas personales ayudan a seguir el progreso d
 LCWO.net es un proyecto no comercial. Crear una cuenta gratuita s&oacute;lo cuesta unos
 segundos, &iexcl;y usted puede comenzar a practicar CW de inmediato!
 
-Fabian Kurz, DJ1YFK
+Fabian Kurz, DJ5CW
 </pre>
 
 

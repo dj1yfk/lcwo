@@ -1,8 +1,8 @@
 <h1>A propos de LCWO - Learn CW Online</h1>
 <p>Ce site, <em>Learn CW Online</em> (LCWO), a été créé en mai 2008 par
-<a href="http://fkurz.net/">Fabian Kurz, DJ1YFK</a> 
+<a href="http://fkurz.net/">Fabian Kurz, DJ5CW</a> 
 (<a href="/impressum">Impressum</a>, 
-<a href="http://lcwo.net/profile/dj1yfk">profile</a>),
+<a href="http://lcwo.net/profile/dj5cw">profile</a>),
 dans le but de faire apprendre et pratiquer la CW (code Morse) le plus facilement et le moins contraignant possible.
 </p>
 
@@ -28,7 +28,7 @@ l&rsquo;interface utilisateur:</p>
 <? include("inc/about-translators.php"); ?>
 
 <p>Si vous souhaitez aider à traduire LCWO dans d&rsquo;autres langues, merci de prendre contact avec
-<a href="mailto:help@lcwo.net">Fabian, DJ1YFK par mèl</a>. Merci&nbsp;!</p>
+<a href="mailto:help@lcwo.net">Fabian, DJ5CW par mèl</a>. Merci&nbsp;!</p>
 
 <h2>Spread the word!</h2>
 <p>Si ça vous dit de placer un lien depuis votre site web ou votre blog,
