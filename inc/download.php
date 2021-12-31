@@ -180,7 +180,7 @@ $langnames["cw"] = l("cwabbreviations");
 <td>
 <select id="duration" name="duration" size="1">
 <? 
-for ($i=1; $i <= 5; $i++) {
+for ($i=1; $i <= 10; $i++) {
 	if ($_SESSION['download']['duration'] == $i) {
 		echo "<option value=\"$i\" selected>$i</option>\n";
 	}
@@ -434,7 +434,7 @@ function updatesessiondownloads() {
 
 		if (inrange($_POST['maxlen'], 4, 99)) 
 			$_SESSION['download']['wmaxlen'] = $_POST['maxlen'];
-		if (inrange($_POST['duration'], 1, 5)) 
+		if (inrange($_POST['duration'], 1, 10)) 
 			$_SESSION['download']['duration'] = $_POST['duration'];
 		if (inrange($_POST['speed'], 5, 200)) 
 			$_SESSION['download']['speed'] = $_POST['speed'];
