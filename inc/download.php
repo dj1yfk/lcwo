@@ -1,4 +1,3 @@
-
 <h1><? echo l('downloadpracticefiles') ?></h1>
 
 <?  
@@ -9,7 +8,7 @@ $wlangs = getavailablewordcollections();
 
 /* Handle session variables */
 
-if (!$_SESSION['download']['set']) {
+if ($_SESSION['download']['set'] != 1) {
 	initsessiondownloads();
 }
 else {
@@ -207,10 +206,18 @@ for ($i=1; $i <= 10; $i++) {
 <? echo l('effspeedlong')." (".l('wpm')."):"; ?>
 </td>
 <td>
-<input type="text" name="eff" size="3" value="<? echo
-$_SESSION['download']['eff']; ?>">
+<input type="text" name="eff" size="3" value="<? echo $_SESSION['download']['eff']; ?>">
 </td>
 </tr>
+
+<td>
+<? echo l('ewslong'); ?>
+</td>
+<td>
+<input type="text" name="ews" size="3" value="<? echo $_SESSION['download']['ews']; ?>">
+</td>
+</tr>
+
 
 <tr>
 <td><? echo l('tone') ?> (Hz):</td>
@@ -237,6 +244,7 @@ $_SESSION['download']['eff']; ?>">
 	if (is_numeric($_POST['number']) && is_numeric($_POST['lesson'])
 		&& is_numeric($_POST['duration']) &&
 		is_numeric($_POST['speed']) && is_numeric($_POST['eff']) &&
+		is_numeric($_POST['ews']) &&
 		is_numeric($_POST['tone']) && is_numeric($_POST['number']) &&
 		is_numeric($_POST['maxlen']) && in_array($_POST['mode'], $dlmodes)
 	) {
@@ -333,9 +341,13 @@ for ($i = 1; $i <= $_SESSION['download']['number']; $i++) {
 	
 	$_SESSION['downloadtexts'][$i] = stripcommands($text);
 
+	if ($_SESSION['download']['ews'] > 0) {
+		$text = "|W".$_SESSION['download']['ews']." ".$text;
+	}
+
 	$text = rawurlencode($text);	
 
-	$idnr++;	
+	$idnr++;
 	echo "<tr><td><a id='downloadmp3-$idnr'
 	href=\"".CGIURL()."cw-download.mp3?d=$i&s=".$_POST['speed']."&e=".$_POST['eff']."&f=".$_POST['tone']."&t=$text\">lcwo-$i.mp3</a>".
 	"</td><td><a id='downloadtxt-$idnr' href=\"/api/gettext.php?nr=$i\">lcwo-$i.txt</a></td></tr>\n";
@@ -390,6 +402,7 @@ function initsessiondownloads() {
 			$_SESSION['download']['duration'] = $_SESSION['koch_duration'];
 			$_SESSION['download']['speed'] = $_SESSION['cw_speed'];
 			$_SESSION['download']['eff'] = $_SESSION['cw_eff'];
+			$_SESSION['download']['ews'] = $_SESSION['cw_ews'] ? $_SESSION['cw_ews'] : 0;
 			$_SESSION['download']['tone'] = $_SESSION['cw_tone'];
 		}
 		else {
@@ -398,6 +411,7 @@ function initsessiondownloads() {
 			$_SESSION['download']['duration'] = 1;
 			$_SESSION['download']['speed'] = 20;
 			$_SESSION['download']['eff'] = 10;
+			$_SESSION['download']['ews'] = 0;
 			$_SESSION['download']['tone'] = 600;
 		}
 
@@ -440,6 +454,12 @@ function updatesessiondownloads() {
 			$_SESSION['download']['speed'] = $_POST['speed'];
 		if (inrange($_POST['eff'],1,200)) 
 			$_SESSION['download']['eff'] = $_POST['eff'];
+		if (array_key_exists('ews', $_POST) && inrange($_POST['ews'],0,40)) {
+			$_SESSION['download']['ews'] = $_POST['ews'];
+		}
+		else if (!array_key_exists('ews', $_SESSION['download'])) {
+			$_SESSION['download']['ews'] = $_SESSION['cw_ews'];
+		}
 		if (inrange($_POST['tone'],250,3000)) 
 			$_SESSION['download']['tone'] = $_POST['tone'];
 		if (inrange($_POST['number'],1,50)) 
