@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2022-01-22:
+    * Fix MorseMachine on Chrome + Android (tnx Jylz)
+
 2021-12-31:
     * Downloads: Allow file lengths of up to 10 minutes. Allow setting extra
       word space for download files (tnx OK9REJ)

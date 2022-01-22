@@ -154,6 +154,9 @@ Character set: &nbsp;
         else if (!multi_input && e.key.length == 1) {
             keypressed(e.key);
         }
+        else if (e.key == "Unidentified") { /* Chrome on Android bug: https://bugs.chromium.org/p/chromium/issues/detail?id=118639 */
+            keypressed(document.getElementById('entrybox').value);
+        }
     }
 </script>
 
