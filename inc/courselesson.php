@@ -90,11 +90,12 @@ if (isint($_POST['duration'])  && $_SESSION['uid']) {
 <select onChange="this.form.submit();" name="lesson" size="1">
 <?
 	for ($i = 1; $i < 41; $i++) {
+        $lessonchars = $i == 1 ? 'K, M' : $kochchar[$i];
 		if ($i == $_SESSION['koch_lesson']) {
-			echo "<option selected>$i</option>";
+			echo "<option selected value='$i'>$i - $lessonchars</option>";
 		}
 		else {
-			echo "<option>$i</option>";
+			echo "<option value='$i'>$i - $lessonchars</option>";
 		}
 	}
 ?>
