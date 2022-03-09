@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2022-03-09:
+    * When uploading a word list, remove \r characters
+
 2022-02-16:
     * On the lessons page, show letters of lessons in dropdown menu (tnx UT4UVE)
 

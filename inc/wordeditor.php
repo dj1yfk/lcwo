@@ -197,7 +197,7 @@ function load_file(f) {
         var reader = new FileReader();
         reader.onload = function(f) {
             var filecontents = f.target.result;
-
+            filecontents = filecontents.replace(/\r/g, "");
             var words = filecontents.split("\n");
 
             var res = document.getElementById("uploadresult");
