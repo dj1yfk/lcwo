@@ -77,6 +77,7 @@ global $db;
 	$txtext2 = rawurlencode($foo[0]);
 	
 	?>
+    <button id="btn_playpause" onClick="playpause(1); if(tmp=getElementById('eform')){tmp.input.focus();} return false;"><?=l('playpause',1);?></button><br><br>
 	<form action="/plaintext" method="POST" id="eform">
 		<table><tr>
 		<td><input  spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off" type="text" size="60" name="input"></td>
@@ -87,12 +88,18 @@ global $db;
 		<input type="hidden" name="slang" value="<? echo $slang; ?>">
 	</form>
 
+    <script>
+        document.getElementById('btn_playpause').focus();
+    </script>
+
 	<?
 
     if ($_SESSION['player'] != PL_JSCWLIB) { $txtext = "|S".($_SESSION['delay_start']*1000)." ".$txtext; }
 
 	player($txtext, $_SESSION['player'], $_SESSION['plain']['cw_speed'], $_SESSION['plain']['cw_eff'],0, 1, 0,1);
-	
+
+    
+
 
 }
 

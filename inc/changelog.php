@@ -13,6 +13,10 @@ Even more fine grained changes can be observed in the git repository:
 <a href="https://git.fkurz.net/dj1yfk/lcwo">https://git.fkurz.net/dj1yfk/lcwo</a>
 
 Started on 2009-02-08.
+ 
+2022-03-18:
+    * Add explicit "Play" button to plain text training, so it's more
+      accessible for visually impaired users (tnx IZ4APU)
 
 2022-03-09:
     * When uploading a word list, remove \r characters
