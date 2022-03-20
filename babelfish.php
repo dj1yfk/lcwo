@@ -52,7 +52,8 @@ $perm = array(
 		'vi' => array('admin', 'W6TN', 'w6tn'),
 		'no' => array('admin', 'LA6VQ', 'la6vq', 'la6ala', 'LA6ALA'),
 		'id' => array('admin', 'mahally'),
-		'si' => array('admin', 'TekCroach')
+		'si' => array('admin', 'TekCroach'),
+		'he' => array('admin', 'ashuber')
 );
 
 

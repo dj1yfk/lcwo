@@ -1,6 +1,6 @@
 /*  jscwlib - JavaScript Morse Code Library
  *
- *  Author:     Fabian Kurz, DJ1YFK
+ *  Author:     Fabian Kurz, DJ5CW
  *  Homepage:   https://fkurz.net/ham/jscwlib.html
  *  Repository: https://git.fkurz.net/dj1yfk/jscwlib
  *  
@@ -15,6 +15,8 @@
 
         var settings_svg = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2IiB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiI+PHBhdGggZD0ibTEwNy43NSAyMi4xNTl2MjEuNTcxYy04LjgzNSAyLjExNy0xNy4yODYgNS42MDgtMjUuMDQgMTAuMzQ3bC0xNS4yMzQtMTUuMjM0LTI4LjYzMiAyOC42MzQgMTUuMjYgMTUuMjZjLTQuNzQ0OCA3Ljc0NDQtOC4yNDQzIDE2LjE4Ni0xMC4zNzEgMjUuMDE2aC0yMS41NzN2NDAuNDkzaDIxLjU3MWMyLjExNjEgOC44MzgyIDUuNjA3NiAxNy4yODkgMTAuMzQ3IDI1LjA0M2wtMTUuMjM0IDE1LjIzNCAyOC42MzIgMjguNjM0IDE1LjI2Mi0xNS4yNjJjNy43NDQ0IDQuNzQ0OCAxNi4xODYgOC4yNDQzIDI1LjAxNiAxMC4zNzF2MjEuNTczaDQwLjQ5M3YtMjEuNTcxYzguODM3NS0yLjExNjMgMTcuMjg4LTUuNjA3OCAyNS4wNDEtMTAuMzQ3bDE1LjIzNiAxNS4yMzYgMjguNjMyLTI4LjYzNC0xNS4yNi0xNS4yNmM0Ljc0NS03Ljc0NSA4LjI0NDUtMTYuMTg3IDEwLjM3MS0yNS4wMThoMjEuNTczdi00MC40OTNoLTIxLjU3MWMtMi4xMTYzLTguODM3NS01LjYwNzgtMTcuMjg4LTEwLjM0Ny0yNS4wNDFsMTUuMjUtMTUuMjIyLTI4LjY0LTI4LjYzNC0xNS4yNiAxNS4yNmMtNy43NDUtNC43NDUtMTYuMTg3LTguMjQ0NS0yNS4wMTgtMTAuMzcxdi0yMS41NzNoLTQwLjQ5M3ptMjAuMjQ3IDU3LjUzN2E0OC4zMDMgNDguMzAzIDAgMCAxIDQ4LjMgNDguMzA0IDQ4LjMwMyA0OC4zMDMgMCAwIDEgLTQ4LjMgNDguMyA0OC4zMDMgNDguMzAzIDAgMCAxIC00OC4zMDMgLTQ4LjMgNDguMzAzIDQ4LjMwMyAwIDAgMSA0OC4zMDMgLTQ4LjMwNHoiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjgiIC8+PC9zdmc+Cgo=";
 
+        var settings_open_svg = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2IiB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiI+PHBhdGggZD0ibTEwNy43NSAyMi4xNTl2MjEuNTcxYy04LjgzNSAyLjExNy0xNy4yODYgNS42MDgtMjUuMDQgMTAuMzQ3bC0xNS4yMzQtMTUuMjM0LTI4LjYzMiAyOC42MzQgMTUuMjYgMTUuMjZjLTQuNzQ0OCA3Ljc0NDQtOC4yNDQzIDE2LjE4Ni0xMC4zNzEgMjUuMDE2aC0yMS41NzN2NDAuNDkzaDIxLjU3MWMyLjExNjEgOC44MzgyIDUuNjA3NiAxNy4yODkgMTAuMzQ3IDI1LjA0M2wtMTUuMjM0IDE1LjIzNCAyOC42MzIgMjguNjM0IDE1LjI2Mi0xNS4yNjJjNy43NDQ0IDQuNzQ0OCAxNi4xODYgOC4yNDQzIDI1LjAxNiAxMC4zNzF2MjEuNTczaDQwLjQ5M3YtMjEuNTcxYzguODM3NS0yLjExNjMgMTcuMjg4LTUuNjA3OCAyNS4wNDEtMTAuMzQ3bDE1LjIzNiAxNS4yMzYgMjguNjMyLTI4LjYzNC0xNS4yNi0xNS4yNmM0Ljc0NS03Ljc0NSA4LjI0NDUtMTYuMTg3IDEwLjM3MS0yNS4wMThoMjEuNTczdi00MC40OTNoLTIxLjU3MWMtMi4xMTYzLTguODM3NS01LjYwNzgtMTcuMjg4LTEwLjM0Ny0yNS4wNDFsMTUuMjUtMTUuMjIyLTI4LjY0LTI4LjYzNC0xNS4yNiAxNS4yNmMtNy43NDUtNC43NDUtMTYuMTg3LTguMjQ0NS0yNS4wMTgtMTAuMzcxdi0yMS41NzNoLTQwLjQ5M3ptMjAuMjQ3IDU3LjUzN2E0OC4zMDMgNDguMzAzIDAgMCAxIDQ4LjMgNDguMzA0IDQ4LjMwMyA0OC4zMDMgMCAwIDEgLTQ4LjMgNDguMyA0OC4zMDMgNDguMzAzIDAgMCAxIC00OC4zMDMgLTQ4LjMgNDguMzAzIDQ4LjMwMyAwIDAgMSA0OC4zMDMgLTQ4LjMwNHoiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI2FhYWFhYSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjgiIC8+PC9zdmc+Cg==";
+
         var alphabet = {"a": ".-", "b": "-...", "c": "-.-.", "d": "-..", "e": ".", 
             "f": "..-.", "g": "--.", "h": "....", "i": "..", "j": ".---", "k":
             "-.-", "l": ".-..", "m": "--", "n": "-.", "o": "---", "p": ".--.",
@@ -26,12 +28,13 @@
             ".": ".-.-.-", ",": "--..--", ":": "---...", "(": "-.--.", ")": "-.--.-",
             "@": ".--.-.", "-": "-....-", "\"": ".-..-.", "!": "..--.",
             "$": "...-..-", "'": ".----.", "`": ".-----.", 
+            "&": ". ...",
             "-": "-....-", ";": "-.-.-.", 
             "«": ".-..-.", "»": ".-..-.", 
             "ä": ".-.-", "ß": "...--..",
             "à": ".--.-", "á": ".--.-", "â": ".-", "ã": ".-",
             "å": ".--.-", "æ": ".-.-", "ç": "-.-..", "è": "..-..", "é": "..-..", 
-            "ê": ".", "ë": ".", "ì": "..", "í": "..", "î": "..", "ï": "..",
+            "ê": ".", "ë": ".", "ì": ".---.", "í": "..", "î": "..", "ï": "..",
             "ð": "..--.", "ñ": "--.--", "ò": "---", "ó": "---", "ô": "---",
             "õ": "---", "ö": "---.", "ø": "---.", "ù": "..-", "ú": "..-",
             "û": "..-", "ü": "..--", "ý": "-.--", "þ": ".--..", "ÿ": "-.--",
@@ -149,6 +152,14 @@
             "）": ".-..-.",                /* )  */
             "、": ".-.-.-",                /* .  */
             "」": ".-.-..",                /* \n */
+
+            /* Arabic */
+            "ا" : ".-", "ب": "-...", "ت": "-", "ث": "-.-.", "ج": ".---", "ح":
+            "....", "خ": "---", "د": "-..", "ذ": "--..", "ر": ".-.", "ز":
+            "---.", "س": "...", "ش": "----", "ص": "-..-", "ض": "...-", "ط":
+            "..-", "ظ": "-.--", "ع": ".-.-", "غ":" --.", "ف": "..-.", "ق":
+            "--.-", "ك": "-.-", "ل": ".-..", "م": "--", "ن": "-.", "و": ".--", "ء": ".", "لا": ".-...-", "ﻕ": "--.-",
+            "ي": "..", "ه": "..-..",
             " ":" " };
         var el_len = { ".": 1, "-": 3, " ": 1 };
 
@@ -192,6 +203,9 @@
         this.prosign = false;   // we're within a prosign (no letter spaces)
         this.finishedTimeout = null;
 
+        this.help_url = "https://fkurz.net/ham/jscwlib.html";   // Shows up in the settings dialog - to disable, change to null
+        this.help_text = "jscwlib - Documentation";
+
         // see if volume is saved in localStorage
         try {
             var vl = parseFloat(localStorage.getItem("jscwlib_vol"));
@@ -201,6 +215,16 @@
         }
         catch (e) {
             console.log("No volume in local storage.");
+        }
+        // see if Q is saved in localStorage
+        try {
+            var ql = parseFloat(localStorage.getItem("jscwlib_q"));
+            if (ql >= 0 && ql <= 25) {
+                this.q = ql;
+            }
+        }
+        catch (e) {
+            console.log("No Q in local storage.");
         }
 
         // override default parameters with values passed to the constructor
@@ -283,6 +307,9 @@
                 this.gainNodePlay.gain.value = this.playvolume;
                 this.gainNodeLimiter.gain.value = 0.55;
                 this.oscillator.start();
+
+                this.setFreq(this.freq);
+                this.setQ(this.q);
             }
             this.init_done = true;
         }
@@ -308,6 +335,13 @@
 
         this.setQ = function (q) {
             console.log("setQ = " + q);
+            /* try storing Q in local storage */
+            try {
+                localStorage.setItem('jscwlib_q', q);
+            }
+            catch (e) {
+                console.log("localStorage not available. Not saving q.");
+            }
             this.q = q;
             this.biquadFilter.Q.setValueAtTime(q, this.audioCtx.currentTime);
             // the filter gain depends on the Q - this will compensate for it
@@ -611,7 +645,7 @@
 
         this.refresh_download_link = function() {
             if (this.btn_down) {
-                this.btn_down.href = this.cgiurl + "cw.mp3?d=001&s=" + this.wpm + "&e=" + this.eff + "&f=" + this.freq + "&t=|W" + this.ews + " " + this.text;
+                this.btn_down.href = this.cgiurl + "cw.mp3?d=001&s=" + this.wpm + "&e=" + this.eff + "&f=" + this.freq + "&t=|W" + this.ews + " " + this.text.replace('|z', '|W');
                 // Silently remove anything above 8k characters to avoid
                 // hitting the maximum request URI length of Apache running ebook2cw.
                 if (this.btn_down.href.length > 8000) {
@@ -704,6 +738,9 @@
 
             for (var i = 0; i < out.length; i++) {
                 var s = start + out[i]['t'];
+                if (out[i].hasOwnProperty('c')) {
+                    this.setCharacterCb(out[i]['c'], out[i]['t']*1000);
+                }
                 // volume change
                 if (out[i].hasOwnProperty('v')) {
                     this.gainNode.gain.setValueAtTime(out[i]['v'], s);
@@ -762,6 +799,19 @@
             }
         }
 
+        // dummy function - will be called each time a character starts
+        // playing, and will receive the position in the string and the
+        // character itself in "c"
+        this.onCharacterPlay = function (c) {
+            // console.log(c);
+        }
+
+        this.setCharacterCb = function (c, t) {
+            var cb = this.onCharacterPlay;
+            setTimeout(function() { cb(c); }, t);
+        }
+
+
         // in: a single character (except space) and a start time
         // out: array of timing for this character w/o spaces after the last element, starting at "time"
         this.gen_morse_timing = function(c, time) {
@@ -769,12 +819,9 @@
             var l = alphabet[c];
 
             if (!l) {
-                console.log("Don't know CW for character: '" + c + "'");
-                return false;
+                console.log("Don't know CW for character: '" + c + "', replacing with space.");
+                l = " ";
             }
-//            else {
-//                console.log("Character: " + c + " Code point: " + c.codePointAt(0));
-//            }
 
             for (var j = 0; j < l.length; j++) {
                 var el = l.substr(j,1);  // . or -
@@ -851,8 +898,9 @@
                 }
                 else if (c != " ") {
                     var ti = this.gen_morse_timing(c, time);
+                    ti[0]['c'] = {"n": i, "c": c };  // in the first element, include the character and the position, so we can fire the onCharacterPlay function
                     if (ti) {
-                        out = out.concat(this.gen_morse_timing(c, time));
+                        out = out.concat(ti);
                         time = out[out.length - 1]['t'];
                         if (!this.prosign) {
                             time += this.letterspace;
@@ -1092,6 +1140,7 @@
             btn_set_img.src = settings_svg; 
             btn_set_img.style.width = "25px";
             btn_set_img.style.height = "25px";
+            obj.btn_set_img = btn_set_img;
 
             // popup dialog for settings
             var pop = document.createElement("span");
@@ -1265,9 +1314,6 @@
             td = tr.insertCell();
             td.appendChild(edge_label);
 
-
-
-
             // volume
             var vol = document.createElement("input"); 
             vol.id = "vol";
@@ -1298,6 +1344,19 @@
             td = tr.insertCell();
             td.appendChild(vol_label);
 
+            if (this.help_url) {
+                tr = tbl.insertRow();
+                td = tr.insertCell();
+                td.style.textAlign = 'end';
+                td.colSpan = 3;
+                var a = document.createElement('a');
+                var t = document.createTextNode(this.help_text);
+                a.style.fontSize = '11px';
+                a.href = this.help_url;
+                a.appendChild(t);
+                td.appendChild(a);
+            }
+
             pop.appendChild(tbl);
 
             btn_set.appendChild(pop);
@@ -1325,9 +1384,11 @@
             if (this.showSettings) {
                 console.log("show");
                 this.pop.style.visibility = "visible";
+                this.btn_set_img.src = settings_open_svg;
             }
             else {
                 console.log("hide");
+                this.btn_set_img.src = settings_svg;
                 this.pop.style.visibility = "hidden";
             }
         }
