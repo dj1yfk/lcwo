@@ -229,8 +229,10 @@ type="text" value="<? echo $_SESSION['plain']['cw_eff']; ?>" size=3></td>
 		$coll = getavailableplaintextcollections();
 	
 		foreach ($coll as $w) {
-			$collid = intval(mb_substr($w, -2));
-			$w = mb_substr($w,0,mb_strlen($w)-3);
+            $ctmp = explode(' ', $w);
+            $collid = intval(array_pop($ctmp));
+            array_pop($ctmp);
+			$w = join(" ", $ctmp);
 			
 			// No preferred collection set yet? Use first with home lang
 			if (!isset($_SESSION['plain']['collid'])) {

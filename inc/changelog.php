@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
  
+2022-03-20:
+    * Add Polish proverbs to plain text training (tnx SP2Z)
+
 2022-03-18:
     * Add explicit "Play" button to plain text training, so it's more
       accessible for visually impaired users (tnx IZ4APU)
