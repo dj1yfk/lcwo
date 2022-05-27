@@ -20,6 +20,8 @@ Started on 2009-02-08.
     * word training: generate a warning if parameters result in empty word list
     * Added 1000 most common words and a set of poems (Ogura Hyakunin Isshu)
       to word training / plain text training for Japanese (tnx Lucifuge)
+    * Added some additional characters to the custom character selection,
+      including those used in the Scandinavian countries, Cyrillic and Arabic
 
 2022-03-20:
     * Add Polish proverbs to plain text training (tnx SP2Z)

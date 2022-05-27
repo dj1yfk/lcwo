@@ -320,6 +320,26 @@ foreach ($extrachar as $k) {
 echo join(",", $tmparray);
 ?>);
 
+var Acyrillic = new Array(
+<? 
+$tmparray = array();
+foreach ($cyrillicchar as $k) {
+	$k = mb_strtoupper($k);
+	array_push($tmparray, "\"$k\"");
+}
+echo join(",", $tmparray);
+?>);
+var Aarabic = new Array(
+<? 
+$tmparray = array();
+foreach ($arabicchar as $k) {
+	array_push($tmparray, "\"$k\"");
+}
+echo join(",", $tmparray);
+?>);
+
+
+
 var Anumbers = new Array(0,1,2,3,4,5,6,7,8,9);
 
 
@@ -395,6 +415,51 @@ foreach ($extrachar as $k) {
 	$nr++;
 }
 ?>
+</tr>
+<?
+$nr=0;
+foreach ($cyrillicchar as $k) {
+	$k = mb_strtoupper($k);
+	if ($nr == 0) {
+		echo "<tr>";
+	}
+	echo '<td class="hl"><input onChange="value_changed();" id="char'.$k.'" type="checkbox" name="char'.$k.'" value="1"';
+	
+	if (!(strpos($_SESSION['customcharacters'], $k) === FALSE)) {
+		echo " checked ";
+	}
+	
+	echo '> '.$k.'</td>'."\n";
+	if ($nr == 8) {
+		echo "</tr>";
+		$nr=-1;
+	}
+	$nr++;
+}
+?>
+</tr>
+<?
+$nr=0;
+foreach ($arabicchar as $k) {
+	if ($nr == 0) {
+		echo "<tr>";
+	}
+	echo '<td class="hl"><input onChange="value_changed();" id="char'.$k.'" type="checkbox" name="char'.$k.'" value="1"';
+	
+	if (!(strpos($_SESSION['customcharacters'], $k) === FALSE)) {
+		echo " checked ";
+	}
+	echo '> '.$k.'</td>'."\n";
+	if ($nr == 8) {
+		echo "</tr>";
+		$nr=-1;
+	}
+	$nr++;
+}
+?>
+</tr>
+
+
 
 </table>
 
@@ -402,6 +467,8 @@ foreach ($extrachar as $k) {
 <input type="button" name="numbers" value="<?=l('figures',1)?>" onClick="togglechecks(Anumbers);">
 <input type="button" name="kochchars" value="<?=l('kochcharacters',1)?>" onClick="togglechecks(Akoch);">
 <input type="button" name="extrachars" value="<?=l('extracharacters',1)?>" onClick="togglechecks(Aextra);">
+<input type="button" name="cyrillicchars" value="<?=l('cyrillic',1)?>" onClick="togglechecks(Acyrillic);">
+<input type="button" name="arabicchars" value="<?=l('arabic',1)?>" onClick="togglechecks(Aarabic);">
 
 
 </td></tr>
