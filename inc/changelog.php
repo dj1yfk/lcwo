@@ -18,6 +18,8 @@ Started on 2009-02-08.
     * word training: fix bug in filling up array with duplicate words
       (found and fixed by user Lucifuge)
     * word training: generate a warning if parameters result in empty word list
+    * Added 1000 most common words and a set of poems (Ogura Hyakunin Isshu)
+      to word training / plain text training for Japanese (tnx Lucifuge)
 
 2022-03-20:
     * Add Polish proverbs to plain text training (tnx SP2Z)
