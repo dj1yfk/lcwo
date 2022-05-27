@@ -379,7 +379,7 @@ var nr = -1;		/* 0..24 */
 	$words = gettextsbylanguage("words", $langarray, $maxlen, 25, $simplify, $lesson);
 
 	for($i = 0; $i < 25; $i++) {
-		 echo " words[$i] = \"".$words[$i]."\"; ";
+		 echo "\n words[$i] = \"".$words[$i]."\"; ";
 	}
 
 ?>
@@ -606,7 +606,7 @@ echo "<tr>
 </td>
 <td valign="top">
 
-<? if ($_POST['speed']) { ?>
+<? if (count($words) && $_POST['speed']) { ?>
 
 <p><? echo l('curspeed'); ?>: <span id="curspeed"><? echo $_POST['speed'];
 ?></span><? echo l('wpm'); ?> - <? echo l('maxspeed') ?>: <span id="maxspeed">0</span><? echo l('wpm') ?></p>
@@ -650,6 +650,8 @@ echo "<tr>
 
 }
 else {
+	echo "<h2>".l('invalidparams1')."</h2><p>".l('invalidparams2')."</p>";
+	echo "<a href='/wordtraining'>".l('back')."</a>";
 }
 ?>
 </td>

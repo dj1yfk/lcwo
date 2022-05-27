@@ -17,6 +17,7 @@ Started on 2009-02-08.
 2022-05-27:
     * word training: fix bug in filling up array with duplicate words
       (found and fixed by user Lucifuge)
+    * word training: generate a warning if parameters result in empty word list
 
 2022-03-20:
     * Add Polish proverbs to plain text training (tnx SP2Z)

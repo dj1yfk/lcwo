@@ -1152,7 +1152,7 @@ function gettextsbylanguage1 ($type, $lang, $maxlen, $count, $simplify, $lesson)
 	}
 
 	if (count($valid) == 0) {
-			echo "<!-- No records found with current parameters! -->";
+			echo "/* No records found with current parameters! */";
 			return;
 	}
 	
