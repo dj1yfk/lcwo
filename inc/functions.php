@@ -1192,7 +1192,7 @@ function gettextsbylanguage1 ($type, $lang, $maxlen, $count, $simplify, $lesson)
 
 	/* enough words available? push random duplicates into array*/
 	while (count($words) < $count) {
-			array_push($words, $words[rand(0, (count($words)))-1]);
+			array_push($words, $words[rand(0, count($words)-1)]);
 	}
 	
 	shuffle($words);

@@ -14,6 +14,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
  
+2022-05-27:
+    * word training: fix bug in filling up array with duplicate words
+      (found and fixed by user Lucifuge)
+
 2022-03-20:
     * Add Polish proverbs to plain text training (tnx SP2Z)
 
