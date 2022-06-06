@@ -217,24 +217,30 @@ if ($user->show_ministat or ($user->id == $_SESSION['uid'])) {
 	$tmp = mysqli_fetch_row($query);
 	$pt[1] = $tmp[0];
 
-	# find out place
-	$query = mysqli_query($db,"SELECT uid, avg(accuracy) as a from
-	lcwo_plaintextresults group by uid order by a desc");
-	if (!$query) { echo "Error1!".mysqli_error($db); return; }
-	$place = 0;
-	while ($tmp = mysqli_fetch_row($query)) {
-		$place++;
-		if ($tmp[0] == $user->id) {		# user itself
-			$pt[2] = round($tmp[1],1);
-			break;
+	# find average accuracy of the user
+	$query = mysqli_query($db,"SELECT round(avg(accuracy),1) from lcwo_plaintextresults where uid='$user->id'");
+	if (!$query) { echo "Error! ".mysqli_error($db); return; }
+	$tmp = mysqli_fetch_row($query);
+	$avg_acc = $tmp[0];
+
+	if ($avg_acc > 0) {
+		$query = mysqli_query($db,"SELECT uid, round(avg(accuracy),1) as a from lcwo_plaintextresults group by uid order by a desc");
+		if (!$query) { echo "Error1!".mysqli_error($db); return; }
+		$place = 1;
+		while ($tmp = mysqli_fetch_row($query)) {
+			if ($tmp[1] > $avg_acc) {
+				$place++;
+			}
+			else {
+				break;
+			}
 		}
-	}
-	if ($place == 0) {
-		$pt[0] = "-";
-		$pt[2] = "-";
+		$pt[0] = $place;
+		$pt[2] = $avg_acc;
 	}
 	else {
-		$pt[0] = $place;
+		$pt[0] = "-";
+		$pt[2] = "-";
 	}
 	
 	# Number of total places
