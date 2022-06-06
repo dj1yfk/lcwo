@@ -130,6 +130,10 @@ function checktext () {
 
 	echo "<p>".l('accuracy').": $lserrors ".l('errors')." / ".mb_strlen($_POST['input'])." ".l('characters')." = ".$accuracy."%</p>";
 
+	if ($_SESSION['plain']['cw_eff'] > $_SESSION['plain']['cw_speed']) {
+			$_SESSION['plain']['cw_eff'] = $_SESSION['plain']['cw_speed'];
+	}
+
 	$i = mysqli_query($db,"insert into lcwo_plaintextresults set
 			`uid`='".$_SESSION['uid']."', `speed`='".$_SESSION['plain']['cw_speed']."',
 			`eff`='".$_SESSION['plain']['cw_eff']."', `accuracy`='$accuracy', `time`=NULL");
