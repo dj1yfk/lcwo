@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
  
+2022-08-13:
+    * Fix transmit training audio for Chrome (tnx sipszak)
+
 2022-05-27:
     * word training: fix bug in filling up array with duplicate words
       (found and fixed by user Lucifuge)

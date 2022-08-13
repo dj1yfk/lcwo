@@ -11,24 +11,31 @@
 </form>
 
 <script>
-var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-var oscillator = audioCtx.createOscillator();
-var biquadFilter = audioCtx.createBiquadFilter();
-var gainNode = audioCtx.createGain();
-biquadFilter.type = "lowpass";
-biquadFilter.frequency.setValueAtTime(600, audioCtx.currentTime);
-biquadFilter.Q.setValueAtTime(15, audioCtx.currentTime);
 
-oscillator.type = 'sine';
-oscillator.frequency.setValueAtTime(600, audioCtx.currentTime); // value in hertz
+var audioCtx, oscillator, biquadFilter, gainNode;
 
-oscillator.connect(gainNode);
-gainNode.connect(biquadFilter);
-biquadFilter.connect(audioCtx.destination);
+var audio_started = false;
 
-oscillator.start();
+function init_audio () {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    oscillator = audioCtx.createOscillator();
+    biquadFilter = audioCtx.createBiquadFilter();
+    gainNode = audioCtx.createGain();
+    biquadFilter.type = "lowpass";
+    biquadFilter.frequency.setValueAtTime(600, audioCtx.currentTime);
+    biquadFilter.Q.setValueAtTime(15, audioCtx.currentTime);
 
-gainNode.gain.value = 0;
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(600, audioCtx.currentTime); // value in hertz
+
+    oscillator.connect(gainNode);
+    gainNode.connect(biquadFilter);
+    biquadFilter.connect(audioCtx.destination);
+
+    oscillator.start();
+
+    gainNode.gain.value = 0;
+}
 
 document.onkeydown = function(evt) {
     evt = evt || window.event;
@@ -109,6 +116,9 @@ Morse chat function here on LCWO.net.</p>
 
 
 	function down () {
+        if (!audio_started) {
+            init_audio();
+        }
 		time = new Date().getTime();
 		checkspace();
 		keydown = 1;
