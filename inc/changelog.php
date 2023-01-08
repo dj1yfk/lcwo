@@ -13,6 +13,9 @@ Even more fine grained changes can be observed in the git repository:
 <a href="https://git.fkurz.net/dj1yfk/lcwo">https://git.fkurz.net/dj1yfk/lcwo</a>
 
 Started on 2009-02-08.
+
+2023-01-08:
+    * Remove twitter link from news page
  
 2022-08-13:
     * Fix transmit training audio for Chrome (tnx sipszak)
