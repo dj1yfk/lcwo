@@ -16,6 +16,7 @@ Started on 2009-02-08.
 
 2023-01-08:
     * Remove twitter link from news page
+    * Allow disbling the contact form
  
 2022-08-13:
     * Fix transmit training audio for Chrome (tnx sipszak)

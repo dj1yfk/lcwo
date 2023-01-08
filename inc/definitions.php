@@ -37,6 +37,8 @@ define("FORUM_RO",   false); # Make forum read-only?
 define("USERG_RO",   false); # Disable creating new user groups?
 define("PMSG_RO",    false); # Disable sending new private messages
 
+define("CONTACTFORM", true); # Enable the contact form
+
 define("CAPTCHA_IMG",    false); # false = use text captcha for signup, true = image captcha
 
 define("PL_JSCWLIB", 1);
