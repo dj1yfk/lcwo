@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2023-01-23:
+    * Added Czech proverbs to plain text training (tnx OK4MR)
+
 2023-01-08:
     * Remove twitter link from news page
     * Allow disbling the contact form
