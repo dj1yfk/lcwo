@@ -35,6 +35,7 @@ function init_audio () {
     oscillator.start();
 
     gainNode.gain.value = 0;
+    audio_started = true;
 }
 
 document.onkeydown = function(evt) {
