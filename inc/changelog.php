@@ -14,6 +14,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2023-04-23:
+	* Word and callsign trainina: Do not update "current speed" after last
+	  call/word to avoid confusion (tnx KD3N)
+
 2023-01-23:
     * Added Czech proverbs to plain text training (tnx OK4MR)
 

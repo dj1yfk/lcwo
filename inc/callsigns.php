@@ -108,7 +108,12 @@ function check (call) {
 	t[1].innerHTML = call;
 	
 	var s = document.getElementById('curspeed');
-	s.innerHTML = cwspeed;
+	if (nr < 24) {
+		s.innerHTML = cwspeed;
+	}
+	else {
+		s.innerHTML = "-";
+	}
 	
 	var max = document.getElementById('maxspeed');
 	max.innerHTML = maxspeed;
