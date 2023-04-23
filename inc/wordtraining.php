@@ -395,8 +395,16 @@ function check (word) {
 	var t = document.getElementById('wordtable').rows[nr+1].cells;
 
 	t[2].innerHTML = cwspeed;
+
+	// we are giving the benefit of the doubt here and normalize
+	// both the sent string and the entered string and compare
+	// the result. ref:
+	// https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript#37511463
+
+	var word_cmp = word.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+	var sent_cmp = words[nr].normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
 	
-	if (word != words[nr]) {
+	if (word_cmp != sent_cmp) {
 			word = "<span style=\"color:#ff0000\">" + word +
 			"&nbsp;</span>";
 			if (cwspeed > 5) {

@@ -18,6 +18,7 @@ Started on 2009-02-08.
     * Word and callsign trainina: Do not update "current speed" after last
       call/word to avoid confusion (tnx KD3N)
     * Update callsign database 
+    * In word training, normalize input to accept accented characters (tnx LU1BQO)
 
 2023-01-23:
     * Added Czech proverbs to plain text training (tnx OK4MR)
