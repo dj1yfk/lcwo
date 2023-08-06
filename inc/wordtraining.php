@@ -365,6 +365,10 @@ var score = 0;
 var tone  = <? echo $tone; ?>;
 var thistone = tone;
 
+// for replaying words, remember frequency, speed and effective speed
+var history = new Array(25);
+
+
 var h5c = "cw.mp3";
 
 var nr = -1;		/* 0..24 */
@@ -434,7 +438,7 @@ function check (word) {
 	
 	}
 
-	t[0].innerHTML = words[nr];
+	t[0].innerHTML = '<a href="javascript:playcall('+nr+');document.getElementById(' + "'" + 'wordentry' + "'" + ').focus();">' + words[nr] + '</a>';
 	t[1].innerHTML = word;
 	
 	var s = document.getElementById('curspeed');
@@ -468,7 +472,7 @@ function check (word) {
 	
 	
 	if (nr < 25) {
-		playcall();	
+		playcall(nr);	
 	}
 	else {
 			var ef = document.getElementById('entryform');
@@ -490,23 +494,37 @@ function check (word) {
 <? include "submitscore.js"; ?>
 
 
-function playcall () {
+function playcall (cnr) {
+
 	var cwspeedtmp = cwspeed;
-		if (cwspeed < mincharspeed) {
+	var cwspeedefftmp = cwspeed;
+	if (cwspeed < mincharspeed) {
 		cwspeedtmp = mincharspeed;  
 	}
+    
+    // playing for the first time
+    if (cnr == nr) {
+        history[nr] = { "wpm": cwspeedtmp, "eff": cwspeed, "freq": thistone };
+    }
+    else if (cnr < nr) {
+        // take values from history
+        cwspeedtmp = history[cnr].wpm;
+        cwspeedefftmp = history[cnr].eff;
+        thistone = history[cnr].freq;
+    }
+
     var delay = <? if ($_SESSION['player'] != PL_JSCWLIB) { echo $_SESSION['delay_start']; } else { echo "0.05"; } ?>;
     var autoskip = <?=$_SESSION['wordtraining']['autoskip']?>;
 
     if (delay) {
-        var text = '|S' + (delay*1000)+ ' ' + words[nr];
+        var text = '|S' + (delay*1000)+ ' ' + words[cnr];
     }
     else {
-        var text = words[nr];
+        var text = words[cnr];
     }
 			
 	var cs = document.getElementById('clicktostart');
-	cs.innerHTML = '&nbsp; &nbsp; &nbsp; <input type="button" value="<?=l('pressdottoreplay',1);?>" onclick="playcall();return false;">';
+	cs.innerHTML = '&nbsp; &nbsp; &nbsp; <input type="button" value="<?=l('pressdottoreplay',1);?>" onclick="playcall(cnr);return false;">';
 
     <?    
 	if ($_SESSION['player'] == PL_HTML5) {				/* HTML5 player */
@@ -521,7 +539,7 @@ function playcall () {
     ?>
         pa[1].setText(text);
         pa[1].setWpm(cwspeedtmp);
-        pa[1].setEff(cwspeed);
+        pa[1].setEff(cwspeedefftmp);
         pa[1].setFreq(thistone);
         pa[1].enablePS(false);
         pa[1].play();
@@ -575,7 +593,7 @@ function disableEnterKey(e)
 			case 46:
 			case 32:
 				if (nr >= 0) {
-					playcall();
+					playcall(nr);
 				}
 				else {
 					var ce = document.getElementById('wordentry');

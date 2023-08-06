@@ -14,8 +14,11 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2023-08-06:
+    * Word training: Allow re-playing all words of the attempt (tnx KD3N)
+
 2023-04-23:
-    * Word and callsign trainina: Do not update "current speed" after last
+    * Word and callsign training: Do not update "current speed" after last
       call/word to avoid confusion (tnx KD3N)
     * Update callsign database 
     * In word training, normalize input to accept accented characters (tnx LU1BQO)
@@ -25,7 +28,7 @@ Started on 2009-02-08.
 
 2023-01-08:
     * Remove twitter link from news page
-    * Allow disbling the contact form
+    * Allow disabling the contact form
  
 2022-08-13:
     * Fix transmit training audio for Chrome (tnx sipszak)
