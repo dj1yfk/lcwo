@@ -16,6 +16,7 @@ Started on 2009-02-08.
 
 2023-08-06:
     * Word training: Allow re-playing all words of the attempt (tnx KD3N)
+    * Improve QTC training (abbreviated times, chronological order)
 
 2023-04-23:
     * Word and callsign training: Do not update "current speed" after last
