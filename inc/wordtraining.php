@@ -522,9 +522,13 @@ function playcall (cnr) {
     else {
         var text = words[cnr];
     }
-			
-	var cs = document.getElementById('clicktostart');
-	cs.innerHTML = '&nbsp; &nbsp; &nbsp; <input type="button" value="<?=l('pressdottoreplay',1);?>" onclick="playcall(cnr);return false;">';
+
+    try {
+	    var cs = document.getElementById('clicktostart');
+	    cs.innerHTML = '&nbsp; &nbsp; &nbsp; <input type="button" value="<?=l('pressdottoreplay',1);?>" onclick="playcall(cnr);return false;">';
+    }
+    catch (e) {
+    }
 
     <?    
 	if ($_SESSION['player'] == PL_HTML5) {				/* HTML5 player */
