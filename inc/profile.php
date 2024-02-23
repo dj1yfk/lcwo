@@ -128,8 +128,14 @@ if ($_SESSION["uid"] && $_SESSION["uid"] != TESTUSER) {
 
 <?
 if ($user->show_ministat or ($user->id == $_SESSION['uid'])) {
-	echo "<h2>".l('statsoverview')."</h2>";
 
+    echo "<h2>".l('statsoverview')."</h2>";
+
+    // Activity heatmap graph
+    echo "<p>Daily activity counting completed practice sessions.</p>";
+    echo "<div id=\"cal-heatmap\"></div>";
+    echo "<script id=\"heatmap\" type=\"text/javascript\" src=\"../js/activityheatmap.js\" data-uid=\"".$user->id."\"></script>";
+    echo "<br />";
 
 	foreach (array("letters", "figures", "mixed") as $mode) {
 
@@ -299,6 +305,7 @@ if ($user->show_ministat or ($user->id == $_SESSION['uid'])) {
 	}
 
 	?>
+
 	<table width="45%">
 		<tr><th><? echo l('speedpractice'); ?>&nbsp;</th>
 			<th colspan="3"><? echo l('place'); ?>&nbsp;</th>
