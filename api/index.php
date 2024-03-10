@@ -122,6 +122,11 @@ function export_results () {
 function daily_results () {
     global $db;
     $userid = 0;
+
+    if (!is_int($_GET['u']+0)) {
+        exit();
+    }
+
     // Logged in user's own daily results
     if ($_SESSION['uid'] && $_SESSION['uid'] == $_GET['u']) {
         $userid = $_SESSION['uid'];
