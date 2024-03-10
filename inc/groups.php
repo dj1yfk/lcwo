@@ -364,6 +364,15 @@ if ($_SESSION['player'] != PL_JSCWLIB) {
 
 </form>
 
+<script>
+// focus on start button
+var q = document.querySelectorAll("button");
+if (q.length) {
+    q[q.length - 1].focus();
+}
+</script>
+
+
 <?
 if ($_SESSION['player'] == 1 && $_SESSION['groups']['real']) {
 ?>
