@@ -132,7 +132,7 @@ if ($user->show_ministat or ($user->id == $_SESSION['uid'])) {
     echo "<h2>".l('statsoverview')."</h2>";
 
     // Activity heatmap graph
-    echo "<p>Daily activity counting completed practice sessions.</p>";
+    echo "<p>".l('statsdaily')."</p>";
     echo "<div id=\"cal-heatmap\"></div>";
     echo "<script id=\"heatmap\" type=\"text/javascript\" src=\"../js/activityheatmap.js\" data-uid=\"".$user->id."\"></script>";
     echo "<br />";

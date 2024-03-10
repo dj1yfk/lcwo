@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2024-03-09:
+    * Add heatmap calendar showing daily practice sessions (tnx OH2CME)
+
 2023-08-06:
     * Word training: Allow re-playing all words of the attempt (tnx KD3N)
     * Improve QTC training (abbreviated times, chronological order)
