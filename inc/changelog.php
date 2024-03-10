@@ -17,6 +17,7 @@ Started on 2009-02-08.
 2024-03-09:
     * Put focus on play button when Koch lesson or groups page loads
     * Update jscwlib version
+    * Added Greek proverbs to Plain Text Training (tnx SV1DAY)
 
 2023-08-06:
     * Word training: Allow re-playing all words of the attempt (tnx KD3N)

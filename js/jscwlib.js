@@ -293,6 +293,7 @@
             "Φ": "..-.",  "φ": "..-.",
             "Χ": "----",  "χ": "----",
             "Ψ": "--.-",  "ψ": "--.-",
+            "Ω": ".--",   "ω": ".--",
 
             // Russian Morse code for Cyrillic
             // https://en.wikipedia.org/wiki/Russian_Morse_code (1857)
