@@ -26,6 +26,11 @@ while ($w = mysqli_fetch_row($query)) {
 ?>
 <meta name="keywords" content="learn cw, cw, morse code practice, telegraphy, learn morse code, morse code, koch method, morsen lernen, impare il cw, high speed cw, hst, qrq, ham radio, dj1yfk, rufzxp, fabian kurz">
 <meta name="author" content="Fabian Kurz">
+<meta property="og:title" content="Learn CW Online" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://lcwo.net/" />
+<meta property="og:image" content="https://lcwo.net/pics/lcwo.png" />
+<meta property="og:description" content="Learn CW Online - a free web app for learning Morse code!" />
 <link rel="icon" href="/favicon.ico">
 <link rel="shortcut icon" href="/favicon.ico">
 <?
