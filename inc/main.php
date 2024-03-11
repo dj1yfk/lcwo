@@ -34,6 +34,9 @@ function del(type, nr) {
 <? echo l('overviewofpractice') ?>
 </p>
 
+<div id="cal-heatmap"></div>
+<script id="heatmap" type="text/javascript" src="../js/activityheatmap.js" data-uid="<? echo $_SESSION['uid'] ?>"></script>
+
 <?
 $qatt = mysqli_query($db,"select count(*) as c from lcwo_lessonresults where uid=".$_SESSION['uid'].";"); $at = mysqli_fetch_object($qatt);
 ?>

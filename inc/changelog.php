@@ -15,6 +15,7 @@ Even more fine grained changes can be observed in the git repository:
 Started on 2009-02-08.
 
 2024-03-09:
+    * Add heatmap calendar showing daily practice sessions (tnx OH2CME)
     * Put focus on play button when Koch lesson or groups page loads
     * Update jscwlib version
     * Added Greek proverbs to Plain Text Training (tnx SV1DAY)
