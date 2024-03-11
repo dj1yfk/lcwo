@@ -359,6 +359,13 @@ if (typeof pa !== 'undefined') {
         pa[2].setStartDelay(0.1);
     }
 }
+
+// focus on start button
+var q = document.querySelectorAll("button");
+if (q.length) {
+    q[q.length - 1].focus();
+}
+
 </script>
 
 

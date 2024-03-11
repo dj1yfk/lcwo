@@ -117,10 +117,16 @@ function checktext () {
 	$txtext = simplify($slang, mb_strtolower($txtext));
 	$input = simplify($slang, mb_strtolower($input));
 
+	// special case for Greek: upper case letter Σ is σ within a string but
+	// ς at the end. mb_strtolower does not make this distinction.
+	// Therefore replace all ς with σ before the comparison.
+	$txtext = str_replace("ς", "σ", $txtext);
+	$input = str_replace("ς", "σ", $input);
+
 	$input = preg_replace("/[ ]+/", ' ', $input); 
 	$input = preg_replace("/^ /", '', $input); 
 	$input = preg_replace("/ $/", '', $input); 
-	
+
     $lserrors = levenshtein(mb_substr($txtext,0,255), mb_substr($input,0,255));
     $accuracy = (intval(1000-1000*$lserrors/mb_strlen($txtext))/10);
 

@@ -1043,7 +1043,7 @@ function simplify ($lang, $text) {
 			$replace['ú'] = 'u';
 			$replace['ü'] = 'u';
 			break;
-        case 'pl':
+		case 'pl':
 			$replace['ą'] = 'a';
 			$replace['ć'] = 'c';
 			$replace['ę'] = 'e';
@@ -1053,7 +1053,7 @@ function simplify ($lang, $text) {
 			$replace['ś'] = 's';
 			$replace['ź'] = 'z';
 			$replace['ż'] = 'z';
-            break;
+			break;
 		default:
 			$replace['a'] = 'a';
 			$replace["'"] = '';
