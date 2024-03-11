@@ -1,9 +1,9 @@
-/* */
+/* User activity heatmap on user home page and public profile. */
 
 let uid  = document.getElementById("heatmap").getAttribute("data-uid");
 const cal = new CalHeatmap();
 cal.paint({
-    range: 1,
+    range: 12,
     scale: {
         color: {
             range: ['#ccec2e', '#a6c027'],
@@ -13,14 +13,16 @@ cal.paint({
         }
     },
     domain: {
-        type: 'year',
-        label: { text:  null },
+        type: 'month',
+        gutter: 2
     },
     subDomain: {
-        type: "day",
-        radius: 2
+        type: "ghDay",
+        radius: 2,
+        gutter: 2
     },
     date: {
+        start: new Date(new Date().setMonth(new Date().getMonth() - 11)),
         locale: { weekStart: 1 },
         highlight: [ new Date() ],
     },
