@@ -1489,6 +1489,7 @@
             el.style.borderStyle= 'dashed';
             el.style.padding = '6px';
             el.style.margin= '6px';
+            el.style.fontSize = '16px';
             el.style.fontFamily = 'Ubuntu,calibri,tahoma,arial,sans-serif';
 
             var pb = document.createElement("progress");
