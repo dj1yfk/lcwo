@@ -14,6 +14,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2024-03-17:
+    * Updated effective speed calculation for MorseMachine to not
+      count errors (tnx KF0NRV)
+
 2024-03-09:
     * Add heatmap calendar showing daily practice sessions (tnx OH2CME)
     * Put focus on play button when Koch lesson or groups page loads
