@@ -292,25 +292,39 @@ if ($nr == -1) {
 # consider abbreviated numbers?
 $playertext = $text;
 if ($_SESSION['groups_mode'] == 'figures') {
-    switch ($_SESSION['groups_abbrev']) {
-    case "0":			# No abbreviations
-        break;
-    case "1":			# 0, 1 and 9
-        $playertext = preg_replace('/1/', 'A', $playertext);
-        $playertext = preg_replace('/9/', 'N', $playertext);
-        $playertext = preg_replace('/0/', 'T', $playertext);
-        break;
-    case "2":
-        $playertext = preg_replace('/1/', 'A', $playertext);
-        $playertext = preg_replace('/2/', 'U', $playertext);
-        $playertext = preg_replace('/3/', 'V', $playertext);
-        $playertext = preg_replace('/5/', 'E', $playertext);
-        $playertext = preg_replace('/7/', 'B', $playertext);
-        $playertext = preg_replace('/8/', 'D', $playertext);
-        $playertext = preg_replace('/9/', 'N', $playertext);
-        $playertext = preg_replace('/0/', 'T', $playertext);
-        break;
+
+    $groups = explode(' ', $playertext);
+
+    for ($i = 0; $i < count($groups); $i++) {
+
+        if (substr($groups[$i],0,1) == "|") {
+            # skip "groups" which are actually commands like |f450
+            continue;
+        }
+
+        switch ($_SESSION['groups_abbrev']) {
+        case "0":			# No abbreviations
+            break;
+        case "1":			# 0, 1 and 9
+            $groups[$i] = preg_replace('/1/', 'A', $groups[$i]);
+            $groups[$i] = preg_replace('/9/', 'N', $groups[$i]);
+            $groups[$i] = preg_replace('/0/', 'T', $groups[$i]);
+            break;
+        case "2":
+            $groups[$i] = preg_replace('/1/', 'A', $groups[$i]);
+            $groups[$i] = preg_replace('/2/', 'U', $groups[$i]);
+            $groups[$i] = preg_replace('/3/', 'V', $groups[$i]);
+            $groups[$i] = preg_replace('/5/', 'E', $groups[$i]);
+            $groups[$i] = preg_replace('/7/', 'B', $groups[$i]);
+            $groups[$i] = preg_replace('/8/', 'D', $groups[$i]);
+            $groups[$i] = preg_replace('/9/', 'N', $groups[$i]);
+            $groups[$i] = preg_replace('/0/', 'T', $groups[$i]);
+            break;
+        }
     }
+
+    $playertext = implode(" ", $groups);
+
 }
 
 if ($_SESSION['player'] != PL_JSCWLIB) {
