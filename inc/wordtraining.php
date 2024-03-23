@@ -365,6 +365,10 @@ var score = 0;
 var tone  = <? echo $tone; ?>;
 var thistone = tone;
 
+// for replaying words, remember frequency, speed and effective speed
+var history = new Array(25);
+
+
 var h5c = "cw.mp3";
 
 var nr = -1;		/* 0..24 */
@@ -421,7 +425,7 @@ function check (word) {
 
 	if (nr >= 0) {
 
-	var correct_answer = words[nr]
+	var correct_answer = words[nr];
 
 	var c = correct_answer.charCodeAt(0);
 	if(c>=0x3040 && c<=0x30ff) {	// Japanese Kana range
@@ -435,10 +439,17 @@ function check (word) {
 	var t = document.getElementById('wordtable').rows[nr+1].cells;
 
 	t[2].innerHTML = cwspeed;
+
+	// we are giving the benefit of the doubt here and normalize
+	// both the sent string and the entered string and compare
+	// the result. ref:
+	// https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript#37511463
+
+	var word_cmp = word.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+	var sent_cmp = correct_answer.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
 	
-	if (word != correct_answer) {
-			word = "<span style=\"color:#ff0000\">" + word +
-			"&nbsp;</span>";
+	if (word_cmp != sent_cmp) {
+			word = "<span style=\"color:#ff0000\">" + word + "&nbsp;</span>";
 			if (cwspeed > 5) {
 					<?
 						if (!$fixspeed) {
@@ -466,11 +477,16 @@ function check (word) {
 	
 	}
 
-	t[0].innerHTML = words[nr];
+	t[0].innerHTML = '<a href="javascript:playcall('+nr+');document.getElementById(' + "'" + 'wordentry' + "'" + ').focus();">' + words[nr] + '</a>';
 	t[1].innerHTML = word;
 	
 	var s = document.getElementById('curspeed');
-	s.innerHTML = cwspeed;
+	if (nr < 24) {
+		s.innerHTML = cwspeed;
+	}
+	else {
+		s.innerHTML = "-";
+	}
 	
 	var max = document.getElementById('maxspeed');
 	max.innerHTML = maxspeed;
@@ -495,7 +511,7 @@ function check (word) {
 	
 	
 	if (nr < 25) {
-		playcall();	
+		playcall(nr);	
 	}
 	else {
 			var ef = document.getElementById('entryform');
@@ -517,23 +533,41 @@ function check (word) {
 <? include "submitscore.js"; ?>
 
 
-function playcall () {
+function playcall (cnr) {
+
 	var cwspeedtmp = cwspeed;
-		if (cwspeed < mincharspeed) {
+	var cwspeedefftmp = cwspeed;
+	if (cwspeed < mincharspeed) {
 		cwspeedtmp = mincharspeed;  
 	}
+    
+    // playing for the first time
+    if (cnr == nr) {
+        history[nr] = { "wpm": cwspeedtmp, "eff": cwspeed, "freq": thistone };
+    }
+    else if (cnr < nr) {
+        // take values from history
+        cwspeedtmp = history[cnr].wpm;
+        cwspeedefftmp = history[cnr].eff;
+        thistone = history[cnr].freq;
+    }
+
     var delay = <? if ($_SESSION['player'] != PL_JSCWLIB) { echo $_SESSION['delay_start']; } else { echo "0.05"; } ?>;
     var autoskip = <?=$_SESSION['wordtraining']['autoskip']?>;
 
     if (delay) {
-        var text = '|S' + (delay*1000)+ ' ' + words[nr];
+        var text = '|S' + (delay*1000)+ ' ' + words[cnr];
     }
     else {
-        var text = words[nr];
+        var text = words[cnr];
     }
-			
-	var cs = document.getElementById('clicktostart');
-	cs.innerHTML = '&nbsp; &nbsp; &nbsp; <input type="button" value="<?=l('pressdottoreplay',1);?>" onclick="playcall();return false;">';
+
+    try {
+	    var cs = document.getElementById('clicktostart');
+	    cs.innerHTML = '&nbsp; &nbsp; &nbsp; <input type="button" value="<?=l('pressdottoreplay',1);?>" onclick="playcall(cnr);return false;">';
+    }
+    catch (e) {
+    }
 
     <?    
 	if ($_SESSION['player'] == PL_HTML5) {				/* HTML5 player */
@@ -548,7 +582,7 @@ function playcall () {
     ?>
         pa[1].setText(text);
         pa[1].setWpm(cwspeedtmp);
-        pa[1].setEff(cwspeed);
+        pa[1].setEff(cwspeedefftmp);
         pa[1].setFreq(thistone);
         pa[1].enablePS(false);
         pa[1].play();
@@ -602,7 +636,7 @@ function disableEnterKey(e)
 			case 46:
 			case 32:
 				if (nr >= 0) {
-					playcall();
+					playcall(nr);
 				}
 				else {
 					var ce = document.getElementById('wordentry');
@@ -741,5 +775,3 @@ $in = mysqli_query($db,"insert into lcwo_wordsresults (`uid`,
 
 
 ?>
-<div class="vcsid">$Id: wordtraining.php 26 2014-12-18 09:43:20Z fabian $</div>
-

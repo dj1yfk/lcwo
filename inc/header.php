@@ -26,6 +26,11 @@ while ($w = mysqli_fetch_row($query)) {
 ?>
 <meta name="keywords" content="learn cw, cw, morse code practice, telegraphy, learn morse code, morse code, koch method, morsen lernen, impare il cw, high speed cw, hst, qrq, ham radio, dj1yfk, rufzxp, fabian kurz">
 <meta name="author" content="Fabian Kurz">
+<meta property="og:title" content="Learn CW Online" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://lcwo.net/" />
+<meta property="og:image" content="https://lcwo.net/pics/lcwo.png" />
+<meta property="og:description" content="Learn CW Online - a free web app for learning Morse code!" />
 <link rel="icon" href="/favicon.ico">
 <link rel="shortcut icon" href="/favicon.ico">
 <?
@@ -47,6 +52,21 @@ $theme = $_SESSION['theme'] ? $_SESSION['theme'] : 'style';
 <link id="lcwocss" href="/<?=$theme;?>.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="/js/leaflet.css">
 <script type="text/javascript" src="/js/jscwlib.js?cachebreak=<? echo filemtime("js/jscwlib.js"); ?>"></script>
+
+<!-- User activity heatmap dependencies
+curl -L 'https://d3js.org/d3.v7.min.js' > js/d3.js
+curl -L 'https://unpkg.com/cal-heatmap/dist/cal-heatmap.min.js' > js/cal-heatmap.js
+curl -L 'https://unpkg.com/cal-heatmap/dist/cal-heatmap.css' > cal-heatmap.css
+curl -L 'https://unpkg.com/@popperjs/core@2' > js/popperjs-core.js
+curl -L 'https://unpkg.com/cal-heatmap/dist/plugins/Tooltip.min.js' > js/cal-heatmap-Tooltip.js
+-->
+
+<script src="/js/d3.js"></script>
+<script src="/js/cal-heatmap.js"></script>
+<link rel="stylesheet" href="/cal-heatmap.css">
+<script src="/js/popperjs-core.js"></script>
+<script src="/js/cal-heatmap-Tooltip.js"></script>
+
 </head>
 <body bgcolor="#ffffff"> 
 <table border="0" cellpadding="0" cellspacing="0" width="100%">

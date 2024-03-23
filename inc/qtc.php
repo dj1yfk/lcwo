@@ -17,9 +17,13 @@ function qtctrainer () {
 
 $speed = intval($_POST['speed']);
 $abbrev = intval($_POST['abbrev']);
+$chronologic = $_POST['chronologic'] ?  true : false;
+$abbrevtime = $_POST['abbrevtime'] ?  true : false;
 
 $_SESSION['qtc']['cw_speed'] = $speed;
 $_SESSION['qtc']['abbrev'] = $abbrev;
+$_SESSION['qtc']['abbrevtime'] = $abbrevtime;
+$_SESSION['qtc']['chronologic'] = $chronologic;
 
 if (!$speed) {
 	$speed = 30;
@@ -27,7 +31,6 @@ if (!$speed) {
 		
 ?>
 
-<script type="text/javascript" src="/js/keys.js"></script>
 <script type="text/javascript">
 
 // Global Variables
@@ -47,7 +50,7 @@ var shiftpressed = 0;
 // MP3 for everyone - dj1yfk 2017-10-06
 var h5c = "cw.mp3";
 
-qtcs = new Array();
+var qtcs = new Array();
 
 /*
  "For people who are honorable, the temptation to cheat is easily overcome."
@@ -58,10 +61,17 @@ qtcs = new Array();
 	include('eucalls2.php');
 
 	echo "qtcs[0] = '".(intval(rand(1,99)))."/10'\n";
-	
+
+	$time = intval(rand(10,23)).intval(rand(10,30));
+
 	for ($i=1; $i < 11; $i++) {
 		$call = $calldb[intval(rand(0,5760))];
-		$time = intval(rand(10,23)).intval(rand(10,59));
+        if (!$chronologic) {
+    		$time = intval(rand(10,23)).intval(rand(10,59));
+        }
+        else {
+    		$time += intval(rand(0,3));
+        }
 		echo "qtcs[$i]='$time;$call;".(intval(rand(10,800)))."'\n";
 	}
 ?>
@@ -152,8 +162,20 @@ function keyaction(e) {
 }
 
 function hasfocus (x) {
+    // automatically fill the hour in the time field if we enter an abbreviated
+    // time (minutes only)
+    if (x.id.substr(0,4) == "call") {
+        var nr = x.id.substr(4);
+        var time = document.getElementById("time" + nr);
+        if (time.value.length == 2 && nr > 1) {
+            time.value = document.getElementById("time" + (nr-1)).value.substr(0,2) + "" + time.value;
+        }
+    }
 	x.value = x.value; 
 	currentfocus = x.id;
+
+    checkallformats();
+
 }
 
 function makeallcallsuppercase () {
@@ -163,6 +185,30 @@ function makeallcallsuppercase () {
 	    tmp.value = tmp.value.toUpperCase();
 	}	
 }
+
+function checkallformats () {
+    var i, tmp;
+    var items = [ "time", "call", "nr" ];
+    var regex = [ new RegExp("^[0-9]{4}$"), new RegExp("^[a-zA-Z0-9\/]{3,15}$"), new RegExp("^[0-9]{2,3}$") ];
+console.log(regex);
+    for (i = 1; i<=10; i++) {
+        for (j = 0; j < 3; j++) {
+            tmp = document.getElementById(items[j]+i);
+            if (tmp.value) {
+                var m = regex[j].test(tmp.value);
+                console.log(m);
+                console.log(regex[j]);
+                if (!m) {
+                    tmp.style.border = "2px solid #CC0000";
+                }
+                else {
+                    tmp.style.border = "2px solid #00CC00";
+                }
+            }
+        }
+    }	
+}
+
 
 function playerload (wpm, eff, freq, text) {
     var file = '?s='+wpm+'&e='+eff+'&f='+freq+'&t= ' + text;
@@ -263,6 +309,15 @@ function sendQTC (repeat) {
 
 	QTC[0] = abbreviatenumbers(QTC[0]);	
 	QTC[2] = abbreviatenumbers(QTC[2]);	
+
+<?
+    if ($_SESSION['qtc']['abbrevtime']) {
+?>
+    if (currentqtc > 1)
+        QTC[0] = QTC[0].substr(2,2);
+<?
+    }
+?>
 
     playerload(cwspeed, cwspeed, <?=$_SESSION['cw_tone'];?>, r+' '+QTC[0]+' '+QTC[1]+' '+QTC[2]+'         ^');
 
@@ -482,25 +537,6 @@ player ("", $mode, 99, 99, 1, 1,0,0);
 var times = new Array();
 var calls = new Array();
 var nrs = new Array();
-var i,j;
-
-for (i=1; i<=10; i++) {
-
-times[i] = new LiveValidation('time'+i, { insertAfterWhatNode: 'err' });
-times[i].add( Validate.Numericality, { minimum: 1000, maximum:
-2359, notANumberMessage: '', wrongNumberMessage: '<? echo
-l('timeinvalid',1); ?>', tooLowMessage: '<? echo l('timeinvalid',1) ?>', 
-tooHighMessage:'<? echo l('timeinvalid',1) ?>' } );
-
-calls[i] = new LiveValidation('call'+i, { insertAfterWhatNode: 'err' });
-calls[i].add( Validate.Format, { pattern: /^[a-zA-Z0-9\/]+$/i, 
-failureMessage: "<? echo l('callinvalid',1)?>" });
-
-nrs[i] = new LiveValidation('nr'+i, { insertAfterWhatNode: 'err' });
-nrs[i].add( Validate.Numericality, { minimum: 0, maximum: 9999, notANumberMessage: '', wrongNumberMessage: '', tooLowMessage: '', tooHighMessage:'' } );
-
-}
-
 document.getElementById('startqtc').focus();
 
 </script>
@@ -516,9 +552,9 @@ echo '<p>'.l('qtctraining2').'</p>';
 echo '<p>'.l('qtctraining3').'</p>';		
 
 if (!$_SESSION['qtc']['set']) {
-    $_SESSION['callsigns']['cw_speed'] = $_SESSION['cw_speed'];
-    $_SESSION['callsigns']['abbrev'] = 0;
-    $_SESSION['callsigns']['set'] = true;
+    $_SESSION['qtc']['cw_speed'] = $_SESSION['cw_speed'];
+    $_SESSION['qtc']['abbrev'] = 0;
+    $_SESSION['qtc']['set'] = true;
 }
 
 
@@ -554,22 +590,18 @@ if (!$_SESSION['qtc']['set']) {
 </select> 
 </td>
 </tr>
-<?
-if (0) {
-?>
+<tr>
+<td><? echo l('chronologic')?>: </td>
+<td>
+<input type="checkbox" onChange="upd();" id="chronologic" name="chronologic" <? if ($_SESSION['qtc']['chronologic'] == 1) { echo "checked"; } ?>>
+</td>
+</tr>
 <tr>
 <td><? echo l('abbreviatedtimes')?>: </td>
 <td>
-<select name="abbrev" size="1">
-	<option value="0">-</option>
-	<option value="1"><?=l('all');?></option>
-	<option value="2"><?=l('partly');?></option>
-</select> 
+<input type="checkbox" onChange="upd();" id="abbrevtime" name="abbrevtime" <? if ($_SESSION['qtc']['abbrevtime'] == 1) { echo "checked"; } ?>>
 </td>
 </tr>
-<?
-}
-?>
 <tr>
 <td colspan="3">
 <input type="submit" id="startbutton" value="<? echo l('start',1); ?>">
@@ -580,6 +612,17 @@ if (0) {
 
 <script type="text/javascript">
 	document.getElementById('startbutton').focus();
+
+    function upd() {
+        var t = document.getElementById('abbrevtime');
+        if (document.getElementById('chronologic').checked) {
+            t.disabled = false;
+        }
+        else {
+            t.disabled = true;
+        }
+    }
+    upd();
 </script>
 
 <?

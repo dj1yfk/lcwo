@@ -205,6 +205,7 @@ Character set: &nbsp;
 	var currentfailed = 0;	/* failed current character => repeat */
 	var charcount = <?=$values[2];?>;
 	var sessioncharcount = 0;
+	var sessioncorrectcharcount = 0;
 	var mmchar = new Array("<? echo join('","', $cs); ?>");
     var started = false;
 
@@ -249,6 +250,8 @@ Character set: &nbsp;
 			sessioncharcount++;
 			
 			if (s == currchar) {
+					sessioncorrectcharcount++;
+					lastkeypress = new Date().getTime();
 					if (!currentfailed && badness[currchar] > 5) {
 						badness[currchar] *= 0.9;
 						badness[currchar] = parseInt(badness[currchar]);
@@ -325,11 +328,9 @@ Character set: &nbsp;
 			firstkeypress = new Date().getTime();
 		}
 		else {
-			lastkeypress = new Date().getTime();
-
 			/* eff WpM: characters / minute */
 	
-			effspeed = Math.round(10*sessioncharcount/(5*(lastkeypress - firstkeypress)/(60 * 1000)))/10;
+			effspeed = Math.round(10*sessioncorrectcharcount/(5*(lastkeypress - firstkeypress)/(60 * 1000)))/10;
 		}
 
 

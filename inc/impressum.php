@@ -13,11 +13,13 @@ else {
 <p>LCWO is copyright &copy; <a href="https://fkurz.net/">Fabian Kurz</a>, 2008-<? $d = getdate(); echo $d['year']; ?>. Source code: <a href="https://git.fkurz.net/dj1yfk/lcwo">https://git.fkurz.net/dj1yfk/lcwo</a>.</p>
 
 <?
-if ($_POST['name']) {
-	sendmail();
-}
-else {
-	showform($_SESSION['name'],$_SESSION['email'],"");
+if (CONTACTFORM) {
+    if ($_POST['name']) {
+        sendmail();
+    }
+    else {
+        showform($_SESSION['name'],$_SESSION['email'],"");
+    }
 }
 
 function showform ($name, $email, $text) {

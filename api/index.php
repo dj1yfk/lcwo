@@ -17,6 +17,18 @@ include("../inc/functions.php");
 include("../inc/connectdb.php");
 include("../inc/definitions.php");
 
+/** Check whether user statistics are set public. */
+function need_public_ministat($user_id) {
+    global $db;
+    $query = "SELECT id, show_ministat from lcwo_users where id = '$user_id';";
+    $mq = mysqli_query($db, $query);
+    $user = mysqli_fetch_object($mq);
+    if (!$user || !$user->show_ministat || $user->show_ministat != 1) {
+        echo '{"msg": "Results are not public." }';
+        exit();
+    }
+}
+
 switch ($_GET['action']) {
 case 'get_usergroups':
     get_usergroups();
@@ -41,6 +53,9 @@ case 'stats':
     break;
 case 'export_results':
     export_results();
+    break;
+case 'daily_results':
+    daily_results();
     break;
 case 'keepalive':
     keepalive();
@@ -96,6 +111,53 @@ function export_results () {
     else {
         header("Content-type: text/csv");
         header("Content-Disposition: attachment; filename=\"lcwo-export-$type-".$_SESSION['username'].".csv\"");
+        echo implode(";", array_keys($out[0]))."\r\n";
+        foreach ($out as $line) {
+            echo implode(";", $line)."\r\n";
+        }
+    }
+}
+
+/** Number of completed lessons per day. Used for user activity heatmap. */
+function daily_results () {
+    global $db;
+    $userid = 0;
+
+    if (!is_int($_GET['u']+0)) {
+        exit();
+    }
+
+    // Logged in user's own daily results
+    if ($_SESSION['uid'] && $_SESSION['uid'] == $_GET['u']) {
+        $userid = $_SESSION['uid'];
+    }
+    // Viewing other users' daily results: Visible to public must be set
+    else {
+        $userid = $_GET['u'];
+        need_public_ministat($userid);
+    }
+    $fmt = $_GET['fmt'];
+    if (!in_array($fmt, array("csv", "json"))) {
+        echo '{"msg": "invalid format"}';
+        return;
+    }
+
+    $query = "select date,count(NR) as count from (select NR,date(time) as date from lcwo_lessonresults where uid='".$userid."' union all select NR,date(time) as date from lcwo_groupsresults where uid='".$userid."' union all select NR,date(time) as date from lcwo_plaintextresults where uid='".$userid."' union all select NR,date(time) as date from lcwo_qtcresults where uid='".$userid."' union all select NR,date(time) as date from lcwo_wordsresults where uid='".$userid."') g group by date order by date desc;";
+
+    $q = mysqli_query($db, $query);
+    $out = array();
+    while ($d = mysqli_fetch_array($q, MYSQLI_ASSOC)) {
+        array_push($out, $d);
+    }
+
+    if ($fmt == "json") {
+        header("Content-type: application/json");
+        header("Content-Disposition: attachment; filename=\"lcwo-daily-results.json\"");
+        echo json_encode($out);
+    }
+    else {
+        header("Content-type: text/csv");
+        header("Content-Disposition: attachment; filename=\"lcwo-daily-results.csv\"");
         echo implode(";", array_keys($out[0]))."\r\n";
         foreach ($out as $line) {
             echo implode(";", $line)."\r\n";

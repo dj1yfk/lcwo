@@ -13,7 +13,41 @@ Even more fine grained changes can be observed in the git repository:
 <a href="https://git.fkurz.net/dj1yfk/lcwo">https://git.fkurz.net/dj1yfk/lcwo</a>
 
 Started on 2009-02-08.
+
+2024-03-21:
+    * Fixed generating abbreviated number groups, when random tone height is
+      activated (tnx N3RTW)
+
+2024-03-17:
+    * Updated effective speed calculation for MorseMachine to not
+      count errors (tnx KF0NRV)
+
+2024-03-09:
+    * Add heatmap calendar showing daily practice sessions (tnx OH2CME)
+    * Put focus on play button when Koch lesson or groups page loads
+    * Update jscwlib version
+    * Added Greek proverbs to Plain Text Training (tnx SV1DAY)
+
+2023-08-06:
+    * Word training: Allow re-playing all words of the attempt (tnx KD3N)
+    * Improve QTC training (abbreviated times, chronological order)
+
+2023-04-23:
+    * Word and callsign training: Do not update "current speed" after last
+      call/word to avoid confusion (tnx KD3N)
+    * Update callsign database 
+    * In word training, normalize input to accept accented characters (tnx LU1BQO)
+
+2023-01-23:
+    * Added Czech proverbs to plain text training (tnx OK4MR)
+
+2023-01-08:
+    * Remove twitter link from news page
+    * Allow disabling the contact form
  
+2022-08-13:
+    * Fix transmit training audio for Chrome (tnx sipszak)
+
 2022-05-27:
     * word training: fix bug in filling up array with duplicate words
       (found and fixed by user Lucifuge)
