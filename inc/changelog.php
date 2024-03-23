@@ -14,6 +14,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2024-03-23:
+    * Katakana Hiragana insensitive match for word and plain text trainin
+      (tnx Luci6fuge)
+
 2024-03-21:
     * Fixed generating abbreviated number groups, when random tone height is
       activated (tnx N3RTW)
