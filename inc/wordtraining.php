@@ -388,11 +388,51 @@ var nr = -1;		/* 0..24 */
 
 ?>
 
+function normalizeKana(str)
+{
+	ar = {
+		"あ" : "ア", "い" : "イ", "う" : "ウ", "え" : "エ", "お" : "オ",
+		"か" : "カ", "き" : "キ", "く" : "ク", "け" : "ケ", "こ" : "コ",
+		"さ" : "サ", "し" : "シ", "す" : "ス", "せ" : "セ", "そ" : "ソ",
+		"た" : "タ", "ち" : "チ", "つ" : "ツ", "て" : "テ", "と" : "ト",
+		"な" : "ナ", "に" : "ニ", "ぬ" : "ヌ", "ね" : "ネ", "の" : "ノ",
+		"は" : "ハ", "ひ" : "ヒ", "ふ" : "フ", "へ" : "ヘ", "ほ" : "ホ",
+		"ま" : "マ", "み" : "ミ", "む" : "ム", "め" : "メ", "も" : "モ",
+		"や" : "ヤ", "ゆ" : "ユ", "よ" : "ヨ",
+		"ら" : "ラ", "り" : "リ", "る" : "ル", "れ" : "レ", "ろ" : "ロ",
+		"わ" : "ワ", "ゐ" : "ヰ", "ゑ" : "ヱ", "を" : "ヲ",
+		"ん" : "ン", "　" : " ",
+		"が" : "ガ", "ぎ" : "ギ", "ぐ" : "グ", "げ" : "ゲ", "ご" : "ゴ",
+		"ざ" : "ザ", "じ" : "ジ", "ず" : "ズ", "ぜ" : "ゼ", "ぞ" : "ゾ",
+		"だ" : "ダ", "ぢ" : "ヂ", "づ" : "ヅ", "で" : "デ", "ど" : "ド",
+		"ば" : "バ", "び" : "ビ", "ぶ" : "ブ", "べ" : "ベ", "ぼ" : "ボ",
+		"ぱ" : "パ", "ぴ" : "ピ", "ぷ" : "プ", "ぺ" : "ペ", "ぽ" : "ポ",
+		"っ" : "ツ",
+		"ぁ" : "ア", "ぃ" : "イ", "ぅ" : "ウ", "ぇ" : "エ", "ぉ" : "オ",
+		"ゃ" : "ヤ", "ゅ" : "ユ", "ょ" : "ヨ",
+		"ッ" : "ツ",
+		"ァ" : "ア", "ィ" : "イ", "ゥ" : "ウ", "ェ" : "エ", "ォ" : "オ",
+		"ャ" : "ヤ", "ュ" : "ユ", "ョ" : "ヨ",
+	};
+
+	for (var key in ar)
+		str = str.replace(RegExp(key, 'g'), ar[key]);
+	return str;
+}
+
 
 function check (word) {
 
 	if (nr >= 0) {
-		
+
+	var correct_answer = words[nr];
+
+	var c = correct_answer.charCodeAt(0);
+	if(c>=0x3040 && c<=0x30ff) {	// Japanese Kana range
+		correct_answer = normalizeKana(correct_answer);
+		word = normalizeKana(word);
+	}
+
 	word = word.toLowerCase();
 	word = word.replace(/\s+/, "");
 
@@ -406,11 +446,10 @@ function check (word) {
 	// https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript#37511463
 
 	var word_cmp = word.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
-	var sent_cmp = words[nr].normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+	var sent_cmp = correct_answer.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
 	
 	if (word_cmp != sent_cmp) {
-			word = "<span style=\"color:#ff0000\">" + word +
-			"&nbsp;</span>";
+			word = "<span style=\"color:#ff0000\">" + word + "&nbsp;</span>";
 			if (cwspeed > 5) {
 					<?
 						if (!$fixspeed) {
@@ -736,5 +775,3 @@ $in = mysqli_query($db,"insert into lcwo_wordsresults (`uid`,
 
 
 ?>
-<div class="vcsid">$Id: wordtraining.php 26 2014-12-18 09:43:20Z fabian $</div>
-
