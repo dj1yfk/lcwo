@@ -144,5 +144,3 @@ function sortico($i, $d) {
 
 
 ?>
-<div class="vcsid">$Id: users.php 209 2013-01-02 11:36:20Z dj1yfk $</div>
-

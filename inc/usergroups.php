@@ -991,11 +991,4 @@ else if ($unsubscribe) {
 		<a href="/usergroups/<?=$group?>"><?=l('back');?></a>
 <?
 }
-
-
-
-
 ?>
-
-<div class="vcsid">$Id: usergroups.php 32 2014-12-18 13:32:08Z fabian $</div>
-

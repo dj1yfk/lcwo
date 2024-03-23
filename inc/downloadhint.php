@@ -27,7 +27,3 @@ That's it.</p>
 href="mailto:<?=ADMINMAIL;?>">let me know</a> and I'll add
 a similar short How-To to this site. Thanks!</p>
 
-<div class="vcsid">$Id: downloadhint.php 35 2010-09-02 21:10:27Z dj1yfk $</div>
-
-
-

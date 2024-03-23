@@ -492,5 +492,3 @@ echo l('statsafter3attempts');
 </td>
 </tr>
 </table>
-
-<div class="vcsid">$Id: main.php 31 2014-12-18 13:22:37Z fabian $</div>

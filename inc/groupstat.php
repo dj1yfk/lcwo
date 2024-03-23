@@ -2,8 +2,7 @@
 <?
 
 if (!$_SESSION['uid']) {
-		echo "Sorry, you must be logged in to use this
-		function.";
+		echo "Sorry, you must be logged in to use this function.";
 		return 0;
 }
 
@@ -13,9 +12,7 @@ if (!$_SESSION['uid']) {
 
 foreach (array('letters', 'figures', 'mixed', 'custom') as $what) {
 
-	$gc = mysqli_query($db,"select `accuracy`, `eff`
-   	from lcwo_groupsresults where
-	`uid`='$_SESSION[uid]' and mode='$what' order by nr");
+	$gc = mysqli_query($db,"select `accuracy`, `eff` from lcwo_groupsresults where `uid`='$_SESSION[uid]' and mode='$what' order by nr");
 
 	unset($accuracy, $eff);
 	$count = 0;
@@ -58,7 +55,4 @@ foreach (array('letters', 'figures', 'mixed', 'custom') as $what) {
 </p>
 
 <p><a href="/main"><? echo l('home') ?></a></p>
-
-<div class="vcsid">$Id: groupstat.php 143 2012-01-10 21:34:26Z dj1yfk $</div>
-
 

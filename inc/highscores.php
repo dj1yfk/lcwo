@@ -128,5 +128,3 @@ $rett = "before table: " . ($start - microtime(true)) ."\n";
 <!--
 <?=$rett; ?>
 -->
-<div class="vcsid">$Id: highscores.php 251 2014-11-12 18:35:55Z dj1yfk $</div>
-

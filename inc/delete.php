@@ -1,13 +1,12 @@
 <?
 if (!$_SESSION['uid']) {
-		echo "Sorry, you must be logged in to use this
-		function.";
+		echo "Sorry, you must be logged in to use this function.";
 		return 0;
 }
 
 $types = array('groups', 'callsigns', 'lesson', 'plaintext', 'words', 'qtc');
 
-if (in_array($_GET['type'], $types) && is_numeric($_GET[nr])) {
+if (in_array($_GET['type'], $types) && is_numeric($_GET['nr'])) {
 	/* check if this attempt exists and was made by the current user */
 	$gcheckuser =  mysqli_query($db,"SELECT `uid` from lcwo_".$_GET['type']."results WHERE `nr` = '".$_GET['nr']."';");
 	
@@ -31,11 +30,8 @@ if (in_array($_GET['type'], $types) && is_numeric($_GET[nr])) {
 
 }
 else {
-	echo "<p>Errornous data.</p>";
+	echo "<p>Erroneous data.</p>";
 }
 
 
 ?>
-
-<div class="vcsid">$Id: delete.php 20 2010-08-12 20:51:29Z dj1yfk $</div>
-

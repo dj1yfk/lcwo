@@ -1,8 +1,7 @@
 <?
 
 if (!$_SESSION['uid']) {
-		echo "Sorry, you must be logged in to use this
-		function.";
+		echo "Sorry, you must be logged in to use this function.";
 		return 0;
 }
 
@@ -48,5 +47,3 @@ graph($width, $height, $score, array(0,max($score)),
 ".l('wpm'); ?></p>
 
 <p><a href="/main"><? echo l('home') ?></a></p>
-<div class="vcsid">$Id: wordstat.php 143 2012-01-10 21:34:26Z dj1yfk $</div>
-

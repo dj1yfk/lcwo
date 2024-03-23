@@ -358,6 +358,3 @@ function getavailableplaintextcollections () {
 }
 
 ?>
-
-<div class="vcsid">$Id: plaintext.php 21 2014-12-17 17:19:08Z fabian $</div>
-

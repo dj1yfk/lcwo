@@ -19,7 +19,7 @@ l('plaintexttraining').", ".l('callsigntraining').",
 - <a href="/text2cw"><? echo l('text2cw') ?></a> (<? echo l('doesntrequirelogin'); ?>)<br>
 - <a href="/forum"><? echo l('forum'); ?></a> <? echo l('fordiscussion'); ?><br>
 - <a href="/usergroups"><? echo l('usergroups') ?></a><br>
-- <a href="http://www.waedc.de/" title="Worked All Europe DX Contest">WAE</a> <? echo l('qtctraining'); ?><br>
+- <a href="https://www.waedc.de/" title="Worked All Europe DX Contest">WAE</a> <? echo l('qtctraining'); ?><br>
 - <? echo l('moretocome') ?>
 </p>
 
@@ -29,5 +29,3 @@ l('plaintexttraining').", ".l('callsigntraining').",
 include("inc/news.php");
 
 ?>
-<div class="vcsid">$Id: welcome.php 55 2010-09-28 17:47:47Z dj1yfk $</div>
-

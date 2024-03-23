@@ -1,8 +1,7 @@
 <?
 
 if (!$_SESSION['uid']) {
-		echo "Sorry, you must be logged in to use this
-		function.";
+		echo "Sorry, you must be logged in to use this function.";
 		return 0;
 }
 
@@ -44,5 +43,3 @@ graph($width, $height, $accuracy, array(0,100),
 <p><? echo l('fastest90acc').": ".$maxspeed." ".l('wpm'); ?></p>
 
 <p><a href="/"><? echo l('home') ?></a></p>
-<div class="vcsid">$Id: plainstat.php 143 2012-01-10 21:34:26Z dj1yfk $</div>
-

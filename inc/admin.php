@@ -101,7 +101,3 @@ function passlink () {
 	}
 }
 ?>
-
-
-<div class="vcsid">$Id: admin.php 188 2012-09-30 20:48:22Z dj1yfk $</div>
-
