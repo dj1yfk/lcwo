@@ -25,15 +25,17 @@
 
 	include("../inc/connectdb.php");
 	
-	/* assemble update query */
+	/* assemble update query for lcwo_mmstatus table which holds the
+     * error bars and total number of characters */
 
-	$update = "update lcwo_mmresults set ";
+	$update = "update lcwo_mmstatus set ";
 	foreach ($_POST as $k => $v) {
 			$update .= "$k = $v, ";
 	}
 	$update .= "$k = $v where uid=$uid;";
 	
 	$query = mysqli_query($db,"$update");
+
 
 	if ($query) {
 		echo "<b>Stats saved (".intval($_POST['count']).").</b>";

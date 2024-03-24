@@ -1453,7 +1453,7 @@ function delete_user($id) {
 	else { echo "Error: ".mysqli_error($db); }
 	
 	echo "MM results: ";
-	$query = mysqli_query($db,"delete from lcwo_mmresults where uid=\"$id\";");
+	$query = mysqli_query($db,"delete from lcwo_mmstatus where uid=\"$id\";");
 	if ($query) { echo "OK (".mysqli_affected_rows($db).")<br>"; }
 	else { echo "Error: ".mysqli_error($db); }
 	

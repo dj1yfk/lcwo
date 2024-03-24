@@ -10,7 +10,7 @@ if ($_SESSION['uid'] != ADMIN) {
     return;
 }
 
-$q = mysqli_query($db,"select sum(count) from lcwo_mmresults where 1");
+$q = mysqli_query($db,"select sum(count) from lcwo_mmstatus where 1");
 $w = mysqli_fetch_row($q);
 echo $w[0];
 

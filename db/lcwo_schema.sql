@@ -97,11 +97,11 @@ CREATE TABLE `lcwo_lessonresults` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `lcwo_mmresults`
+-- Table structure for table `lcwo_mmstatus`
 --
 
--- DROP TABLE IF EXISTS `lcwo_mmresults`;
-CREATE TABLE `lcwo_mmresults` (
+-- DROP TABLE IF EXISTS `lcwo_mmstatus`;
+CREATE TABLE `lcwo_mmstatus` (
   `id` bigint(5) NOT NULL AUTO_INCREMENT,
   `uid` bigint(3) NOT NULL DEFAULT '0',
   `count` int(11) NOT NULL DEFAULT '0',

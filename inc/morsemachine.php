@@ -172,17 +172,17 @@ Character set: &nbsp;
 <?
 	/* Initialize Database for the user, and retrieve old values */
 	/* row exists for user? */
-	$query =mysqli_query($db,"select count(*) from lcwo_mmresults where uid='$uid'");
+	$query =mysqli_query($db,"select count(*) from lcwo_mmstatus where uid='$uid'");
 
 	if (!$query) { echo "db failure1"; return; }
 
 	$tmp = mysqli_fetch_row($query);
 	if ($tmp[0] == 0) {         /* first entry, create dummy for user */
-		$query =mysqli_query($db,"insert into lcwo_mmresults (`uid`) values ($uid)");
+		$query =mysqli_query($db,"insert into lcwo_mmstatus (`uid`) values ($uid)");
 	}
 
 	/* fetch values */
-	$query = mysqli_query($db,"select * from lcwo_mmresults where uid=$uid");
+	$query = mysqli_query($db,"select * from lcwo_mmstatus where uid=$uid");
 	if (!$query) { echo "db failure2"; return; }
 	$values = mysqli_fetch_row($query);
 
@@ -268,7 +268,7 @@ Character set: &nbsp;
 		}
 
 		/* Send stats to server, store in database */ 
-		if (!(charcount % 20)) {
+		if (!(charcount % 10)) {
 			savestats();
 		}
 	
@@ -520,16 +520,6 @@ function savestats () {
 
 var response_location = document.getElementById('response');
 		
-// Provide the XMLHttpRequest class for those complete idiots who use
-// the shitty IE 5.x-6.x browser.
-if( typeof XMLHttpRequest == "undefined" ) XMLHttpRequest = function() {
-  try { return new ActiveXObject("Msxml2.XMLHTTP.6.0") } catch(e) {}
-  try { return new ActiveXObject("Msxml2.XMLHTTP.3.0") } catch(e) {}
-  try { return new ActiveXObject("Msxml2.XMLHTTP") } catch(e) {}
-  try { return new ActiveXObject("Microsoft.XMLHTTP") } catch(e) {}
-  throw new Error( "This browser does not support XMLHttpRequest." )
-};
-
   // generate submit URL depending on current host
   var url = window.location.href;
   var arr = url.split("/");
