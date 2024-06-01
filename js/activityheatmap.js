@@ -22,7 +22,7 @@ cal.paint({
         gutter: 2
     },
     date: {
-        start: new Date(new Date().setMonth(new Date().getMonth() - 11)),
+        start: new Date(new Date().setMonth(new Date().getMonth() - 10)),
         locale: { weekStart: 1 },
         highlight: [ new Date() ],
     },

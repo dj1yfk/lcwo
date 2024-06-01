@@ -14,6 +14,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2024-06-01:
+    * Transmit training: Allow using Ctrl to key
+    * Heatmap: Shift by one more week to avoid that we don't see current week
+
 2024-03-23:
     * Katakana Hiragana insensitive match for word and plain text training
       (tnx Luci6fuge)
