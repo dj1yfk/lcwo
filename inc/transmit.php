@@ -44,7 +44,7 @@ document.onkeydown = function(evt) {
         if (evt.key === "Escape" || evt.key === "Esc") {
 			document.getElementById('jskey').innerHTML = "&nbsp;";
 		}
-		else if (evt.key == " "){
+		else if (evt.key == " " || evt.ctrlKey){
             down();
 		}
     } 
@@ -53,7 +53,7 @@ document.onkeydown = function(evt) {
 document.onkeyup= function(evt) {
     evt = evt || window.event;
     if ("key" in evt) {
-		if (evt.key == " "){
+		if (evt.key == " " || !evt.ctrlKey){
             up();
 		}
     } 
