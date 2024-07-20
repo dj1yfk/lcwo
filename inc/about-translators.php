@@ -44,6 +44,7 @@
 <li>Jerry A. (<abbr title="Czech">cs</abbr>)</li>
 <li>TekCroach (<abbr title="Sinhala">si</abbr>)</li>
 <li>Joe, HL5KY (<abbr title="Korean">ko</abbr>)</li>
+<li>Matúš, OM8ATE (<abbr title="Slovak">sk</abbr>)</li>
 </ul>
 </td>
 </tr>
