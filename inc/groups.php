@@ -349,7 +349,7 @@ if ($_SESSION['player'] != PL_JSCWLIB) {
 <form action="/groups" method="POST" id="eform">
 <table>
 	<tr>
-	<td><textarea spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off" name="input" cols="40" rows="10"></textarea></td>
+	<td><textarea id="textinput" spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off" name="input" cols="40" rows="10"></textarea></td>
 	<td>
 	&nbsp;
 
@@ -379,6 +379,27 @@ if ($_SESSION['player'] != PL_JSCWLIB) {
 </form>
 
 <script>
+/* tap control twice => play/pause */
+var g_last_tap = 0;
+document.getElementById('textinput').addEventListener('keyup', keypressed);
+function keypressed(e) {
+    if (e.key == "Control") {
+        var now = new Date().getTime();
+        if (now - g_last_tap < 500) {
+            g_last_tap = 0;
+            console.log("TAP");
+            try {
+                playpause(1);
+            }
+            catch (e) {
+                console.log("exception");
+            }
+        }
+        else {
+            g_last_tap = now;
+        }
+    }
+}
 // focus on start button
 var q = document.querySelectorAll("button");
 if (q.length) {
