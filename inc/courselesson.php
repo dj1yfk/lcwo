@@ -148,8 +148,14 @@ if ($_SESSION['player'] == 0) {
 if ($_SESSION['koch_lesson'] == 1) {
 echo "<table><tr><td>";
 player("KKKKKKKKKKKKKKKKKK", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 1, 1,0); 
-echo "</td><td>&nbsp;&nbsp;</td><td>";
+
+
+echo "</td><td>&nbsp;&nbsp;</td><td class='player-large'>";
 player("MMMMMMMMMMMMMMMMMM", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 2, 1,0); 
+echo "</td></tr>";
+
+echo "<tr><td class='player-small'>";
+player("MMMMMMMMMMMMMMMMMM", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 3, 1,0); 
 echo "</td></tr></table>\n";
 }
 else {
@@ -300,7 +306,7 @@ else {
 	<tr class="player-small">
 	<td>
 <? 
-	player("$playertext", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'], 0, 3, 0, 1); 
+	player("$playertext", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'], 0, 4, 0, 1); 
 ?>
 	</td>
     </tr>
@@ -310,7 +316,7 @@ else {
 	&nbsp;
 
 <? 
-player("$playertext", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'], 0, 3, 0, 1); 
+player("$playertext", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'], 0, 5, 0, 1); 
 ?>
 	
 	</td>

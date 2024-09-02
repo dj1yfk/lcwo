@@ -96,8 +96,10 @@ body {
 	.player-small {
 		display: block;
 	}
+	.player-large {
 		display: none;
 	}
+	
 	.header, .main-content {
 		flex-direction: column;
 	}
