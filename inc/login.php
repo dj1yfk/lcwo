@@ -1,4 +1,4 @@
-<table width="90%">
+<table width="100%">
 <tr><th class="tborder"><? echo l('login') ?></th></tr>
 <tr><td class="tborder">
 

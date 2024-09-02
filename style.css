@@ -20,12 +20,129 @@ textarea {font-family:monospace;}
 }
 
 .menuText {
+	display: flex;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	color: #000000;
 	text-decoration: none;
-	background-image:url(/pics/menu2.png);
+	/* background-image:url(/pics/menu2.png); */
+	background: linear-gradient(to bottom, rgb(133, 137, 196), rgb(166, 171, 251));
 }
+
+body {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	/* font-family: Arial, sans-serif; */
+}
+.header {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	background-image: url('/pics/lcwo-bg2.png');
+	background-repeat: repeat-x;
+	/* max-height: 75px; */
+}
+
+.menuText a {
+	margin-right: 10px;
+}
+
+.main-content {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-top: 20px;
+	display: flex;
+	flex: 1;
+}
+
+.sidebar {
+	width: 220px;
+	margin-right: 25px;
+}
+
+.content {
+	flex: 1;
+}
+
+.menu-icon {
+	display: none;
+	font-size: 24px;
+	cursor: pointer;
+}
+
+.placeholder-menu {
+	margin-left: auto;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.menu-lines {
+	margin: 0px 3px 3px auto;
+}
+
+.player-small {
+	display: none;
+}
+
+.player-large {
+	display: block;
+}
+
+
+@media (max-width: 900px) {
+	.player-small {
+		display: block;
+	}
+		display: none;
+	}
+	.header, .main-content {
+		flex-direction: column;
+	}
+	.logo, .sidebar, .padding {
+		width: 100%
+	}
+	.menuText, .sidebar {
+		display: none;
+	}
+	.menuText.active, .sidebar.active {
+		display: block;
+		flex-direction: column;
+	}
+	.menuText div {
+		display: block; 
+		margin-bottom: 5px;
+	}
+	.dev-info {
+		margin: 10px 0px 10px 0px;
+		font-size: 12px;
+	}	
+	.menu-icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: linear-gradient(to bottom, rgb(133, 137, 196), rgb(166, 171, 251));
+		width: 100%;
+	}
+	.player-table {
+		width: 100%;
+	}
+	.player-table textarea {
+		width: 100%;
+	}
+	input#checkresult {
+		width: 100%;
+		padding: 0px;
+		height: 25px;
+	}
+	.personalmenu {
+		display: none;
+	}
+}
+
+
 
 .pmsgbox {
 	width:600px;

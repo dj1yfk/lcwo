@@ -103,28 +103,27 @@ include("inc/header.php");
 include("inc/menu.php");
 
 ?>
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
-	<tr>
-		<td width="220" valign="top">
-			<? 
-				if (!$_SESSION['uid']) {
-					include("inc/login.php"); 
-					include("inc/language.php"); 
-				}
-				else {
-					include("inc/personalmenu.php"); 
-				}
-			?>
-			<? include("inc/online.php"); ?>
-		</td>
-		<td valign="top">
-			<? include("inc/$p.php"); ?>
-		</td>
-		<td width="20">
-		&nbsp;
-		</td>
-	</tr>
-</table>
+<div class="main-content">
+	<div class="menu-icon" onclick="toggleMenu('.sidebar')">
+		<div class="placeholder-menu">Menu</div>
+		<div class="menu-lines">☰</div>
+	</div>
+	<aside class="sidebar">
+		<? 
+		if (!$_SESSION['uid']) {
+			include("inc/login.php"); 
+			include("inc/language.php"); 
+		}
+		else {
+			include("inc/personalmenu.php"); 
+		}
+		?>
+		<? include("inc/online.php"); ?>
+	</aside>
+	<main class="content"> 
+		<? include("inc/$p.php"); ?>
+	</main>
+</div>
 
 <?
 include("inc/footer.php");

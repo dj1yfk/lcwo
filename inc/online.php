@@ -44,7 +44,7 @@ if (!$onlineusers) {
 
 
 
-<table width="90%">
+<table width="100%">
 <tr><th class="tborder"><? echo l('whoisonline') ?> (<?=$onlineusers;?>)</th></tr>
 <tr><td class="tborder">
 <br>
