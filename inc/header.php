@@ -31,7 +31,7 @@ while ($w = mysqli_fetch_row($query)) {
 <meta property="og:url" content="https://lcwo.net/" />
 <meta property="og:image" content="https://lcwo.net/pics/lcwo.png" />
 <meta property="og:description" content="Learn CW Online - a free web app for learning Morse code!" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 <link rel="icon" href="/favicon.ico">
 <link rel="shortcut icon" href="/favicon.ico">
 <?
@@ -129,4 +129,27 @@ function toggleMenu(selector) {
 	var el = document.querySelector(selector);
 	el.classList.toggle('active');
 }
+
+function changeInputSize(sz) {
+	var i = document.getElementById('textinput');
+	if (i !== null) {
+		i.style.fontSize = sz;
+	}
+
+	var els = Array.prototype.slice.call(document.getElementsByTagName('input'));
+	els.forEach(function (el) {
+		el.style.fontSize = sz;
+	});
+}
+
+function changeInputSizeOnMatch(e) {
+	if (e.matches) {
+		changeInputSize('18px');
+	} else {
+		changeInputSize('11px');
+	}
+}
+const mql = window.matchMedia("(max-width: 900px)");
+mql.addListener(changeInputSizeOnMatch);
+changeInputSizeOnMatch(mql);
 </script>

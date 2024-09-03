@@ -91,6 +91,9 @@ body {
 	display: block;
 }
 
+.login-table {
+	width: 100%;
+}
 
 @media (max-width: 900px) {
 	.player-small {
@@ -99,9 +102,17 @@ body {
 	.player-large {
 		display: none;
 	}
-	
+
 	.header, .main-content {
 		flex-direction: column;
+	}
+	.content {
+		margin-left: 5px;
+		padding-right: 10px;
+	}
+	#cal-heatmap {
+		max-width: 100%;
+		overflow-x: scroll;
 	}
 	.logo, .sidebar, .padding {
 		width: 100%
@@ -141,6 +152,24 @@ body {
 	}
 	.personalmenu {
 		display: none;
+	}
+	nav a {
+		font-size: 16px;
+	}
+	aside a {
+		font-size: 16px;
+	}
+	input[name="username"] {
+		width: 90%;
+	}
+	input[name="password"] {
+		width: 90%;
+	}
+	input {
+		font-size: 18px;
+	}
+	textarea {
+		font-size: 18px;
 	}
 }
 
