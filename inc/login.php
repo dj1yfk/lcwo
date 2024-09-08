@@ -1,4 +1,4 @@
-<table width="90%">
+<table width="100%">
 <tr><th class="tborder"><? echo l('login') ?></th></tr>
 <tr><td class="tborder">
 
@@ -6,15 +6,15 @@
 
 <div align="center">
 <form action="/dologin" method="POST">
-<table>
+<table class="login-table">
 	<tr>
-		<td><? echo l('username'); ?>: </td>
+		<td style="width:20%"><? echo l('username'); ?>: </td>
 		<td>
 			<input type="text" size="8" name="username">
 		</td>
 	</tr>
 	<tr>
-		<td><? echo l('password'); ?>: </td>
+		<td style="width:20%"><? echo l('password'); ?>: </td>
 		<td>
 			<input type="password" size="8" name="password">
 		</td>

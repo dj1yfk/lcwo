@@ -31,6 +31,7 @@ while ($w = mysqli_fetch_row($query)) {
 <meta property="og:url" content="https://lcwo.net/" />
 <meta property="og:image" content="https://lcwo.net/pics/lcwo.png" />
 <meta property="og:description" content="Learn CW Online - a free web app for learning Morse code!" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 <link rel="icon" href="/favicon.ico">
 <link rel="shortcut icon" href="/favicon.ico">
 <?
@@ -69,16 +70,13 @@ curl -L 'https://unpkg.com/cal-heatmap/dist/plugins/Tooltip.min.js' > js/cal-hea
 
 </head>
 <body bgcolor="#ffffff"> 
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
-	<tbody>
-		<tr class="headerline">
-			<td style="background-image:url(/pics/lcwo-bg2.png);" width="41%">
-			<a href="/"><img style="border-style:none;" src="/pics/lcwo.png" height="75" width="214" title="LCWO - Home" alt="[LCWO LOGO]"></a> </td>
-			<td style="background-image:url(/pics/lcwo-bg2.png);" width="59%"> 
+<header class="header">
+			<a href="/" style="height:75px;"><img class="logo" style="border-style:none;" src="/pics/lcwo.png" height="75" width="214" title="LCWO - Home" alt="[LCWO LOGO]"></a> 
 <?
 	if (DEV) {
 ?>			
-&nbsp;<strong>Development Version</strong> (<a href="https://lcwo.net/">Click here to go to LCWO.net</a>) - <a href="/babelfish.php?limit=0">Babelfish</a> - 
+<div style="margin-left: 15px;" class="wide-dev-info">
+<strong>Development Version</strong> (<a href="https://lcwo.net/">Click here to go to LCWO.net</a>) - <a href="/babelfish.php?limit=0">Babelfish</a> - 
 <?
 	if ($_SESSION['debug'] == 1) {
 		echo '<a href="/?debug=2">Switch debug off</a> - ';
@@ -93,6 +91,10 @@ curl -L 'https://unpkg.com/cal-heatmap/dist/plugins/Tooltip.min.js' > js/cal-hea
 	else {
 		echo '<a href="/?debug=3">Switch inpage translate on</a><br>';
 	}
+?>
+
+</div>
+<?
 } /* if DEV */
 if ($_SESSION['uid']) {
 ?>
@@ -115,9 +117,7 @@ Please be aware of LCWO's <a href="/privacy">privacy policy</a> to comply with t
 <?
 }
 ?>
-
-&nbsp;
-</td> </tr> </tbody></table>
+</header>
 <script>
 function agree_policy () {
 	var i = document.getElementById("consent");
@@ -126,4 +126,31 @@ function agree_policy () {
 	request.open("GET", "//lcwo.net/api/consent.php", true);
 	request.send();
 }
+function toggleMenu(selector) {
+	var el = document.querySelector(selector);
+	el.classList.toggle('active');
+}
+
+function changeInputSize(sz) {
+	var i = document.getElementById('textinput');
+	if (i !== null) {
+		i.style.fontSize = sz;
+	}
+
+	var els = Array.prototype.slice.call(document.getElementsByTagName('input'));
+	els.forEach(function (el) {
+		el.style.fontSize = sz;
+	});
+}
+
+function changeInputSizeOnMatch(e) {
+	if (e.matches) {
+		changeInputSize('18px');
+	} else {
+		changeInputSize('11px');
+	}
+}
+const mql = window.matchMedia("(max-width: 900px)");
+mql.addListener(changeInputSizeOnMatch);
+changeInputSizeOnMatch(mql);
 </script>

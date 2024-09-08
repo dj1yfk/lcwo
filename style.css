@@ -20,12 +20,205 @@ textarea {font-family:monospace;}
 }
 
 .menuText {
+	display: flex;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	color: #000000;
 	text-decoration: none;
-	background-image:url(/pics/menu2.png);
+	/* background-image:url(/pics/menu2.png); */
+	background: linear-gradient(to bottom, rgb(133, 137, 196), rgb(166, 171, 251));
 }
+
+body {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	/* font-family: Arial, sans-serif; */
+}
+.header {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	background-image: url('/pics/lcwo-bg2.png');
+	background-repeat: repeat-x;
+	/* max-height: 75px; */
+}
+
+.menuText a {
+	margin-right: 10px;
+}
+
+.main-content {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-top: 20px;
+	display: flex;
+	flex: 1;
+}
+
+.sidebar {
+	width: 220px;
+	margin-right: 25px;
+}
+
+.content {
+	flex: 1;
+}
+
+.menu-icon {
+	display: none;
+	font-size: 24px;
+	cursor: pointer;
+}
+
+.placeholder-menu {
+	margin-left: auto;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.menu-lines {
+	margin: 0px 3px 3px auto;
+}
+
+.player-small {
+	display: none;
+}
+
+.player-large {
+	display: block;
+}
+
+.login-table {
+	width: 100%;
+}
+
+.menu-toggle {
+	display: none;
+}
+
+@media (max-width: 900px) {
+	.player-small {
+		display: block;
+	}
+	.player-large {
+		display: none;
+	}
+
+	.header, .main-content {
+		flex-direction: column;
+	}
+	.content {
+		margin-left: 15px;
+		padding-right: 10px;
+	}
+	#cal-heatmap {
+		max-width: 100%;
+		overflow-x: scroll;
+	}
+	.logo, .padding {
+		width: 100%
+	}
+	.menuText {
+		display: none;
+	}
+	.menuText.active, .sidebar.active {
+		display: block;
+		flex-direction: column;
+	}
+	.menuText div {
+		display: block; 
+		margin-bottom: 5px;
+	}
+	.menu {
+		position: relative;
+		left: 7px;
+		top: 5px;
+	}
+	.dev-info {
+		margin: 10px 0px 10px 0px;
+		font-size: 12px;
+	}	
+	.menu-toggle.active {
+		left: 347px;
+	}
+	.menu-toggle {
+		writing-mode: vertical-rl;
+		text-orientation: mixed;
+		font-size: 18px;
+		display: block;
+		position: fixed;
+		left: 0px; 
+		top: 112px;
+		height: 90px;
+		width: 12px;
+		z-index: 1001;
+		color: white;
+		border: none;
+		padding: 0px;
+		cursor: pointer;
+		background: linear-gradient(to bottom, rgb(133, 137, 196), rgb(166, 171, 251));
+		transition: left 0.3s ease-in-out;
+		border-radius: 0 6px 6px 0;
+	}
+	#sidebar.active {
+		left: 0px;
+	}
+	#sidebar {
+		position: fixed;
+		left: -350px;
+		top: 110px;
+		width: 350px;
+		height: 100%;
+		background-color: white;
+		z-index: 1000;
+		transition: left 0.3s ease-in-out;
+		overflow-x: scroll;
+	}
+	.menu-icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: linear-gradient(to bottom, rgb(133, 137, 196), rgb(166, 171, 251));
+		width: 100%;
+	}
+	.player-table {
+		width: 100%;
+	}
+	.player-table textarea {
+		width: 100%;
+	}
+	input#checkresult {
+		width: 100%;
+		padding: 0px;
+		height: 25px;
+	}
+	.personalmenu {
+		display: none;
+	}
+	nav a {
+		font-size: 16px;
+	}
+	aside a {
+		font-size: 16px;
+	}
+	input[name="username"] {
+		width: 90%;
+	}
+	input[name="password"] {
+		width: 90%;
+	}
+	input {
+		font-size: 18px;
+	}
+	textarea {
+		font-size: 18px;
+	}
+}
+
+
 
 .pmsgbox {
 	width:600px;

@@ -148,8 +148,14 @@ if ($_SESSION['player'] == 0) {
 if ($_SESSION['koch_lesson'] == 1) {
 echo "<table><tr><td>";
 player("KKKKKKKKKKKKKKKKKK", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 1, 1,0); 
-echo "</td><td>&nbsp;&nbsp;</td><td>";
+
+
+echo "</td><td>&nbsp;&nbsp;</td><td class='player-large'>";
 player("MMMMMMMMMMMMMMMMMM", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 2, 1,0); 
+echo "</td></tr>";
+
+echo "<tr><td class='player-small'>";
+player("MMMMMMMMMMMMMMMMMM", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 3, 1,0); 
 echo "</td></tr></table>\n";
 }
 else {
@@ -279,14 +285,7 @@ else {
 <? $text = getgroups($_SESSION['cw_speed'], $_SESSION['cw_eff'], $_SESSION['koch_lesson'], $kochchar, $_SESSION['koch_duration'], $_SESSION['koch_randomlength'], false); ?>
 
 <form action="/courselesson" method="POST" id="eform">
-<table>
-	<tr>
-	<td><textarea id="textinput" spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off"  name="input" cols="40" rows="10"></textarea></td>
-	<td>
-	&nbsp;
-
-<? 
-
+<?
 if ($_SESSION['player'] != PL_JSCWLIB) {
     $playertext = "|W".$_SESSION['cw_ews']." ".$text;
     if ($_SESSION['delay_start'] > 0) {
@@ -301,8 +300,23 @@ if ($_SESSION['player'] != PL_JSCWLIB) {
 else {
     $playertext = $text;
 }
+?>
 
-player("$playertext", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'], 0, 3, 0, 1); 
+<table class="player-table">
+	<tr class="player-small">
+	<td>
+<? 
+	player("$playertext", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'], 0, 4, 0, 1); 
+?>
+	</td>
+    </tr>
+	<tr>
+	<td><textarea id="textinput" spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off"  name="input" cols="40" rows="10"></textarea></td>
+	<td class="player-large">
+	&nbsp;
+
+<? 
+player("$playertext", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'], 0, 5, 0, 1); 
 ?>
 	
 	</td>
@@ -320,7 +334,7 @@ player("$playertext", $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_
 		$text2 = stripcommands($text2);
 	?>
 		<input type="hidden" name="text" value="<? echo $text2; ?>">
-		<input type="submit" value=" <? echo l('checkresult',1); ?> " onClick="return checkspaces();"> (<? echo l('notcasesensitive'); ?>)
+		<input id="checkresult" type="submit" value=" <? echo l('checkresult',1); ?> " onClick="return checkspaces();">(<? echo l('notcasesensitive'); ?>)
 	</td>
 </table>
 </form>

@@ -80,9 +80,15 @@ global $db;
     <button id="btn_playpause" onClick="playpause(1); if(tmp=getElementById('eform')){tmp.input.focus();} return false;"><?=l('playpause',1);?></button><br><br>
 	<form action="/plaintext" method="POST" id="eform">
 		<table><tr>
-		<td><input  spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off" type="text" size="60" name="input"></td>
-		<td><input type="submit" name="submitted" value=" <? echo l('checkresult',1) ?>"></td>
-		<td><input type="submit" name="cancel" value=" <? echo l('cancel',1) ?>"></td>
+		<td>
+			<textarea spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off" type="text" cols="30" rows="10" name="input" id="textinput"></textarea>
+		</td>
+        </tr>
+        <tr>
+		<td>
+			<input type="submit" name="submitted" value=" <? echo l('checkresult',1) ?>">
+			<input type="submit" name="cancel" value=" <? echo l('cancel',1) ?>">
+	     </td>
 		</tr></table>
 		<input type="hidden" name="txtext" value="<? echo base64_encode($txtext); ?>">
 		<input type="hidden" name="slang" value="<? echo $slang; ?>">

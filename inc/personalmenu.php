@@ -1,6 +1,6 @@
 
-<table width="90%">
-<tr><th class="tborder"><? echo l('menufor')." ".$_SESSION['username']; ?></th></tr>
+<table width="100%">
+<tr><th class="personalmenu tborder"><? echo l('menufor')." ".$_SESSION['username']; ?></th></tr>
 <tr><td class="tborder">
 <a href="/"><strong><? echo l('home') ?></strong></a> - 
 <a href="/news"><strong><? echo l('news') ?></strong></a>
