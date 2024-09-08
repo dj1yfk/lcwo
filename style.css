@@ -95,6 +95,10 @@ body {
 	width: 100%;
 }
 
+.menu-toggle {
+	display: none;
+}
+
 @media (max-width: 900px) {
 	.player-small {
 		display: block;
@@ -107,17 +111,17 @@ body {
 		flex-direction: column;
 	}
 	.content {
-		margin-left: 5px;
+		margin-left: 15px;
 		padding-right: 10px;
 	}
 	#cal-heatmap {
 		max-width: 100%;
 		overflow-x: scroll;
 	}
-	.logo, .sidebar, .padding {
+	.logo, .padding {
 		width: 100%
 	}
-	.menuText, .sidebar {
+	.menuText {
 		display: none;
 	}
 	.menuText.active, .sidebar.active {
@@ -128,10 +132,51 @@ body {
 		display: block; 
 		margin-bottom: 5px;
 	}
+	.menu {
+		position: relative;
+		left: 7px;
+		top: 5px;
+	}
 	.dev-info {
 		margin: 10px 0px 10px 0px;
 		font-size: 12px;
 	}	
+	.menu-toggle.active {
+		left: 347px;
+	}
+	.menu-toggle {
+		writing-mode: vertical-rl;
+		text-orientation: mixed;
+		font-size: 18px;
+		display: block;
+		position: fixed;
+		left: 0px; 
+		top: 112px;
+		height: 90px;
+		width: 12px;
+		z-index: 1001;
+		color: white;
+		border: none;
+		padding: 0px;
+		cursor: pointer;
+		background: linear-gradient(to bottom, rgb(133, 137, 196), rgb(166, 171, 251));
+		transition: left 0.3s ease-in-out;
+		border-radius: 0 6px 6px 0;
+	}
+	#sidebar.active {
+		left: 0px;
+	}
+	#sidebar {
+		position: fixed;
+		left: -350px;
+		top: 110px;
+		width: 350px;
+		height: 100%;
+		background-color: white;
+		z-index: 1000;
+		transition: left 0.3s ease-in-out;
+		overflow-x: scroll;
+	}
 	.menu-icon {
 		display: flex;
 		justify-content: center;

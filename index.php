@@ -104,11 +104,10 @@ include("inc/menu.php");
 
 ?>
 <div class="main-content">
-	<div class="menu-icon" onclick="toggleMenu('.sidebar')">
-		<div class="placeholder-menu">Menu</div>
-		<div class="menu-lines">☰</div>
+	<div class="menu-toggle <? if (!$_SESSION['uid']) { echo('active');} ?>" onclick="toggleMenu('.sidebar'); toggleMenu('.menu-toggle');">
+		<div class="menu">-- · -· ··-</div>
 	</div>
-	<aside class="sidebar">
+	<aside id="sidebar" class="sidebar <? if (!$_SESSION['uid']) { echo('active');} ?>">
 		<? 
 		if (!$_SESSION['uid']) {
 			include("inc/login.php"); 

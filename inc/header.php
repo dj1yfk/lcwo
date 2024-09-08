@@ -72,11 +72,11 @@ curl -L 'https://unpkg.com/cal-heatmap/dist/plugins/Tooltip.min.js' > js/cal-hea
 <body bgcolor="#ffffff"> 
 <header class="header">
 			<a href="/" style="height:75px;"><img class="logo" style="border-style:none;" src="/pics/lcwo.png" height="75" width="214" title="LCWO - Home" alt="[LCWO LOGO]"></a> 
-			<div style="margin-left: 15px;" class="dev-info">
 <?
 	if (DEV) {
 ?>			
-&nbsp;<strong>Development Version</strong> (<a href="https://lcwo.net/">Click here to go to LCWO.net</a>) - <a href="/babelfish.php?limit=0">Babelfish</a> - 
+<div style="margin-left: 15px;" class="wide-dev-info">
+<strong>Development Version</strong> (<a href="https://lcwo.net/">Click here to go to LCWO.net</a>) - <a href="/babelfish.php?limit=0">Babelfish</a> - 
 <?
 	if ($_SESSION['debug'] == 1) {
 		echo '<a href="/?debug=2">Switch debug off</a> - ';
@@ -91,6 +91,10 @@ curl -L 'https://unpkg.com/cal-heatmap/dist/plugins/Tooltip.min.js' > js/cal-hea
 	else {
 		echo '<a href="/?debug=3">Switch inpage translate on</a><br>';
 	}
+?>
+
+</div>
+<?
 } /* if DEV */
 if ($_SESSION['uid']) {
 ?>
@@ -113,9 +117,6 @@ Please be aware of LCWO's <a href="/privacy">privacy policy</a> to comply with t
 <?
 }
 ?>
-
-&nbsp;
-</div>
 </header>
 <script>
 function agree_policy () {

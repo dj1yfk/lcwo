@@ -49,7 +49,7 @@ if ($valid) {
 
 <script>
     window.setTimeout( function () {
-        window.location.href = '<?=BASEURL;?>';
+        window.location.href = '/';
     }, 1000);
 
 </script>
