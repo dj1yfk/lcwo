@@ -349,11 +349,16 @@ if ($_SESSION['player'] != PL_JSCWLIB) {
 <form action="/groups" method="POST" id="eform">
 <table>
 	<tr>
+      <td class="player-small">
+	  	<? player($playertext, $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 1, 0, 1); ?>
+      </td>
+    </tr>
+	<tr>
 	<td><textarea id="textinput" spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off" name="input" cols="40" rows="10"></textarea></td>
-	<td>
+	<td class="player-large">
 	&nbsp;
 
-	<? player($playertext, $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 1, 0, 1); ?>
+	<? player($playertext, $_SESSION['player'], $_SESSION['cw_speed'], $_SESSION['cw_eff'],0, 2, 0, 1); ?>
 
     <br>
 	</td>
