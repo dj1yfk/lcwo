@@ -406,3 +406,17 @@ CREATE TABLE `lcwo_wordsresults` (
   `valid` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`NR`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `lcwo_cookies`
+--
+
+DROP TABLE IF EXISTS `lcwo_cookies`;
+CREATE TABLE `lcwo_cookies` (
+  `ID` bigint(5) NOT NULL AUTO_INCREMENT,
+  `username` varchar(64) NOT NULL DEFAULT 0,
+  `hash` varchar(64) NOT NULL DEFAULT '',
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+

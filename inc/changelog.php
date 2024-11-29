@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2027-11-29:
+    * Enable permanent login by cookies.
+
 2024-07-20:
     * Allow play/pause control by double-tapping Ctrl in code groups
 

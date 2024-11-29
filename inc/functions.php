@@ -1532,6 +1532,23 @@ function is_deleted_user() {
 	}
 }
 
+function fetch_cookie($username) {
+	global $db;
+    error_log("function fetch_cookie($username);");
+	$q = mysqli_query($db, "select hash from lcwo_cookies where username='$username'");
+	if ($o = mysqli_fetch_row($q)) {
+        error_log("hash exists: = ".$o[0]);
+        return $o[0];
+    }
+    else {
+        error_log("hash does not exist");
+        # we need to set a hash for this user for the next login
+        $hash = sha1(SALT.time().$id.rand());
+        error_log("new hash $username - $hash");
+        mysqli_query($db, "insert into lcwo_cookies (`username`, `hash`) VALUES ('$username', '$hash')");
+        return $hash;
+    }
+}
 
 
 ?>

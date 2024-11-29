@@ -107,10 +107,61 @@ include("inc/menu.php");
 	<tr>
 		<td width="220" valign="top">
 			<? 
-				if (!$_SESSION['uid']) {
-					include("inc/login.php"); 
-					include("inc/language.php"); 
+                if (!$_SESSION['uid']) {
+?>
+<script>
+
+function getCookieVal (offset) {
+    var endstr = document.cookie.indexOf (";", offset);
+    if (endstr == -1) { endstr = document.cookie.length; }
+    return unescape(document.cookie.substring(offset, endstr));
+}
+
+function getCookie (name) {
+    var arg = name + "=";
+    var alen = arg.length;
+    var clen = document.cookie.length;
+    var i = 0;
+    while (i < clen) {
+            var j = i + alen;
+            if (document.cookie.substring(i, j) == arg) {
+                return getCookieVal (j);
+            }
+            i = document.cookie.indexOf(" ", i) + 1;
+            if (i == 0) break;
+        }
+    return null;
+}
+
+	if (getCookie('lcwo_username') && getCookie('lcwo_hash')) {
+        console.log("found cookies, attempting to log in!");
+        var u = getCookie('lcwo_username');
+        var h = getCookie('lcwo_hash');
+	
+		var request =  new XMLHttpRequest();
+		request.open("POST", '/dologin', true);
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		request.onreadystatechange = function() {
+			var done = 4, ok = 200;
+			if (request.readyState == done && request.status == ok) {
+				if (request.responseText) {
+                    if (request.responseText.indexOf("LOGIN_SUCCESS") != -1) {
+                        // login succeeded... forwarding
+                        window.setTimeout( function () {
+                            window.location.href = '<?=BASEURL;?>';
+                        }, 1000);
+                    }
 				}
+			}
+		}
+		request.send("username="+u);
+    }
+
+</script>
+<?                
+                    include("inc/login.php"); 
+                    include("inc/language.php"); 
+                }
 				else {
 					include("inc/personalmenu.php"); 
 				}

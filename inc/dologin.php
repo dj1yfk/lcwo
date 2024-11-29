@@ -7,8 +7,11 @@ if ($_SESSION['uid']) {
 $valid = 1;
 $error = "";
 
+
+# we need username and either a password or a valid hash in a cookie
 $username = $_POST['username'];
 $password = $_POST['password'];
+$cookie   = $_COOKIE['lcwo_hash'];
 
 if (!preg_match("/^[a-zA-Z0-9]{1,24}$/", $username)) {
 	$valid = 0;
@@ -26,10 +29,18 @@ else {
 			forum_whitelist, delay_start, consent, hide, theme
 		   	from lcwo_users where username='$username'");
 
-	if ($user = mysqli_fetch_object($getuser)) {
+    if ($user = mysqli_fetch_object($getuser)) {
+
+        # fetch_cookie returns the expected value of the cookie
+        # from the database
+        $user_cookie = fetch_cookie($username);
+
 		if ($user->password == md5($user->id.SALT.md5($password))) {
 			$valid = 1;
 		}
+        elseif ($user_cookie == $cookie) {
+			$valid = 1;
+        }
 		else {
 			$valid = 0;
 			$error .= "Password doesn't match.<br>\n";
@@ -46,17 +57,20 @@ else {
 if ($valid) {
 ?>
 <a href="/"><?=l('loginsuccessful');?></a>
-
+<!-- LOGIN_SUCCESS -->
 <script>
     window.setTimeout( function () {
         window.location.href = '<?=BASEURL;?>';
     }, 1000);
 
+    var expdate = new Date();
+    expdate.setDate(expdate.getDate()+365);
+    document.cookie="lcwo_hash="+escape("<?=$user_cookie;?>") + "; SameSite=Strict; expires=" + expdate.toUTCString();
+    document.cookie="lcwo_username="+escape("<?=$user->username;?>") + "; SameSite=Strict; expires=" + expdate.toUTCString();
 </script>
 
-
-
 <?
+
 	$_SESSION['username'] = $user->username;
 	$_SESSION['location'] = $user->location;
 	$_SESSION['uid'] = $user->id;
