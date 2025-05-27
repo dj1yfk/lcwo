@@ -142,7 +142,7 @@ function daily_results () {
         return;
     }
 
-    $query = "select date,count(NR) as count from (select NR,date(time) as date from lcwo_lessonresults where uid='".$userid."' union all select NR,date(time) as date from lcwo_groupsresults where uid='".$userid."' union all select NR,date(time) as date from lcwo_plaintextresults where uid='".$userid."' union all select NR,date(time) as date from lcwo_qtcresults where uid='".$userid."' union all select NR,date(time) as date from lcwo_wordsresults where uid='".$userid."') g group by date order by date desc;";
+    $query = "select date,count(NR) as count from (select NR,date(time) as date from lcwo_lessonresults where uid='".$userid."' union all select NR,date(time) as date from lcwo_groupsresults where uid='".$userid."' union all select NR,date(time) as date from lcwo_plaintextresults where uid='".$userid."' union all select NR,date(time) as date from lcwo_qtcresults where uid='".$userid."' union all select NR,date(time) as date from lcwo_wordsresults where uid='".$userid."' union all select NR,date(time) as date from lcwo_callsignsresults where uid='".$userid."') g group by date order by date desc;";
 
     $q = mysqli_query($db, $query);
     $out = array();
