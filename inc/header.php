@@ -105,7 +105,7 @@ limited functionality without JavaScript.</p>
 }
 if (!$_SERVER['HTTPS']) { ?> <a rel="nofollow" href="https://lcwo.net/">Click to switch to a secure connection (https).</a> <? }
 
-if ($_SESSION['consent'] == "0") {
+if ((!array_key_exists('consent', $_SESSION)) || $_SESSION['consent'] == "0") {
 ?>
 Please be aware of LCWO's <a href="/privacy">privacy policy</a> to comply with the <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>.
 
@@ -123,7 +123,7 @@ function agree_policy () {
 	var i = document.getElementById("consent");
 	i.innerHTML = "Thanks!";
 	var request =  new XMLHttpRequest();
-	request.open("GET", "//lcwo.net/api/consent.php", true);
+	request.open("GET", "/api/consent.php", true);
 	request.send();
 }
 </script>
