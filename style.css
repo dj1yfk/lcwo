@@ -181,6 +181,10 @@ pre {
 }
 
 
+.highscorehighlight {
+    background-color: #dddddd;
+}
+
 .highscore {
 	width: 100%;
 }

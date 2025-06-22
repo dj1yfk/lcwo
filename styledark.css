@@ -203,6 +203,10 @@ pre {
 }
 
 
+.highscorehighlight {
+    background-color: #444444;
+}
+
 .highscore {
 	width: 100%;
 }

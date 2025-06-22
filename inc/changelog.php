@@ -14,7 +14,10 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
-2027-11-29:
+2025-06-22:
+    * Fix highlight colour for highscores (own best scores) - tnx PE4BAS
+
+2024-11-29:
     * Enable permanent login by cookies.
 
 2024-07-20:

@@ -50,7 +50,7 @@ $top = mysqli_query($db,"
 	while ($o = mysqli_fetch_object($top)) {
 			$poscount++;
 			if ($highlightme && ($o->username == $_SESSION['username'])) {
-				$color = " bgcolor='#dddddd'";
+				$color = " class='highscorehighlight' ";
 			}
 			else {
 				$color = '';
