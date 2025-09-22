@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2025-09-23:
+    * Groups (figures): Add additional abbreviated mode with only 0 and 9 - tnx F6FVY
+
 2025-06-22:
     * Fix highlight colour for highscores (own best scores) - tnx PE4BAS
 

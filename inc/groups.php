@@ -13,7 +13,7 @@ if (in_array($_POST['mode'], array("letters", "figures", "mixed", "custom"))
 	$upd = mysqli_query($db,"update lcwo_users set groups_mode ='".$_SESSION['groups_mode']."' where id='".$_SESSION['uid']."'");
 
 	# Abbreviated numbers?
-	if (in_array($_POST['abbrev'], array('0','1','2'))) {
+	if (in_array($_POST['abbrev'], array('0','1','2','3'))) {
 		$_SESSION['groups_abbrev'] = $_POST['abbrev'];
 			$upd = mysqli_query($db,"update lcwo_users set groups_abbrev = '".$_SESSION['groups_abbrev']."' where id='".$_SESSION['uid']."' limit 1");
 	}
@@ -90,6 +90,7 @@ if (isset($_POST['duration']) && is_numeric($_POST['duration']) && $_SESSION['ui
 	<td><?=l('abbreviatednumbers')?></td><td>
 <select  onchange="this.form.submit();"  name="abbrev" size="1">
 	<option value="0" <? is_selected($_SESSION['groups_abbrev'],"0");?>>-</option>
+	<option value="3" <? is_selected($_SESSION['groups_abbrev'],"3");?>>9, 0</option>
 	<option value="1" <? is_selected($_SESSION['groups_abbrev'],"1");?>>1, 9, 0</option>
 	<option value="2" <? is_selected($_SESSION['groups_abbrev'],"2");?>>0 - 9</option>
 </select>
@@ -320,6 +321,11 @@ if ($_SESSION['groups_mode'] == 'figures') {
             $groups[$i] = preg_replace('/9/', 'N', $groups[$i]);
             $groups[$i] = preg_replace('/0/', 'T', $groups[$i]);
             break;
+        case "3":			# 0 and 9
+            $groups[$i] = preg_replace('/9/', 'N', $groups[$i]);
+            $groups[$i] = preg_replace('/0/', 'T', $groups[$i]);
+            break;
+
         }
     }
 
