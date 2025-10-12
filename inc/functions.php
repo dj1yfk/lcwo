@@ -1054,6 +1054,14 @@ function simplify ($lang, $text) {
 			$replace['ź'] = 'z';
 			$replace['ż'] = 'z';
 			break;
+		case 'no':
+			$replace['æ'] = 'ae';
+			$replace['ø'] = 'oe';
+			$replace['å'] = 'aa';
+			$replace['Æ'] = 'ae';
+			$replace['Ø'] = 'oe';
+			$replace['Å'] = 'aa';
+			break;
 		default:
 			$replace['a'] = 'a';
 			$replace["'"] = '';

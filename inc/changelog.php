@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2025-10-12:
+    * Added a collection of Norwegian proverbs to plain text training - tnx LB2KK
+
 2025-09-23:
     * Groups (figures): Add additional abbreviated mode with only 0 and 9 - tnx F6FVY
 
