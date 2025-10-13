@@ -133,7 +133,9 @@ function getCookie (name) {
     return null;
 }
 
-	if (getCookie('lcwo_username') && getCookie('lcwo_hash')) {
+    // attempt cookie login once. when it failed for some reason, we are at
+    // /#loginbycookie and we do not try again
+	if ((window.location.href.indexOf("loginbycookie") == -1) && getCookie('lcwo_username') && getCookie('lcwo_hash')) {
         console.log("found cookies, attempting to log in!");
         var u = getCookie('lcwo_username');
         var h = getCookie('lcwo_hash');
@@ -148,13 +150,16 @@ function getCookie (name) {
                     if (request.responseText.indexOf("LOGIN_SUCCESS") != -1) {
                         // login succeeded... forwarding
                         window.setTimeout( function () {
-                            window.location.href = '<?=BASEURL;?>';
+                            window.location.href = '<?=BASEURL;?>/#loginbycookie';
                         }, 1000);
                     }
 				}
 			}
 		}
 		request.send("username="+u);
+    }
+    else {
+        console.log("not attempting to log in via cookie");
     }
 
 </script>
