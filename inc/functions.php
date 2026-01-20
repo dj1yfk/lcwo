@@ -1062,6 +1062,26 @@ function simplify ($lang, $text) {
 			$replace['Ø'] = 'oe';
 			$replace['Å'] = 'aa';
 			break;
+		case 'hu':
+			$replace['á'] = 'a';
+			$replace['Á'] = 'a';
+			$replace['é'] = 'e';
+			$replace['É'] = 'e';
+			$replace['í'] = 'i';
+			$replace['Í'] = 'i';
+			$replace['ó'] = 'o';
+			$replace['Ó'] = 'o';
+			$replace['ö'] = 'o';
+			$replace['Ö'] = 'o';
+			$replace['ő'] = 'o';
+			$replace['Ő'] = 'o';
+			$replace['ú'] = 'u';
+			$replace['Ú'] = 'u';
+			$replace['ü'] = 'u';
+			$replace['Ü'] = 'u';
+			$replace['ű'] = 'u';
+			$replace['Ű'] = 'u';
+			break;
 		default:
 			$replace['a'] = 'a';
 			$replace["'"] = '';

@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2026-01-20:
+    * Added a collection of Hungarian words and proverbs - tnx Xongi!
+
 2025-10-12:
     * Added a collection of Norwegian proverbs to plain text training - tnx LB2KK
 
