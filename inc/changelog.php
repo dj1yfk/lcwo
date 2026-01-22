@@ -15,7 +15,9 @@ Even more fine grained changes can be observed in the git repository:
 Started on 2009-02-08.
 
 2026-01-22:
-    * Added a collection of Turkish proverbs and updated the Turkish translation - tnx TA2RX!
+    * Added a collection of Turkish proverbs and sentences (plain text training)
+    * Added Turkish words to Word training
+    * Updated the Turkish translation - tnx TA2RX (for all three)!
 
 2026-01-20:
     * Added a collection of Hungarian words and proverbs - tnx Xongi!

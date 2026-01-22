@@ -5,9 +5,9 @@ use strict;
 # LCWO.net
 # Import a plain text file with sentences
 
-my $collid = 16;
+my $collid = 17;
 my $lang   = "tr";
-my $desc   = "Turkce Atasozleri";
+my $desc   = "Sentences";
 
 while (my $line = <>) {
     chomp($line);
