@@ -45,7 +45,7 @@ src="/pics/qsl-logo-small.png" alt="[LCWO print logo]"></a><br><br>
 
 <? include("inc/about-ratings.php"); ?>
 
-<h2>Bas&#305;n Duyuruzu</h2>
+<h2>Bas&#305;n Duyurusu</h2>
 
 <p>LCWO'yu kl&#252;b&#252;n&#252;z&#252;n b&#252;lteni, web sitesi ya da web g&#252;nl&#252;&#287;&#252;nde duyurmak i&#231;in a&#351;a&#287;&#305;daki duyuruyu kullanibilirsiniz:</p>
 
