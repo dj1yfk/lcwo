@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2026-01-23:
+    * Add volume control ("QRP"/"QRO") to Transmit practice (suggested by Algot2023)
+
 2026-01-22:
     * Added a collection of Turkish proverbs and sentences (plain text training)
     * Added Turkish words to Word training

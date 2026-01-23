@@ -7,10 +7,28 @@
 <input style="width:250px;height:250px" type="submit" value="Key" onmousedown="down();return false;" onmouseup="up();return false;" ontouchstart="down();return false;" ontouchend="up();return false;"><br>
 <input type="submit" value="QRQ" onclick="changespeed(1);return false;">
 <input type="submit" value="QRS" onclick="changespeed(0);return false;">
+<input type="submit" value="QRO" onclick="vol(1);return false;">
+<input type="submit" value="QRP" onclick="vol(0);return false;">
 <input type="submit" value="Clear" onclick="document.getElementById('jskey').innerHTML = '&nbsp;';return false;">
 </form>
 
 <script>
+
+var g_vol = 0.1;
+
+try {
+    var vl = parseFloat(localStorage.getItem("lcwo_tx_vol"));
+    if (vl >= 0 && vl <= 1) {
+        console.log("setting volume from local storage");
+        g_vol = vl;
+    }
+}
+catch (e) {
+    console.log("No volume in local storage.");
+}
+
+
+
 
 var audioCtx, oscillator, biquadFilter, gainNode;
 
@@ -123,13 +141,13 @@ Morse chat function here on LCWO.net.</p>
 		time = new Date().getTime();
 		checkspace();
 		keydown = 1;
-        gainNode.gain.value = 0.1;
+        gainNode.gain.value = g_vol;
 	}
 
 
 	function up () {
 		keydown = 0;
-        gainNode.gain.value = 0.0;
+        gainNode.gain.value = 0;
 		time = new Date().getTime() - time;
 		if (time > dotlength) {
 			element = "-";
@@ -185,6 +203,27 @@ Morse chat function here on LCWO.net.</p>
 		}
 		update();
 	}
+
+    function vol(a) {
+        if (a && g_vol < 1) {
+            g_vol += 0.01;
+        }
+        if (!a && g_vol > 0.01) {
+            g_vol -= 0.01;
+        }
+
+        if (g_vol < 0) {
+            g_vol = 0;
+        }
+
+        try {
+            localStorage.setItem('lcwo_tx_vol', g_vol);
+        }
+        catch (e) {
+            console.log("localStorage not available. Not saving volume");
+        }
+
+    }
 
 	function update () {
 		wpm = Math.round(10*1200/dotlength)/10;
