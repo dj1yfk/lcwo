@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2026-08-26:
+    * Add 233 new French proverbs (tnx F4IEB)
+
 2026-06-21:
     * Add a history to the text2cw function (suggested by HB9PPC)
     * Mark errors in callsign and word training in bold (suggested by DC5MHN)
