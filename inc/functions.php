@@ -1022,6 +1022,19 @@ function simplify ($lang, $text) {
 			$replace['ë'] = 'e';
 			$replace['ï'] = 'i';
 			$replace['î'] = 'i';
+			$replace['Ô'] = 'O';
+			$replace['Ù'] = 'U';
+			$replace['Û'] = 'U';
+			$replace['Á'] = 'A';
+			$replace['À'] = 'A';
+			$replace['Â'] = 'A';
+			$replace['Ç'] = 'C';
+			$replace['É'] = 'E';
+			$replace['È'] = 'E';
+			$replace['Ê'] = 'E';
+			$replace['Ë'] = 'E';
+			$replace['Ï'] = 'I';
+			$replace['Î'] = 'I';
 			break;
 		case 'es':
 		case 'ca':
@@ -1037,6 +1050,18 @@ function simplify ($lang, $text) {
 			$replace['ú'] = 'u';
 			$replace['ü'] = 'u';
 			$replace['ç'] = 'c';
+			$replace['À'] = 'A';
+			$replace['Á'] = 'A';
+			$replace['É'] = 'E';
+			$replace['È'] = 'E';
+			$replace['Í'] = 'I';
+			$replace['Ï'] = 'I';
+			$replace['Ñ'] = 'N';
+			$replace['Ó'] = 'O';
+			$replace['Ò'] = 'O';
+			$replace['Ú'] = 'U';
+			$replace['Ü'] = 'U';
+			$replace['Ç'] = 'C';
 			break;
 		case 'pt':
 			$replace['á'] = 'a';
@@ -1052,6 +1077,20 @@ function simplify ($lang, $text) {
 			$replace['õ'] = 'o';
 			$replace['ú'] = 'u';
 			$replace['ü'] = 'u';
+			$replace['Á'] = 'A';
+			$replace['À'] = 'A';
+			$replace['Â'] = 'A';
+			$replace['Ã'] = 'A';
+			$replace['Ç'] = 'C';
+			$replace['É'] = 'E';
+			$replace['Ê'] = 'E';
+			$replace['Í'] = 'I';
+			$replace['Ó'] = 'O';
+			$replace['Ô'] = 'O';
+			$replace['Õ'] = 'O';
+			$replace['Ú'] = 'U';
+			$replace['Ü'] = 'U';
+
 			break;
 		case 'pl':
 			$replace['ą'] = 'a';
@@ -1063,6 +1102,15 @@ function simplify ($lang, $text) {
 			$replace['ś'] = 's';
 			$replace['ź'] = 'z';
 			$replace['ż'] = 'z';
+			$replace['Ą'] = 'A';
+			$replace['Ć'] = 'C';
+			$replace['Ę'] = 'E';
+			$replace['Ł'] = 'L';
+			$replace['Ń'] = 'N';
+			$replace['Ó'] = 'O';
+			$replace['Ś'] = 'S';
+			$replace['Ź'] = 'Z';
+			$replace['Ż'] = 'Z';
 			break;
 		case 'no':
 			$replace['æ'] = 'ae';
