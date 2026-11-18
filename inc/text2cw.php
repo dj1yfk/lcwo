@@ -233,8 +233,8 @@ Open text: <input type="file" id="t2c_file" onChange="javascript:load_text(this)
     for ($i = $cnt-1; $i >= 0; $i--) {
         $txt = $_SESSION['text2cw']['history'][$i];
         $txt_show = $txt;
-        if (strlen($txt) > 50) {
-            $txt_show = substr($txt, 50)." ...";
+        if (strlen($txt) > 100) {
+            $txt_show = substr($txt, 0, 100)." ...";
         }
         $txt = preg_replace('/"/', '\"', $txt);
         $txt = preg_replace('/\'/', '', $txt);

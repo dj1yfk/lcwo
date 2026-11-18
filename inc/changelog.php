@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2026-11-18:
+    * Fix history in text2cw function (tnx Frederick)
+
 2026-08-26:
     * Add 233 new French proverbs (tnx F4IEB)
 
