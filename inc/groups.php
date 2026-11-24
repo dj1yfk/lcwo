@@ -143,12 +143,6 @@ if (isset($_POST['text']))  {
 		$rxtext = preg_replace('/;/', '?', $rxtext);
 	}
 
-    /* sa7c: accept Å for À */
-	if ($_SESSION['groups_mode'] == 'custom') {
-		$rxtext = preg_replace('/Å/', 'À', $rxtext);
-		$rxtext = preg_replace('/å/', 'À', $rxtext);
-	}
-
 	$rcvd = preg_split('/[\s\n]+/', $rxtext);
 
 	echo "<table><tr><td valign=\"top\">\n";
