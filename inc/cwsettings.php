@@ -342,6 +342,17 @@ echo join(",", $tmparray);
 
 var Anumbers = new Array(0,1,2,3,4,5,6,7,8,9);
 
+function clearall () {
+    var items = [Anumbers, Acyrillic, Aletters, Akoch, Aarabic, Aextra];
+
+    items.forEach ((larray) => {
+    	for	(i=0; i < larray.length; i++) {
+	    	tmp = document.getElementById('char'+larray[i]);
+		    tmp.checked = false;	
+	    }   
+    });
+}
+
 
 function togglechecks (larray) {
 	var i;
@@ -469,6 +480,10 @@ foreach ($arabicchar as $k) {
 <input type="button" name="extrachars" value="<?=l('extracharacters',1)?>" onClick="togglechecks(Aextra);">
 <input type="button" name="cyrillicchars" value="<?=l('cyrillic',1)?>" onClick="togglechecks(Acyrillic);">
 <input type="button" name="arabicchars" value="<?=l('arabic',1)?>" onClick="togglechecks(Aarabic);">
+&nbsp;
+&nbsp;
+&nbsp;
+<input type="button" name="clear" value="<?=l('clearall',1)?>" onClick="clearall();">
 
 
 </td></tr>

@@ -14,6 +14,9 @@ Even more fine grained changes can be observed in the git repository:
 
 Started on 2009-02-08.
 
+2026-11-23:
+    * Add "Clear all" button in character selection/cwsettings (tnx Harlan)
+
 2026-11-18:
     * Fix history in text2cw function (tnx Frederick)
 
